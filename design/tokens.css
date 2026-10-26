@@ -1,0 +1,81 @@
+/* Naqsh design tokens. Only use these. Source: client palette (palette.png). */
+:root {
+  /* Client palette */
+  --black: #000000;
+  --charcoal: #4D4E52;
+  --khaki: #C0A48E;
+  --ivory: #F7F1E7;        /* Floral White: main page background */
+  --chestnut: #7F3021;
+  --terracotta: #B64F3E;
+  --olive: #6A8B67;        /* Dusty Olive */
+  --sage: #789675;
+  --pine: #145240;         /* Pine Teal */
+
+  /* Derived (not in client palette, keep to these only) */
+  --ivory-deep: #EFE5DA;   /* ivory + 15% khaki: alternate bands, card fills */
+  --copper: #AB6C49;       /* sampled from client copper render, CONFIRM with client */
+  --copper-light: #CD8965;
+  --copper-dark: #955A3A;
+  --hairline: rgb(192 164 142 / 0.45);       /* khaki hairline on ivory */
+  --hairline-dark: rgb(247 241 231 / 0.18);  /* ivory hairline on dark */
+
+  /* Roles */
+  --bg: var(--ivory);
+  --bg-alt: var(--ivory-deep);
+  --bg-dark: var(--black);
+  --bg-accent: var(--terracotta);
+  --text: var(--charcoal);          /* body on ivory (7.4:1) */
+  --text-strong: var(--black);      /* headings on ivory */
+  --text-on-dark: var(--ivory);
+  --text-muted-on-dark: var(--khaki);  /* 8.9:1 on black. NEVER on ivory (2.1:1) */
+  --label: var(--pine);             /* small section labels on ivory (7.5:1) */
+  --link: var(--chestnut);          /* 7.9:1 on ivory */
+  --button-bg: var(--terracotta);   /* ivory text on it is ~4.4:1: use 17px+ semibold uppercase */
+  --button-bg-hover: var(--chestnut);
+  --focus-ring: var(--pine);
+  /* DO NOT use --sage or --olive as text on ivory (about 3:1). Decoration, icons, borders only. */
+
+  /* Typography */
+  --font-display: "Cormorant Garamond", "Times New Roman", serif;   /* headlines, 400/500 */
+  --font-body: "Manrope", system-ui, sans-serif;                    /* body and UI, 400/500/600 */
+  --fs-display: clamp(3.25rem, 8vw, 8rem);
+  --fs-h1: clamp(2.5rem, 5vw, 5rem);
+  --fs-h2: clamp(2rem, 3.6vw, 3.5rem);
+  --fs-h3: clamp(1.5rem, 2vw, 2rem);
+  --fs-body: clamp(1rem, 0.35vw + 0.95rem, 1.125rem);
+  --fs-small: 0.875rem;
+  --fs-label: 0.75rem;     /* uppercase, tracking 0.16em */
+  --lh-display: 0.98;
+  --lh-heading: 1.1;
+  --lh-body: 1.7;
+  --tracking-label: 0.16em;
+
+  /* Layout */
+  --container: 1280px;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+  --section-y: clamp(5rem, 10vw, 10rem);
+
+  /* Shape and depth */
+  --radius-card: 16px;
+  --radius-image: 20px;
+  --radius-button: 2px;
+  --shadow-soft: 0 24px 60px -32px rgb(0 0 0 / 0.28);
+  --shadow-emboss: inset 0 1px 0 rgb(255 255 255 / 0.55), 0 1px 2px rgb(0 0 0 / 0.06);
+
+  /* Motion (see docs/06-motion.md) */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 240ms;
+  --dur-base: 800ms;
+  --dur-slow: 1200ms;
+  --stagger: 100ms;
+
+  /* Layers */
+  --z-header: 50;
+  --z-overlay: 80;
+  --z-modal: 100;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --dur-fast: 0ms; --dur-base: 0ms; --dur-slow: 0ms; --stagger: 0ms; }
+}

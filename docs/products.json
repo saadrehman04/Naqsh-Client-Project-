@@ -1,0 +1,149 @@
+[
+  {
+    "name": "Excellence Award",
+    "slug": "excellence-award",
+    "image": "excellence-award.png",
+    "collection": "appreciation-gifts",
+    "group": "Awards & recognition",
+    "featured": true
+  },
+  {
+    "name": "Client Onboarding Kit",
+    "slug": "client-onboarding-kit",
+    "image": "client-onboarding-kit.png",
+    "collection": "client-packages",
+    "featured": true
+  },
+  {
+    "name": "Eid Celebration Basket",
+    "slug": "eid-celebration-basket",
+    "image": "eid-celebration-basket.png",
+    "collection": "ramadan-eid-baskets",
+    "featured": true
+  },
+  {
+    "name": "Newborn Welcome - Baby Boy",
+    "slug": "newborn-welcome-baby-boy",
+    "image": "newborn-welcome-baby-boy.png",
+    "collection": "custom-occasion-gifts",
+    "group": "Family & life moments"
+  },
+  {
+    "name": "Newborn Welcome - Baby Girl",
+    "slug": "newborn-welcome-baby-girl",
+    "image": "newborn-welcome-baby-girl.png",
+    "collection": "custom-occasion-gifts",
+    "group": "Family & life moments"
+  },
+  {
+    "name": "Father's Day Gift",
+    "slug": "fathers-day-gift",
+    "image": "fathers-day-gift.png",
+    "collection": "custom-occasion-gifts",
+    "group": "Seasonal & national days"
+  },
+  {
+    "name": "Mother's Day Gift",
+    "slug": "mothers-day-gift",
+    "image": "mothers-day-gift.png",
+    "collection": "custom-occasion-gifts",
+    "group": "Seasonal & national days"
+  },
+  {
+    "name": "Women's Day Gift Basket",
+    "slug": "womens-day-gift-basket",
+    "image": "womens-day-gift-basket.png",
+    "collection": "custom-occasion-gifts",
+    "group": "Seasonal & national days"
+  },
+  {
+    "name": "Fruit Party Favors",
+    "slug": "fruit-party-favors",
+    "image": "fruit-party-favors.png",
+    "collection": "annual-event-giveaways"
+  },
+  {
+    "name": "Independence Day Gift",
+    "slug": "independence-day-gift",
+    "image": "independence-day-gift.png",
+    "collection": "custom-occasion-gifts",
+    "group": "Seasonal & national days"
+  },
+  {
+    "name": "Sports Medals & Trophies",
+    "slug": "sports-medals-trophies",
+    "image": "sports-medals-trophies.png",
+    "collection": "appreciation-gifts",
+    "group": "Awards & recognition"
+  },
+  {
+    "name": "New Hire Welcome Kit",
+    "slug": "new-hire-welcome-kit",
+    "image": "new-hire-welcome-kit.png",
+    "collection": "new-hire-welcome-kits",
+    "featured": true
+  },
+  {
+    "name": "Seminar & Conference Kit",
+    "slug": "seminar-conference-kit",
+    "image": "seminar-conference-kit.png",
+    "collection": "annual-event-giveaways",
+    "featured": true
+  },
+  {
+    "name": "Birthday Celebration Box",
+    "slug": "birthday-celebration-box",
+    "image": "birthday-celebration-box.png",
+    "collection": "custom-occasion-gifts",
+    "group": "Family & life moments"
+  },
+  {
+    "name": "Kids' Gift Box",
+    "slug": "kids-gift-box",
+    "image": "kids-gift-box.png",
+    "collection": "custom-occasion-gifts",
+    "group": "Family & life moments"
+  },
+  {
+    "name": "Wellness Kit",
+    "slug": "wellness-kit",
+    "image": "wellness-kit.png",
+    "collection": "appreciation-gifts",
+    "group": "Wellbeing",
+    "featured": true
+  },
+  {
+    "name": "New Year Celebration Box",
+    "slug": "new-year-celebration-box",
+    "image": "new-year-celebration-box.png",
+    "collection": "custom-occasion-gifts",
+    "group": "Seasonal & national days"
+  },
+  {
+    "name": "Branded Merchandise",
+    "slug": "branded-merchandise",
+    "image": "branded-merchandise.png",
+    "collection": "brand-souvenirs"
+  },
+  {
+    "name": "Pakistan Heritage Gift Set",
+    "slug": "pakistan-heritage-gift-set",
+    "image": "pakistan-heritage-gift-set.png",
+    "collection": "client-packages",
+    "featured": true
+  },
+  {
+    "name": "Ramadan Delights",
+    "slug": "ramadan-delights",
+    "image": "ramadan-delights.png",
+    "collection": "ramadan-eid-baskets",
+    "featured": true
+  },
+  {
+    "name": "Retirement Award",
+    "slug": "retirement-award",
+    "image": "retirement-award.png",
+    "collection": "appreciation-gifts",
+    "group": "Awards & recognition"
+  }
+]

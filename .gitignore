@@ -1,0 +1,15 @@
+node_modules
+.next
+out
+.env
+.env.local
+.env*.local
+*.tsbuildinfo
+next-env.d.ts
+.vercel
+/test-results
+/playwright-report
+/qa/lighthouse/*.html
+sanity/node_modules
+sanity/dist
+.DS_Store
