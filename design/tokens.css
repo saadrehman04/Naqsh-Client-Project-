@@ -18,6 +18,7 @@
   --copper-dark: #955A3A;
   --hairline: rgb(192 164 142 / 0.45);       /* khaki hairline on ivory */
   --hairline-dark: rgb(247 241 231 / 0.18);  /* ivory hairline on dark */
+  --terracotta-deep: #B24C3B; /* terracotta darkened ~2.5% so ivory text passes strict AA (4.65:1). Buttons + CTA panel. */
 
   /* Roles */
   --bg: var(--ivory);
@@ -30,7 +31,7 @@
   --text-muted-on-dark: var(--khaki);  /* 8.9:1 on black. NEVER on ivory (2.1:1) */
   --label: var(--pine);             /* small section labels on ivory (7.5:1) */
   --link: var(--chestnut);          /* 7.9:1 on ivory */
-  --button-bg: var(--terracotta);   /* ivory text on it is ~4.4:1: use 17px+ semibold uppercase */
+  --button-bg: var(--terracotta-deep); /* ivory on plain terracotta is 4.47:1 (fails AA by a hair); deep = 4.65:1 */
   --button-bg-hover: var(--chestnut);
   --focus-ring: var(--pine);
   /* DO NOT use --sage or --olive as text on ivory (about 3:1). Decoration, icons, borders only. */
