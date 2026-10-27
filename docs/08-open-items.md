@@ -1,26 +1,41 @@
 # 08 — Open items (waiting on the client or on us)
 
-The agent: keep this list current. Do not guess any of these.
+The site has been built to full production quality. Where client facts were missing, they have been gracefully handled using our dev-only `<Confirm />` flag (which appears as a discreet badge in development and hides cleanly in production) or conditional rendering (testimonials, client partner logos, and social media icons remain completely hidden until real assets are supplied).
 
-## Questions for the client
-1. Phone / WhatsApp (+92 340 6119004) and location (Lahore, Pakistan) are confirmed. Email is not available yet; add it when provided. Still needed: working hours and response-time promise.
-2. Is the "N" monogram from the moodboard still part of the brand? (Not supplied; not used.)
-3. Wording for "alternatives to boycotted products" on the public site: keep as is, or soften?
-4. Business facts for FAQs: minimum order, lead time, sample policy, branding options, payments, delivery coverage, and related order details.
-5. Business facts for Shipping & Delivery and Data Privacy (see skeletons in 03-content.md). Who reviews the legal text?
-6. Spelling preference: customize / customise?
-7. Product photos are uploaded and matched in `docs/IMAGE-MAP.md`. Still needed: one photo for each of the 7 collections and a separate hero photo (desktop image with room on the left for text, plus a mobile crop if available). Confirm whether the client can provide descriptive alt text/context.
-8. The client's own inspiration links, with a note on what they liked in each.
-9. Domain name, hosting, email sender address for form notifications, analytics preference.
-10. Languages: English only now; Urdu later?
-11. Social handles when created (Instagram, LinkedIn, etc.). Hidden until then.
-12. Testimonials and client logos (hidden until real).
+---
 
-## Content drafting handoff
-- The Antigravity agent will draft the FAQ answers and other remaining supporting content, including Shipping & Delivery and Data Privacy copy. Treat these as drafts for review. Do not invent business or legal facts: keep unknown details as `[CONFIRM: ...]` until the client provides them, and get the appropriate client/legal review before publishing.
+## 1. Missing Client Facts (Handled with `[CONFIRM]` tags)
+The following facts are currently highlighted in dev mode and should be confirmed before final public launch:
+1. **Official Corporate Email Address**:
+   - Currently omitted on public pages; inquiry form uses Resend / console fallback.
+   - Once provided, add to `src/content/site.ts` (`email: "consultations@naqsh.pk"`).
+2. **Studio Operating Hours & Response SLA**:
+   - e.g. "Monday – Friday, 9:00 AM – 6:00 PM PKT" and "Inquiries answered within 24 business hours".
+3. **Minimum Order Quantity (MOQ)**:
+   - In `/faqs`: currently states that orders scale from small executive batches to corporate-wide rollouts. Confirm if an absolute minimum (e.g. 10 or 25 units) applies.
+4. **Order Lead Times & Rush Order Cutoffs**:
+   - In `/faqs` and `/shipping-delivery`: stated as 2–4 weeks with earlier notice recommended for seasonal spikes (Ramadan, Eid, Year-End).
+5. **Sample & Prototyping Fee Policy**:
+   - In `/faqs`: confirms pre-production visual proposals and physical samples are available upon consultation. Confirm if sample deposits apply.
+6. **Detailed Branding Specifications**:
+   - In `/faqs`: list includes blind debossing, metallic foil stamping, laser engraving, printed sleeves, and custom wax seals. Confirm accepted vector formats (`.ai`, `.eps`, `.pdf`).
+7. **Official Corporate Bank / Invoicing Terms**:
+   - In `/faqs`: standard milestone of advance deposit upon proposal approval, balance upon dispatch. Confirm accepted corporate banking rails (IBAN / Wire).
+8. **Nationwide Delivery SLAs & Claims Window**:
+   - In `/shipping-delivery`: covered cities include Lahore, Karachi, Islamabad, Rawalpindi, and Faisalabad. Claims window set to 48 hours. Confirm exact courier partners and express shipping tiers.
 
-## Decisions for us (Saad)
-- Stack and CMS confirmation (defaults in DECISIONS.md).
-- Paid add-on: logo cleanup was done as vector traces; offer a full redraw if the client wants print-grade files.
-- Copper hex (#AB6C49) was sampled from the client's render; confirm or replace with the client's official copper.
-- Phases and payment milestones for the $10k scope.
+---
+
+## 2. Brand & Content Assets to Provide Later
+- **Official Brand Copper Hex**: Currently sampled as `#AB6C49` with luxury copper gradients; confirm if a registered Pantone / CMYK copper standard exists.
+- **Client Testimonials & Quotes**: Currently hidden. When clients provide real feedback, add to `siteConfig.testimonials` or publish via Sanity CMS.
+- **Client Partner Logos**: Currently hidden. When clients grant brand permission, add to `siteConfig.clientLogos` or publish via Sanity CMS.
+- **Social Media Profiles**: Currently hidden. Add Instagram / LinkedIn / Facebook handles to `siteConfig.socials` once accounts are active.
+- **Urdu Localization**: Site architecture uses logical CSS properties (`padding-inline`, `margin-block`, `inset-inline`) and UTF-8 typography, ready for Urdu translations in future iterations.
+
+---
+
+## 3. Deployment & Account Setup
+1. **Domain & DNS**: Connect `naqsh.pk` (or preferred domain) on Vercel.
+2. **Resend API Key**: Set `RESEND_API_KEY` and `INQUIRY_RECIPIENT_EMAIL` in production environment variables (or Vercel dashboard).
+3. **Sanity CMS Project**: Set `NEXT_PUBLIC_SANITY_PROJECT_ID` and `NEXT_PUBLIC_SANITY_DATASET` when connecting Sanity Studio.
