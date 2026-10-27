@@ -27,7 +27,7 @@ export const homeContent = {
         title: "Personalized Gifts",
         desc: "Gifts designed around your brand, your people and the occasion. We curate, customize and finish every detail, from the product to the packaging.",
         link: "/services",
-        cta: "Learn more",
+        cta: "Learn more about personalized gifts",
         image: "/images/products/retirement-award.webp",
         imageAlt: "Personalized retirement award with gold engraving in custom keepsake box",
       },
@@ -145,6 +145,5 @@ export const homeContent = {
     subline: "Tell us about your occasion and we will craft the rest.",
     button: "Request Consultation",
     secondary: "WhatsApp Us",
-    contactLine: "Contact Us at: +92 340 6119004",
   },
 };

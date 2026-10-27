@@ -11,14 +11,14 @@
   --sage: #789675;
   --pine: #145240;         /* Pine Teal */
 
-  /* Derived (not in client palette, keep to these only) */
-  --ivory-deep: #EFE5DA;   /* ivory + 15% khaki: alternate bands, card fills */
-  --copper: #AB6C49;       /* sampled from client copper render, CONFIRM with client */
-  --copper-light: #CD8965;
-  --copper-dark: #955A3A;
+  /* Client palette accents */
+  --ivory-deep: #EFE5DA;
+  --copper: #AB6C49;
+  --copper-light: #AB6C49;
+  --copper-dark: #7F3021;
   --hairline: rgb(192 164 142 / 0.45);       /* khaki hairline on ivory */
   --hairline-dark: rgb(247 241 231 / 0.18);  /* ivory hairline on dark */
-  --terracotta-deep: #B24C3B; /* terracotta darkened ~2.5% so ivory text passes strict AA (4.65:1). Buttons + CTA panel. */
+  --terracotta-deep: #7F3021; /* chestnut alias for ivory-on-dark actions */
 
   /* Roles */
   --bg: var(--ivory);
@@ -31,7 +31,7 @@
   --text-muted-on-dark: var(--khaki);  /* 8.9:1 on black. NEVER on ivory (2.1:1) */
   --label: var(--pine);             /* small section labels on ivory (7.5:1) */
   --link: var(--chestnut);          /* 7.9:1 on ivory */
-  --button-bg: var(--terracotta-deep); /* ivory on plain terracotta is 4.47:1 (fails AA by a hair); deep = 4.65:1 */
+  --button-bg: var(--terracotta);
   --button-bg-hover: var(--chestnut);
   --focus-ring: var(--pine);
   /* DO NOT use --sage or --olive as text on ivory (about 3:1). Decoration, icons, borders only. */

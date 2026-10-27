@@ -20,7 +20,7 @@ sanity/             schemas
 - `POST /api/inquiry`: validate, send email via Resend to `CONTACT_TO_EMAIL` (reply-to = visitor email), optional auto-reply. Do not store personal data beyond the email unless I ask.
 - States: idle, sending, success (seal stamp), error (message + WhatsApp fallback). Accessible errors (`aria-live`).
 - Collection pages link to `/contact?occasion=<slug>` to prefill the Occasion field.
-- WhatsApp: `https://wa.me/923406119004?text=` + URL-encoded message ("Hello Naqsh, I would like to discuss corporate gifting for ...").
+- WhatsApp: `https://wa.me/923469171798?text=` + URL-encoded message ("Hello Naqsh, I would like to discuss corporate gifting for ...").
 
 ## CMS (Sanity), Phase 5
 Document types:
@@ -44,7 +44,7 @@ Hero image `priority`, AVIF/WebP, sized via `sizes`. Fonts self-hosted via `next
 Env vars only for secrets. Security headers (CSP where practical, X-Content-Type-Options, Referrer-Policy). Validate and sanitize all inputs. No third-party trackers by default; analytics (Plausible or GA4) behind an env flag, with a cookie notice only if cookies are used.
 
 ## Environment variables
-`CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`, `RESEND_API_KEY`, `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_WHATSAPP_NUMBER=923406119004`,
+`CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`, `RESEND_API_KEY`, `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_WHATSAPP_NUMBER=923469171798`,
 `NEXT_PUBLIC_SANITY_PROJECT_ID`, `NEXT_PUBLIC_SANITY_DATASET`, `SANITY_API_READ_TOKEN`, `NEXT_PUBLIC_ANALYTICS_ID` (optional), `TURNSTILE_SECRET_KEY` (optional). Provide `.env.example`.
 
 ## Testing and QA

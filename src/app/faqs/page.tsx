@@ -5,20 +5,17 @@ import { PageHero } from "@/components/ui/PageHero";
 import { AccordionItem } from "@/components/ui/Accordion";
 import { CTABand } from "@/components/sections/CTABand";
 import { faqGroups } from "@/content/faqs";
-import { buildMetadata, generateFaqSchema } from "@/lib/seo";
+import { buildMetadata } from "@/lib/seo";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
 
 export const metadata: Metadata = buildMetadata({
   title: "FAQs · Frequently Asked Questions",
   description:
-    "Find clear answers about how Naqsh curates corporate gifting, lead times, minimum orders, branding options, payment milestones, and doorstep delivery across Pakistan.",
+    "Contact Naqsh with questions about corporate gifting and your project requirements.",
   path: "/faqs",
 });
 
 export default function FAQsPage() {
-  // Flatten all FAQs for Google FAQPage JSON-LD schema
-  const allFaqs = faqGroups.flatMap((group) => group.items);
-  const faqSchema = generateFaqSchema(allFaqs);
   const whatsappUrl = getWhatsAppUrl(
     "Hello Naqsh, I have a specific question about your corporate gifting process that isn't answered in the FAQs."
   );
@@ -26,23 +23,17 @@ export default function FAQsPage() {
   const groupBadges: Record<string, { bg: string; text: string; border: string }> = {
     Process: { bg: "bg-[var(--pine)]", text: "text-[var(--ivory)]", border: "border-[var(--pine)]" },
     Orders: { bg: "bg-[var(--terracotta-deep)]", text: "text-[var(--ivory)]", border: "border-[var(--terracotta)]" },
-    Customization: { bg: "bg-[var(--copper)]", text: "text-[var(--ivory)]", border: "border-[var(--copper)]" },
+    Customization: { bg: "bg-[var(--chestnut)]", text: "text-[var(--ivory)]", border: "border-[var(--chestnut)]" },
     Payments: { bg: "bg-[var(--chestnut)]", text: "text-[var(--ivory)]", border: "border-[var(--chestnut)]" },
-    Delivery: { bg: "bg-[#4E6E4C]", text: "text-[var(--ivory)]", border: "border-[#4E6E4C]" },
+    Delivery: { bg: "bg-[#145240]", text: "text-[var(--ivory)]", border: "border-[#145240]" },
   };
 
   return (
     <div className="bg-[var(--ivory)] min-h-screen">
-      {/* Google FAQPage structured data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-
       {/* Editorial Page Hero */}
       <PageHero
         title="Clear answers to how we collaborate."
-        subtitle="Find answers regarding our bespoke curation workflow, order lead times, customization techniques, and corporate doorstep delivery."
+        subtitle="Have a question about a gifting request? Contact Naqsh to discuss your project."
         label="Frequently Asked Questions"
         breadcrumbs={[{ label: "FAQs" }]}
       />
@@ -61,7 +52,7 @@ export default function FAQsPage() {
               <div key={grp.group} className="space-y-6" data-reveal="fade-up">
                 <div className="border-b-2 pb-3 flex items-center justify-between" style={{ borderColor: badge.border }}>
                   <div className="flex items-center gap-3">
-                    <span className={`px-3 py-1 rounded-full text-[10px] uppercase tracking-[0.2em] font-sans font-semibold ${badge.bg} ${badge.text} shadow-sm`}>
+                    <span className={`px-3 py-1 rounded-full text-xs uppercase tracking-[0.18em] font-sans font-semibold ${badge.bg} ${badge.text} shadow-sm`}>
                       Category
                     </span>
                     <h2 className="font-serif text-2xl sm:text-3xl text-[var(--black)] font-normal">
@@ -76,8 +67,8 @@ export default function FAQsPage() {
                       key={item.id}
                       id={item.id}
                       question={item.question}
-                      answer={item.answer}
-                      confirmTag={item.confirmTag}
+                      answer={process.env.NODE_ENV === "development" ? item.answer : "Please contact Naqsh directly to discuss this for your request."}
+                      confirmTag={item.confirmTag ?? "FAQ response and operational details need client confirmation"}
                     />
                   ))}
                 </div>
@@ -98,7 +89,7 @@ export default function FAQsPage() {
               Have a question not addressed here?
             </h3>
             <p className="font-sans text-sm sm:text-base text-[var(--ivory)]/85 font-light leading-relaxed mb-8 max-w-xl mx-auto relative z-10">
-              Our curators are happy to discuss custom packaging specifications, regional sourcing, or multi-destination corporate logistics directly.
+              Contact Naqsh to discuss the details of your gifting request.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10">
               <a

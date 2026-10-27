@@ -1,11 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useEffect, useState } from "react";
-import Lenis from "lenis";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
+import type Lenis from "lenis";
 
 interface MotionContextValue {
   lenis: Lenis | null;
@@ -26,48 +22,42 @@ export function MotionProvider({ children }: { children: React.ReactNode }) {
   const [reducedMotion, setReducedMotion] = useState<boolean>(false);
 
   useEffect(() => {
-    // Check reduced motion preference
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const desktopQuery = window.matchMedia("(min-width: 768px)");
     const isReduced = mediaQuery.matches;
-    setReducedMotion(isReduced);
+    queueMicrotask(() => setReducedMotion(isReduced));
 
-    if (isReduced) {
+    if (isReduced || !desktopQuery.matches) {
       document.documentElement.classList.remove("motion-ok");
       return;
     }
 
-    // Enable motion styles safely
-    document.documentElement.classList.add("motion-ok");
-
-    // Safety timeout: Ensure content is never stuck hidden if GSAP or Lenis stalls
-    const safetyTimer = setTimeout(() => {
-      document.documentElement.classList.remove("motion-ok");
-    }, 2800);
-
-    // Initialize Lenis smooth scroll
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-      syncTouch: false,
+    let destroyed = false;
+    let lenis: Lenis | null = null;
+    let removeTicker: (() => void) | null = null;
+    let safetyTimer: ReturnType<typeof setTimeout> | undefined;
+    void Promise.all([import("lenis"), import("gsap"), import("gsap/ScrollTrigger")]).then(([lenisModule, gsapModule, triggerModule]) => {
+      if (destroyed) return;
+      const Lenis = lenisModule.default;
+      const gsap = gsapModule.gsap;
+      const ScrollTrigger = triggerModule.ScrollTrigger;
+      gsap.registerPlugin(ScrollTrigger);
+      lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true, syncTouch: false });
+      setLenisInstance(lenis);
+      document.documentElement.classList.add("motion-ok");
+      lenis.on("scroll", ScrollTrigger.update);
+      const tickerCallback = (time: number) => lenis?.raf(time * 1000);
+      gsap.ticker.add(tickerCallback);
+      gsap.ticker.lagSmoothing(0);
+      removeTicker = () => gsap.ticker.remove(tickerCallback);
+      safetyTimer = setTimeout(() => document.documentElement.classList.remove("motion-ok"), 2800);
     });
-
-    setLenisInstance(lenis);
-
-    // Wire Lenis with GSAP ScrollTrigger
-    lenis.on("scroll", ScrollTrigger.update);
-
-    const tickerCallback = (time: number) => {
-      lenis.raf(time * 1000);
-    };
-
-    gsap.ticker.add(tickerCallback);
-    gsap.ticker.lagSmoothing(0);
-
     return () => {
-      clearTimeout(safetyTimer);
-      gsap.ticker.remove(tickerCallback);
-      lenis.destroy();
+      destroyed = true;
+      if (safetyTimer) clearTimeout(safetyTimer);
+      removeTicker?.();
+      lenis?.destroy();
+      document.documentElement.classList.remove("motion-ok");
       setLenisInstance(null);
     };
   }, []);

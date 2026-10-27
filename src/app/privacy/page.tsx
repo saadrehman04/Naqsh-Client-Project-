@@ -8,7 +8,7 @@ import { buildMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildMetadata({
   title: "Data Privacy Policy",
   description:
-    "How Naqsh collects, handles, and protects corporate inquiry details, contact records, and delivery information.",
+    "Privacy details and contact information for Naqsh corporate gifting inquiries.",
   path: "/privacy",
 });
 
@@ -26,8 +26,8 @@ export default function PrivacyPage() {
       {/* Policy Content */}
       <article className="py-20 sm:py-28" aria-label="Privacy Policy Document">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-xs uppercase tracking-[0.2em] font-sans font-medium text-[var(--sage)] mb-12 pb-4 border-b border-[var(--border-light)]">
-            Last Updated: {privacyPolicy.lastUpdated}
+          <div className="text-xs uppercase tracking-[0.18em] font-sans font-medium text-[var(--pine)] mb-12 pb-4 border-b border-[var(--border-light)]">
+            Privacy details pending confirmation
           </div>
 
           <div className="space-y-12">

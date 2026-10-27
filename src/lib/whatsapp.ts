@@ -1,5 +1,5 @@
-export const WHATSAPP_NUMBER = "923406119004";
-export const DISPLAY_PHONE = "+92 340 6119004";
+export const WHATSAPP_NUMBER = "923469171798";
+export const DISPLAY_PHONE = "+92-346-9171798";
 
 export function getWhatsAppUrl(message?: string): string {
   const defaultText =

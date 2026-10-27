@@ -2,7 +2,6 @@ import { Metadata } from "next";
 import { Phone, MessageCircle, MapPin, Mail, Clock } from "lucide-react";
 import { PageHero } from "@/components/ui/PageHero";
 import { InquiryForm } from "@/components/form/InquiryForm";
-import { WaxSeal } from "@/components/brand/WaxSeal";
 import { Confirm } from "@/components/ui/Confirm";
 import { DISPLAY_PHONE, WHATSAPP_NUMBER, getWhatsAppUrl } from "@/lib/whatsapp";
 import { siteConfig } from "@/content/site";
@@ -37,7 +36,7 @@ export default function ContactPage() {
             {/* Left Column: Direct Channels & Studio Information */}
             <div className="lg:col-span-5 space-y-10" data-reveal="fade-up">
               <div>
-                <span className="text-xs uppercase tracking-[0.2em] font-sans font-semibold text-[var(--terracotta-deep)] mb-2 block">
+                <span className="text-xs uppercase tracking-[0.18em] font-sans font-semibold text-[var(--terracotta-deep)] mb-2 block">
                   Direct Channels
                 </span>
                 <h2 className="font-serif text-3xl sm:text-4xl text-[var(--black)] font-normal tracking-tight mb-4">
@@ -56,7 +55,7 @@ export default function ContactPage() {
                     <Phone className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="block text-[11px] uppercase tracking-[0.16em] font-sans font-semibold text-[var(--terracotta-deep)]">
+                    <span className="block text-xs uppercase tracking-[0.16em] font-sans font-semibold text-[var(--terracotta-deep)]">
                       Direct Phone
                     </span>
                     <a
@@ -74,7 +73,7 @@ export default function ContactPage() {
                     <MessageCircle className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="block text-[11px] uppercase tracking-[0.16em] font-sans font-semibold text-[var(--pine)]">
+                    <span className="block text-xs uppercase tracking-[0.16em] font-sans font-semibold text-[var(--pine)]">
                       WhatsApp Quick Chat
                     </span>
                     <a
@@ -85,8 +84,8 @@ export default function ContactPage() {
                     >
                       +{WHATSAPP_NUMBER}
                     </a>
-                    <span className="text-xs text-[var(--charcoal)]/80 font-light block mt-1">
-                      Available for immediate inquiries and brochure requests
+                    <span className="text-xs text-[var(--charcoal)] font-light block mt-1">
+                      Send a WhatsApp message to start a conversation.
                     </span>
                   </div>
                 </div>
@@ -97,14 +96,11 @@ export default function ContactPage() {
                     <MapPin className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="block text-[11px] uppercase tracking-[0.16em] font-sans font-semibold text-[var(--chestnut)]">
-                      Studio & Workshop
+                    <span className="block text-xs uppercase tracking-[0.16em] font-sans font-semibold text-[var(--chestnut)]">
+                      Location
                     </span>
                     <span className="font-serif text-2xl text-[var(--black)] mt-0.5 block">
                       {siteConfig.location}
-                    </span>
-                    <span className="text-xs text-[var(--charcoal)]/80 font-light block mt-1">
-                      Tracked nationwide dispatches across Pakistan
                     </span>
                   </div>
                 </div>
@@ -124,21 +120,13 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Rich Chestnut Luxury Statement Card */}
-              <div className="rounded-[var(--radius-card)] bg-gradient-to-br from-[var(--chestnut)] to-[#5C2317] text-[var(--ivory)] border border-[var(--copper)]/30 p-8 relative flex items-center justify-between gap-6 overflow-hidden shadow-xl">
-                <blockquote className="font-serif text-lg text-[var(--ivory)] italic leading-relaxed relative z-10">
-                  &ldquo;Every memorable corporate impression starts with an attentive conversation.&rdquo;
-                </blockquote>
-                <div className="flex-shrink-0 relative z-10">
-                  <WaxSeal size="md" variant="chestnut" />
-                </div>
-              </div>
+              <p className="border-y border-[var(--hairline)] py-5 font-serif text-2xl text-[var(--chestnut)]">Beyond the box, into an experience.</p>
             </div>
 
             {/* Right Column: Interactive Consultation Portal */}
             <div className="lg:col-span-7" data-reveal="fade-up">
               <div className="mb-6">
-                <span className="text-xs uppercase tracking-[0.2em] font-sans font-semibold text-[var(--pine)] mb-1 block">
+                <span className="text-xs uppercase tracking-[0.18em] font-sans font-semibold text-[var(--pine)] mb-1 block">
                   Project Brief
                 </span>
                 <h2 className="font-serif text-2xl sm:text-3xl text-[var(--black)] font-normal tracking-tight">

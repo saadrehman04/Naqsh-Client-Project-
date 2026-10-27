@@ -16,19 +16,15 @@ export function Header() {
 
   const [isScrolled, setIsScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
+    let lastScrollY = window.scrollY;
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
       // Threshold to trigger scrolled style
-      if (currentScrollY > 80) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(currentScrollY > 80);
 
       // Hide on scroll down, show on scroll up (with a minimum delta to avoid jitter)
       if (currentScrollY > 200 && currentScrollY > lastScrollY + 8) {
@@ -37,12 +33,12 @@ export function Header() {
         setIsVisible(true);
       }
 
-      setLastScrollY(currentScrollY);
+      lastScrollY = currentScrollY;
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
   // If on inner pages, header should always show dark logo and ivory background
   const isTransparent = isHomePage && !isScrolled;
@@ -54,19 +50,19 @@ export function Header() {
           "fixed top-0 inset-x-0 z-50 transition-all duration-400 ease-[var(--ease-out)]",
           !isVisible && "-translate-y-full",
           isTransparent
-            ? "bg-transparent text-[var(--ivory)] border-b border-white/10"
+            ? "bg-transparent text-[var(--ivory)] border-b border-white/[0.18]"
             : "bg-[var(--ivory)]/90 backdrop-blur-md text-[var(--text-strong)] border-b border-[var(--hairline)] shadow-[0_4px_20px_-8px_rgba(0,0,0,0.06)]"
         )}
       >
-        <div className="container-x flex items-center justify-between h-18 sm:h-22">
-          {/* Left: Mobile boxed menu button & Desktop nav */}
-          <div className="flex items-center gap-6">
+        <div className="container-x header-shell">
+          {/* Left: Mobile boxed menu button and desktop navigation */}
+          <div className="header-left">
             <button
               type="button"
               onClick={() => setIsMobileMenuOpen(true)}
               aria-label="Open navigation menu"
               className={cn(
-                "lg:hidden flex items-center justify-center gap-2 h-11 px-3.5 border rounded-[2px] transition-colors text-xs font-semibold uppercase tracking-widest",
+                "header-menu-button min-[1180px]:hidden flex items-center justify-center gap-2 h-11 px-3.5 border rounded-[2px] transition-colors text-xs font-semibold uppercase tracking-[0.12em]",
                 isTransparent
                   ? "border-white/30 text-[var(--ivory)] hover:border-white"
                   : "border-[var(--charcoal)] text-[var(--charcoal)] hover:border-black hover:text-black"
@@ -89,8 +85,9 @@ export function Header() {
               <span>Menu</span>
             </button>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center gap-7 select-none">
+          </div>
+
+          <nav className="header-nav select-none">
               {siteConfig.nav.map((item) => {
                 const isActive = pathname === item.href;
                 return (
@@ -98,14 +95,12 @@ export function Header() {
                     key={item.href}
                     href={item.href}
                     className={cn(
-                      "t-label tracking-[0.18em] transition-colors duration-200 py-1 border-b",
+                      "header-nav-link",
                       isActive
-                        ? isTransparent
-                          ? "border-[var(--ivory)] text-[var(--ivory)]"
-                          : "border-[var(--pine)] text-[var(--text-strong)]"
+                        ? "is-active"
                         : isTransparent
-                        ? "border-transparent text-white/80 hover:text-white"
-                        : "border-transparent text-[var(--charcoal)] hover:text-black"
+                        ? "is-over-hero"
+                        : ""
                     )}
                   >
                     {item.label}
@@ -113,45 +108,31 @@ export function Header() {
                 );
               })}
             </nav>
-          </div>
-
-          {/* Center: Brand Wordmark */}
-          <div className="absolute left-1/2 -translate-x-1/2">
-            <Link href="/" aria-label="Naqsh Homepage" className="block py-2">
-              <Wordmark
-                variant={isTransparent ? "ivory" : "black"}
-                className="w-28 sm:w-36 transition-opacity duration-300"
-                priority
-              />
-            </Link>
-          </div>
-
+          <Link href="/" aria-label="Naqsh Homepage" className="header-wordmark header-logo-centered">
+            <Wordmark variant={isTransparent ? "ivory" : "black"} className="w-[140px]" priority />
+          </Link>
           {/* Right: WhatsApp link & Request Consultation CTA */}
-          <div className="flex items-center gap-3 sm:gap-4">
+          <div className="header-actions">
             <a
               href={getWhatsAppUrl()}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Chat on WhatsApp (+92 340 6119004)"
+              aria-label={`Chat on WhatsApp (${siteConfig.phone})`}
               className={cn(
-                "flex items-center justify-center w-11 h-11 rounded-full border transition-all duration-200",
+                "header-whatsapp flex items-center justify-center w-11 h-11 rounded-full border transition-all duration-200",
                 isTransparent
                   ? "border-white/20 text-[var(--ivory)] hover:border-white hover:bg-white/10"
                   : "border-[var(--hairline)] text-[var(--pine)] hover:border-[var(--pine)] hover:bg-[var(--pine)]/5"
               )}
             >
               <svg
-                width="18"
-                height="18"
+                width="21"
+                height="21"
                 viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+                fill="currentColor"
                 aria-hidden="true"
               >
-                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+                <path d="M12.04 2C6.52 2 2.03 6.48 2.02 12c0 1.76.46 3.47 1.34 4.98L2 22l5.16-1.35A10 10 0 1 0 12.04 2Zm0 18.18c-1.5 0-2.97-.4-4.25-1.17l-.3-.18-3.06.8.82-2.98-.2-.31A8.17 8.17 0 1 1 12.04 20.18Zm4.49-6.12c-.25-.13-1.48-.73-1.71-.81-.23-.08-.4-.13-.56.13-.17.25-.65.81-.8.98-.15.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.24-.75-.66-1.25-1.48-1.4-1.73-.15-.25-.02-.39.11-.52.11-.11.25-.29.38-.44.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.09s.9 2.42 1.02 2.59c.13.17 1.77 2.7 4.29 3.79.6.26 1.07.42 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.48-.61 1.69-1.2.21-.59.21-1.1.15-1.2-.06-.1-.23-.16-.48-.29Z" />
               </svg>
             </a>
 
@@ -159,7 +140,7 @@ export function Header() {
               href="/contact"
               variant={isTransparent ? "on-dark" : "primary"}
               size="sm"
-              className="hidden sm:inline-flex"
+              className="header-cta"
             >
               Request Consultation
             </Button>

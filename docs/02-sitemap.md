@@ -50,4 +50,4 @@ Name* · Company* · Work email* · Phone / WhatsApp · Occasion (select from th
 Submit label: **Request Consultation**.
 
 ## Sticky / global elements
-Request Consultation button (header, hero, CTA band, collection pages). WhatsApp link: `https://wa.me/923406119004` with a prefilled message (header, contact page, footer). No floating chat bubble.
+Request Consultation button (header, hero, CTA band, collection pages). WhatsApp link: `https://wa.me/923469171798` with a prefilled message (header, contact page, footer). No floating chat bubble.

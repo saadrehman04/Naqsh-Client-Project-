@@ -6,9 +6,9 @@ import { shippingPolicy } from "@/content/policies";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Shipping & Delivery Policy · Logistics & Fulfillment Standards",
+  title: "Shipping & Delivery",
   description:
-    "Learn about Naqsh's nationwide delivery coverage across Pakistan, bulk order dispatches, individual multi-drop fulfillment, and white-glove packaging care.",
+    "Contact Naqsh to discuss delivery arrangements for a corporate gifting request.",
   path: "/shipping-delivery",
 });
 
@@ -26,8 +26,8 @@ export default function ShippingDeliveryPage() {
       {/* Policy Content */}
       <article className="py-20 sm:py-28" aria-label="Shipping & Delivery Policy">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-xs uppercase tracking-[0.2em] font-sans font-medium text-[var(--sage)] mb-12 pb-4 border-b border-[var(--border-light)]">
-            Last Updated: {shippingPolicy.lastUpdated}
+          <div className="text-xs uppercase tracking-[0.18em] font-sans font-medium text-[var(--pine)] mb-12 pb-4 border-b border-[var(--border-light)]">
+            Delivery details pending confirmation
           </div>
 
           <div className="space-y-12">

@@ -11,6 +11,7 @@ export function Footer() {
       className="bg-[var(--black)] text-[var(--ivory)] relative overflow-hidden pt-20 pb-12 border-t border-[var(--hairline-dark)] lattice on-dark"
       role="contentinfo"
     >
+      <div className="footer-giant-wordmark" aria-hidden="true"><Wordmark variant="copper-gradient" className="w-full" /></div>
       <div className="container-x relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16 pb-16 border-b border-[var(--hairline-dark)]">
           {/* Brand Column */}
@@ -65,7 +66,7 @@ export function Footer() {
                 </a>
               </p>
               <p className="flex flex-col">
-                <span className="text-xs text-[var(--khaki)]">Headquarters</span>
+                <span className="text-xs text-[var(--khaki)]">Location</span>
                 <span className="text-[var(--ivory)] mt-0.5">{siteConfig.location}</span>
               </p>
               {siteConfig.email && (

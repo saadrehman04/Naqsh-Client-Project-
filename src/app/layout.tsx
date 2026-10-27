@@ -4,7 +4,8 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { SkipLink } from "@/components/layout/SkipLink";
 import { MotionProvider } from "@/components/motion/MotionProvider";
-import { ScrollEffects } from "@/components/motion/ScrollEffects";
+import { ScrollEffectsGate } from "@/components/motion/ScrollEffectsGate";
+import { MotionChrome } from "@/components/motion/MotionChrome";
 import { constructMetadata, generateOrganizationSchema } from "@/lib/seo";
 import "./globals.css";
 
@@ -49,12 +50,13 @@ export default function RootLayout({
       <body className="flex flex-col min-h-screen bg-[var(--ivory)] text-[var(--text)]">
         <SkipLink />
         <MotionProvider>
+          <MotionChrome />
           <Header />
           <main id="main-content" className="flex-1">
             {children}
           </main>
           <Footer />
-          <ScrollEffects />
+          <ScrollEffectsGate />
         </MotionProvider>
       </body>
     </html>

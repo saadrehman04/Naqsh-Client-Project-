@@ -41,7 +41,7 @@ export async function POST(request: Request) {
         replyTo: data.email,
         subject: `New Corporate Gifting Inquiry: ${data.name} · ${data.company}`,
         html: `
-          <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; padding: 24px; color: #2A2725; background: #F7F1E7;">
+          <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; padding: 24px; color: #4D4E52; background: #F7F1E7;">
             <div style="border-bottom: 2px solid #7F3021; padding-bottom: 16px; margin-bottom: 24px;">
               <h1 style="font-size: 24px; margin: 0; color: #000000; letter-spacing: 0.1em; text-transform: uppercase;">NAQSH</h1>
               <p style="margin: 4px 0 0; color: #7F3021; font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase;">Corporate Gifting Consultation Request</p>
@@ -82,12 +82,12 @@ export async function POST(request: Request) {
               </tr>
             </table>
 
-            <div style="background: #EFE8DC; padding: 16px; border-left: 3px solid #7F3021; margin-bottom: 24px;">
+            <div style="background: #EFE5DA; padding: 16px; border-left: 3px solid #7F3021; margin-bottom: 24px;">
               <p style="margin: 0 0 8px; font-weight: bold; color: #000000; font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em;">Client Project Notes:</p>
-              <p style="margin: 0; white-space: pre-wrap; color: #2A2725; font-size: 14px; line-height: 1.6;">${data.message || "No additional notes provided."}</p>
+              <p style="margin: 0; white-space: pre-wrap; color: #4D4E52; font-size: 14px; line-height: 1.6;">${data.message || "No additional notes provided."}</p>
             </div>
 
-            <footer style="font-size: 12px; color: #737478; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 16px;">
+            <footer style="font-size: 12px; color: #4D4E52; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 16px;">
               Sent via Naqsh Consultation Portal · Lahore, Pakistan
             </footer>
           </div>
@@ -114,8 +114,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json({
       ok: true,
-      message:
-        "Thank you for contacting Naqsh. Your inquiry has been received, and our curators will reach out within 24 business hours.",
+      message: "Thank you for contacting Naqsh. Your inquiry has been received.",
     });
   } catch (error) {
     console.error("Inquiry API Error:", error);

@@ -43,7 +43,7 @@ Thoughtful, refined, warm, professional, quietly confident. Plain language. No h
 Visual keywords: tactile, embossed, handcrafted, calm, natural materials, copper warmth.
 
 ## What we have / what is missing
-Have: company profile, logo + emblem (vectorized in `assets/logo`), palette, moodboard, structure, hero inspirations, product catalogue and 21 matched product photos, client-confirmed phone (+92 340 6119004), and location (Lahore, Pakistan).
+Have: company profile, logo + emblem (vectorized in `assets/logo`), palette, moodboard, structure, hero inspirations, product catalogue and 21 matched product photos, client-confirmed phone (+92-346-9171798), and location (Lahore, Pakistan).
 Missing: client's own inspiration links, email (not provided yet), working hours and response-time promise, collection and hero photos, social handles, testimonials, client logos, confirmed business facts for FAQs / Shipping / Privacy, domain and hosting. The Antigravity agent will draft the FAQ and other remaining supporting content; see `08-open-items.md`.
 See `08-open-items.md`.
 

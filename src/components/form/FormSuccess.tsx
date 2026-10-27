@@ -24,7 +24,7 @@ export function FormSuccess({ onReset, clientName }: FormSuccessProps) {
         <WaxSeal size="lg" variant="terracotta" animate={true} />
       </div>
 
-      <span className="inline-block text-[11px] font-sans tracking-[0.2em] uppercase font-semibold text-[var(--terracotta)] mb-2">
+      <span className="inline-block text-xs font-sans tracking-[0.18em] uppercase font-semibold text-[var(--terracotta)] mb-2">
         Inquiry Received
       </span>
 
@@ -33,7 +33,7 @@ export function FormSuccess({ onReset, clientName }: FormSuccessProps) {
       </h3>
 
       <p className="font-sans text-base sm:text-lg text-[var(--pine)] font-light leading-relaxed max-w-lg mx-auto mb-8">
-        Your corporate gifting consultation brief has been safely received. Our curation team will review your requirements and reach out within 24 business hours.
+        Your inquiry has been received. If you prefer, you can also contact Naqsh on WhatsApp.
       </p>
 
       {/* Secondary quick action */}

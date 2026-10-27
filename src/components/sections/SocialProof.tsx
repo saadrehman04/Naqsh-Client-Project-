@@ -42,12 +42,17 @@ export function SocialProof() {
         )}
 
         {hasTestimonials && (
-          <div className="max-w-4xl mx-auto" data-reveal="fade-up">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="mx-auto max-w-7xl" data-reveal="fade-up">
+            <div
+              className="social-proof-track flex snap-x snap-mandatory gap-5 overflow-x-auto pb-5 sm:gap-7"
+              role="region"
+              aria-label="Client testimonials. Scroll horizontally to see more."
+              tabIndex={0}
+            >
               {siteConfig.testimonials.map((t, idx) => (
                 <blockquote
                   key={idx}
-                  className="bg-[var(--ivory)] border border-[var(--border-light)] rounded-[var(--radius-card)] p-8 relative flex flex-col justify-between"
+                  className="flex min-h-64 w-[min(84vw,25rem)] flex-none snap-start flex-col justify-between rounded-[var(--radius-card)] border border-[var(--border-light)] bg-[var(--ivory)] p-7 sm:p-8"
                 >
                   <p className="font-serif text-lg text-[var(--black)] italic leading-relaxed mb-6">
                     &ldquo;{t.quote}&rdquo;

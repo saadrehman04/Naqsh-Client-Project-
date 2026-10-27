@@ -40,9 +40,9 @@ Animate only `transform`, `opacity`, `clip-path`. Never width, height, top or le
 | What Sets Us Apart | Four cards `stagger`; the colored top border draws left to right (0.8s). |
 | Vision & Mission | Background fades ivory to black as the section enters (scrubbed color transition, about 20% of the viewport). Text uses `words` reveal. Thin copper line draws between Vision and Mission. |
 | Core Values | Cards `stagger`; icon circles scale 0.9 to 1. |
-| Our Approach | Desktop: section pins. Steps highlight one by one (active step ivory-to-black text, others at 35% opacity) while a thin line draws down/along. Mobile: no pinning, each step `fade-up`. |
-| Portfolio preview | Cards `stagger`; hover image zoom 1.04, label slides up. Optional: pinned horizontal scroll on desktop only, after the rest is polished. |
-| Testimonials / logos | Only if present. Slow fade between quotes (0.8s), logos fade-up stagger. |
+| Our Approach | Desktop: editorial intro stays sticky on the left while the four steps scroll on the right. The current step gains emphasis and the thin progress rail draws down. Mobile: no sticky behavior; steps stay fully visible in a simple vertical sequence. |
+| Portfolio preview | Product photo tiles drift gently around the centered introduction. Collection cards assemble from alternating sides with a short stagger; hover image zoom remains subtle. |
+| Testimonials / logos | Only if present. Testimonials use a horizontal scroll-snap row that supports touch and keyboard scrolling; logos fade-up in a stagger. Never add sample content. |
 | CTA (terracotta) | Section slides up over the previous one (sticky stacking). Emblem seal stamps in once: scale 1.25 to 1, rotate -6 to 0 deg, shadow tightens (0.9s, ease-out), then a soft settle. Heading `lines`. |
 | Footer | Revealed from beneath the CTA (parallax reveal), links `fade-up`. |
 | Inner page heads | Big serif heading `lines`, breadcrumb and intro `fade-up`. |
@@ -63,6 +63,7 @@ Load GSAP plugins only where used. Dynamic-import heavy effects (pinning, horizo
 
 ## Acceptance checklist
 - [ ] Every section matches the table above
+- [ ] Floating product tiles, collection card assembly, and the step rail remain subtle and do not overlap copy
 - [ ] 60fps scroll on desktop and a mid-range phone
 - [ ] Reduced-motion mode works, content visible with JS disabled
 - [ ] No layout shift (CLS under 0.1), no horizontal scrollbar

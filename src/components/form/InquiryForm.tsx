@@ -1,16 +1,18 @@
 "use client";
 
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowRight, Loader2, AlertCircle } from "lucide-react";
-import { occasionOptions, inquirySchema, InquiryFormData } from "@/lib/validators";
+import { occasionOptions, inquirySchema } from "@/lib/validators";
 import { FormSuccess } from "./FormSuccess";
+import { products } from "@/content/products";
 
 function FormFields() {
   const searchParams = useSearchParams();
   const prefillCollection = searchParams.get("collection") || "";
   const prefillService = searchParams.get("service") || "";
+  const prefillProduct = products.find((product) => product.slug === searchParams.get("product"));
 
   // Determine initial occasion from query param
   const getInitialOccasion = () => {
@@ -18,31 +20,25 @@ function FormFields() {
       const match = occasionOptions.find((o) => o.value === prefillCollection);
       if (match) return match.value;
     }
+    if (prefillProduct) return prefillProduct.collection;
     if (prefillService === "personalized-gifts") return "custom-occasion-gifts";
     if (prefillService === "gifting-consultations") return "other";
     return "";
   };
 
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState(() => ({
     name: "",
     company: "",
     email: "",
     phone: "",
-    occasion: "",
+    occasion: getInitialOccasion(),
     quantity: "",
     budgetRange: "",
     dateNeeded: "",
-    message: "",
+    message: prefillProduct ? `I’m interested in ${prefillProduct.name}.` : "",
     consent: false,
     website: "", // honeypot
-  });
-
-  useEffect(() => {
-    const initial = getInitialOccasion();
-    if (initial) {
-      setFormData((prev) => ({ ...prev, occasion: initial }));
-    }
-  }, [prefillCollection, prefillService]);
+  }));
 
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);

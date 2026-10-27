@@ -24,7 +24,7 @@ This repository contains the bespoke corporate gifting website for **Naqsh**, cr
 - **Styling**: Tailwind CSS v4 with `@theme inline` restricting all utilities strictly to official design tokens
 - **Motion**: Lenis + GSAP ScrollTrigger (`MotionProvider.tsx` with fallback timeout)
 - **Forms & Validation**: Zod schema validation, honeypot anti-spam protection, Resend email dispatch with local dev console logging
-- **Direct Consultation**: WhatsApp instant consultation deep links (`+92 340 6119004`)
+- **Direct Consultation**: WhatsApp instant consultation deep links (see `src/lib/whatsapp.ts`)
 - **CMS**: Sanity CMS with seamless automatic fallback to local typed data in `src/content/`
 - **Testing**: Playwright automated responsive screenshot suite (1440px, 1024px, 768px, 390px) + `@axe-core/playwright` accessibility audits
 

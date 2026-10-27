@@ -39,6 +39,8 @@ export default function HomePage() {
       {/* 09 · Social Proof (conditionally rendered) */}
       <SocialProof />
 
+      <div className="portfolio-marquee" aria-label="Welcome Kits · Client Gifts · Ramadan and Eid · Event Giveaways · Souvenirs · Awards"><span>Welcome Kits · Client Gifts · Ramadan &amp; Eid · Event Giveaways · Souvenirs · Awards · </span><span aria-hidden="true">Welcome Kits · Client Gifts · Ramadan &amp; Eid · Event Giveaways · Souvenirs · Awards · </span></div>
+
       {/* 10 · CTA Band */}
       <CTABand />
     </>
