@@ -55,7 +55,7 @@ export default async function CollectionDetailPage({ params }: PageProps) {
   return (
     <div className="bg-[var(--ivory)] min-h-screen">
       {/* Top Breadcrumb Bar */}
-      <div className="border-b border-[var(--border-light)] bg-[var(--ivory-warm)]/60 pt-28 pb-4">
+      <div className="border-b border-[var(--border-light)] bg-[var(--ivory-warm)]/70 pt-28 pb-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Breadcrumb
             items={[
@@ -72,28 +72,32 @@ export default async function CollectionDetailPage({ params }: PageProps) {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             {/* Left Narrative */}
             <div className="lg:col-span-6 flex flex-col justify-center" data-reveal="fade-up">
-              <SectionLabel variant="pine" className="mb-4">
-                Occasion Collection · {String(currentIndex + 1).padStart(2, "0")}
-              </SectionLabel>
+              <div className="inline-flex items-center gap-2 mb-4">
+                <span className="px-3 py-1 rounded-full bg-[var(--pine)] text-[var(--ivory)] text-[10px] tracking-[0.2em] uppercase font-sans font-semibold">
+                  Occasion Collection {String(currentIndex + 1).padStart(2, "0")}
+                </span>
+              </div>
+
               <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-[var(--black)] leading-[1.15] mb-5 tracking-tight">
                 {col.title}
               </h1>
-              <p className="font-serif text-xl sm:text-2xl text-[var(--terracotta)] font-normal italic leading-relaxed mb-6">
+              <p className="font-serif text-xl sm:text-2xl text-[var(--terracotta-deep)] font-normal italic leading-relaxed mb-6">
                 &ldquo;{col.tagline}&rdquo;
               </p>
-              <p className="font-sans text-base sm:text-lg text-[var(--pine)] font-light leading-relaxed mb-8">
+              <p className="font-sans text-base sm:text-lg text-[var(--charcoal)] font-light leading-relaxed mb-8">
                 {col.description}
               </p>
 
-              {/* Inclusions Box */}
-              <div className="rounded-[var(--radius-card)] bg-[var(--ivory-warm)] border border-[var(--border-light)] p-6 sm:p-8 mb-8">
-                <h2 className="font-sans text-xs tracking-[0.18em] uppercase font-semibold text-[var(--chestnut)] mb-4">
-                  Typical Collection Inclusions
+              {/* Rich Inclusions Box with Terracotta / Pine styling */}
+              <div className="rounded-[var(--radius-card)] bg-[var(--ivory-warm)] border-l-4 border-[var(--terracotta-deep)] border-y border-r border-[var(--border-light)] p-6 sm:p-8 mb-8 shadow-sm">
+                <h2 className="font-sans text-xs tracking-[0.18em] uppercase font-semibold text-[var(--chestnut)] mb-4 flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-[var(--terracotta)]" />
+                  <span>Typical Collection Inclusions</span>
                 </h2>
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {col.typicalInclusions.map((item, idx) => (
                     <li key={idx} className="flex items-start gap-2.5">
-                      <span className="flex-shrink-0 w-4 h-4 rounded-full bg-[var(--terracotta)]/15 text-[var(--terracotta)] flex items-center justify-center mt-0.5">
+                      <span className="flex-shrink-0 w-4 h-4 rounded-full bg-[var(--terracotta)]/15 text-[var(--terracotta-deep)] flex items-center justify-center mt-0.5">
                         <Check className="w-2.5 h-2.5 stroke-[3]" />
                       </span>
                       <span className="font-sans text-xs sm:text-sm text-[var(--black)]/85 font-light">
@@ -108,19 +112,19 @@ export default async function CollectionDetailPage({ params }: PageProps) {
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
                 <Link
                   href={`/contact?collection=${col.slug}`}
-                  className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-[var(--black)] hover:bg-[var(--chestnut)] text-[var(--ivory)] font-sans text-xs tracking-[0.14em] uppercase font-medium transition-colors duration-300 shadow-sm"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-[var(--terracotta-deep)] hover:bg-[var(--chestnut)] text-[var(--ivory)] font-sans text-xs tracking-[0.14em] uppercase font-semibold transition-all duration-300 shadow-md hover:scale-[1.02]"
                 >
                   <span>Request Custom Proposal</span>
-                  <ArrowRight className="w-4 h-4 text-[var(--copper)]" />
+                  <ArrowRight className="w-4 h-4 text-[var(--khaki)]" />
                 </Link>
 
                 <a
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-[var(--ivory-warm)] hover:bg-[var(--ivory-deep)] text-[var(--black)] border border-[var(--border-light)] font-sans text-xs tracking-[0.14em] uppercase font-medium transition-colors duration-300"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-[var(--pine)] hover:bg-[#0E3D30] text-[var(--ivory)] font-sans text-xs tracking-[0.14em] uppercase font-semibold transition-all duration-300 shadow-md hover:scale-[1.02]"
                 >
-                  <MessageCircle className="w-4 h-4 text-[var(--pine)]" />
+                  <MessageCircle className="w-4 h-4 text-[var(--khaki)]" />
                   <span>Ask on WhatsApp</span>
                 </a>
               </div>
@@ -128,7 +132,7 @@ export default async function CollectionDetailPage({ params }: PageProps) {
 
             {/* Right Hero Image */}
             <div className="lg:col-span-6" data-reveal="fade-up">
-              <div className="relative aspect-[4/3] rounded-[var(--radius-card)] overflow-hidden bg-[var(--ivory-warm)] border border-[var(--border-light)] shadow-xl">
+              <div className="relative aspect-[4/3] rounded-[var(--radius-card)] overflow-hidden bg-[var(--ivory-warm)] border-2 border-[var(--copper)]/40 shadow-2xl">
                 <Image
                   src={col.image}
                   alt={col.alt}
@@ -163,7 +167,10 @@ export default async function CollectionDetailPage({ params }: PageProps) {
               {collectionProducts.map((prod) => (
                 <div
                   key={prod.slug}
-                  className="group bg-[var(--ivory-warm)] border border-[var(--border-light)] rounded-[var(--radius-card)] overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-[var(--copper)] flex flex-col justify-between"
+                  className="group bg-[var(--ivory)] border border-[var(--border-light)] rounded-[var(--radius-card)] overflow-hidden transition-all duration-300 hover:shadow-xl hover:border-[var(--copper)] flex flex-col justify-between"
+                  style={{
+                    borderTop: "3px solid var(--copper)",
+                  }}
                 >
                   <div className="relative aspect-[4/3] w-full bg-[var(--ivory-deep)] overflow-hidden">
                     <Image
@@ -174,7 +181,7 @@ export default async function CollectionDetailPage({ params }: PageProps) {
                       className="object-cover object-center transition-transform duration-700 ease-[var(--ease-out)] group-hover:scale-105"
                     />
                     {prod.group && (
-                      <span className="absolute top-4 left-4 inline-flex items-center text-[10px] uppercase tracking-[0.16em] font-medium px-2.5 py-1 rounded-full bg-[var(--ivory)]/90 backdrop-blur-sm border border-black/5 text-[var(--pine)]">
+                      <span className="absolute top-4 left-4 inline-flex items-center text-[10px] uppercase tracking-[0.16em] font-semibold px-2.5 py-1 rounded-full bg-[var(--black)]/80 text-[var(--khaki)] backdrop-blur-sm shadow-sm">
                         {prod.group}
                       </span>
                     )}
@@ -202,11 +209,11 @@ export default async function CollectionDetailPage({ params }: PageProps) {
               href={`/portfolio/${prevCollection.slug}`}
               className="group inline-flex items-center gap-3 text-left w-full sm:w-auto"
             >
-              <div className="w-10 h-10 rounded-full border border-[var(--border-light)] bg-[var(--ivory)] flex items-center justify-center text-[var(--black)] group-hover:bg-[var(--black)] group-hover:text-[var(--ivory)] transition-colors">
+              <div className="w-10 h-10 rounded-full border border-[var(--border-light)] bg-[var(--ivory)] flex items-center justify-center text-[var(--black)] group-hover:bg-[var(--pine)] group-hover:text-[var(--ivory)] transition-colors">
                 <ArrowLeft className="w-4 h-4" />
               </div>
               <div>
-                <span className="block text-[10px] tracking-[0.18em] uppercase text-[var(--sage)] font-sans">
+                <span className="block text-[10px] tracking-[0.18em] uppercase text-[var(--pine)] font-sans font-semibold">
                   Previous Collection
                 </span>
                 <span className="font-serif text-base text-[var(--black)] group-hover:text-[var(--terracotta)] transition-colors">
@@ -217,7 +224,7 @@ export default async function CollectionDetailPage({ params }: PageProps) {
 
             <Link
               href="/portfolio"
-              className="text-xs uppercase tracking-[0.16em] font-sans font-medium text-[var(--pine)] hover:text-[var(--terracotta)] transition-colors"
+              className="text-xs uppercase tracking-[0.16em] font-sans font-semibold text-[var(--chestnut)] hover:text-[var(--black)] transition-colors"
             >
               All 7 Collections
             </Link>
@@ -227,14 +234,14 @@ export default async function CollectionDetailPage({ params }: PageProps) {
               className="group inline-flex items-center gap-3 text-right w-full sm:w-auto justify-end"
             >
               <div>
-                <span className="block text-[10px] tracking-[0.18em] uppercase text-[var(--sage)] font-sans">
+                <span className="block text-[10px] tracking-[0.18em] uppercase text-[var(--pine)] font-sans font-semibold">
                   Next Collection
                 </span>
                 <span className="font-serif text-base text-[var(--black)] group-hover:text-[var(--terracotta)] transition-colors">
                   {nextCollection.title}
                 </span>
               </div>
-              <div className="w-10 h-10 rounded-full border border-[var(--border-light)] bg-[var(--ivory)] flex items-center justify-center text-[var(--black)] group-hover:bg-[var(--black)] group-hover:text-[var(--ivory)] transition-colors">
+              <div className="w-10 h-10 rounded-full border border-[var(--border-light)] bg-[var(--ivory)] flex items-center justify-center text-[var(--black)] group-hover:bg-[var(--pine)] group-hover:text-[var(--ivory)] transition-colors">
                 <ArrowRight className="w-4 h-4" />
               </div>
             </Link>
