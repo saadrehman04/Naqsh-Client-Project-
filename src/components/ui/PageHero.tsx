@@ -7,6 +7,7 @@ interface PageHeroProps {
   label: string;
   title: string;
   intro?: string;
+  subtitle?: string;
   breadcrumbs?: BreadcrumbItem[];
   className?: string;
 }
@@ -15,9 +16,11 @@ export function PageHero({
   label,
   title,
   intro,
+  subtitle,
   breadcrumbs,
   className,
 }: PageHeroProps) {
+  const displayIntro = intro || subtitle;
   return (
     <section
       className={cn(
@@ -30,9 +33,9 @@ export function PageHero({
         <div className="max-w-4xl" data-reveal="fade-up">
           <SectionLabel>{label}</SectionLabel>
           <h1 className="t-h1 mb-6 text-[var(--text-strong)]">{title}</h1>
-          {intro && (
+          {displayIntro && (
             <p className="t-lead text-[var(--text)] max-w-2xl font-light">
-              {intro}
+              {displayIntro}
             </p>
           )}
         </div>

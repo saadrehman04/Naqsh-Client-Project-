@@ -11,6 +11,8 @@ export interface PageMetaOptions {
   image?: string;
 }
 
+export const buildMetadata = constructMetadata;
+
 export function constructMetadata({
   title,
   description = "Naqsh curates, customizes and delivers premium corporate gifts for businesses. Welcome kits, client packages, Ramadan & Eid baskets and more.",
