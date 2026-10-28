@@ -1072,6 +1072,141 @@ export function ScrollEffects() {
             });
           }
 
+          // 1. Our Approach Sequence (Pinned 300vh, top priority in DOM order)
+          const approach = document.querySelector<HTMLElement>(
+            "[data-approach-sequence]"
+          );
+          const approachPin =
+            approach?.querySelector<HTMLElement>("[data-pin]") ?? approach;
+          const approachSteps = Array.from(
+            approach?.querySelectorAll<HTMLElement>("[data-approach-step]") ?? []
+          );
+          const approachProgressFill = approach?.querySelector<HTMLElement>(
+            "[data-approach-progress]"
+          );
+
+          if (approach && approachPin && approachSteps.length) {
+            const pinDuration = approachPin.dataset.pinEnd ?? "+=300%";
+            const activateStep = (activeIndex: number) => {
+              approachSteps.forEach((step, idx) => {
+                const isActive = idx === activeIndex;
+                step.classList.toggle("is-active", isActive);
+                step.setAttribute("aria-current", isActive ? "step" : "false");
+              });
+            };
+            activateStep(0);
+
+            if (approachProgressFill) {
+              gsap.set(approachProgressFill, {
+                scaleY: 0,
+                transformOrigin: "top center",
+              });
+            }
+
+            ScrollTrigger.create({
+              trigger: approachPin,
+              start: "top top",
+              end: pinDuration,
+              pin: approachPin,
+              pinSpacing: true,
+              scrub: numberAttr(approachPin, "scrub", 0.6),
+              anticipatePin: 1,
+              refreshPriority: 3,
+              invalidateOnRefresh: true,
+              onUpdate: (self) => {
+                setSceneProgress("approach", self.progress, approach);
+                if (approachProgressFill) {
+                  approachProgressFill.style.transform = `scaleY(${self.progress.toFixed(4)})`;
+                }
+                const activeIdx = Math.min(
+                  approachSteps.length - 1,
+                  Math.floor(self.progress * approachSteps.length)
+                );
+                activateStep(activeIdx);
+              },
+            });
+          }
+
+          // 2. Collection Gallery (Horizontal Track Pin, second in DOM order)
+          const gallery = document.querySelector<HTMLElement>(
+            "[data-horizontal-gallery]"
+          );
+          const galleryTrack = gallery?.querySelector<HTMLElement>(
+            "[data-horizontal-track]"
+          );
+          if (gallery && galleryTrack) {
+            const getDistance = () =>
+              Math.max(0, galleryTrack.scrollWidth - gallery.clientWidth);
+            const progressRule = gallery
+              .closest(".collection-gallery")
+              ?.querySelector<HTMLElement>(".collection-gallery-progress-fill");
+            const galleryImages = Array.from(
+              galleryTrack.querySelectorAll<HTMLElement>(
+                ".collection-gallery-image img"
+              )
+            );
+            const galleryNumbers = Array.from(
+              galleryTrack.querySelectorAll<HTMLElement>(
+                ".collection-gallery-number"
+              )
+            );
+
+            galleryImages.forEach((image) => {
+              image.style.willChange = "transform";
+              gsap.set(image, { scale: 1.18, xPercent: -8 });
+            });
+            if (galleryNumbers.length) {
+              gsap.set(galleryNumbers, { xPercent: 14 });
+            }
+
+            const galleryTl = gsap.timeline({
+              scrollTrigger: {
+                trigger: gallery,
+                start: "top top",
+                end: () => `+=${getDistance()}`,
+                pin: gallery,
+                pinSpacing: true,
+                scrub: 0.6,
+                anticipatePin: 1,
+                refreshPriority: 2,
+                invalidateOnRefresh: true,
+                onUpdate: (self) => {
+                  setSceneProgress("portfolio", self.progress, gallery);
+                  if (progressRule) {
+                    progressRule.style.transform = `scaleX(${self.progress.toFixed(4)})`;
+                  }
+                },
+              },
+            });
+
+            galleryTl.to(
+              galleryTrack,
+              {
+                x: () => -getDistance(),
+                ease: "none",
+                duration: 1,
+              },
+              0
+            );
+
+            if (galleryImages.length) {
+              galleryTl.to(
+                galleryImages,
+                { xPercent: 8, ease: "none", duration: 1 },
+                0
+              );
+            }
+
+            if (galleryNumbers.length) {
+              galleryTl.to(
+                galleryNumbers,
+                { xPercent: -14, ease: "none", duration: 1 },
+                0
+              );
+            }
+          }
+
+          // 3. Vision & Mission (Below Seven Collections in DOM order)
           const visionSection = document.querySelector<HTMLElement>(
             "[data-vision-scene]"
           );
@@ -1159,6 +1294,7 @@ export function ScrollEffects() {
                     pinSpacing: true,
                     scrub: 0.6,
                     anticipatePin: 1,
+                    refreshPriority: 1,
                     invalidateOnRefresh: true,
                     onUpdate: (self) => {
                       setSceneProgress("vision", self.progress, visionSection);
@@ -1226,135 +1362,7 @@ export function ScrollEffects() {
             }
           }
 
-          const approach = document.querySelector<HTMLElement>(
-            "[data-approach-sequence]"
-          );
-          const approachPin =
-            approach?.querySelector<HTMLElement>("[data-pin]") ?? approach;
-          const approachSteps = Array.from(
-            approach?.querySelectorAll<HTMLElement>("[data-approach-step]") ?? []
-          );
-          const approachProgressFill = approach?.querySelector<HTMLElement>(
-            "[data-approach-progress]"
-          );
-
-          if (approach && approachPin && approachSteps.length) {
-            const pinDuration = approachPin.dataset.pinEnd ?? "+=300%";
-            const activateStep = (activeIndex: number) => {
-              approachSteps.forEach((step, idx) => {
-                const isActive = idx === activeIndex;
-                step.classList.toggle("is-active", isActive);
-                step.setAttribute("aria-current", isActive ? "step" : "false");
-              });
-            };
-            activateStep(0);
-
-            if (approachProgressFill) {
-              gsap.set(approachProgressFill, {
-                scaleY: 0,
-                transformOrigin: "top center",
-              });
-            }
-
-            ScrollTrigger.create({
-              trigger: approachPin,
-              start: "top top",
-              end: pinDuration,
-              pin: approachPin,
-              pinSpacing: true,
-              scrub: numberAttr(approachPin, "scrub", 0.6),
-              anticipatePin: 1,
-              invalidateOnRefresh: true,
-              onUpdate: (self) => {
-                setSceneProgress("approach", self.progress, approach);
-                if (approachProgressFill) {
-                  approachProgressFill.style.transform = `scaleY(${self.progress.toFixed(4)})`;
-                }
-                const activeIdx = Math.min(
-                  approachSteps.length - 1,
-                  Math.floor(self.progress * approachSteps.length)
-                );
-                activateStep(activeIdx);
-              },
-            });
-          }
-
-          const gallery = document.querySelector<HTMLElement>(
-            "[data-horizontal-gallery]"
-          );
-          const galleryTrack = gallery?.querySelector<HTMLElement>(
-            "[data-horizontal-track]"
-          );
-          if (gallery && galleryTrack) {
-            const getDistance = () =>
-              Math.max(0, galleryTrack.scrollWidth - gallery.clientWidth);
-            const progressRule = gallery
-              .closest(".collection-gallery")
-              ?.querySelector<HTMLElement>(".collection-gallery-progress-fill");
-            const galleryImages = Array.from(
-              galleryTrack.querySelectorAll<HTMLElement>(
-                ".collection-gallery-image img"
-              )
-            );
-            const galleryNumbers = Array.from(
-              galleryTrack.querySelectorAll<HTMLElement>(
-                ".collection-gallery-number"
-              )
-            );
-
-            galleryImages.forEach((image) => {
-              image.style.willChange = "transform";
-              gsap.set(image, { scale: 1.18, xPercent: -8 });
-            });
-            if (galleryNumbers.length) {
-              gsap.set(galleryNumbers, { xPercent: 14 });
-            }
-
-            const galleryTl = gsap.timeline({
-              scrollTrigger: {
-                trigger: gallery,
-                start: "top top",
-                end: () => `+=${getDistance()}`,
-                pin: gallery,
-                pinSpacing: true,
-                scrub: 0.6,
-                anticipatePin: 1,
-                invalidateOnRefresh: true,
-                onUpdate: (self) => {
-                  setSceneProgress("portfolio", self.progress, gallery);
-                  if (progressRule) {
-                    progressRule.style.transform = `scaleX(${self.progress.toFixed(4)})`;
-                  }
-                },
-              },
-            });
-
-            galleryTl.to(
-              galleryTrack,
-              {
-                x: () => -getDistance(),
-                ease: "none",
-                duration: 1,
-              },
-              0
-            );
-
-            if (galleryImages.length) {
-              galleryTl.to(
-                galleryImages,
-                { xPercent: 8, ease: "none", duration: 1 },
-                0
-              );
-            }
-
-            if (galleryNumbers.length) {
-              galleryTl.to(
-                galleryNumbers,
-                { xPercent: -14, ease: "none", duration: 1 },
-                0
-              );
-            }
-          }
+          ScrollTrigger.sort();
 
           const ctaBand = document.querySelector<HTMLElement>(".cta-band");
           if (ctaBand) {
