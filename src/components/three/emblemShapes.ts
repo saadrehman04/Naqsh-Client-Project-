@@ -16,14 +16,16 @@ function createShapesFromPath(path: SVGResult["paths"][number]): THREE.Shape[] {
     ) {
       return;
     }
-    origWarn.apply(console, args);
+    origWarn(...args);
   };
   try {
     const shapes = SVGLoader.createShapes(path);
     if (shapes.some((s) => s.holes.length > 0)) {
       return shapes;
     }
-    return path.toShapes(true);
+    return (
+      path as unknown as { toShapes: (isCCW?: boolean) => THREE.Shape[] }
+    ).toShapes(true);
   } finally {
     console.warn = origWarn;
   }

@@ -76,6 +76,7 @@ export default async function CollectionDetailPage({ params }: Props) {
                 className="product-tile"
                 key={product.slug}
                 href={`/contact?product=${product.slug}`}
+                data-cursor-label="Explore"
               >
                 <span className="product-tile-image">
                   <Image

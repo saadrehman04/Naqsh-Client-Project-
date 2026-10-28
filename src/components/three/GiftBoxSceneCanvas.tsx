@@ -76,11 +76,11 @@ function GiftBoxActor({ onReady }: { onReady: (ready: boolean) => void }) {
   const lidGroupRef = useRef<THREE.Group>(null);
   const bodyRibbonRef = useRef<THREE.Group>(null);
   const lidRibbonRef = useRef<THREE.Group>(null);
+  const miniSealGroupRef = useRef<THREE.Group>(null);
   const itemRefs = useRef<Array<THREE.Group | null>>([null, null, null, null, null]);
 
   const dampedProgressRef = useRef(sceneProgress.approach || 0);
-  const [sealProgress, setSealProgress] = useState(0);
-  const lastSealBucketRef = useRef(-1);
+  const sealProgressRef = useRef(0);
 
   const materials = useMemo(() => {
     const bodyMat = new THREE.MeshPhysicalMaterial({
@@ -188,7 +188,7 @@ function GiftBoxActor({ onReady }: { onReady: (ready: boolean) => void }) {
     const lidOpenAmount = pOpen * (1 - pClose);
 
     if (lidGroupRef.current) {
-      lidGroupRef.current.position.y = 0.58 + lidOpenAmount * 1.7;
+      lidGroupRef.current.position.y = 0.58 + lidOpenAmount * 1.48;
       lidGroupRef.current.position.z = -lidOpenAmount * 0.52;
       lidGroupRef.current.rotation.x =
         lidOpenAmount * THREE.MathUtils.degToRad(14);
@@ -266,10 +266,9 @@ function GiftBoxActor({ onReady }: { onReady: (ready: boolean) => void }) {
     // Miniature WaxSeal stamp on the Ivory card during Customize (0.50 -> 0.75)
     const rawSealP =
       smoothstepRange(p, 0.51, 0.68) * (1 - smoothstepRange(p, 0.75, 0.84));
-    const bucket = Math.round(rawSealP * 50);
-    if (bucket !== lastSealBucketRef.current) {
-      lastSealBucketRef.current = bucket;
-      setSealProgress(rawSealP);
+    sealProgressRef.current = rawSealP;
+    if (miniSealGroupRef.current) {
+      miniSealGroupRef.current.visible = rawSealP > 0.01;
     }
 
     // Box rotation, slide, and fade across the 4 steps
@@ -293,8 +292,8 @@ function GiftBoxActor({ onReady }: { onReady: (ready: boolean) => void }) {
       rootGroupRef.current.rotation.x = THREE.MathUtils.degToRad(
         8 + pointerPitch
       );
-      rootGroupRef.current.position.x = pDeliver * 0.26;
-      rootGroupRef.current.position.y = -0.25;
+      rootGroupRef.current.position.x = pDeliver * 0.22;
+      rootGroupRef.current.position.y = -0.34;
     }
 
     // Slight fade in Deliver (1.0 -> 0.86)
@@ -306,11 +305,11 @@ function GiftBoxActor({ onReady }: { onReady: (ready: boolean) => void }) {
 
     // Camera gentle orbit tied to progress (max 12 degrees) + ease-in during Understand
     const orbitAngle = THREE.MathUtils.degToRad((p - 0.5) * 12);
-    const camDist = 6.25 - pUnderstand * 0.32 + pDeliver * 0.18;
+    const camDist = 7.65 - pUnderstand * 0.32 + pDeliver * 0.2;
     state.camera.position.x = Math.sin(orbitAngle) * camDist;
     state.camera.position.z = Math.cos(orbitAngle) * camDist;
-    state.camera.position.y = 1.45 + lidOpenAmount * 0.25;
-    state.camera.lookAt(0, 0.25 + lidOpenAmount * 0.28, 0);
+    state.camera.position.y = 1.65 + lidOpenAmount * 0.32;
+    state.camera.lookAt(0, 0.14 + lidOpenAmount * 0.28, 0);
   });
 
   return (
@@ -432,18 +431,19 @@ function GiftBoxActor({ onReady }: { onReady: (ready: boolean) => void }) {
             <meshBasicMaterial color={NAQSH_3D_PALETTE.copper} />
           </mesh>
           {/* Miniature WaxSeal3D stamping onto the card during Customize */}
-          {sealProgress > 0.01 && (
-            <group
-              position={[0.14, 0.032, 0.06]}
-              rotation={[-Math.PI / 2, 0, 0]}
-              scale={0.13}
-            >
-              <WaxSealActor
-                progressDriven={sealProgress}
-                onReady={() => {}}
-              />
-            </group>
-          )}
+          <group
+            ref={miniSealGroupRef}
+            visible={false}
+            position={[0.14, 0.032, 0.06]}
+            rotation={[-Math.PI / 2, 0, 0]}
+            scale={0.13}
+          >
+            <WaxSealActor
+              progressDrivenRef={sealProgressRef}
+              hideShadows
+              onReady={() => {}}
+            />
+          </group>
         </group>
 
         {/* 4: Pen (Black with Copper tip) */}

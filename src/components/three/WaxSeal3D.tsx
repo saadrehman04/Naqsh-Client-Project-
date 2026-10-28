@@ -84,6 +84,17 @@ export function WaxSeal3D({
           effectiveTrigger ? "is-stamped" : ""
         } ${hasDrawnFirstFrame ? "is-faded" : ""}`}
       >
+        {shouldMount && (
+          <img
+            src="/3d/seal.webp"
+            alt=""
+            width={size}
+            height={size}
+            loading="lazy"
+            decoding="async"
+            className="scene-poster-img"
+          />
+        )}
         <svg
           viewBox="0 0 200 200"
           className="wax-seal-fallback-disc"

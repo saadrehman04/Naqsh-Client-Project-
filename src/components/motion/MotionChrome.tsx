@@ -11,7 +11,17 @@ export function MotionChrome() {
     const cursor = document.querySelector<HTMLElement>(".custom-cursor");
     const isCoarse = window.matchMedia("(pointer: coarse)").matches;
     const isDesktopFine = window.matchMedia("(min-width: 1024px) and (pointer: fine)").matches;
+    const canHoverFine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
     let cachedMaxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    let activeTiltCard: HTMLElement | null = null;
+
+    const resetTiltCard = (card: HTMLElement | null) => {
+      if (!card) return;
+      card.style.setProperty("--tilt-rx", "0deg");
+      card.style.setProperty("--tilt-ry", "0deg");
+      card.style.setProperty("--glare-opacity", "0");
+      card.classList.remove("is-tilting");
+    };
     let pointerX = -1;
     let pointerY = -1;
     let hasPointer = false;
@@ -98,6 +108,30 @@ export function MotionChrome() {
         cursor.dataset.label = target?.dataset.cursorLabel || (showExplore ? "Explore" : "");
       }
 
+      if (canHoverFine) {
+        const tiltCard = (event.target as HTMLElement | null)?.closest<HTMLElement>(
+          ".collection-gallery-item, .product-tile"
+        );
+        if (activeTiltCard && activeTiltCard !== tiltCard) {
+          resetTiltCard(activeTiltCard);
+          activeTiltCard = null;
+        }
+        if (tiltCard) {
+          activeTiltCard = tiltCard;
+          const rect = tiltCard.getBoundingClientRect();
+          const nx = Math.max(0, Math.min(1, (event.clientX - rect.left) / Math.max(1, rect.width)));
+          const ny = Math.max(0, Math.min(1, (event.clientY - rect.top) / Math.max(1, rect.height)));
+          const rotY = Math.max(-6, Math.min(6, (nx - 0.5) * 12));
+          const rotX = Math.max(-6, Math.min(6, -(ny - 0.5) * 12));
+          tiltCard.style.setProperty("--tilt-rx", `${rotX.toFixed(2)}deg`);
+          tiltCard.style.setProperty("--tilt-ry", `${rotY.toFixed(2)}deg`);
+          tiltCard.style.setProperty("--glare-x", `${(nx * 100).toFixed(1)}%`);
+          tiltCard.style.setProperty("--glare-y", `${(ny * 100).toFixed(1)}%`);
+          tiltCard.style.setProperty("--glare-opacity", "1");
+          tiltCard.classList.add("is-tilting");
+        }
+      }
+
       if (!isDesktopFine) return;
       const magnetic = (event.target as HTMLElement | null)?.closest<HTMLElement>(
         ".btn, .header-cta, [data-magnetic]"
@@ -114,6 +148,17 @@ export function MotionChrome() {
     };
 
     const handlePointerOut = (event: PointerEvent) => {
+      const tiltEl = (event.target as HTMLElement | null)?.closest<HTMLElement>(
+        ".collection-gallery-item, .product-tile"
+      );
+      if (tiltEl) {
+        const related = event.relatedTarget as Node | null;
+        if (!related || !tiltEl.contains(related)) {
+          resetTiltCard(tiltEl);
+          if (activeTiltCard === tiltEl) activeTiltCard = null;
+        }
+      }
+
       const el = (event.target as HTMLElement | null)?.closest<HTMLElement>(
         ".btn, .header-cta, [data-magnetic]"
       );

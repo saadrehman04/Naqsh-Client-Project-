@@ -45,6 +45,17 @@ export function EmblemScene() {
         }`}
       >
         <picture className="scene-poster-picture">
+          {shouldMount && (
+            <img
+              src="/3d/emblem.webp"
+              alt=""
+              width={340}
+              height={425}
+              loading="lazy"
+              decoding="async"
+              className="scene-poster-img"
+            />
+          )}
           <img
             src="/brand/emblem-copper.svg"
             alt=""

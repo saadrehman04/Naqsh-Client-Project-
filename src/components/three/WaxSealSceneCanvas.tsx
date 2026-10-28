@@ -76,13 +76,15 @@ function buildWaxSealGeometries() {
 
 interface WaxSealActorProps {
   trigger?: boolean | number;
-  progressDriven?: number | null;
+  progressDrivenRef?: React.MutableRefObject<number> | null;
+  hideShadows?: boolean;
   onReady: (ready: boolean) => void;
 }
 
 export function WaxSealActor({
   trigger = true,
-  progressDriven = null,
+  progressDrivenRef = null,
+  hideShadows = false,
   onReady,
 }: WaxSealActorProps) {
   const sealGroupRef = useRef<THREE.Group>(null);
@@ -135,9 +137,9 @@ export function WaxSealActor({
         const geom = new THREE.ExtrudeGeometry(shapes, {
           depth: 0.03,
           bevelEnabled: true,
-          bevelThickness: 0.006,
-          bevelSize: 0.005,
-          bevelSegments: 2,
+          bevelThickness: 0.008,
+          bevelSize: 0.007,
+          bevelSegments: 3,
           curveSegments: 16,
         });
         geom.translate(0, 0, 0.068);
@@ -166,7 +168,7 @@ export function WaxSealActor({
 
   // Stamp GSAP timeline whenever `trigger` fires
   useEffect(() => {
-    if (progressDriven !== null) return;
+    if (progressDrivenRef !== null) return;
     if (!trigger) return;
 
     const s = animRef.current;
@@ -267,15 +269,15 @@ export function WaxSealActor({
     return () => {
       tl.kill();
     };
-  }, [trigger, progressDriven]);
+  }, [trigger, progressDrivenRef]);
 
   useFrame((state, delta) => {
     const dt = Math.min(delta, 0.05);
     const s = animRef.current;
 
-    if (progressDriven !== null) {
-      // Driven by scroll progress [0..1] (e.g. inside Gift Box Customize step)
-      const p = THREE.MathUtils.clamp(progressDriven, 0, 1);
+    if (progressDrivenRef !== null) {
+      // Driven by scroll progress [0..1] via ref (e.g. inside Gift Box Customize step)
+      const p = THREE.MathUtils.clamp(progressDrivenRef.current, 0, 1);
       const impact = p < 0.6 ? p / 0.6 : 1;
       s.y = (1 - impact) * 0.85;
       s.opacity = THREE.MathUtils.clamp(p * 2.5, 0, 1);
@@ -333,7 +335,7 @@ export function WaxSealActor({
             color={NAQSH_3D_PALETTE.chestnut}
             roughness={0.62}
             transparent
-            opacity={0.38}
+            opacity={0.55}
           />
         </mesh>
 
@@ -345,11 +347,11 @@ export function WaxSealActor({
           <mesh geometry={emblemGeometry} material={waxMaterial} />
         )}
 
-        {/* Subtle warm rim highlight on embossed emblem */}
+        {/* Grazing warm key highlight on embossed emblem bevels */}
         <pointLight
-          position={[-0.9, 1.1, 0.85]}
-          intensity={0.65}
-          distance={3.0}
+          position={[-1.35, 1.55, 0.42]}
+          intensity={1.35}
+          distance={3.6}
           color={NAQSH_3D_PALETTE.ivory}
         />
       </group>
@@ -366,16 +368,18 @@ export function WaxSealActor({
         />
       </mesh>
 
-      <ContactShadows
-        position={[0, -1.22, -0.2]}
-        opacity={0.42}
-        scale={3.4}
-        blur={1.8}
-        far={2.6}
-        resolution={256}
-        frames={1}
-        color={NAQSH_3D_PALETTE.black}
-      />
+      {!hideShadows && (
+        <ContactShadows
+          position={[0, -1.22, -0.2]}
+          opacity={0.42}
+          scale={3.4}
+          blur={1.8}
+          far={2.6}
+          resolution={256}
+          frames={1}
+          color={NAQSH_3D_PALETTE.black}
+        />
+      )}
     </>
   );
 }
@@ -404,7 +408,7 @@ export default function WaxSealSceneCanvas({
       }}
       style={{ background: "transparent", pointerEvents: "none" }}
     >
-      <PerspectiveCamera makeDefault position={[0, 0, 3.65]} fov={34} />
+      <PerspectiveCamera makeDefault position={[0, 0, 4.15]} fov={34} />
       <StudioLighting ready={ready} onFirstFrame={onFirstFrame} />
       <WaxSealActor trigger={trigger} onReady={setReady} />
     </Canvas>
