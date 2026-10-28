@@ -1834,6 +1834,13 @@ html.motion-ok:not(.reduced-motion) .vision-panel {
   align-items: center;
 }
 
+@media (min-width: 1024px) {
+  .vision-emblem-column {
+    align-self: start;
+    margin-top: clamp(0.75rem, 3.5vw, 2.75rem);
+  }
+}
+
 .emblem-scene-host {
   width: 100%;
   max-width: 440px;

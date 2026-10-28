@@ -141,8 +141,8 @@ function CopperEmblemActors({
     const progress = sceneProgress.vision;
 
     if (groupRef.current) {
-      // Slow float: sin wave, ~0.08 units amplitude, 6s period
-      const floatY = Math.sin((elapsed * Math.PI * 2) / 6.0) * 0.08;
+      // Slow float: sin wave, ~0.08 units amplitude, 6s period, elevated +0.12 to sit higher in view
+      const floatY = Math.sin((elapsed * Math.PI * 2) / 6.0) * 0.08 + 0.12;
       groupRef.current.position.y = THREE.MathUtils.damp(
         groupRef.current.position.y,
         floatY,
