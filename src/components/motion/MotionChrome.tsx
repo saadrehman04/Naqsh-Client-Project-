@@ -25,26 +25,61 @@ export function MotionChrome() {
     let pointerX = -1;
     let pointerY = -1;
     let hasPointer = false;
-    let isScrolling = false;
-    let scrollIdleTimer = 0;
     let rafId = 0;
+
+    const getExploreTarget = (
+      el: HTMLElement | null
+    ): { isMatch: boolean; label: string } => {
+      if (!el || !(el instanceof HTMLElement)) return { isMatch: false, label: "" };
+
+      // Never trigger over form controls or floating widgets
+      if (
+        el.closest(
+          "input, select, textarea, .floating-whatsapp, [contenteditable='true']"
+        )
+      ) {
+        return { isMatch: false, label: "" };
+      }
+
+      // 1. Explicit data-cursor-label attribute
+      const explicit = el.closest<HTMLElement>("[data-cursor-label]");
+      if (explicit) {
+        return {
+          isMatch: true,
+          label: explicit.dataset.cursorLabel || "Explore",
+        };
+      }
+
+      // 2. Images: <img>, <picture>, <figure>, <canvas>, or image wrappers
+      const imageEl = el.closest<HTMLElement>(
+        "img, picture, figure, canvas, [data-cursor-image], .collection-gallery-image, .product-tile-image, .about-images, .why-visual, .emblem-scene-host"
+      );
+      if (imageEl) {
+        return { isMatch: true, label: "Explore" };
+      }
+
+      // 3. Links: <a> tags, role='link', .btn
+      const linkEl = el.closest<HTMLElement>("a, [role='link'], .btn");
+      if (linkEl) {
+        return {
+          isMatch: true,
+          label: linkEl.dataset.cursorLabel || "Explore",
+        };
+      }
+
+      return { isMatch: false, label: "" };
+    };
 
     const refreshCursorTarget = () => {
       rafId = 0;
       if (!cursor || !hasPointer || reducedMotion || isCoarse) return;
       cursor.style.transform = `translate3d(${pointerX}px, ${pointerY}px, 0)`;
       const underPointer = document.elementFromPoint(pointerX, pointerY);
-      const target =
-        underPointer instanceof HTMLElement
-          ? underPointer.closest<HTMLElement>("[data-cursor-label]")
-          : null;
-      const interactiveControl =
-        underPointer instanceof HTMLElement
-          ? underPointer.closest<HTMLElement>("button:not([data-cursor-label]), input, select, textarea, .site-header")
-          : null;
-      const showExplore = Boolean(target) || (isScrolling && !interactiveControl);
-      cursor.classList.toggle("is-over", showExplore);
-      cursor.dataset.label = target?.dataset.cursorLabel || (showExplore ? "Explore" : "");
+      const { isMatch, label } = getExploreTarget(
+        underPointer instanceof HTMLElement ? underPointer : null
+      );
+      cursor.classList.toggle("is-over", isMatch);
+      cursor.dataset.label = label;
     };
 
     const scheduleCursorRefresh = () => {
@@ -63,12 +98,6 @@ export function MotionChrome() {
         progress.style.transform = `scaleX(${ratio.toFixed(4)})`;
       }
       if (!reducedMotion && !isCoarse && hasPointer) {
-        isScrolling = true;
-        window.clearTimeout(scrollIdleTimer);
-        scrollIdleTimer = window.setTimeout(() => {
-          isScrolling = false;
-          scheduleCursorRefresh();
-        }, 280);
         scheduleCursorRefresh();
       }
     };
@@ -80,12 +109,6 @@ export function MotionChrome() {
         pointerY = event.clientY;
         hasPointer = true;
       }
-      isScrolling = true;
-      window.clearTimeout(scrollIdleTimer);
-      scrollIdleTimer = window.setTimeout(() => {
-        isScrolling = false;
-        scheduleCursorRefresh();
-      }, 280);
       scheduleCursorRefresh();
     };
 
@@ -97,15 +120,11 @@ export function MotionChrome() {
 
       if (cursor) {
         cursor.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`;
-        const target = (event.target as HTMLElement | null)?.closest<HTMLElement>(
-          "[data-cursor-label]"
+        const { isMatch, label } = getExploreTarget(
+          event.target instanceof HTMLElement ? event.target : null
         );
-        const interactiveControl = (event.target as HTMLElement | null)?.closest<HTMLElement>(
-          "button:not([data-cursor-label]), input, select, textarea, .site-header"
-        );
-        const showExplore = Boolean(target) || (isScrolling && !interactiveControl);
-        cursor.classList.toggle("is-over", showExplore);
-        cursor.dataset.label = target?.dataset.cursorLabel || (showExplore ? "Explore" : "");
+        cursor.classList.toggle("is-over", isMatch);
+        cursor.dataset.label = label;
       }
 
       if (canHoverFine) {
@@ -169,12 +188,25 @@ export function MotionChrome() {
       el.style.setProperty("--mag-y", "0px");
     };
 
+    const handlePointerLeave = () => {
+      hasPointer = false;
+      if (cursor) {
+        cursor.classList.remove("is-over");
+        cursor.dataset.label = "";
+      }
+      if (activeTiltCard) {
+        resetTiltCard(activeTiltCard);
+        activeTiltCard = null;
+      }
+    };
+
     const settleTimer = window.setTimeout(recomputeMaxScroll, 400);
     window.addEventListener("scroll", updateProgress, { passive: true });
     window.addEventListener("wheel", handleWheel, { passive: true });
     window.addEventListener("resize", recomputeMaxScroll);
     window.addEventListener("pointermove", handlePointerMove, { passive: true });
     window.addEventListener("pointerout", handlePointerOut);
+    document.documentElement.addEventListener("pointerleave", handlePointerLeave);
     if (lenis) {
       lenis.on("scroll", updateProgress);
     }
@@ -182,13 +214,13 @@ export function MotionChrome() {
 
     return () => {
       window.clearTimeout(settleTimer);
-      window.clearTimeout(scrollIdleTimer);
       if (rafId) window.cancelAnimationFrame(rafId);
       window.removeEventListener("scroll", updateProgress);
       window.removeEventListener("wheel", handleWheel);
       window.removeEventListener("resize", recomputeMaxScroll);
       window.removeEventListener("pointermove", handlePointerMove);
       window.removeEventListener("pointerout", handlePointerOut);
+      document.documentElement.removeEventListener("pointerleave", handlePointerLeave);
       if (lenis) {
         lenis.off("scroll", updateProgress);
       }

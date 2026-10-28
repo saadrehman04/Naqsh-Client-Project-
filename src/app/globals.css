@@ -862,8 +862,8 @@ dialog::backdrop {
 .collection-detail-image img { object-fit:cover; }
 .scroll-progress { position:fixed; inset:0 auto auto 0; width:100%; height:2px; transform:scaleX(0); transform-origin:left center; background:var(--copper); z-index:1000; pointer-events:none; }
 .custom-cursor { position:fixed; z-index:999; top:0; left:0; width:10px; height:10px; border-radius:50%; background:var(--copper); pointer-events:none; translate:-50% -50%; opacity:0; transition:width .25s,height .25s,opacity .25s; }
-.custom-cursor.is-over { width:64px; height:64px; opacity:.95; display:grid; place-items:center; }
-.custom-cursor.is-over::after { content:attr(data-label); color:var(--ivory); font-size:10px; letter-spacing:.1em; }
+.custom-cursor.is-over { width:64px; height:64px; opacity:.95; display:grid; place-items:center; box-shadow:0 8px 24px rgb(184 115 87 / .32); }
+.custom-cursor.is-over::after { content:attr(data-label); color:var(--ivory); font-size:10px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; font-family:var(--font-body); line-height:1; }
 .footer-giant-wordmark { position:absolute; left:2vw; right:2vw; bottom:0; opacity:.05; pointer-events:none; z-index:0; }
 .footer-giant-wordmark img { width:100%; height:auto; }
 .btn,.header-cta { translate:var(--mag-x,0) var(--mag-y,0); transition:translate .2s ease, background .3s,color .3s; }
