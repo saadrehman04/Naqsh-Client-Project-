@@ -131,12 +131,12 @@ export function Footer() {
                   <span className="w-1.5 h-1.5 rounded-full bg-[var(--copper)]" />
                   <span>Curated Collections</span>
                 </h3>
-                <ul className="space-y-3 font-sans text-sm text-[var(--ivory)]/80">
+                <ul className="space-y-1 font-sans text-sm text-[var(--ivory)]/80">
                   {collectionsList.map((col) => (
                     <li key={col.href}>
                       <Link
                         href={col.href}
-                        className="group flex items-center justify-between hover:text-[var(--ivory)] transition-colors duration-200 py-0.5"
+                        className="group flex items-center justify-between hover:text-[var(--ivory)] transition-colors duration-200 min-h-[44px] py-2"
                       >
                         <span className="group-hover:translate-x-1 transition-transform duration-200">
                           {col.label}
@@ -154,12 +154,12 @@ export function Footer() {
                   <span className="w-1.5 h-1.5 rounded-full bg-[var(--copper)]" />
                   <span>Explore</span>
                 </h3>
-                <ul className="space-y-3 font-sans text-sm text-[var(--ivory)]/80">
+                <ul className="space-y-1 font-sans text-sm text-[var(--ivory)]/80">
                   {siteConfig.nav.map((item) => (
                     <li key={item.href}>
                       <Link
                         href={item.href}
-                        className="group flex items-center justify-between hover:text-[var(--ivory)] transition-colors duration-200 py-0.5"
+                        className="group flex items-center justify-between hover:text-[var(--ivory)] transition-colors duration-200 min-h-[44px] py-2"
                       >
                         <span className="group-hover:translate-x-1 transition-transform duration-200">
                           {item.label}
@@ -216,7 +216,7 @@ export function Footer() {
                 <div className="mt-3.5 space-y-2 font-sans text-xs text-[var(--ivory)]/75">
                   <a
                     href={`tel:${DISPLAY_PHONE.replace(/[^0-9+]/g, "")}`}
-                    className="flex items-center gap-2.5 p-2 rounded-lg hover:bg-white/[0.04] transition-colors"
+                    className="flex items-center gap-2.5 px-3 py-2.5 min-h-[44px] rounded-lg hover:bg-white/[0.04] transition-colors"
                   >
                     <Phone className="w-3.5 h-3.5 text-[var(--copper-light)]" />
                     <span>Direct: {DISPLAY_PHONE}</span>
@@ -233,7 +233,7 @@ export function Footer() {
                       href="https://instagram.com"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/[0.1] border border-white/[0.08] hover:border-[var(--copper)]/40 text-xs font-sans text-[var(--ivory)]/85 transition-all duration-200"
+                      className="inline-flex items-center gap-1.5 px-3.5 py-2.5 min-h-[44px] rounded-full bg-white/[0.04] hover:bg-white/[0.1] border border-white/[0.08] hover:border-[var(--copper)]/40 text-xs font-sans text-[var(--ivory)]/85 transition-all duration-200"
                     >
                       <InstagramGlyph />
                       <span>Instagram</span>
@@ -242,7 +242,7 @@ export function Footer() {
                       href="https://linkedin.com"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/[0.1] border border-white/[0.08] hover:border-[var(--copper)]/40 text-xs font-sans text-[var(--ivory)]/85 transition-all duration-200"
+                      className="inline-flex items-center gap-1.5 px-3.5 py-2.5 min-h-[44px] rounded-full bg-white/[0.04] hover:bg-white/[0.1] border border-white/[0.08] hover:border-[var(--copper)]/40 text-xs font-sans text-[var(--ivory)]/85 transition-all duration-200"
                     >
                       <LinkedInGlyph />
                       <span>LinkedIn</span>

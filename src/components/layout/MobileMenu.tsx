@@ -84,7 +84,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 <Link
                   href={item.href}
                   onClick={onClose}
-                  className="group flex items-center justify-between font-serif text-3xl sm:text-4xl text-[var(--text-strong)] hover:text-[var(--chestnut)] transition-colors duration-200"
+                  className="group flex items-center justify-between font-serif text-3xl sm:text-4xl text-[var(--text-strong)] hover:text-[var(--chestnut)] transition-colors duration-200 py-2 min-h-[48px]"
                 >
                   <span>{item.label}</span>
                   <span className="text-xs font-mono font-normal text-[var(--pine)] tracking-widest">

@@ -813,7 +813,7 @@ dialog::backdrop {
 .approach-scene { background:var(--ivory); }
 .approach-scene-head { max-width:48rem; }
 .approach-scene-head > p { max-width:40rem; margin:1rem 0; color:var(--charcoal); line-height:1.75; }
-.approach-scene-layout { display:grid; grid-template-columns:1fr; gap:2.5rem; align-items:start; }
+.approach-scene-layout { display:grid; grid-template-columns:minmax(0, 1fr); gap:2.5rem; align-items:start; }
 @media (min-width: 1024px) {
   .approach-scene-layout { grid-template-columns:1.05fr 0.95fr; gap:clamp(2.5rem,5.5vw,5.5rem); align-items:start; }
   .approach-scene-left { display:flex; flex-direction:column; gap:1.25rem; }
@@ -954,9 +954,9 @@ dialog::backdrop {
   .about-main-image { width:82%; }
   .about-overlap-image { width:42%; bottom:4%; }
   .services-intro { display:block; }
-  .service-row, .service-row-reverse { grid-template-columns:1fr; }
+  .service-row, .service-row-reverse { grid-template-columns:minmax(0, 1fr); }
   .service-row-reverse .service-row-image { order:0; }
-  .service-row-image { min-height:260px; aspect-ratio:4/3; }
+  .service-row-image { width:100%; max-width:100%; min-height:0; aspect-ratio:4/3; }
   .service-row-copy { padding:2rem 0 2.5rem; }
   .why-visual { position:relative; top:auto; order:-1; aspect-ratio:4/3; }
   .core-values-grid { grid-template-columns:1fr; }
@@ -974,8 +974,8 @@ dialog::backdrop {
   .vision-statement { min-height:0; padding:2rem 0 4rem; }
   .vision-statement + .vision-statement { position:relative; inset:auto; visibility:visible; }
   .vision-emblem { width:35vw; height:35vw; right:-6vw; top:4%; opacity:.24; }
-  .approach-scene-body, .collection-detail-lead { grid-template-columns:1fr; }
-  .approach-box { min-height:260px; height:300px; }
+  .approach-scene-body, .collection-detail-lead { grid-template-columns:minmax(0, 1fr); }
+  .approach-box { width:100%; max-width:100%; min-height:0; height:auto; aspect-ratio:6/5; }
   .cta-seal-scene { width:150px; height:150px; }
 }
 
@@ -2022,9 +2022,12 @@ html.motion-ok:not(.reduced-motion) .vision-panel {
 
 @media (max-width: 1023px) {
   .gift-box-scene-host {
-    min-height: 260px;
+    width: 100%;
+    max-width: 100%;
+    min-height: 0;
     height: auto;
     max-height: 340px;
+    aspect-ratio: 6 / 5;
   }
 }
 

@@ -63,7 +63,7 @@ export default function ContactPage() {
                     </span>
                     <a
                       href={`tel:${DISPLAY_PHONE.replace(/[^0-9+]/g, "")}`}
-                      className="font-serif text-2xl text-[var(--black)] hover:text-[var(--terracotta-deep)] transition-colors mt-0.5 block"
+                      className="font-serif text-2xl text-[var(--black)] hover:text-[var(--terracotta-deep)] transition-colors mt-0.5 inline-flex items-center min-h-[44px] py-1"
                     >
                       {DISPLAY_PHONE}
                     </a>
@@ -83,7 +83,7 @@ export default function ContactPage() {
                       href={whatsappUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-serif text-2xl text-[var(--black)] hover:text-[var(--pine)] transition-colors mt-0.5 block"
+                      className="font-serif text-2xl text-[var(--black)] hover:text-[var(--pine)] transition-colors mt-0.5 inline-flex items-center min-h-[44px] py-1"
                     >
                       +{WHATSAPP_NUMBER}
                     </a>

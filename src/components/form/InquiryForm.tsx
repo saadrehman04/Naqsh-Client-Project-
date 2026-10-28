@@ -403,7 +403,7 @@ function FormFields() {
 
       {/* Row 7: Privacy Consent Checkbox */}
       <div className="pt-2">
-        <label className="flex items-start gap-3 cursor-pointer">
+        <label className="flex items-start gap-3 cursor-pointer py-2 min-h-[44px]">
           <input
             id="consent"
             name="consent"

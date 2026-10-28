@@ -46,13 +46,13 @@ export function CTABand({ title, subline, className = "" }: CTABandProps) {
 
             {/* Right: Live availability status & Direct phone */}
             <div className="flex items-center gap-3 sm:gap-4 text-xs font-sans">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--pine)]/10 text-[var(--pine)] border border-[var(--pine)]/20 font-medium">
+              <div className="inline-flex items-center gap-2 px-3.5 py-2 min-h-[44px] rounded-full bg-[var(--pine)]/10 text-[var(--pine)] border border-[var(--pine)]/20 font-medium">
                 <span className="w-2 h-2 rounded-full bg-[var(--pine)] animate-pulse" />
                 <span className="hidden xs:inline">Consultations Open</span>
               </div>
               <a
                 href={`tel:${DISPLAY_PHONE.replace(/[^0-9+]/g, "")}`}
-                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/70 hover:bg-white text-[var(--charcoal)] hover:text-[var(--black)] border border-[#26211D]/15 font-medium transition-colors"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 min-h-[44px] rounded-full bg-white/70 hover:bg-white text-[var(--charcoal)] hover:text-[var(--black)] border border-[#26211D]/15 font-medium transition-colors"
               >
                 <Phone className="w-3 h-3 text-[var(--chestnut)]" />
                 <span className="hidden sm:inline">Direct:</span>
