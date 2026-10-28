@@ -12,22 +12,23 @@ export function Hero() {
       aria-label="Hero Introduction"
     >
       {/* Background Image: Desktop & Mobile Responsive Crops with LCP fetchpriority */}
-      <div className="absolute inset-0 z-0">
-        <picture>
-          <source
-            media="(max-width: 768px)"
-            srcSet="/images/hero/hero-mobile.webp"
-          />
-          <Image
-            src="/images/hero/hero-desktop.webp"
-            alt="Naqsh corporate welcome kit presentation"
-            fill
-            priority
-            sizes="100vw"
-            data-parallax="true"
-            className="hero-photo object-cover object-[70%_center] scale-[1.08]"
-          />
-        </picture>
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <div className="hero-photo-parallax absolute inset-[-10%_0]">
+          <picture>
+            <source
+              media="(max-width: 768px)"
+              srcSet="/images/hero/hero-mobile.webp"
+            />
+            <Image
+              src="/images/hero/hero-desktop.webp"
+              alt="Naqsh corporate welcome kit presentation"
+              fill
+              priority
+              sizes="100vw"
+              className="hero-photo object-cover object-[70%_center]"
+            />
+          </picture>
+        </div>
 
         {/* Directional shade keeps text clear while preserving the product photo on the right. */}
         <div
@@ -42,21 +43,25 @@ export function Hero() {
       {/* Main Content Area */}
       <div className="container-x relative z-10 my-auto py-8">
         <div className="max-w-none">
-          <h1
-            className="hero-heading text-[var(--ivory)]"
-            data-reveal="fade-up"
-          >
-            {hero.headline}
-          </h1>
+          <div className="hero-heading-wrap">
+            <h1
+              className="hero-heading text-[var(--ivory)]"
+              data-reveal="lines"
+              data-stagger="0.12"
+            >
+              {hero.headline}
+            </h1>
+          </div>
 
           <p
             className="hero-subline text-white/90"
-            data-reveal="fade-up"
+            data-reveal="up"
+            data-delay="0.1"
           >
             {hero.subline}
           </p>
 
-          <div className="hero-actions" data-reveal="fade-up">
+          <div className="hero-actions" data-reveal="up" data-delay="0.2">
             <Button href="/contact" variant="primary" size="md" className="hero-primary">
               {hero.cta}
             </Button>
@@ -74,6 +79,10 @@ export function Hero() {
 
       {/* Bottom Status & Navigation Strip */}
       <div className="relative z-10 border-t border-white/15 bg-black/30 backdrop-blur-sm">
+        <span
+          className="hero-copper-line absolute top-0 inset-x-0 h-[1px] bg-[var(--copper)] origin-left scale-x-0 pointer-events-none"
+          aria-hidden="true"
+        />
         <div className="container-x hero-bottom-strip flex items-center justify-between text-xs text-[var(--khaki)]">
           {/* Bottom Left: Slogan */}
           <div className="hero-slogan hidden sm:block">
@@ -83,7 +92,7 @@ export function Hero() {
           </div>
 
           {/* Bottom Center: Scroll Indicator */}
-          <div className="flex items-center gap-3 mx-auto sm:mx-0">
+          <div className="hero-scroll-cue flex items-center gap-3 mx-auto sm:mx-0">
             <span className="tracking-[0.14em] uppercase text-xs text-[var(--ivory)]">
               {hero.scrollCue}
             </span>
