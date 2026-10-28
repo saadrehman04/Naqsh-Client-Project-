@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { MessageCircle, ArrowRight } from "lucide-react";
-import { SceneLoader } from "@/components/three/SceneLoader";
+import { WaxSeal3D } from "@/components/three/WaxSeal3D";
 import { homeContent } from "@/content/home";
 import { getWhatsAppUrl, DISPLAY_PHONE } from "@/lib/whatsapp";
 
@@ -129,9 +129,9 @@ export function CTABand({ title, subline, className = "" }: CTABandProps) {
             </div>
 
             {/* Right Wax Seal stamp visual with copper trim */}
-            <div className="hidden sm:flex lg:flex-col items-center justify-center flex-shrink-0">
+            <div className="flex flex-col items-center justify-center flex-shrink-0">
               <div className="relative group">
-                <SceneLoader scene="seal" className="cta-seal-scene" />
+                <WaxSeal3D size={210} className="cta-seal-scene" />
                 <span className="block text-center mt-3 text-xs tracking-[0.18em] uppercase font-sans text-[var(--khaki)] font-medium">
                   Naqsh Seal
                 </span>

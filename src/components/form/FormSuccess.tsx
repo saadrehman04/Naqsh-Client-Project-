@@ -1,15 +1,20 @@
 "use client";
 
-import { WaxSeal } from "@/components/brand/WaxSeal";
+import { WaxSeal3D } from "@/components/three/WaxSeal3D";
 import { MessageCircle, ArrowLeft } from "lucide-react";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
 
 interface FormSuccessProps {
   onReset?: () => void;
   clientName?: string;
+  trigger?: boolean | number;
 }
 
-export function FormSuccess({ onReset, clientName }: FormSuccessProps) {
+export function FormSuccess({
+  onReset,
+  clientName,
+  trigger = 1,
+}: FormSuccessProps) {
   const whatsappUrl = getWhatsAppUrl(
     "Hello Naqsh, I just submitted an inquiry on your website and would also like to connect directly on WhatsApp."
   );
@@ -19,9 +24,9 @@ export function FormSuccess({ onReset, clientName }: FormSuccessProps) {
       className="bg-[var(--ivory-warm)] border border-[var(--border-light)] rounded-[var(--radius-card)] p-8 sm:p-12 text-center shadow-lg"
       data-reveal="fade-up"
     >
-      {/* Animated tactile wax seal stamp */}
+      {/* Animated tactile 3D wax seal stamp with 2D fallback */}
       <div className="flex justify-center mb-6">
-        <WaxSeal size="lg" variant="terracotta" animate={true} />
+        <WaxSeal3D trigger={trigger} size={148} />
       </div>
 
       <span className="inline-block text-xs font-sans tracking-[0.18em] uppercase font-semibold text-[var(--terracotta)] mb-2">

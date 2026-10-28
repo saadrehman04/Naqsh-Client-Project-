@@ -1573,3 +1573,47 @@ html.motion-ok:not(.reduced-motion) .vision-panel {
     aspect-ratio: 4 / 5;
   }
 }
+
+/* Scene 2: Wax Seal (CTA Band & Inquiry Form Success) */
+.wax-seal-3d-host {
+  position: relative;
+  display: inline-block;
+  border-radius: 50%;
+}
+
+.cta-band .cta-seal-scene {
+  box-shadow: none;
+}
+
+.wax-seal-fallback {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  transform: scale(1.12) rotate(-6deg);
+  transition:
+    opacity 0.6s var(--ease-out),
+    transform 0.95s var(--ease-out);
+}
+
+.wax-seal-fallback.is-stamped {
+  transform: scale(1) rotate(0deg);
+}
+
+.wax-seal-fallback-disc {
+  position: absolute;
+  inset: 4%;
+  width: 92%;
+  height: 92%;
+  filter: drop-shadow(0 16px 26px rgb(0 0 0 / 0.36));
+}
+
+.wax-seal-fallback-emblem {
+  position: relative;
+  z-index: 2;
+  display: block !important;
+  width: 34% !important;
+  height: 54% !important;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 3px rgb(0 0 0 / 0.45));
+}

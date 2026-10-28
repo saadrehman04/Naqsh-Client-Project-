@@ -43,6 +43,7 @@ function FormFields() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [submitCount, setSubmitCount] = useState(0);
   const [serverError, setServerError] = useState<string | null>(null);
 
   const handleChange = (
@@ -99,6 +100,7 @@ function FormFields() {
         throw new Error(data.error || "Unable to submit your request.");
       }
 
+      setSubmitCount((c) => c + 1);
       setSubmitSuccess(true);
     } catch (err: unknown) {
       const message =
@@ -115,6 +117,7 @@ function FormFields() {
     return (
       <FormSuccess
         clientName={formData.name}
+        trigger={submitCount}
         onReset={() => {
           setSubmitSuccess(false);
           setFormData({
