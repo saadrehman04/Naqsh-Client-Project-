@@ -12,30 +12,65 @@ const promiseImages = [
 export function WhySetsApart() {
   const { whyUs } = homeContent;
   return (
-    <section className="section-y bg-[var(--ivory-deep)]/35" aria-labelledby="why-us-heading">
+    <section
+      className="section-y bg-[var(--ivory-deep)]/35"
+      aria-labelledby="why-us-heading"
+    >
       <div className="container-x why-layout" data-why-promises>
         <div className="why-copy">
-          <header className="why-intro" data-reveal="fade-up">
-            <SectionLabel variant="pine">{whyUs.label}</SectionLabel>
-            <h2 id="why-us-heading" className="t-h2">{whyUs.heading}</h2>
-            <p className="t-lead">{whyUs.intro}</p>
+          <header className="why-intro">
+            <div data-reveal="up">
+              <SectionLabel variant="pine">{whyUs.label}</SectionLabel>
+            </div>
+            <h2 id="why-us-heading" className="t-h2" data-reveal="lines">
+              {whyUs.heading}
+            </h2>
+            <p className="t-lead" data-reveal="up" data-delay="0.1">
+              {whyUs.intro}
+            </p>
           </header>
           <ol className="promise-list">
             {whyUs.promises.map((promise, index) => (
-              <li className="promise-item" key={promise.title} data-why-item data-reveal="fade-up">
-                <span className="promise-number">0{index + 1}</span>
-                <div><h3>{promise.title}</h3><p>{promise.body}</p></div>
+              <li
+                className={`promise-item relative border-t-0 ${index === 0 ? "is-active" : ""}`}
+                key={promise.title}
+                data-why-item
+              >
+                <span
+                  className="promise-hairline"
+                  data-draw="left"
+                  aria-hidden="true"
+                />
+                <span className="promise-number" data-reveal="up" data-delay="0.06">
+                  0{index + 1}
+                </span>
+                <div data-reveal="up" data-delay="0.12">
+                  <h3>{promise.title}</h3>
+                  <p>{promise.body}</p>
+                </div>
               </li>
             ))}
           </ol>
         </div>
         <div className="why-visual" aria-hidden="true">
           {promiseImages.map((image, index) => (
-            <div className={`why-visual-image ${index === 0 ? "is-active" : ""}`} key={image.src} data-why-image>
-              <Image src={image.src} alt={image.alt} fill sizes="(max-width: 1024px) 100vw, 40vw" className="object-cover" />
+            <div
+              className={`why-visual-image ${index === 0 ? "is-active" : ""}`}
+              key={image.src}
+              data-why-image
+            >
+              <Image
+                src={image.src}
+                alt={image.alt}
+                fill
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                className="object-cover"
+              />
             </div>
           ))}
-          <div className="why-visual-caption">Thoughtful by principle. Professional by design.</div>
+          <div className="why-visual-caption">
+            Thoughtful by principle. Professional by design.
+          </div>
         </div>
       </div>
     </section>
