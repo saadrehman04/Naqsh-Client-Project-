@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-export type LogoVariant = "black" | "ivory" | "copper" | "copper-gradient";
+export type LogoVariant = "black" | "ivory" | "copper" | "copper-gradient" | "gold-gradient";
 
 interface WordmarkProps {
   variant?: LogoVariant;
