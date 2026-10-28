@@ -785,7 +785,8 @@ dialog::backdrop {
 .collection-gallery-track { display: flex; gap: clamp(1rem, 2.2vw, 2rem); padding: 0 var(--gutter); width: max-content; }
 .collection-gallery-item { display: block; width: clamp(260px, 31vw, 450px); color: var(--text-strong); }
 .collection-gallery-image { display: block; position: relative; overflow: hidden; aspect-ratio: 4 / 5; background: var(--ivory-deep); }
-.collection-gallery-image img, .product-tile-image img { object-fit: cover; transition: transform .8s var(--ease-out); }
+.collection-gallery-image img { object-fit: cover; transition: transform .5s var(--ease-out); }
+.product-tile-image img { object-fit: cover; transition: transform .8s var(--ease-out); }
 .collection-gallery-item:hover img, .product-tile:hover img { transform: scale(1.035); }
 .collection-gallery-meta { display: flex; align-items: flex-start; gap: 1rem; padding-top: 1rem; border-top: 1px solid var(--hairline); margin-top: .8rem; }
 .collection-gallery-number { color: var(--chestnut); font: 1.4rem var(--font-display); }
@@ -1478,6 +1479,8 @@ dialog::backdrop {
     width: max-content;
     padding: 0;
     will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
   }
   .collection-gallery-item { flex: 0 0 clamp(300px, 32vw, 430px); }
   .collection-gallery-image { aspect-ratio: 4 / 3; }
@@ -2004,7 +2007,6 @@ html.motion-ok:not(.reduced-motion) .vision-panel {
 }
 
 /* Step 5: 2.5D Card Detail (CSS perspective 900px, max 6deg tilt, soft radial glare) */
-.collection-gallery-item,
 .product-tile {
   translate: 0px;
   rotate: 0deg;
@@ -2012,7 +2014,6 @@ html.motion-ok:not(.reduced-motion) .vision-panel {
 }
 
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  .collection-gallery-item,
   .product-tile {
     transform: perspective(900px) rotateX(var(--tilt-rx, 0deg))
       rotateY(var(--tilt-ry, 0deg));
@@ -2020,7 +2021,6 @@ html.motion-ok:not(.reduced-motion) .vision-panel {
     transform-style: preserve-3d;
   }
 
-  .collection-gallery-image::after,
   .product-tile-image::after {
     content: "";
     position: absolute;

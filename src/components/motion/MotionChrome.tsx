@@ -129,7 +129,7 @@ export function MotionChrome() {
 
       if (canHoverFine) {
         const tiltCard = (event.target as HTMLElement | null)?.closest<HTMLElement>(
-          ".collection-gallery-item, .product-tile"
+          ".product-tile"
         );
         if (activeTiltCard && activeTiltCard !== tiltCard) {
           resetTiltCard(activeTiltCard);
@@ -168,7 +168,7 @@ export function MotionChrome() {
 
     const handlePointerOut = (event: PointerEvent) => {
       const tiltEl = (event.target as HTMLElement | null)?.closest<HTMLElement>(
-        ".collection-gallery-item, .product-tile"
+        ".product-tile"
       );
       if (tiltEl) {
         const related = event.relatedTarget as Node | null;

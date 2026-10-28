@@ -21,8 +21,6 @@ export function CollectionGallery() {
           <div
             className="collection-gallery-track"
             data-horizontal-track
-            data-reveal="stagger"
-            data-stagger="0.08"
           >
             {collections.map((item, index) => (
               <Link

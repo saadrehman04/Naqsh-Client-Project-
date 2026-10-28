@@ -1140,23 +1140,9 @@ export function ScrollEffects() {
             const progressRule = gallery
               .closest(".collection-gallery")
               ?.querySelector<HTMLElement>(".collection-gallery-progress-fill");
-            const galleryImages = Array.from(
-              galleryTrack.querySelectorAll<HTMLElement>(
-                ".collection-gallery-image img"
-              )
-            );
-            const galleryNumbers = Array.from(
-              galleryTrack.querySelectorAll<HTMLElement>(
-                ".collection-gallery-number"
-              )
-            );
 
-            galleryImages.forEach((image) => {
-              image.style.willChange = "transform";
-              gsap.set(image, { scale: 1.18, xPercent: -8 });
-            });
-            if (galleryNumbers.length) {
-              gsap.set(galleryNumbers, { xPercent: 14 });
+            if (progressRule) {
+              gsap.set(progressRule, { scaleX: 0, transformOrigin: "left center" });
             }
 
             const galleryTl = gsap.timeline({
@@ -1166,16 +1152,10 @@ export function ScrollEffects() {
                 end: () => `+=${getDistance()}`,
                 pin: gallery,
                 pinSpacing: true,
-                scrub: 0.6,
+                scrub: true,
                 anticipatePin: 1,
                 refreshPriority: 2,
                 invalidateOnRefresh: true,
-                onUpdate: (self) => {
-                  setSceneProgress("portfolio", self.progress, gallery);
-                  if (progressRule) {
-                    progressRule.style.transform = `scaleX(${self.progress.toFixed(4)})`;
-                  }
-                },
               },
             });
 
@@ -1189,18 +1169,14 @@ export function ScrollEffects() {
               0
             );
 
-            if (galleryImages.length) {
+            if (progressRule) {
               galleryTl.to(
-                galleryImages,
-                { xPercent: 8, ease: "none", duration: 1 },
-                0
-              );
-            }
-
-            if (galleryNumbers.length) {
-              galleryTl.to(
-                galleryNumbers,
-                { xPercent: -14, ease: "none", duration: 1 },
+                progressRule,
+                {
+                  scaleX: 1,
+                  ease: "none",
+                  duration: 1,
+                },
                 0
               );
             }
