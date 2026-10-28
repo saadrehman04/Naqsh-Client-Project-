@@ -1,34 +1,105 @@
 "use client";
 
 import { useEffect } from "react";
-import Image from "next/image";
+import { useMotion } from "./MotionProvider";
 
 export function MotionChrome() {
+  const { lenis, reducedMotion } = useMotion();
+
   useEffect(() => {
-    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    let timer: number | undefined;
-    const preloader = document.querySelector<HTMLElement>(".site-preloader");
-    if (!reduce && !sessionStorage.getItem("naqsh-intro-seen")) {
-      preloader?.classList.add("is-active");
-      timer = window.setTimeout(() => { preloader?.classList.remove("is-active"); sessionStorage.setItem("naqsh-intro-seen", "1"); }, 1200);
-    } else preloader?.remove();
     const progress = document.querySelector<HTMLElement>(".scroll-progress");
     const cursor = document.querySelector<HTMLElement>(".custom-cursor");
-    const update = () => {
-      if (progress) { const max = document.documentElement.scrollHeight - innerHeight; progress.style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`; }
-    };
-    const move = (event: PointerEvent) => {
-      if (!cursor || matchMedia("(pointer: coarse)").matches) return;
-      cursor.style.transform = `translate3d(${event.clientX}px,${event.clientY}px,0)`;
-      const target = (event.target as HTMLElement).closest<HTMLElement>("[data-cursor-label]");
+    let pointerX = -1;
+    let pointerY = -1;
+
+    const refreshCursorTarget = () => {
+      if (!cursor || pointerX < 0 || reducedMotion || window.matchMedia("(pointer: coarse)").matches) return;
+      const underPointer = document.elementFromPoint(pointerX, pointerY);
+      const target =
+        underPointer instanceof HTMLElement
+          ? underPointer.closest<HTMLElement>("[data-cursor-label]")
+          : null;
       cursor.classList.toggle("is-over", !!target);
       cursor.dataset.label = target?.dataset.cursorLabel ?? "";
-      const magnetic = (event.target as HTMLElement).closest<HTMLElement>(".btn,.header-cta");
-      if (magnetic) { const box = magnetic.getBoundingClientRect(); magnetic.style.setProperty("--mag-x", `${Math.max(-8,Math.min(8,(event.clientX-box.left-box.width/2)*.12))}px`); magnetic.style.setProperty("--mag-y", `${Math.max(-8,Math.min(8,(event.clientY-box.top-box.height/2)*.12))}px`); }
     };
-    const resetMag = (event: PointerEvent) => { const el=(event.target as HTMLElement).closest<HTMLElement>(".btn,.header-cta"); el?.style.setProperty("--mag-x","0px");el?.style.setProperty("--mag-y","0px"); };
-    addEventListener("scroll", update, { passive:true }); addEventListener("resize",update); addEventListener("pointermove",move,{passive:true}); addEventListener("pointerout",resetMag); update();
-    return () => { if(timer) clearTimeout(timer);removeEventListener("scroll",update);removeEventListener("resize",update);removeEventListener("pointermove",move);removeEventListener("pointerout",resetMag); };
-  }, []);
-  return <><div className="scroll-progress" aria-hidden="true"/><div className="custom-cursor" aria-hidden="true"/><div className="site-preloader" aria-hidden="true"><Image src="/brand/emblem-copper.svg" alt="" width={74} height={74}/><span className="sr-only">NAQSH</span></div></>;
+
+    const updateProgress = () => {
+      if (progress) {
+        const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+        const ratio = Math.max(0, Math.min(1, window.scrollY / max));
+        progress.style.transform = `scaleX(${ratio.toFixed(4)})`;
+      }
+      refreshCursorTarget();
+    };
+
+    const canMagnetic = () =>
+      !reducedMotion &&
+      window.matchMedia("(min-width: 1024px) and (pointer: fine)").matches;
+
+    const handlePointerMove = (event: PointerEvent) => {
+      if (reducedMotion || window.matchMedia("(pointer: coarse)").matches) return;
+      pointerX = event.clientX;
+      pointerY = event.clientY;
+
+      if (cursor) {
+        cursor.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`;
+        const target = (event.target as HTMLElement | null)?.closest<HTMLElement>(
+          "[data-cursor-label]"
+        );
+        cursor.classList.toggle("is-over", !!target);
+        cursor.dataset.label = target?.dataset.cursorLabel ?? "";
+      }
+
+      if (!canMagnetic()) return;
+      const magnetic = (event.target as HTMLElement | null)?.closest<HTMLElement>(
+        ".btn, .header-cta, [data-magnetic]"
+      );
+      if (magnetic) {
+        const box = magnetic.getBoundingClientRect();
+        const dx = (event.clientX - (box.left + box.width / 2)) * 0.16;
+        const dy = (event.clientY - (box.top + box.height / 2)) * 0.16;
+        const clampedX = Math.max(-8, Math.min(8, dx));
+        const clampedY = Math.max(-8, Math.min(8, dy));
+        magnetic.style.setProperty("--mag-x", `${clampedX.toFixed(2)}px`);
+        magnetic.style.setProperty("--mag-y", `${clampedY.toFixed(2)}px`);
+      }
+    };
+
+    const handlePointerOut = (event: PointerEvent) => {
+      const el = (event.target as HTMLElement | null)?.closest<HTMLElement>(
+        ".btn, .header-cta, [data-magnetic]"
+      );
+      if (!el) return;
+      const related = event.relatedTarget as Node | null;
+      if (related && el.contains(related)) return;
+      el.style.setProperty("--mag-x", "0px");
+      el.style.setProperty("--mag-y", "0px");
+    };
+
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    window.addEventListener("resize", updateProgress);
+    window.addEventListener("pointermove", handlePointerMove, { passive: true });
+    window.addEventListener("pointerout", handlePointerOut);
+    if (lenis) {
+      lenis.on("scroll", updateProgress);
+    }
+    updateProgress();
+
+    return () => {
+      window.removeEventListener("scroll", updateProgress);
+      window.removeEventListener("resize", updateProgress);
+      window.removeEventListener("pointermove", handlePointerMove);
+      window.removeEventListener("pointerout", handlePointerOut);
+      if (lenis) {
+        lenis.off("scroll", updateProgress);
+      }
+    };
+  }, [lenis, reducedMotion]);
+
+  return (
+    <>
+      <div className="scroll-progress" aria-hidden="true" />
+      <div className="custom-cursor" aria-hidden="true" />
+    </>
+  );
 }

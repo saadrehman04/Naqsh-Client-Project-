@@ -4,12 +4,19 @@ import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import { SVGLoader } from "three/examples/jsm/loaders/SVGLoader.js";
 import { useMemo, useRef } from "react";
 import * as THREE from "three";
+import { getSceneProgress } from "@/lib/scene-progress";
 
 function Emblem() {
   const svg = useLoader(SVGLoader, "/brand/emblem-copper.svg");
   const group = useRef<THREE.Group>(null);
   const shapes = useMemo(() => svg.paths.flatMap((path) => SVGLoader.createShapes(path)), [svg]);
-  useFrame((state, delta) => { if (group.current) { group.current.rotation.y += delta * 0.12; group.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.35) * 0.06; } });
+  useFrame((state, delta) => {
+    if (group.current) {
+      const progress = getSceneProgress("vision");
+      group.current.rotation.y += delta * 0.12 + progress * 0.004;
+      group.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.35 + progress * Math.PI) * 0.06;
+    }
+  });
   return <group ref={group} scale={0.00065} position={[-0.7, 1.3, 0]} rotation={[Math.PI, 0, 0]}>
     {shapes.map((shape, i) => <mesh key={i} geometry={new THREE.ExtrudeGeometry(shape, { depth: 10, bevelEnabled: true, bevelSegments: 2, steps: 1, bevelSize: 2, bevelThickness: 2 })}>
       <meshPhysicalMaterial color="#AB6C49" metalness={1} roughness={0.35} clearcoat={0.45} side={THREE.DoubleSide} />
@@ -23,8 +30,11 @@ function BoxScene() {
   const products = useRef<THREE.Group>(null);
   useFrame(() => {
     const section = document.querySelector<HTMLElement>("[data-approach-sequence]");
+    const cssVar = section ? Number.parseFloat(section.style.getPropertyValue("--scene-progress")) : Number.NaN;
+    const storeProgress = getSceneProgress("approach");
     const rect = section?.getBoundingClientRect();
-    const progress = rect ? THREE.MathUtils.clamp((innerHeight - rect.top) / (rect.height + innerHeight), 0, 1) : 0;
+    const fallbackProgress = rect ? THREE.MathUtils.clamp((innerHeight - rect.top) / (rect.height + innerHeight), 0, 1) : 0;
+    const progress = Number.isFinite(cssVar) ? cssVar : storeProgress > 0 ? storeProgress : fallbackProgress;
     const open = Math.sin(progress * Math.PI);
     if (lid.current) lid.current.position.y = 0.62 + open * 0.52;
     if (products.current) products.current.position.y = open * 0.46;

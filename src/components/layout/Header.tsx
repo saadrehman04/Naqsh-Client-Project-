@@ -8,11 +8,13 @@ import { Wordmark } from "@/components/brand/Logo";
 import { Button } from "@/components/ui/Button";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
 import { MobileMenu } from "./MobileMenu";
+import { useMotion } from "@/components/motion/MotionProvider";
 import { cn } from "@/lib/utils";
 
 export function Header() {
   const pathname = usePathname();
   const isHomePage = pathname === "/";
+  const { lenis } = useMotion();
 
   const [isScrolled, setIsScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
@@ -20,25 +22,49 @@ export function Header() {
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
 
-      // Threshold to trigger scrolled style
+    const applyScrollState = (currentScrollY: number, direction?: number) => {
       setIsScrolled(currentScrollY > 80);
 
-      // Hide on scroll down, show on scroll up (with a minimum delta to avoid jitter)
-      if (currentScrollY > 200 && currentScrollY > lastScrollY + 8) {
-        setIsVisible(false);
-      } else if (currentScrollY < lastScrollY - 8 || currentScrollY <= 80) {
+      if (currentScrollY <= 80) {
         setIsVisible(true);
+      } else if (typeof direction === "number") {
+        if (direction > 0 && currentScrollY > 140) {
+          setIsVisible(false);
+        } else if (direction < 0) {
+          setIsVisible(true);
+        }
+      } else {
+        if (currentScrollY > 140 && currentScrollY > lastScrollY + 6) {
+          setIsVisible(false);
+        } else if (currentScrollY < lastScrollY - 6) {
+          setIsVisible(true);
+        }
       }
 
       lastScrollY = currentScrollY;
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    const handleNativeScroll = () => {
+      applyScrollState(window.scrollY);
+    };
+
+    const handleLenisScroll = (e: { scroll: number; direction: number }) => {
+      applyScrollState(e.scroll, e.direction);
+    };
+
+    window.addEventListener("scroll", handleNativeScroll, { passive: true });
+    if (lenis) {
+      lenis.on("scroll", handleLenisScroll);
+    }
+
+    return () => {
+      window.removeEventListener("scroll", handleNativeScroll);
+      if (lenis) {
+        lenis.off("scroll", handleLenisScroll);
+      }
+    };
+  }, [lenis]);
 
   // If on inner pages, header should always show dark logo and ivory background
   const isTransparent = isHomePage && !isScrolled;
