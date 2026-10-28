@@ -39,11 +39,19 @@ export function CTABand({ title, subline, className = "" }: CTABandProps) {
 
           {/* Radial atmospheric glows in Copper and Pine */}
           <div
-            className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-[var(--copper)]/30 blur-3xl pointer-events-none"
+            className="absolute -top-24 -right-24 w-96 h-96 rounded-full pointer-events-none"
+            style={{
+              background:
+                "radial-gradient(circle, rgb(171 108 73 / 0.32) 0%, transparent 70%)",
+            }}
             aria-hidden="true"
           />
           <div
-            className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-[var(--pine)]/25 blur-3xl pointer-events-none"
+            className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full pointer-events-none"
+            style={{
+              background:
+                "radial-gradient(circle, rgb(36 75 57 / 0.28) 0%, transparent 70%)",
+            }}
             aria-hidden="true"
           />
 

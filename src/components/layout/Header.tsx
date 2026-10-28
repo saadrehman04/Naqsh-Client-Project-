@@ -22,47 +22,46 @@ export function Header() {
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
+    let scrolledState = lastScrollY > 80;
+    let visibleState = true;
 
-    const applyScrollState = (currentScrollY: number, direction?: number) => {
-      setIsScrolled(currentScrollY > 80);
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const nextScrolled = currentScrollY > 80;
+      if (nextScrolled !== scrolledState) {
+        scrolledState = nextScrolled;
+        setIsScrolled(nextScrolled);
+      }
 
+      let nextVisible = visibleState;
+      const lenisDir = lenis?.direction;
       if (currentScrollY <= 80) {
-        setIsVisible(true);
-      } else if (typeof direction === "number") {
-        if (direction > 0 && currentScrollY > 140) {
-          setIsVisible(false);
-        } else if (direction < 0) {
-          setIsVisible(true);
+        nextVisible = true;
+      } else if (typeof lenisDir === "number" && lenisDir !== 0) {
+        if (lenisDir > 0 && currentScrollY > 140) {
+          nextVisible = false;
+        } else if (lenisDir < 0) {
+          nextVisible = true;
         }
       } else {
         if (currentScrollY > 140 && currentScrollY > lastScrollY + 6) {
-          setIsVisible(false);
+          nextVisible = false;
         } else if (currentScrollY < lastScrollY - 6) {
-          setIsVisible(true);
+          nextVisible = true;
         }
+      }
+
+      if (nextVisible !== visibleState) {
+        visibleState = nextVisible;
+        setIsVisible(nextVisible);
       }
 
       lastScrollY = currentScrollY;
     };
 
-    const handleNativeScroll = () => {
-      applyScrollState(window.scrollY);
-    };
-
-    const handleLenisScroll = (e: { scroll: number; direction: number }) => {
-      applyScrollState(e.scroll, e.direction);
-    };
-
-    window.addEventListener("scroll", handleNativeScroll, { passive: true });
-    if (lenis) {
-      lenis.on("scroll", handleLenisScroll);
-    }
-
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
-      window.removeEventListener("scroll", handleNativeScroll);
-      if (lenis) {
-        lenis.off("scroll", handleLenisScroll);
-      }
+      window.removeEventListener("scroll", handleScroll);
     };
   }, [lenis]);
 
@@ -74,10 +73,13 @@ export function Header() {
       <header
         className={cn(
           "fixed top-0 inset-x-0 z-50 transition-all duration-400 ease-[var(--ease-out)]",
-          !isVisible && "-translate-y-full",
+          !isVisible && "-translate-y-full pointer-events-none",
           isTransparent
             ? "bg-transparent text-[var(--ivory)] border-b border-white/[0.18]"
-            : "bg-[var(--ivory)]/90 backdrop-blur-md text-[var(--text-strong)] border-b border-[var(--hairline)] shadow-[0_4px_20px_-8px_rgba(0,0,0,0.06)]"
+            : cn(
+                "bg-[var(--ivory)]/92 text-[var(--text-strong)] border-b border-[var(--hairline)] shadow-[0_4px_20px_-8px_rgba(0,0,0,0.06)]",
+                isVisible && "backdrop-blur-md"
+              )
         )}
       >
         <div className="container-x header-shell">

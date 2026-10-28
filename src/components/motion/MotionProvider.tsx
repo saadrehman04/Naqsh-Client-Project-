@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import Lenis from "lenis";
 import { gsap } from "gsap";
@@ -28,22 +28,37 @@ export function MotionProvider({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [lenisInstance, setLenisInstance] = useState<Lenis | null>(null);
   const [reducedMotion, setReducedMotion] = useState<boolean>(false);
+  const lenisRef = useRef<Lenis | null>(null);
+  const prevPathRef = useRef<string | null>(null);
 
   useEffect(() => {
     const reduceQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     let lenis: Lenis | null = null;
     let tickerFn: ((time: number) => void) | null = null;
 
+    let tickerAttached = false;
+    const attachTicker = () => {
+      if (tickerAttached || !tickerFn) return;
+      tickerAttached = true;
+      gsap.ticker.add(tickerFn);
+    };
+
     const cleanupLenis = () => {
+      window.removeEventListener("wheel", attachTicker);
+      window.removeEventListener("scroll", attachTicker);
+      window.removeEventListener("touchstart", attachTicker);
+      window.removeEventListener("keydown", attachTicker);
       if (tickerFn) {
         gsap.ticker.remove(tickerFn);
         tickerFn = null;
       }
+      tickerAttached = false;
       if (lenis) {
         lenis.off("scroll", ScrollTrigger.update);
         lenis.destroy();
         lenis = null;
       }
+      lenisRef.current = null;
       setLenisInstance(null);
       document.documentElement.classList.remove("motion-ok", "lenis", "lenis-smooth");
     };
@@ -55,7 +70,9 @@ export function MotionProvider({ children }: { children: React.ReactNode }) {
 
       if (isReduced) {
         document.documentElement.classList.add("reduced-motion");
-        ScrollTrigger.refresh();
+        if (ScrollTrigger.getAll().length > 0) {
+          ScrollTrigger.refresh();
+        }
         return;
       }
 
@@ -74,11 +91,14 @@ export function MotionProvider({ children }: { children: React.ReactNode }) {
       tickerFn = (time: number) => {
         activeLenis.raf(time * 1000);
       };
-      gsap.ticker.add(tickerFn);
       gsap.ticker.lagSmoothing(0);
+      window.addEventListener("wheel", attachTicker, { once: true, passive: true });
+      window.addEventListener("scroll", attachTicker, { once: true, passive: true });
+      window.addEventListener("touchstart", attachTicker, { once: true, passive: true });
+      window.addEventListener("keydown", attachTicker, { once: true, passive: true });
 
+      lenisRef.current = activeLenis;
       setLenisInstance(activeLenis);
-      ScrollTrigger.refresh();
     };
 
     setup();
@@ -92,44 +112,51 @@ export function MotionProvider({ children }: { children: React.ReactNode }) {
 
   // On route change: scroll to top immediately and refresh ScrollTrigger after fonts and images settle
   useEffect(() => {
-    if (lenisInstance) {
-      lenisInstance.scrollTo(0, { immediate: true });
-    } else {
-      window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
+    const isRouteChange =
+      prevPathRef.current !== null && prevPathRef.current !== pathname;
+    prevPathRef.current = pathname;
+
+    if (isRouteChange) {
+      if (lenisRef.current) {
+        lenisRef.current.scrollTo(0, { immediate: true });
+      } else {
+        window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
+      }
     }
 
-    const doRefresh = () => {
-      ScrollTrigger.refresh();
+    let refreshTimer: number | null = null;
+    const scheduleRefresh = () => {
+      if (window.scrollY >= 40) return;
+      if (refreshTimer !== null) window.clearTimeout(refreshTimer);
+      refreshTimer = window.setTimeout(() => {
+        if (window.scrollY < 40 && ScrollTrigger.getAll().length > 0) {
+          ScrollTrigger.refresh();
+        }
+      }, 120);
     };
 
-    const rafId = window.requestAnimationFrame(doRefresh);
-    const timerId = window.setTimeout(doRefresh, 250);
+    if (isRouteChange) {
+      scheduleRefresh();
+    }
 
-    if (document.fonts?.ready) {
-      void document.fonts.ready.then(doRefresh);
+    if (document.fonts && document.fonts.status !== "loaded") {
+      void document.fonts.ready.then(scheduleRefresh);
     }
 
     const images = Array.from(document.images).filter((img) => !img.complete);
-    const handleImgLoad = () => {
-      doRefresh();
-    };
     images.forEach((img) => {
-      img.addEventListener("load", handleImgLoad, { once: true });
-      img.addEventListener("error", handleImgLoad, { once: true });
+      img.addEventListener("load", scheduleRefresh, { once: true });
+      img.addEventListener("error", scheduleRefresh, { once: true });
     });
 
-    window.addEventListener("load", doRefresh, { once: true });
-
     return () => {
-      window.cancelAnimationFrame(rafId);
-      window.clearTimeout(timerId);
-      window.removeEventListener("load", doRefresh);
+      if (refreshTimer !== null) window.clearTimeout(refreshTimer);
       images.forEach((img) => {
-        img.removeEventListener("load", handleImgLoad);
-        img.removeEventListener("error", handleImgLoad);
+        img.removeEventListener("load", scheduleRefresh);
+        img.removeEventListener("error", scheduleRefresh);
       });
     };
-  }, [pathname, lenisInstance]);
+  }, [pathname]);
 
   // Anchor links use lenis.scrollTo(target, { offset: -88 })
   useEffect(() => {
@@ -160,7 +187,9 @@ export function MotionProvider({ children }: { children: React.ReactNode }) {
 
       event.preventDefault();
       if (lenisInstance && !reducedMotion) {
+        const top = target.getBoundingClientRect().top + window.scrollY - 88;
         lenisInstance.scrollTo(target, { offset: -88 });
+        window.scrollTo({ top, behavior: "smooth" });
       } else {
         const top = target.getBoundingClientRect().top + window.scrollY - 88;
         window.scrollTo({ top, behavior: reducedMotion ? "auto" : "smooth" });

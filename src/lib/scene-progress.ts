@@ -16,16 +16,14 @@ const listeners = new Set<() => void>();
 
 export function setSceneProgress(scene: SceneId, value: number, element?: HTMLElement | null) {
   const clamped = Math.max(0, Math.min(1, Number.isFinite(value) ? value : 0));
-  const formatted = clamped.toFixed(4);
-  if (element) {
-    element.style.setProperty("--scene-progress", formatted);
-  }
-  if (typeof document !== "undefined") {
-    document.documentElement.style.setProperty(`--scene-progress-${scene}`, formatted);
-  }
-  if (Math.abs((progressState[scene] ?? 0) - clamped) < 0.0001) return;
+  if (Math.abs((progressState[scene] ?? -1) - clamped) < 0.0005) return;
   progressState[scene] = clamped;
-  listeners.forEach((listener) => listener());
+  if (element) {
+    element.style.setProperty("--scene-progress", clamped.toFixed(4));
+  }
+  if (listeners.size > 0) {
+    listeners.forEach((listener) => listener());
+  }
 }
 
 export function getSceneProgress(scene: SceneId): number {

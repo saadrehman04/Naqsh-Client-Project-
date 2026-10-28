@@ -45,34 +45,42 @@ export function Hero() {
         <div className="max-w-none">
           <div className="hero-heading-wrap">
             <h1
-              className="hero-heading text-[var(--ivory)]"
+              className="hero-heading text-[var(--ivory)] is-revealed"
               data-reveal="lines"
               data-stagger="0.12"
+              aria-label={hero.headline}
             >
-              {hero.headline}
+              <span className="motion-line-mask" aria-hidden="true">
+                <span className="motion-line-inner">Crafting Lasting</span>
+              </span>
+              <span className="motion-line-mask" aria-hidden="true">
+                <span className="motion-line-inner">Impressions</span>
+              </span>
             </h1>
           </div>
 
-          <p
-            className="hero-subline text-white/90"
-            data-reveal="up"
-            data-delay="0.1"
-          >
-            {hero.subline}
-          </p>
-
-          <div className="hero-actions" data-reveal="up" data-delay="0.2">
-            <Button href="/contact" variant="primary" size="md" className="hero-primary">
-              {hero.cta}
-            </Button>
-            <Button
-              href="/portfolio"
-              variant="on-dark"
-              size="md"
-              showArrow={false}
+          <div className="hero-sub-wrap">
+            <p
+              className="hero-subline text-white/90"
+              data-reveal="up"
+              data-delay="0.1"
             >
-              Explore Collections
-            </Button>
+              {hero.subline}
+            </p>
+
+            <div className="hero-actions" data-reveal="up" data-delay="0.2">
+              <Button href="/contact" variant="primary" size="md" className="hero-primary">
+                {hero.cta}
+              </Button>
+              <Button
+                href="/portfolio"
+                variant="on-dark"
+                size="md"
+                showArrow={false}
+              >
+                Explore Collections
+              </Button>
+            </div>
           </div>
         </div>
       </div>

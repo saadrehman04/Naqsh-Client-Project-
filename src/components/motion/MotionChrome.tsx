@@ -9,37 +9,24 @@ export function MotionChrome() {
   useEffect(() => {
     const progress = document.querySelector<HTMLElement>(".scroll-progress");
     const cursor = document.querySelector<HTMLElement>(".custom-cursor");
-    let pointerX = -1;
-    let pointerY = -1;
+    const isCoarse = window.matchMedia("(pointer: coarse)").matches;
+    const isDesktopFine = window.matchMedia("(min-width: 1024px) and (pointer: fine)").matches;
+    let cachedMaxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
 
-    const refreshCursorTarget = () => {
-      if (!cursor || pointerX < 0 || reducedMotion || window.matchMedia("(pointer: coarse)").matches) return;
-      const underPointer = document.elementFromPoint(pointerX, pointerY);
-      const target =
-        underPointer instanceof HTMLElement
-          ? underPointer.closest<HTMLElement>("[data-cursor-label]")
-          : null;
-      cursor.classList.toggle("is-over", !!target);
-      cursor.dataset.label = target?.dataset.cursorLabel ?? "";
+    const recomputeMaxScroll = () => {
+      cachedMaxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      updateProgress();
     };
 
     const updateProgress = () => {
       if (progress) {
-        const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-        const ratio = Math.max(0, Math.min(1, window.scrollY / max));
+        const ratio = Math.max(0, Math.min(1, window.scrollY / cachedMaxScroll));
         progress.style.transform = `scaleX(${ratio.toFixed(4)})`;
       }
-      refreshCursorTarget();
     };
 
-    const canMagnetic = () =>
-      !reducedMotion &&
-      window.matchMedia("(min-width: 1024px) and (pointer: fine)").matches;
-
     const handlePointerMove = (event: PointerEvent) => {
-      if (reducedMotion || window.matchMedia("(pointer: coarse)").matches) return;
-      pointerX = event.clientX;
-      pointerY = event.clientY;
+      if (reducedMotion || isCoarse) return;
 
       if (cursor) {
         cursor.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`;
@@ -50,7 +37,7 @@ export function MotionChrome() {
         cursor.dataset.label = target?.dataset.cursorLabel ?? "";
       }
 
-      if (!canMagnetic()) return;
+      if (!isDesktopFine) return;
       const magnetic = (event.target as HTMLElement | null)?.closest<HTMLElement>(
         ".btn, .header-cta, [data-magnetic]"
       );
@@ -76,25 +63,21 @@ export function MotionChrome() {
       el.style.setProperty("--mag-y", "0px");
     };
 
+    const settleTimer = window.setTimeout(recomputeMaxScroll, 400);
     window.addEventListener("scroll", updateProgress, { passive: true });
-    window.addEventListener("resize", updateProgress);
+    window.addEventListener("resize", recomputeMaxScroll);
     window.addEventListener("pointermove", handlePointerMove, { passive: true });
     window.addEventListener("pointerout", handlePointerOut);
-    if (lenis) {
-      lenis.on("scroll", updateProgress);
-    }
-    updateProgress();
+    recomputeMaxScroll();
 
     return () => {
+      window.clearTimeout(settleTimer);
       window.removeEventListener("scroll", updateProgress);
-      window.removeEventListener("resize", updateProgress);
+      window.removeEventListener("resize", recomputeMaxScroll);
       window.removeEventListener("pointermove", handlePointerMove);
       window.removeEventListener("pointerout", handlePointerOut);
-      if (lenis) {
-        lenis.off("scroll", updateProgress);
-      }
     };
-  }, [lenis, reducedMotion]);
+  }, [reducedMotion]);
 
   return (
     <>

@@ -12,9 +12,18 @@ class SceneBoundary extends Component<{ children: ReactNode; fallback: ReactNode
   render() { return this.state.failed ? this.props.fallback : this.props.children; }
 }
 
-export function SceneLoader({ scene, className = "" }: { scene: "emblem" | "box" | "seal"; className?: string }) {
+export function SceneLoader({
+  scene,
+  className = "",
+  enableWebGL = false,
+}: {
+  scene: "emblem" | "box" | "seal";
+  className?: string;
+  enableWebGL?: boolean;
+}) {
   const [active, setActive] = useState(false);
   useEffect(() => {
+    if (!enableWebGL) return;
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const small = window.matchMedia("(max-width: 767px)");
     const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
@@ -24,7 +33,7 @@ export function SceneLoader({ scene, className = "" }: { scene: "emblem" | "box"
     const element = document.querySelector(`[data-scene="${scene}"]`);
     if (element) observer.observe(element);
     return () => observer.disconnect();
-  }, [scene]);
+  }, [scene, enableWebGL]);
   const poster = <div className={`scene-poster scene-poster-${scene}`} aria-hidden="true"><Image src="/brand/emblem-copper.svg" alt="" width={320} height={320} /></div>;
   return <div className={`scene-host ${className}`} data-scene={scene} aria-hidden="true">
     {poster}
