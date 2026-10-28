@@ -9,18 +9,38 @@ export function About() {
   const { about } = homeContent;
   return (
     <section
-      className="section-y bg-[var(--ivory-deep)]/35 border-b border-[var(--hairline)] overflow-hidden"
+      className="about-section on-dark section-y relative overflow-hidden"
       aria-labelledby="about-heading"
     >
-      <div className="container-x about-layout">
+      {/* Subtle diamond lattice texture */}
+      <div
+        className="absolute inset-0 opacity-[0.035] pointer-events-none mix-blend-overlay"
+        style={{
+          backgroundImage: "url('/brand/diamond-lattice.svg')",
+          backgroundSize: "160px 160px",
+        }}
+        aria-hidden="true"
+      />
+
+      {/* Subtle ambient warm glow */}
+      <div
+        className="absolute -top-32 -left-32 w-96 h-96 rounded-full pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(171, 108, 73, 0.15) 0%, transparent 70%)",
+        }}
+        aria-hidden="true"
+      />
+
+      <div className="container-x about-layout relative z-10">
         <div className="about-copy">
           <div data-reveal="up">
-            <SectionLabel variant="pine">{about.label}</SectionLabel>
+            <SectionLabel variant="khaki">{about.label}</SectionLabel>
           </div>
           <h2 id="about-heading" className="t-h2" data-reveal="lines">
             Beyond the box, into an experience.
           </h2>
-          <p className="t-lead text-[var(--charcoal)]" data-reveal="up" data-delay="0.08">
+          <p className="t-lead" data-reveal="up" data-delay="0.08">
             {about.text}
           </p>
           <div className="about-slogan relative border-0" data-reveal="up" data-delay="0.12">
@@ -39,12 +59,12 @@ export function About() {
           <div data-reveal="up" data-delay="0.16">
             <Link href="/our-approach" className="link-arrow">
               <span>Discover our approach</span>
-              <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              <ArrowRight className="w-4 h-4 text-[var(--copper-light)]" aria-hidden="true" />
             </Link>
           </div>
         </div>
         <div className="about-images" data-cursor-label="Explore">
-          <div className="about-main-image">
+          <div className="about-main-image rounded-xl overflow-hidden shadow-2xl">
             <ImageFrame
               src={about.image}
               alt={about.imageAlt}
@@ -55,7 +75,7 @@ export function About() {
             />
           </div>
           <div
-            className="about-overlap-image overflow-hidden"
+            className="about-overlap-image overflow-hidden rounded-xl"
             data-reveal="clip"
             data-parallax="-0.14"
           >

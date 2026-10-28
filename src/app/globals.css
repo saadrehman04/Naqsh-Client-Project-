@@ -899,6 +899,72 @@ dialog::backdrop {
 .why-visual-image.is-active { opacity:1; }
 .why-visual-image img { object-fit:cover; }
 .why-visual-caption { position:absolute; inset:auto 0 0; padding:1.2rem; color:var(--ivory); font:1.6rem var(--font-display); background:linear-gradient(transparent,rgb(0 0 0 / .6)); }
+/* Scoped Dark Theme for Section 02 (About - Forest Pine Luxury) */
+.about-section.on-dark {
+  background: linear-gradient(180deg, #0A2118 0%, #0E291F 50%, #0A1E16 100%);
+  color: var(--ivory);
+  border-bottom: 1px solid rgba(171, 108, 73, 0.2);
+}
+.about-section.on-dark .t-h2,
+.about-section.on-dark h2 {
+  color: var(--ivory);
+}
+.about-section.on-dark .about-copy .t-lead {
+  color: rgba(247, 241, 231, 0.85);
+}
+.about-section.on-dark .about-slogan {
+  color: var(--khaki);
+}
+.about-section.on-dark .about-slogan-hairline {
+  background: rgba(171, 108, 73, 0.45);
+}
+.about-section.on-dark .link-arrow {
+  color: var(--ivory);
+}
+.about-section.on-dark .link-arrow:hover {
+  color: var(--copper-light);
+}
+.about-section.on-dark .about-overlap-image {
+  border: 6px solid #0E291F;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.55);
+}
+
+/* Scoped Dark Theme for Section 04 (What Sets Us Apart - Charcoal Obsidian Luxury) */
+.why-section.on-dark {
+  background: radial-gradient(circle at 85% 20%, rgba(171, 108, 73, 0.12) 0%, transparent 60%), #12100E;
+  color: var(--ivory);
+  border-bottom: 1px solid rgba(171, 108, 73, 0.15);
+}
+.why-section.on-dark .t-h2,
+.why-section.on-dark h2 {
+  color: var(--ivory);
+}
+.why-section.on-dark .why-intro .t-lead {
+  color: var(--copper-light);
+}
+.why-section.on-dark .promise-hairline {
+  background: rgba(171, 108, 73, 0.35);
+}
+.why-section.on-dark .promise-number {
+  color: var(--copper);
+}
+.why-section.on-dark .promise-item h3 {
+  color: var(--ivory);
+}
+.why-section.on-dark .promise-item p {
+  color: rgba(247, 241, 231, 0.78);
+}
+.why-section.on-dark .why-visual {
+  background: #1A1614;
+  border: 1px solid rgba(171, 108, 73, 0.25);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+  border-radius: 1rem;
+}
+.why-section.on-dark .why-visual-caption {
+  color: var(--ivory);
+  background: linear-gradient(transparent, rgba(14, 12, 10, 0.88));
+}
+
 .core-values-intro { max-width:45rem; margin-bottom:3rem; }
 .core-values-grid { display:grid; grid-template-columns:repeat(3,1fr); }
 .core-value { padding:2rem clamp(1rem,3vw,3rem); border-left:1px solid var(--hairline); }

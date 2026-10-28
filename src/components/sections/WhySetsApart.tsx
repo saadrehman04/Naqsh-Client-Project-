@@ -13,14 +13,23 @@ export function WhySetsApart() {
   const { whyUs } = homeContent;
   return (
     <section
-      className="section-y bg-[var(--ivory-deep)]/35"
+      className="why-section on-dark section-y relative overflow-hidden"
       aria-labelledby="why-us-heading"
     >
-      <div className="container-x why-layout" data-why-promises>
+      {/* Subtle ambient copper glow */}
+      <div
+        className="absolute -top-32 -right-32 w-[550px] h-[550px] rounded-full pointer-events-none"
+        style={{
+          background: "radial-gradient(circle, rgba(171, 108, 73, 0.12) 0%, transparent 70%)",
+        }}
+        aria-hidden="true"
+      />
+
+      <div className="container-x why-layout relative z-10" data-why-promises>
         <div className="why-copy">
           <header className="why-intro">
             <div data-reveal="up">
-              <SectionLabel variant="pine">{whyUs.label}</SectionLabel>
+              <SectionLabel variant="khaki">{whyUs.label}</SectionLabel>
             </div>
             <h2 id="why-us-heading" className="t-h2" data-reveal="lines">
               {whyUs.heading}
