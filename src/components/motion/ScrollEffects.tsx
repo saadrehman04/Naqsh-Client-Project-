@@ -1241,8 +1241,8 @@ export function ScrollEffects() {
                 immediateRender: false,
                 scrollTrigger: {
                   trigger: visionSection,
-                  start: "top bottom",
-                  end: "top 75%",
+                  start: "top 85%",
+                  end: "top 35%",
                   scrub: 0.6,
                 },
               });
@@ -1251,22 +1251,7 @@ export function ScrollEffects() {
             const splitLayout =
               visionSection.querySelector<HTMLElement>(".vision-split-layout");
             if (splitLayout) {
-              gsap.fromTo(
-                splitLayout,
-                { scale: 0.88, y: 36, opacity: 0 },
-                {
-                  scale: 1,
-                  y: 0,
-                  opacity: 1,
-                  duration: 0.9,
-                  ease: "back.out(1.7)",
-                  scrollTrigger: {
-                    trigger: visionSection,
-                    start: "top 88%",
-                    once: true,
-                  },
-                }
-              );
+              gsap.set(splitLayout, { opacity: 1, y: 0, scale: 1 });
             }
 
             if (visionWordsHost && missionWordsHost) {
@@ -1289,7 +1274,7 @@ export function ScrollEffects() {
                   scrollTrigger: {
                     trigger: visionPin,
                     start: "top top",
-                    end: "+=200%",
+                    end: "+=90%",
                     pin: visionPin,
                     pinSpacing: true,
                     scrub: 0.6,
@@ -1298,7 +1283,7 @@ export function ScrollEffects() {
                     invalidateOnRefresh: true,
                     onUpdate: (self) => {
                       setSceneProgress("vision", self.progress, visionSection);
-                      const inMission = self.progress >= 0.5;
+                      const inMission = self.progress >= 0.45;
                       visionCard?.classList.toggle("is-active", !inMission);
                       missionCard?.classList.toggle("is-active", inMission);
                     },
@@ -1309,8 +1294,8 @@ export function ScrollEffects() {
                   vSplit.targets,
                   {
                     opacity: 1,
-                    stagger: 0.035,
-                    duration: 0.22,
+                    stagger: 0.015,
+                    duration: 0.28,
                     ease: "none",
                   },
                   0
@@ -1321,41 +1306,41 @@ export function ScrollEffects() {
                     {
                       scale: 1,
                       opacity: 1,
-                      duration: 0.3,
+                      duration: 0.18,
                       ease: "power2.out",
                     },
-                    0.95
+                    0.28
                   );
                 }
                 if (visionCard) {
                   visionTl.to(
                     visionCard,
-                    { opacity: 0.55, duration: 0.3, ease: "none" },
-                    1.05
+                    { opacity: 0.65, duration: 0.2, ease: "none" },
+                    0.38
                   );
                 }
                 if (missionCard) {
                   visionTl.to(
                     missionCard,
-                    { opacity: 1, y: 0, duration: 0.3, ease: "none" },
-                    1.05
+                    { opacity: 1, y: 0, duration: 0.2, ease: "none" },
+                    0.38
                   );
                 }
                 visionTl.to(
                   mSplit.targets,
                   {
                     opacity: 1,
-                    stagger: 0.03,
-                    duration: 0.22,
+                    stagger: 0.015,
+                    duration: 0.28,
                     ease: "none",
                   },
-                  1.15
+                  0.45
                 );
                 if (visionCard) {
                   visionTl.to(
                     visionCard,
-                    { opacity: 1, duration: 0.2, ease: "none" },
-                    2.25
+                    { opacity: 1, duration: 0.18, ease: "none" },
+                    0.78
                   );
                 }
               }

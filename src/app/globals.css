@@ -979,7 +979,7 @@ dialog::backdrop {
 .vision-panel {
   position: relative;
   overflow: hidden;
-  padding-block: clamp(4rem, 8vw, 7.5rem);
+  padding-block: 0;
   background: var(--black);
   color: var(--ivory);
 }
@@ -1456,12 +1456,15 @@ dialog::backdrop {
 
 /* Desktop collection journey: hold the viewport while the cards travel sideways. */
 @media (min-width: 1024px) {
+  .collection-gallery {
+    padding-block: 0;
+  }
   .collection-gallery-pin {
     display: flex;
     flex-direction: column;
     justify-content: center;
     min-height: 100svh;
-    padding-block: 3rem;
+    padding-block: 2rem;
   }
   .collection-gallery-viewport {
     display: flex;
@@ -1554,7 +1557,7 @@ html.motion-ok:not(.reduced-motion) .vision-panel {
   flex-direction: column;
   justify-content: center;
   min-height: 100svh;
-  padding-block: clamp(4rem, 7vw, 6.5rem);
+  padding-block: clamp(1.75rem, 3.5vw, 2.5rem);
 }
 .vision-panel {
   padding-block: 0;
@@ -1836,6 +1839,7 @@ html.motion-ok:not(.reduced-motion) .vision-panel {
 
 .vision-copy-column .vision-panel-heading {
   margin-inline: 0;
+  margin-bottom: clamp(1.25rem, 2.5vw, 2rem);
 }
 
 .vision-copy-column .vision-panel-stage {
@@ -1851,7 +1855,7 @@ html.motion-ok:not(.reduced-motion) .vision-panel {
 .emblem-scene-host {
   width: 100%;
   max-width: 440px;
-  max-height: 70vh;
+  max-height: min(65vh, 460px);
   aspect-ratio: 4 / 5;
 }
 
