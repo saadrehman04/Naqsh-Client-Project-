@@ -46,69 +46,99 @@ export function Footer() {
 
         <div className="container-x relative z-10">
           <div className="footer-invitation">
-            <div>
-              <span className="footer-kicker">A thoughtful place to start</span>
-              <h2>What moment are you making meaningful?</h2>
+            <div className="footer-invitation-copy">
+              <span className="footer-kicker">
+                <span className="footer-kicker-gem">◆</span> A thoughtful place to start
+              </span>
+              <h2>
+                What moment are you making <em>meaningful?</em>
+              </h2>
             </div>
             <Link
               href="/contact"
               data-magnetic
               className="footer-invitation-link"
             >
-              Plan a gift <ArrowUpRight size={17} aria-hidden="true" />
+              <span>Plan a gift</span>
+              <ArrowUpRight size={17} aria-hidden="true" />
             </Link>
           </div>
 
           <div className="footer-grid">
             <div className="footer-brand">
-              <Link href="/" aria-label="Naqsh home" className="inline-flex">
-                <Wordmark variant="copper-gradient" className="w-40" />
+              <Link href="/" aria-label="Naqsh home" className="footer-logo-link">
+                <Wordmark variant="copper-gradient" className="w-44" />
               </Link>
-              <p>Corporate gifting, considered from concept to doorstep.</p>
-              <span className="footer-slogan">
-                Beyond the box, into an experience.
-              </span>
+              <p className="footer-brand-desc">
+                Corporate gifting, considered from concept to doorstep. Curated for distinguished brands and memorable milestones.
+              </p>
+              <div className="footer-slogan-wrap">
+                <span className="footer-slogan-badge">
+                  <span className="footer-slogan-dot" aria-hidden="true" />
+                  Beyond the box, into an experience
+                </span>
+              </div>
             </div>
 
             <nav className="footer-column" aria-label="Footer navigation">
-              <h3>Explore</h3>
-              <ul>
+              <h3 className="footer-col-title">
+                <span>Explore</span>
+                <span className="footer-col-line" aria-hidden="true" />
+              </h3>
+              <ul className="footer-nav-list">
                 {siteConfig.nav.map((item) => (
                   <li key={item.href}>
-                    <Link href={item.href}>{item.label}</Link>
+                    <Link href={item.href} className="footer-nav-link">
+                      <span className="footer-nav-marker" aria-hidden="true">―</span>
+                      <span>{item.label}</span>
+                    </Link>
                   </li>
                 ))}
               </ul>
             </nav>
 
             <div className="footer-column footer-contact">
-              <h3>Get in touch</h3>
+              <h3 className="footer-col-title">
+                <span>Concierge</span>
+                <span className="footer-col-line" aria-hidden="true" />
+              </h3>
               <a
                 href={getWhatsAppUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="footer-whatsapp"
+                className="footer-whatsapp-card"
               >
                 <span className="footer-whatsapp-icon">
                   <WhatsAppGlyph />
                 </span>
-                <span>
-                  <small>WhatsApp</small>
-                  <strong>{siteConfig.phone}</strong>
+                <div className="footer-whatsapp-details">
+                  <small className="footer-whatsapp-meta">
+                    <span className="footer-online-dot" aria-hidden="true" />
+                    Direct Concierge · WhatsApp
+                  </small>
+                  <strong className="footer-whatsapp-number">{siteConfig.phone}</strong>
+                </div>
+                <span className="footer-whatsapp-arrow" aria-hidden="true">
+                  <ArrowUpRight size={16} />
                 </span>
-                <ArrowUpRight size={15} aria-hidden="true" />
               </a>
-              <p className="footer-location">
-                <MapPin size={15} aria-hidden="true" /> {siteConfig.location}
-              </p>
+              <div className="footer-location-block">
+                <div className="footer-location-icon" aria-hidden="true">
+                  <MapPin size={16} />
+                </div>
+                <div>
+                  <p className="footer-location-city">{siteConfig.location}</p>
+                  <span className="footer-location-sub">Bespoke client consultations nationwide</span>
+                </div>
+              </div>
             </div>
           </div>
 
           <div className="footer-bottom">
-            <p>© {currentYear} Naqsh. All rights reserved.</p>
-            <div>
+            <p>© {currentYear} Naqsh. All rights reserved. Quiet luxury corporate gifting.</p>
+            <div className="footer-policies">
               {siteConfig.policies.map((policy) => (
-                <Link key={policy.href} href={policy.href}>
+                <Link key={policy.href} href={policy.href} className="footer-policy-link">
                   {policy.label}
                 </Link>
               ))}

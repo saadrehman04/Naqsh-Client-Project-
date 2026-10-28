@@ -1113,6 +1113,27 @@ export function ScrollEffects() {
               });
             }
 
+            const splitLayout =
+              visionSection.querySelector<HTMLElement>(".vision-split-layout");
+            if (splitLayout) {
+              gsap.fromTo(
+                splitLayout,
+                { scale: 0.88, y: 36, opacity: 0 },
+                {
+                  scale: 1,
+                  y: 0,
+                  opacity: 1,
+                  duration: 0.9,
+                  ease: "back.out(1.7)",
+                  scrollTrigger: {
+                    trigger: visionSection,
+                    start: "top 88%",
+                    once: true,
+                  },
+                }
+              );
+            }
+
             if (visionWordsHost && missionWordsHost) {
               const vSplit = splitMap.get(visionWordsHost);
               const mSplit = splitMap.get(missionWordsHost);
