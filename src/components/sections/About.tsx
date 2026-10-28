@@ -43,7 +43,7 @@ export function About() {
             </Link>
           </div>
         </div>
-        <div className="about-images">
+        <div className="about-images" data-cursor-label="Explore">
           <div className="about-main-image">
             <ImageFrame
               src={about.image}

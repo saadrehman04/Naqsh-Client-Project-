@@ -29,7 +29,7 @@ export function CollectionGallery() {
                 href={`/portfolio/${item.slug}`}
                 className="collection-gallery-item"
                 key={item.slug}
-                data-cursor-label="View"
+                data-cursor-label="Explore"
               >
                 <span className="collection-gallery-image overflow-hidden">
                   <Image

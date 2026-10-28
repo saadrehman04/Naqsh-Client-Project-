@@ -842,6 +842,7 @@ export function ScrollEffects() {
             onEnter: () =>
               deferWrite(() => {
                 seal.classList.add("is-stamped");
+                setSceneProgress("cta", 1, seal);
                 gsap.to(seal, {
                   scale: 1,
                   rotation: 0,
@@ -1346,6 +1347,9 @@ export function ScrollEffects() {
                 start: "top bottom",
                 end: "top 65%",
                 scrub: 0.6,
+                onUpdate: (self) => {
+                  setSceneProgress("cta", self.progress, ctaBand);
+                },
               },
             });
           }

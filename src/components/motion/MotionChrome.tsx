@@ -12,6 +12,35 @@ export function MotionChrome() {
     const isCoarse = window.matchMedia("(pointer: coarse)").matches;
     const isDesktopFine = window.matchMedia("(min-width: 1024px) and (pointer: fine)").matches;
     let cachedMaxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    let pointerX = -1;
+    let pointerY = -1;
+    let hasPointer = false;
+    let isScrolling = false;
+    let scrollIdleTimer = 0;
+    let rafId = 0;
+
+    const refreshCursorTarget = () => {
+      rafId = 0;
+      if (!cursor || !hasPointer || reducedMotion || isCoarse) return;
+      cursor.style.transform = `translate3d(${pointerX}px, ${pointerY}px, 0)`;
+      const underPointer = document.elementFromPoint(pointerX, pointerY);
+      const target =
+        underPointer instanceof HTMLElement
+          ? underPointer.closest<HTMLElement>("[data-cursor-label]")
+          : null;
+      const interactiveControl =
+        underPointer instanceof HTMLElement
+          ? underPointer.closest<HTMLElement>("button:not([data-cursor-label]), input, select, textarea, .site-header")
+          : null;
+      const showExplore = Boolean(target) || (isScrolling && !interactiveControl);
+      cursor.classList.toggle("is-over", showExplore);
+      cursor.dataset.label = target?.dataset.cursorLabel || (showExplore ? "Explore" : "");
+    };
+
+    const scheduleCursorRefresh = () => {
+      if (reducedMotion || isCoarse || !hasPointer || rafId) return;
+      rafId = window.requestAnimationFrame(refreshCursorTarget);
+    };
 
     const recomputeMaxScroll = () => {
       cachedMaxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
@@ -23,18 +52,50 @@ export function MotionChrome() {
         const ratio = Math.max(0, Math.min(1, window.scrollY / cachedMaxScroll));
         progress.style.transform = `scaleX(${ratio.toFixed(4)})`;
       }
+      if (!reducedMotion && !isCoarse && hasPointer) {
+        isScrolling = true;
+        window.clearTimeout(scrollIdleTimer);
+        scrollIdleTimer = window.setTimeout(() => {
+          isScrolling = false;
+          scheduleCursorRefresh();
+        }, 280);
+        scheduleCursorRefresh();
+      }
+    };
+
+    const handleWheel = (event: WheelEvent) => {
+      if (reducedMotion || isCoarse) return;
+      if (event.clientX > 0 || event.clientY > 0) {
+        pointerX = event.clientX;
+        pointerY = event.clientY;
+        hasPointer = true;
+      }
+      isScrolling = true;
+      window.clearTimeout(scrollIdleTimer);
+      scrollIdleTimer = window.setTimeout(() => {
+        isScrolling = false;
+        scheduleCursorRefresh();
+      }, 280);
+      scheduleCursorRefresh();
     };
 
     const handlePointerMove = (event: PointerEvent) => {
       if (reducedMotion || isCoarse) return;
+      pointerX = event.clientX;
+      pointerY = event.clientY;
+      hasPointer = true;
 
       if (cursor) {
         cursor.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`;
         const target = (event.target as HTMLElement | null)?.closest<HTMLElement>(
           "[data-cursor-label]"
         );
-        cursor.classList.toggle("is-over", !!target);
-        cursor.dataset.label = target?.dataset.cursorLabel ?? "";
+        const interactiveControl = (event.target as HTMLElement | null)?.closest<HTMLElement>(
+          "button:not([data-cursor-label]), input, select, textarea, .site-header"
+        );
+        const showExplore = Boolean(target) || (isScrolling && !interactiveControl);
+        cursor.classList.toggle("is-over", showExplore);
+        cursor.dataset.label = target?.dataset.cursorLabel || (showExplore ? "Explore" : "");
       }
 
       if (!isDesktopFine) return;
@@ -65,19 +126,29 @@ export function MotionChrome() {
 
     const settleTimer = window.setTimeout(recomputeMaxScroll, 400);
     window.addEventListener("scroll", updateProgress, { passive: true });
+    window.addEventListener("wheel", handleWheel, { passive: true });
     window.addEventListener("resize", recomputeMaxScroll);
     window.addEventListener("pointermove", handlePointerMove, { passive: true });
     window.addEventListener("pointerout", handlePointerOut);
+    if (lenis) {
+      lenis.on("scroll", updateProgress);
+    }
     recomputeMaxScroll();
 
     return () => {
       window.clearTimeout(settleTimer);
+      window.clearTimeout(scrollIdleTimer);
+      if (rafId) window.cancelAnimationFrame(rafId);
       window.removeEventListener("scroll", updateProgress);
+      window.removeEventListener("wheel", handleWheel);
       window.removeEventListener("resize", recomputeMaxScroll);
       window.removeEventListener("pointermove", handlePointerMove);
       window.removeEventListener("pointerout", handlePointerOut);
+      if (lenis) {
+        lenis.off("scroll", updateProgress);
+      }
     };
-  }, [reducedMotion]);
+  }, [lenis, reducedMotion]);
 
   return (
     <>

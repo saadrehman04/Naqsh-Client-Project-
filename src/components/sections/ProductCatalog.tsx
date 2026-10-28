@@ -102,7 +102,7 @@ export function ProductCatalog() {
                 type="button"
                 className="product-tile"
                 onClick={() => setSelected(item)}
-                data-cursor-label="View"
+                data-cursor-label="Explore"
               >
                 <span className="product-tile-image">
                   <Image

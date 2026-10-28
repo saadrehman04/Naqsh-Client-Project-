@@ -52,7 +52,7 @@ export function WhySetsApart() {
             ))}
           </ol>
         </div>
-        <div className="why-visual" aria-hidden="true">
+        <div className="why-visual" aria-hidden="true" data-cursor-label="Explore">
           {promiseImages.map((image, index) => (
             <div
               className={`why-visual-image ${index === 0 ? "is-active" : ""}`}
