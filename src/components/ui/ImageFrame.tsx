@@ -9,8 +9,9 @@ interface ImageFrameProps {
   sizes?: string;
   className?: string;
   imageClassName?: string;
-  reveal?: "clip" | "fade-up" | "none";
-  parallax?: boolean;
+  reveal?: "clip" | "fade-up" | "up" | "none";
+  parallax?: boolean | number;
+  clipFrom?: "bottom" | "left" | "right" | "top";
 }
 
 export function ImageFrame({
@@ -23,6 +24,7 @@ export function ImageFrame({
   imageClassName,
   reveal = "none",
   parallax = false,
+  clipFrom,
 }: ImageFrameProps) {
   const aspectClass = {
     "4/5": "aspect-[4/5]",
@@ -33,15 +35,23 @@ export function ImageFrame({
     auto: "",
   }[aspectRatio];
 
+  const parallaxAttr =
+    typeof parallax === "number"
+      ? String(parallax)
+      : parallax
+      ? "0.08"
+      : undefined;
+
   return (
     <div
       className={cn(
-        "frame relative w-full border border-[var(--hairline)]",
+        "frame relative w-full overflow-hidden border border-[var(--hairline)]",
         aspectClass,
         className
       )}
       data-reveal={reveal !== "none" ? reveal : undefined}
-      data-parallax={parallax ? "true" : undefined}
+      data-clip-from={clipFrom}
+      data-parallax={parallaxAttr}
     >
       <Image
         src={src}
@@ -50,7 +60,7 @@ export function ImageFrame({
         priority={priority}
         sizes={sizes}
         className={cn(
-          "object-cover transition-transform duration-700 ease-[var(--ease-out)]",
+          "object-cover scale-[1.15] transition-transform duration-700 ease-[var(--ease-out)]",
           imageClassName
         )}
       />
