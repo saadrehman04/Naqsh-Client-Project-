@@ -7,18 +7,43 @@ const icons = [Gem, Leaf, Handshake];
 export function CoreValues() {
   const { coreValues } = homeContent;
   return (
-    <section className="section-y bg-[var(--ivory)] border-y border-[var(--hairline)]" aria-labelledby="core-values-heading">
+    <section
+      className="core-values-section section-y bg-[var(--ivory)] border-y border-[var(--hairline)]"
+      aria-labelledby="core-values-heading"
+    >
       <div className="container-x">
-        <header className="core-values-intro" data-reveal="fade-up">
-          <SectionLabel variant="pine">{coreValues.label}</SectionLabel>
-          <h2 id="core-values-heading" className="t-h2">{coreValues.heading}</h2>
+        <header className="core-values-intro">
+          <div data-reveal="up">
+            <SectionLabel variant="pine">{coreValues.label}</SectionLabel>
+          </div>
+          <h2 id="core-values-heading" className="t-h2" data-reveal="lines">
+            {coreValues.heading}
+          </h2>
         </header>
-        <div className="core-values-grid" data-reveal="stagger">
+        <div
+          className="core-values-grid"
+          data-reveal="stagger"
+          data-stagger="0.1"
+        >
           {coreValues.values.map((item, index) => {
             const Icon = icons[index];
             return (
-              <article className="core-value" key={item.name}>
-                <div className="core-value-icon"><Icon size={24} strokeWidth={1.4} aria-hidden="true" /></div>
+              <article className="core-value relative" key={item.name}>
+                <span
+                  className="core-value-hairline core-value-hairline--left"
+                  data-draw="top"
+                  aria-hidden="true"
+                />
+                {index === coreValues.values.length - 1 && (
+                  <span
+                    className="core-value-hairline core-value-hairline--right"
+                    data-draw="top"
+                    aria-hidden="true"
+                  />
+                )}
+                <div className="core-value-icon" data-reveal="scale">
+                  <Icon size={24} strokeWidth={1.4} aria-hidden="true" />
+                </div>
                 <h3>{item.name}</h3>
                 <p>{item.desc}</p>
               </article>

@@ -8,6 +8,7 @@ import { ApproachSection } from "@/components/sections/ApproachSection";
 import { PortfolioPreview } from "@/components/sections/PortfolioPreview";
 import { SocialProof } from "@/components/sections/SocialProof";
 import { CTABand } from "@/components/sections/CTABand";
+import { BrandTicker } from "@/components/sections/BrandTicker";
 
 export default function HomePage() {
   return (
@@ -39,9 +40,10 @@ export default function HomePage() {
       {/* 09 · Social Proof (conditionally rendered) */}
       <SocialProof />
 
-      <div className="portfolio-marquee" aria-label="Welcome Kits · Client Gifts · Ramadan and Eid · Event Giveaways · Souvenirs · Awards"><span>Welcome Kits · Client Gifts · Ramadan &amp; Eid · Event Giveaways · Souvenirs · Awards · </span><span aria-hidden="true">Welcome Kits · Client Gifts · Ramadan &amp; Eid · Event Giveaways · Souvenirs · Awards · </span></div>
+      {/* 10 · Marquee Strip */}
+      <BrandTicker />
 
-      {/* 10 · CTA Band */}
+      {/* 11 · CTA Band */}
       <CTABand />
     </>
   );
