@@ -55,14 +55,16 @@ export function AccordionItem({
         </span>
       </summary>
 
-      <div className="overflow-hidden">
-        <div className="pt-3 pb-2 text-[var(--text)] text-base sm:text-lg leading-relaxed max-w-prose">
-          <p>{answer}</p>
-          {confirmTag && (
-            <div className="mt-2">
-              <Confirm label={confirmTag} />
-            </div>
-          )}
+      <div className="faq-content-grid grid grid-rows-[0fr] group-open:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-[var(--ease-out)]">
+        <div className="overflow-hidden">
+          <div className="pt-3 pb-2 text-[var(--text)] text-base sm:text-lg leading-relaxed max-w-prose">
+            <p>{answer}</p>
+            {confirmTag && (
+              <div className="mt-2">
+                <Confirm label={confirmTag} />
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </details>
@@ -86,7 +88,14 @@ export function AccordionGroup({
   className,
 }: AccordionGroupProps) {
   return (
-    <div className={cn("divide-y divide-[var(--hairline)] border-t border-[var(--hairline)]", className)}>
+    <div
+      className={cn(
+        "divide-y divide-[var(--hairline)] border-t border-[var(--hairline)]",
+        className
+      )}
+      data-reveal="stagger"
+      data-stagger="0.08"
+    >
       {items.map((item, idx) => (
         <AccordionItem
           key={item.id || idx}

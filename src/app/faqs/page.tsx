@@ -49,8 +49,12 @@ export default function FAQsPage() {
             };
 
             return (
-              <div key={grp.group} className="space-y-6" data-reveal="fade-up">
-                <div className="border-b-2 pb-3 flex items-center justify-between" style={{ borderColor: badge.border }}>
+              <div key={grp.group} className="space-y-6">
+                <div
+                  className="border-b-2 pb-3 flex items-center justify-between"
+                  style={{ borderColor: badge.border }}
+                  data-reveal="up"
+                >
                   <div className="flex items-center gap-3">
                     <span className={`px-3 py-1 rounded-full text-xs uppercase tracking-[0.18em] font-sans font-semibold ${badge.bg} ${badge.text} shadow-sm`}>
                       Category
@@ -61,7 +65,11 @@ export default function FAQsPage() {
                   </div>
                 </div>
 
-                <div className="divide-y divide-[var(--border-light)]">
+                <div
+                  className="divide-y divide-[var(--border-light)]"
+                  data-reveal="stagger"
+                  data-stagger="0.08"
+                >
                   {grp.items.map((item) => (
                     <AccordionItem
                       key={item.id}
@@ -79,7 +87,7 @@ export default function FAQsPage() {
           {/* Deep Pine Teal Support Callout */}
           <div
             className="rounded-[var(--radius-card)] bg-[var(--pine)] text-[var(--ivory)] border border-[var(--sage)]/40 p-8 sm:p-12 text-center shadow-2xl relative overflow-hidden"
-            data-reveal="fade-up"
+            data-reveal="up"
           >
             <div
               className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-[var(--copper)]/20 blur-3xl pointer-events-none"
@@ -96,6 +104,7 @@ export default function FAQsPage() {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                data-magnetic
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[var(--terracotta-deep)] hover:bg-[var(--chestnut)] text-[var(--ivory)] font-sans text-xs tracking-[0.14em] uppercase font-semibold transition-all duration-300 shadow-md hover:scale-[1.02]"
               >
                 <MessageCircle className="w-4 h-4 text-[var(--khaki)]" />
@@ -103,6 +112,7 @@ export default function FAQsPage() {
               </a>
               <Link
                 href="/contact"
+                data-magnetic
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[var(--ivory)] hover:bg-[var(--ivory-deep)] text-[var(--black)] font-sans text-xs tracking-[0.14em] uppercase font-semibold transition-all duration-300 shadow-md hover:scale-[1.02]"
               >
                 <span>Submit Inquiry Form</span>

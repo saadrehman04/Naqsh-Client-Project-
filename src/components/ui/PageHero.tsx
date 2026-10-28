@@ -10,6 +10,7 @@ interface PageHeroProps {
   subtitle?: string;
   breadcrumbs?: BreadcrumbItem[];
   className?: string;
+  fadeOnly?: boolean;
 }
 
 export function PageHero({
@@ -19,6 +20,7 @@ export function PageHero({
   subtitle,
   breadcrumbs,
   className,
+  fadeOnly = false,
 }: PageHeroProps) {
   const displayIntro = intro || subtitle;
   return (
@@ -28,13 +30,28 @@ export function PageHero({
         className
       )}
     >
-      <div className="container-x">
-        {breadcrumbs && <Breadcrumb items={breadcrumbs} />}
-        <div className="max-w-4xl" data-reveal="fade-up">
-          <SectionLabel>{label}</SectionLabel>
-          <h1 className="t-h1 mb-6 text-[var(--text-strong)]">{title}</h1>
+      <div className="container-x" data-reveal={fadeOnly ? "fade" : undefined}>
+        {breadcrumbs && (
+          <div data-reveal={fadeOnly ? undefined : "up"}>
+            <Breadcrumb items={breadcrumbs} />
+          </div>
+        )}
+        <div className="max-w-4xl">
+          <div data-reveal={fadeOnly ? undefined : "up"}>
+            <SectionLabel>{label}</SectionLabel>
+          </div>
+          <h1
+            className="t-h1 mb-6 text-[var(--text-strong)]"
+            data-reveal={fadeOnly ? undefined : "lines"}
+          >
+            {title}
+          </h1>
           {displayIntro && (
-            <p className="t-lead text-[var(--text)] max-w-2xl font-light">
+            <p
+              className="t-lead text-[var(--text)] max-w-2xl font-light"
+              data-reveal={fadeOnly ? undefined : "up"}
+              data-delay={fadeOnly ? undefined : "0.1"}
+            >
               {displayIntro}
             </p>
           )}

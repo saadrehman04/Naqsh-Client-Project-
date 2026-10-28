@@ -170,6 +170,8 @@ function FormFields() {
         />
       </div>
 
+      <div className="space-y-6" data-reveal="stagger" data-stagger="0.08">
+
       {/* Row 1: Name & Company */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div>
@@ -444,6 +446,7 @@ function FormFields() {
             </>
           )}
         </button>
+      </div>
       </div>
     </form>
   );

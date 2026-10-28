@@ -15,16 +15,21 @@ export const metadata: Metadata = buildMetadata({
 export default function ShippingDeliveryPage() {
   return (
     <div className="bg-[var(--ivory)] min-h-screen">
-      {/* Editorial Page Hero */}
+      {/* Editorial Page Hero (fade only on policy pages) */}
       <PageHero
         title={shippingPolicy.title}
         subtitle={shippingPolicy.intro}
         label="Fulfillment & Care"
         breadcrumbs={[{ label: "Shipping & Delivery" }]}
+        fadeOnly
       />
 
       {/* Policy Content */}
-      <article className="py-20 sm:py-28" aria-label="Shipping & Delivery Policy">
+      <article
+        className="py-20 sm:py-28"
+        aria-label="Shipping & Delivery Policy"
+        data-reveal="fade"
+      >
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-xs uppercase tracking-[0.18em] font-sans font-medium text-[var(--pine)] mb-12 pb-4 border-b border-[var(--border-light)]">
             Delivery details pending confirmation
@@ -32,7 +37,7 @@ export default function ShippingDeliveryPage() {
 
           <div className="space-y-12">
             {shippingPolicy.sections.map((section, idx) => (
-              <section key={idx} className="space-y-4">
+              <section key={idx} className="space-y-4" data-reveal="fade">
                 <h2 className="font-serif text-2xl sm:text-3xl text-[var(--black)] font-normal tracking-tight">
                   {section.heading}
                 </h2>

@@ -34,12 +34,15 @@ export default function ContactPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
             {/* Left Column: Direct Channels & Studio Information */}
-            <div className="lg:col-span-5 space-y-10" data-reveal="fade-up">
-              <div>
+            <div className="lg:col-span-5 space-y-10">
+              <div data-reveal="up">
                 <span className="text-xs uppercase tracking-[0.18em] font-sans font-semibold text-[var(--terracotta-deep)] mb-2 block">
                   Direct Channels
                 </span>
-                <h2 className="font-serif text-3xl sm:text-4xl text-[var(--black)] font-normal tracking-tight mb-4">
+                <h2
+                  className="font-serif text-3xl sm:text-4xl text-[var(--black)] font-normal tracking-tight mb-4"
+                  data-reveal="lines"
+                >
                   Attentive Consultation
                 </h2>
                 <p className="font-sans text-base text-[var(--charcoal)] font-light leading-relaxed">
@@ -48,7 +51,7 @@ export default function ContactPage() {
               </div>
 
               {/* Channels List with Distinct Palette Accents */}
-              <div className="space-y-6">
+              <div className="space-y-6" data-reveal="stagger" data-stagger="0.1">
                 {/* Phone - Terracotta accent */}
                 <div className="flex items-start gap-4 p-6 rounded-[var(--radius-card)] bg-[var(--ivory-warm)] border-l-4 border-[var(--terracotta-deep)] border-y border-r border-[var(--border-light)] shadow-sm hover:shadow-md transition-shadow">
                   <div className="w-11 h-11 rounded-full bg-[var(--terracotta)]/15 text-[var(--terracotta-deep)] flex items-center justify-center flex-shrink-0">

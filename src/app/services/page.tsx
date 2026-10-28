@@ -53,24 +53,36 @@ export default function ServicesPage() {
                 className={`flex flex-col ${
                   isReversed ? "lg:flex-row-reverse" : "lg:flex-row"
                 } items-center gap-12 lg:gap-20`}
-                data-reveal="fade-up"
               >
                 {/* Visual */}
                 <div className="w-full lg:w-1/2">
-                  <div className={`relative aspect-[4/3] rounded-[var(--radius-card)] overflow-hidden bg-[var(--ivory-warm)] border-2 ${badge.border} shadow-xl group`}>
+                  <div
+                    className={`relative aspect-[4/3] rounded-[var(--radius-card)] overflow-hidden bg-[var(--ivory-warm)] border-2 ${badge.border} shadow-xl group`}
+                    data-reveal="clip"
+                    data-clip-from={isReversed ? "right" : "left"}
+                    data-parallax="0.08"
+                  >
                     <Image
                       src={service.image}
                       alt={service.imageAlt}
                       fill
                       sizes="(max-width: 1024px) 100vw, 50vw"
-                      className="object-cover transition-transform duration-700 ease-[var(--ease-out)] group-hover:scale-105"
+                      className="object-cover scale-[1.15] transition-transform duration-700 ease-[var(--ease-out)] group-hover:scale-105"
                     />
                   </div>
                 </div>
 
                 {/* Narrative & Checklist */}
-                <div className="w-full lg:w-1/2 flex flex-col justify-center">
-                  <span className="font-serif text-5xl sm:text-6xl text-[var(--chestnut)] font-light select-none mb-2">
+                <div
+                  className="w-full lg:w-1/2 flex flex-col justify-center"
+                  data-reveal="stagger"
+                  data-stagger="0.1"
+                >
+                  <span
+                    className="font-serif text-5xl sm:text-6xl text-[var(--chestnut)] font-light select-none mb-2"
+                    data-count-to={idx + 1}
+                    data-count-pad="2"
+                  >
                     {service.number}
                   </span>
                   <h2 className="font-serif text-3xl sm:text-4xl text-[var(--black)] font-normal mb-4 tracking-tight">
@@ -84,6 +96,7 @@ export default function ServicesPage() {
                   <div>
                     <Link
                       href={service.ctaHref}
+                      data-magnetic
                       className={`inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full ${idx === 0 ? "bg-[var(--terracotta-deep)] hover:bg-[var(--chestnut)]" : "bg-[var(--pine)] hover:bg-[#7F3021]"} text-[var(--ivory)] font-sans text-xs tracking-[0.14em] uppercase font-semibold transition-all duration-300 shadow-md hover:scale-[1.02]`}
                     >
                       <span>{service.ctaText}</span>
@@ -103,11 +116,14 @@ export default function ServicesPage() {
         aria-label="Workflow Process"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center max-w-2xl mx-auto mb-16" data-reveal="fade-up">
-            <span className="t-label text-[var(--pine)] mb-4 block">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <span className="t-label text-[var(--pine)] mb-4 block" data-reveal="up">
               {workflowStrip.label}
             </span>
-            <h2 className="font-serif text-3xl sm:text-4xl text-[var(--black)] font-normal tracking-tight">
+            <h2
+              className="font-serif text-3xl sm:text-4xl text-[var(--black)] font-normal tracking-tight"
+              data-reveal="lines"
+            >
               {workflowStrip.heading}
             </h2>
           </div>
@@ -115,6 +131,7 @@ export default function ServicesPage() {
           <div
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8"
             data-reveal="stagger"
+            data-stagger="0.1"
           >
             {workflowStrip.steps.map((st, i) => (
               <div
