@@ -2,7 +2,6 @@ import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
 import { ServicesTeaser } from "@/components/sections/ServicesTeaser";
 import { WhySetsApart } from "@/components/sections/WhySetsApart";
-import { CoreValues } from "@/components/sections/CoreValues";
 import { ApproachSection } from "@/components/sections/ApproachSection";
 import { CollectionGallery } from "@/components/sections/CollectionGallery";
 import { VisionMission } from "@/components/sections/VisionMission";
@@ -26,30 +25,27 @@ export default function HomePage() {
       {/* 04 · What Sets Us Apart (Core Promises) */}
       <WhySetsApart />
 
-      {/* 05 · Core Values */}
-      <CoreValues />
-
-      {/* 06 · Our 4-Step Approach */}
+      {/* 05 · Our 4-Step Approach */}
       <ApproachSection />
 
-      {/* 07 · Seven Collections Section */}
+      {/* 06 · Seven Collections Section */}
       <div id="portfolio-preview">
         <CollectionGallery />
       </div>
 
-      {/* 08 · Vision & Mission (Gifting with intention, popped below Seven Collections) */}
+      {/* 07 · Vision & Mission (Gifting with intention, popped below Seven Collections) */}
       <VisionMission />
 
-      {/* 09 · Occasion Product Catalog */}
+      {/* 08 · Occasion Product Catalog */}
       <ProductCatalog />
 
-      {/* 10 · Social Proof (conditionally rendered) */}
+      {/* 09 · Social Proof (conditionally rendered) */}
       <SocialProof />
 
-      {/* 11 · Marquee Strip */}
+      {/* 10 · Marquee Strip */}
       <BrandTicker />
 
-      {/* 12 · CTA Band */}
+      {/* 11 · CTA Band */}
       <CTABand />
     </>
   );
