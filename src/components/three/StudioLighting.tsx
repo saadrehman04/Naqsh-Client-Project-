@@ -7,7 +7,7 @@ import { Environment, Lightformer } from "@react-three/drei";
 
 export const NAQSH_3D_PALETTE = {
   copper: "#AB6C49",
-  terracotta: "#B64F3E",
+  terracotta: "#823627",
   chestnut: "#7F3021",
   ivory: "#F7F1E7",
   ivoryDeep: "#EFE5DA",

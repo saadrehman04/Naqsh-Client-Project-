@@ -102,13 +102,13 @@ export function WaxSeal3D({
         >
           <defs>
             <radialGradient id="naqsh-wax-grad" cx="36%" cy="32%" r="68%">
-              <stop offset="0%" stopColor="#C86350" />
-              <stop offset="58%" stopColor="#B64F3E" />
-              <stop offset="100%" stopColor="#7F3021" />
+              <stop offset="0%" stopColor="#9E3E2E" />
+              <stop offset="58%" stopColor="#7F3021" />
+              <stop offset="100%" stopColor="#5C1E14" />
             </radialGradient>
             <radialGradient id="naqsh-wax-well" cx="55%" cy="58%" r="55%">
-              <stop offset="0%" stopColor="#9E3E2E" />
-              <stop offset="100%" stopColor="#7F3021" />
+              <stop offset="0%" stopColor="#7F3021" />
+              <stop offset="100%" stopColor="#541810" />
             </radialGradient>
           </defs>
           {/* Organic perturbed wax outer silhouette */}

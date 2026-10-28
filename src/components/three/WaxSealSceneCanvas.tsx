@@ -98,17 +98,17 @@ export function WaxSealActor({
     []
   );
 
-  // Shared wax material (Terracotta #B64F3E with Chestnut #7F3021 sheen)
+  // Shared wax material (Chestnut #7F3021 with rich organic wax sheen)
   const waxMaterial = useMemo(
     () =>
       new THREE.MeshPhysicalMaterial({
-        color: NAQSH_3D_PALETTE.terracotta,
-        roughness: 0.45,
+        color: NAQSH_3D_PALETTE.chestnut,
+        roughness: 0.42,
         metalness: 0.04,
-        clearcoat: 0.3,
-        clearcoatRoughness: 0.5,
-        sheen: 0.3,
-        sheenColor: new THREE.Color(NAQSH_3D_PALETTE.chestnut),
+        clearcoat: 0.35,
+        clearcoatRoughness: 0.45,
+        sheen: 0.35,
+        sheenColor: new THREE.Color(NAQSH_3D_PALETTE.terracotta),
         transparent: true,
         opacity: 1,
       }),
