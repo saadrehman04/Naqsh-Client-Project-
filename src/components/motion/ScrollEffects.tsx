@@ -1344,33 +1344,7 @@ export function ScrollEffects() {
             });
           }
 
-          const footer = document.querySelector<HTMLElement>(".site-footer");
-          const footerInner = footer?.querySelector<HTMLElement>(
-            ".footer-parallax-inner"
-          );
-          const mainContent =
-            document.querySelector<HTMLElement>("#main-content");
-          if (footer && footerInner && mainContent) {
-            gsap.set(footerInner, { yPercent: -25 });
-            ScrollTrigger.create({
-              trigger: mainContent,
-              start: "bottom 140%",
-              onEnter: () => footer.classList.add("is-footer-visible"),
-              onLeaveBack: () => footer.classList.remove("is-footer-visible"),
-            });
-            gsap.to(footerInner, {
-              yPercent: 0,
-              ease: "none",
-              immediateRender: false,
-              scrollTrigger: {
-                trigger: mainContent,
-                start: "bottom bottom",
-                end: () => `+=${Math.max(320, footer.offsetHeight)}`,
-                scrub: 0.6,
-                invalidateOnRefresh: true,
-              },
-            });
-          }
+
 
           document
             .querySelectorAll<HTMLElement>("[data-pin]")

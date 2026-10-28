@@ -1143,18 +1143,9 @@ dialog::backdrop {
 
 .site-footer {
   position: relative;
-  overflow: hidden;
-  padding-block: clamp(3.5rem, 7vw, 6.5rem) 1.5rem;
-  background: radial-gradient(ellipse 90% 40% at 50% 0%, rgba(171, 108, 73, 0.12), transparent 70%), #070707;
+  background: var(--ivory);
   color: var(--ivory);
-}
-.site-footer::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.04;
-  background: url('/brand/diamond-lattice.svg') center / 180px;
+  padding: 0;
 }
 .site-footer > .container-x { position: relative; z-index: 1; }
 .footer-invitation {
@@ -1452,8 +1443,6 @@ dialog::backdrop {
 }
 .collection-gallery-track { padding-inline: 0; }
 @media (max-width: 767px) { .collection-gallery-track { padding-inline: 0; } }
-.site-footer { padding-bottom: 6.5rem; }
-@media (max-width: 767px) { .site-footer { padding-bottom: 6rem; } }
 
 /* Desktop collection journey: hold the viewport while the cards travel sideways. */
 @media (min-width: 1024px) {
@@ -1739,16 +1728,6 @@ html.motion-ok:not(.reduced-motion) .vision-panel {
   width: 100%;
   height: 100%;
   object-fit: contain;
-}
-@media (min-width: 1024px) {
-  html.motion-ok:not(.reduced-motion) .site-footer {
-    position: sticky;
-    bottom: 0;
-    z-index: -1;
-  }
-  html.motion-ok:not(.reduced-motion) .site-footer:not(.is-footer-visible) {
-    visibility: hidden;
-  }
 }
 
 /* Link underline draw on hover */

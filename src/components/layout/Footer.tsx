@@ -1,150 +1,342 @@
 import Link from "next/link";
-import { ArrowUpRight, MapPin } from "lucide-react";
+import Image from "next/image";
+import { ArrowUpRight, Phone, Mail, MapPin, Sparkles, Clock, ShieldCheck } from "lucide-react";
 import { siteConfig } from "@/content/site";
-import { Wordmark } from "@/components/brand/Logo";
-import { getWhatsAppUrl } from "@/lib/whatsapp";
+import { getWhatsAppUrl, DISPLAY_PHONE } from "@/lib/whatsapp";
 
 function WhatsAppGlyph() {
   return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5" fill="currentColor">
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="w-5 h-5" fill="currentColor">
       <path d="M12.04 2C6.52 2 2.03 6.48 2.02 12c0 1.76.46 3.47 1.34 4.98L2 22l5.16-1.35A10 10 0 1 0 12.04 2Zm0 18.18c-1.5 0-2.97-.4-4.25-1.17l-.3-.18-3.06.8.82-2.98-.2-.31A8.17 8.17 0 1 1 12.04 20.18Zm4.49-6.12c-.25-.13-1.48-.73-1.71-.81-.23-.08-.4-.13-.56.13-.17.25-.65.81-.8.98-.15.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.24-.75-.66-1.25-1.48-1.4-1.73-.15-.25-.02-.39.11-.52.11-.11.25-.29.38-.44.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.09s.9 2.42 1.02 2.59c.13.17 1.77 2.7 4.29 3.79.6.26 1.07.42 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.48-.61 1.69-1.2.21-.59.21-1.1.15-1.2-.06-.1-.23-.16-.48-.29Z" />
     </svg>
   );
 }
 
-const wordmarkSlices = [
-  "inset(0 83% 0 0%)",
-  "inset(0 60% 0 17%)",
-  "inset(0 33% 0 40%)",
-  "inset(0 19% 0 67%)",
-  "inset(0 0% 0 81%)",
+function InstagramGlyph() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+    </svg>
+  );
+}
+
+function LinkedInGlyph() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="w-4 h-4" fill="currentColor">
+      <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.64 1.64 0 1 0 0-3.28 1.64 1.64 0 0 0 0 3.28m1.39 9.74v-8.37H5.07v8.37h2.78Z" />
+    </svg>
+  );
+}
+
+const collectionsList = [
+  { label: "New Hire Welcome Kits", href: "/portfolio/new-hire-welcome-kits" },
+  { label: "Client Packages & VIP Suites", href: "/portfolio/client-packages" },
+  { label: "Ramadan & Eid Baskets", href: "/portfolio/ramadan-eid-baskets" },
+  { label: "Annual Event Giveaways", href: "/portfolio/annual-event-giveaways" },
+  { label: "Brand Souvenirs & Merchandise", href: "/portfolio/brand-souvenirs" },
+  { label: "Appreciation & Milestone Awards", href: "/portfolio/appreciation-gifts" },
 ];
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
+  const whatsappUrl = getWhatsAppUrl(
+    "Hello Naqsh Concierge, I would like to consult on a bespoke corporate gifting requirement."
+  );
 
   return (
-    <footer className="site-footer on-dark" role="contentinfo">
-      <div className="footer-parallax-inner">
-        <div
-          className="footer-giant-wordmark"
-          aria-hidden="true"
-        >
-          <div className="footer-wordmark-stage">
-            {wordmarkSlices.map((clip, idx) => (
+    <footer className="site-footer relative z-10 bg-[var(--ivory)] pt-4 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8" role="contentinfo">
+      <div className="max-w-[1400px] mx-auto">
+        {/* Floating Luxury Island Container (Schmidt & Arclyn Studio reference) */}
+        <div className="footer-island relative rounded-[28px] sm:rounded-[38px] lg:rounded-[46px] bg-[#0E0C0A] border-[2px] border-[#2A231D] text-[var(--ivory)] overflow-hidden shadow-[0_36px_100px_-24px_rgba(14,12,10,0.65),0_16px_36px_-8px_rgba(14,12,10,0.35)]">
+
+          {/* Layer 1: Radiant Bottom Sunrise Glow (Schmidt reference - luminous warm amber bloom) */}
+          <div
+            className="absolute inset-x-0 bottom-0 h-[500px] pointer-events-none"
+            style={{
+              background:
+                "radial-gradient(ellipse 95% 72% at 50% 100%, rgba(215, 120, 65, 0.46) 0%, rgba(140, 56, 38, 0.3) 38%, rgba(20, 82, 64, 0.12) 65%, transparent 85%)",
+            }}
+            aria-hidden="true"
+          />
+
+          {/* Layer 2: Top-left subtle warm ambient illumination (Redsun reference) */}
+          <div
+            className="absolute -top-32 -left-32 w-96 h-96 rounded-full pointer-events-none"
+            style={{
+              background:
+                "radial-gradient(circle, rgba(171, 108, 73, 0.18) 0%, transparent 70%)",
+            }}
+            aria-hidden="true"
+          />
+
+          {/* Layer 3: Cultural diamond lattice watermark */}
+          <div
+            className="absolute inset-0 opacity-[0.035] pointer-events-none mix-blend-overlay"
+            style={{
+              backgroundImage: "url('/brand/diamond-lattice.svg')",
+              backgroundSize: "160px 160px",
+            }}
+            aria-hidden="true"
+          />
+
+          {/* TOP INVITATION & CALLOUT BAR (Arclyn Studio + Redsun style) */}
+          <div className="relative z-10 px-6 sm:px-10 lg:px-14 pt-10 sm:pt-14 pb-10 sm:pb-12 border-b border-white/[0.08]">
+            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 lg:gap-12">
+              <div className="max-w-2xl">
+                {/* Live Kicker Badge */}
+                <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/[0.05] border border-white/[0.1] text-xs font-sans tracking-[0.16em] uppercase text-[var(--khaki)] mb-4">
+                  <span className="w-2 h-2 rounded-full bg-[#34D399] animate-pulse" />
+                  <span>Bespoke Corporate Curation · Inquiries Open</span>
+                </div>
+
+                {/* Headline */}
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-[var(--ivory)] leading-[1.15] tracking-tight">
+                  Curating enduring corporate impressions from{" "}
+                  <span className="italic text-[var(--copper-light)] font-normal">
+                    concept to doorstep.
+                  </span>
+                </h2>
+
+                <p className="mt-3.5 text-sm sm:text-base text-[var(--ivory)]/75 max-w-xl font-sans leading-relaxed">
+                  From executive milestones to nationwide welcome edits, we craft refined gifting suites for organizations that value craftsmanship and cultural elegance.
+                </p>
+              </div>
+
+              {/* Highlighted Action Buttons (Arclyn Studio reference) */}
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 shrink-0">
+                <Link
+                  href="/contact"
+                  data-magnetic
+                  className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-[#FAF6EF] text-[#120F0D] hover:bg-[#EAE0D2] font-sans text-xs tracking-[0.14em] uppercase font-semibold shadow-[0_12px_28px_rgba(247,241,231,0.22)] transition-all duration-300 hover:scale-[1.03]"
+                >
+                  <span>Request Bespoke Proposal</span>
+                  <ArrowUpRight className="w-4 h-4 text-[var(--chestnut)] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </Link>
+
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-magnetic
+                  className="group inline-flex items-center justify-center gap-3 px-7 py-4 rounded-full bg-[var(--pine)] hover:bg-[#1A634E] text-[var(--ivory)] border border-[#2D7A62] font-sans text-xs tracking-[0.14em] uppercase font-semibold shadow-[0_12px_28px_rgba(20,82,64,0.35)] transition-all duration-300 hover:scale-[1.03]"
+                >
+                  <WhatsAppGlyph />
+                  <span>Chat on WhatsApp</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 text-[var(--khaki)] opacity-80 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* MAIN EDITORIAL FOUR-COLUMN GRID */}
+          <div className="relative z-10 px-6 sm:px-10 lg:px-14 py-12 sm:py-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 items-start">
+              
+              {/* Column 1: Brand & Curation Statement (4 cols) */}
+              <div className="lg:col-span-4 flex flex-col justify-between">
+                <div>
+                  <Link href="/" aria-label="Naqsh Home" className="flex items-center gap-3 group">
+                    <div className="w-9 h-9 rounded-xl bg-[var(--pine)] text-[var(--ivory)] flex items-center justify-center font-serif text-lg font-bold border border-[#2D7A62] shadow-sm group-hover:scale-105 transition-transform duration-200">
+                      ن
+                    </div>
+                    <div className="relative w-36 h-7">
+                      <Image
+                        src="/brand/wordmark-copper-gradient.svg"
+                        alt="Naqsh"
+                        fill
+                        className="object-contain object-left"
+                      />
+                    </div>
+                  </Link>
+
+                  <p className="mt-4 text-sm font-sans text-[var(--ivory)]/75 leading-relaxed max-w-sm">
+                    Corporate gifting, considered from concept to doorstep. Refined packages hand-finished in Lahore, delivered across Pakistan and worldwide.
+                  </p>
+
+                  <div className="mt-5 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.04] border border-[var(--copper)]/30 text-xs font-sans text-[var(--khaki)]">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[var(--copper)]" />
+                    <span>Beyond the box, into an experience</span>
+                  </div>
+                </div>
+
+                {/* Direct Concierge Badge */}
+                <div className="mt-8 pt-6 border-t border-white/[0.08] space-y-2.5 text-xs font-sans text-[var(--ivory)]/70">
+                  <div className="flex items-center gap-2.5">
+                    <MapPin className="w-3.5 h-3.5 text-[var(--copper-light)] shrink-0" />
+                    <span>Lahore, Pakistan · Nationwide Delivery</span>
+                  </div>
+                  <div className="flex items-center gap-2.5">
+                    <Clock className="w-3.5 h-3.5 text-[var(--copper-light)] shrink-0" />
+                    <span>24-Hour Custom Proposal Turnaround</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Column 2: Curated Collections (3 cols) */}
+              <div className="lg:col-span-3">
+                <h3 className="flex items-center gap-2 text-xs font-sans font-semibold tracking-[0.16em] uppercase text-[var(--copper-light)] mb-5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--copper)]" />
+                  <span>Curated Collections</span>
+                </h3>
+                <ul className="space-y-3 font-sans text-sm text-[var(--ivory)]/80">
+                  {collectionsList.map((col) => (
+                    <li key={col.href}>
+                      <Link
+                        href={col.href}
+                        className="group flex items-center justify-between hover:text-[var(--ivory)] transition-colors duration-200 py-0.5"
+                      >
+                        <span className="group-hover:translate-x-1 transition-transform duration-200">
+                          {col.label}
+                        </span>
+                        <ArrowUpRight className="w-3.5 h-3.5 text-[var(--copper)] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200" />
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Column 3: Explore & Studio (2 cols) */}
+              <div className="lg:col-span-2">
+                <h3 className="flex items-center gap-2 text-xs font-sans font-semibold tracking-[0.16em] uppercase text-[var(--copper-light)] mb-5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--copper)]" />
+                  <span>Explore</span>
+                </h3>
+                <ul className="space-y-3 font-sans text-sm text-[var(--ivory)]/80">
+                  {siteConfig.nav.map((item) => (
+                    <li key={item.href}>
+                      <Link
+                        href={item.href}
+                        className="group flex items-center justify-between hover:text-[var(--ivory)] transition-colors duration-200 py-0.5"
+                      >
+                        <span className="group-hover:translate-x-1 transition-transform duration-200">
+                          {item.label}
+                        </span>
+                        <ArrowUpRight className="w-3.5 h-3.5 text-[var(--copper)] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200" />
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Column 4: Direct Desk & Social Channels (3 cols) */}
+              <div className="lg:col-span-3">
+                <h3 className="flex items-center gap-2 text-xs font-sans font-semibold tracking-[0.16em] uppercase text-[var(--copper-light)] mb-5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--copper)]" />
+                  <span>Concierge Desk</span>
+                </h3>
+
+                {/* Direct WhatsApp Interactive Card */}
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block p-4 rounded-2xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.09] hover:border-[var(--copper)]/40 transition-all duration-300"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-[var(--pine)] flex items-center justify-center text-[var(--ivory)] shadow-md group-hover:scale-105 transition-transform duration-200 shrink-0">
+                      <WhatsAppGlyph />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center gap-1.5 text-[11px] font-sans text-[var(--khaki)] uppercase tracking-wider">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#34D399] animate-pulse" />
+                        <span>Live WhatsApp</span>
+                      </div>
+                      <div className="text-sm font-semibold font-sans text-[var(--ivory)] tracking-wide mt-0.5">
+                        {DISPLAY_PHONE}
+                      </div>
+                    </div>
+                    <ArrowUpRight className="w-4 h-4 text-[var(--copper-light)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200 shrink-0" />
+                  </div>
+                </a>
+
+                {/* Direct Phone & Hotline */}
+                <div className="mt-3.5 space-y-2 font-sans text-xs text-[var(--ivory)]/75">
+                  <a
+                    href={`tel:${DISPLAY_PHONE.replace(/[^0-9+]/g, "")}`}
+                    className="flex items-center gap-2.5 p-2 rounded-lg hover:bg-white/[0.04] transition-colors"
+                  >
+                    <Phone className="w-3.5 h-3.5 text-[var(--copper-light)]" />
+                    <span>Direct: {DISPLAY_PHONE}</span>
+                  </a>
+                </div>
+
+                {/* Social Channels Strip */}
+                <div className="mt-5 pt-4 border-t border-white/[0.08]">
+                  <div className="text-[11px] font-sans tracking-[0.14em] uppercase text-[var(--khaki)]/80 mb-3">
+                    Follow Our Lookbook
+                  </div>
+                  <div className="flex items-center gap-2.5">
+                    <a
+                      href="https://instagram.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/[0.1] border border-white/[0.08] hover:border-[var(--copper)]/40 text-xs font-sans text-[var(--ivory)]/85 transition-all duration-200"
+                    >
+                      <InstagramGlyph />
+                      <span>Instagram</span>
+                    </a>
+                    <a
+                      href="https://linkedin.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/[0.1] border border-white/[0.08] hover:border-[var(--copper)]/40 text-xs font-sans text-[var(--ivory)]/85 transition-all duration-200"
+                    >
+                      <LinkedInGlyph />
+                      <span>LinkedIn</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          {/* GIANT HORIZON TYPOGRAPHY (Schmidt + Arclyn Studio reference!) */}
+          <div
+            className="relative z-10 pt-4 sm:pt-8 overflow-hidden flex flex-col items-center justify-center select-none pointer-events-none"
+            aria-hidden="true"
+          >
+            <div className="w-full text-center tracking-[0.16em] font-serif font-black uppercase text-[15.5vw] sm:text-[17vw] lg:text-[18vw] leading-[0.72] translate-y-[22%] sm:translate-y-[26%]">
               <span
-                key={idx}
-                className="footer-wordmark-letter"
-                style={{ clipPath: clip }}
-                data-footer-letter
+                className="inline-block bg-gradient-to-b from-[#F7F1E7]/12 via-[#C3733E]/60 to-[#F0A06E]/95 bg-clip-text text-transparent drop-shadow-[0_8px_40px_rgba(205,115,62,0.4)]"
+                style={{
+                  WebkitTextStroke: "1px rgba(247,241,231,0.08)",
+                }}
               >
-                <Wordmark variant="copper-gradient" className="w-full" />
+                NAQSH
               </span>
+            </div>
+          </div>
+
+        </div>
+
+        {/* SUB-FOOTER OUTSIDE THE CARD (Clean Arclyn Studio & Schmidt style) */}
+        <div className="mt-5 px-3 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-sans text-[var(--charcoal)]/80">
+          <div className="flex items-center gap-2">
+            <span>© {currentYear} Naqsh. All rights reserved.</span>
+            <span className="text-[var(--charcoal)]/30 hidden sm:inline">|</span>
+            <span className="hidden sm:inline">Quiet Luxury Corporate Gifting</span>
+          </div>
+
+          <div className="text-center text-[11px] text-[var(--chestnut)]/90 tracking-wider uppercase font-medium">
+            Handcrafted in Lahore, Pakistan · Global Delivery
+          </div>
+
+          <div className="flex flex-wrap items-center gap-5 sm:gap-6">
+            {siteConfig.policies.map((policy) => (
+              <Link
+                key={policy.href}
+                href={policy.href}
+                className="hover:text-[var(--black)] transition-colors duration-200"
+              >
+                {policy.label}
+              </Link>
             ))}
           </div>
         </div>
 
-        <div className="container-x relative z-10">
-          <div className="footer-invitation">
-            <div className="footer-invitation-copy">
-              <span className="footer-kicker">
-                <span className="footer-kicker-gem">◆</span> A thoughtful place to start
-              </span>
-              <h2>
-                What moment are you making <em>meaningful?</em>
-              </h2>
-            </div>
-            <Link
-              href="/contact"
-              data-magnetic
-              className="footer-invitation-link"
-            >
-              <span>Plan a gift</span>
-              <ArrowUpRight size={17} aria-hidden="true" />
-            </Link>
-          </div>
-
-          <div className="footer-grid">
-            <div className="footer-brand">
-              <Link href="/" aria-label="Naqsh home" className="footer-logo-link">
-                <Wordmark variant="copper-gradient" className="w-44" />
-              </Link>
-              <p className="footer-brand-desc">
-                Corporate gifting, considered from concept to doorstep. Curated for distinguished brands and memorable milestones.
-              </p>
-              <div className="footer-slogan-wrap">
-                <span className="footer-slogan-badge">
-                  <span className="footer-slogan-dot" aria-hidden="true" />
-                  Beyond the box, into an experience
-                </span>
-              </div>
-            </div>
-
-            <nav className="footer-column" aria-label="Footer navigation">
-              <h3 className="footer-col-title">
-                <span>Explore</span>
-                <span className="footer-col-line" aria-hidden="true" />
-              </h3>
-              <ul className="footer-nav-list">
-                {siteConfig.nav.map((item) => (
-                  <li key={item.href}>
-                    <Link href={item.href} className="footer-nav-link">
-                      <span className="footer-nav-marker" aria-hidden="true">―</span>
-                      <span>{item.label}</span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-
-            <div className="footer-column footer-contact">
-              <h3 className="footer-col-title">
-                <span>Concierge</span>
-                <span className="footer-col-line" aria-hidden="true" />
-              </h3>
-              <a
-                href={getWhatsAppUrl()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="footer-whatsapp-card"
-              >
-                <span className="footer-whatsapp-icon">
-                  <WhatsAppGlyph />
-                </span>
-                <div className="footer-whatsapp-details">
-                  <small className="footer-whatsapp-meta">
-                    <span className="footer-online-dot" aria-hidden="true" />
-                    Direct Concierge · WhatsApp
-                  </small>
-                  <strong className="footer-whatsapp-number">{siteConfig.phone}</strong>
-                </div>
-                <span className="footer-whatsapp-arrow" aria-hidden="true">
-                  <ArrowUpRight size={16} />
-                </span>
-              </a>
-              <div className="footer-location-block">
-                <div className="footer-location-icon" aria-hidden="true">
-                  <MapPin size={16} />
-                </div>
-                <div>
-                  <p className="footer-location-city">{siteConfig.location}</p>
-                  <span className="footer-location-sub">Bespoke client consultations nationwide</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="footer-bottom">
-            <p>© {currentYear} Naqsh. All rights reserved. Quiet luxury corporate gifting.</p>
-            <div className="footer-policies">
-              {siteConfig.policies.map((policy) => (
-                <Link key={policy.href} href={policy.href} className="footer-policy-link">
-                  {policy.label}
-                </Link>
-              ))}
-            </div>
-          </div>
-        </div>
       </div>
     </footer>
   );
