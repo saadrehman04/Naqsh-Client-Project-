@@ -1617,3 +1617,35 @@ html.motion-ok:not(.reduced-motion) .vision-panel {
   object-fit: contain;
   filter: drop-shadow(0 2px 3px rgb(0 0 0 / 0.45));
 }
+
+/* Scene 3: Gift Box (Our Approach pinned section) */
+.gift-box-scene-host {
+  width: 100%;
+  aspect-ratio: 6 / 5;
+  min-height: 360px;
+  height: 55vh;
+  max-height: 560px;
+}
+
+.gift-box-fallback {
+  background: radial-gradient(
+    ellipse at center,
+    rgb(239 229 218 / 0.7) 0%,
+    transparent 72%
+  );
+}
+
+.gift-box-fallback-svg {
+  width: 86%;
+  height: 86%;
+  max-width: 420px;
+  object-fit: contain;
+}
+
+@media (max-width: 1023px) {
+  .gift-box-scene-host {
+    min-height: 260px;
+    height: auto;
+    max-height: 340px;
+  }
+}

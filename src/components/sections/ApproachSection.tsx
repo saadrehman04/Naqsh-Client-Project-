@@ -2,7 +2,7 @@ import Link from "next/link";
 import { homeContent } from "@/content/home";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { ArrowRight } from "lucide-react";
-import { SceneLoader } from "@/components/three/SceneLoader";
+import { GiftBoxScene } from "@/components/three/GiftBoxScene";
 
 export function ApproachSection({ compact = false }: { compact?: boolean }) {
   const { approach } = homeContent;
@@ -39,7 +39,6 @@ export function ApproachSection({ compact = false }: { compact?: boolean }) {
             </div>
           )}
           <div className="approach-scene-body">
-            <SceneLoader scene="box" className="approach-box" />
             <div className="approach-steps-wrap relative">
               <div className="approach-progress-rail" aria-hidden="true">
                 <span
@@ -66,6 +65,7 @@ export function ApproachSection({ compact = false }: { compact?: boolean }) {
                 })}
               </ol>
             </div>
+            <GiftBoxScene className="approach-box" />
           </div>
         </div>
       </div>
