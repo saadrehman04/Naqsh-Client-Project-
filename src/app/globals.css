@@ -1430,3 +1430,146 @@ html.motion-ok:not(.reduced-motion) .vision-panel {
 .footer-bottom a:hover {
   background-size: 100% 1px;
 }
+
+/* ------------------------------------------------------------------
+   Real-time 3D Scenes & 2D Progressive Fallbacks
+------------------------------------------------------------------- */
+.scene-host {
+  position: relative;
+  pointer-events: none;
+  user-select: none;
+}
+
+.scene-fallback {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  opacity: 1;
+  transition: opacity 0.6s var(--ease-out);
+  pointer-events: none;
+}
+
+.scene-fallback.is-faded {
+  opacity: 0;
+}
+
+.scene-canvas-layer {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.6s var(--ease-out);
+  pointer-events: none;
+}
+
+.scene-canvas-layer.is-visible {
+  opacity: 1;
+}
+
+.scene-canvas-layer canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: none !important;
+}
+
+/* Scene 1: Copper Emblem in Vision & Mission */
+.vision-split-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.85fr);
+  gap: clamp(2rem, 5vw, 5.5rem);
+  align-items: center;
+}
+
+.vision-copy-column {
+  min-width: 0;
+}
+
+.vision-copy-column .vision-panel-heading {
+  margin-inline: 0;
+}
+
+.vision-copy-column .vision-panel-stage {
+  margin-inline: 0;
+}
+
+.vision-emblem-column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.emblem-scene-host {
+  width: 100%;
+  max-width: 440px;
+  max-height: 70vh;
+  aspect-ratio: 4 / 5;
+}
+
+.emblem-fallback {
+  position: absolute;
+  inset: 0;
+}
+
+.emblem-fallback-svg {
+  width: auto;
+  height: 74%;
+  max-height: 54vh;
+  object-fit: contain;
+  filter: drop-shadow(0 18px 28px rgb(171 108 73 / 0.28))
+    drop-shadow(0 4px 10px rgb(0 0 0 / 0.65));
+  animation: emblem-float-slow 6s ease-in-out infinite;
+}
+
+@keyframes emblem-float-slow {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -10px;
+  }
+}
+
+.emblem-fallback-diamond {
+  position: absolute;
+  width: 0.5rem;
+  height: 0.5rem;
+  background: var(--copper);
+  transform: rotate(45deg);
+  opacity: 0.55;
+}
+.emblem-fallback-diamond--1 {
+  top: 18%;
+  left: 22%;
+}
+.emblem-fallback-diamond--2 {
+  top: 26%;
+  right: 18%;
+  background: var(--khaki);
+}
+.emblem-fallback-diamond--3 {
+  bottom: 24%;
+  left: 16%;
+  background: var(--khaki);
+}
+.emblem-fallback-diamond--4 {
+  bottom: 18%;
+  right: 22%;
+}
+
+@media (max-width: 1023px) {
+  .vision-split-layout {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .vision-emblem-column {
+    order: -1;
+    justify-content: flex-start;
+  }
+  .emblem-scene-host {
+    max-width: 150px;
+    max-height: 190px;
+    aspect-ratio: 4 / 5;
+  }
+}
