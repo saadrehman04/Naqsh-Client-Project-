@@ -332,9 +332,11 @@ export function ScrollEffects() {
         pad: number;
       }> = [];
       let ctaSeals: HTMLElement[] = [];
-      let mainEl: HTMLElement | null = null;
+      let footerSection: HTMLElement | null = null;
+      let footerIsland: HTMLElement | null = null;
+      let footerGlow: HTMLElement | null = null;
+      let footerGrid: HTMLElement | null = null;
       let giantWordmark: HTMLElement | null = null;
-      let footerLetters: HTMLElement[] = [];
       let parallaxItems: Array<{
         element: HTMLElement;
         target: HTMLElement;
@@ -518,19 +520,21 @@ export function ScrollEffects() {
           gsap.set(seal, { scale: 1.25, rotation: -6 });
         });
 
-        mainEl = document.querySelector<HTMLElement>("#main-content");
+        footerSection = document.querySelector<HTMLElement>(".site-footer");
+        footerIsland = document.querySelector<HTMLElement>(".footer-island");
+        footerGlow = document.querySelector<HTMLElement>(".footer-sunrise-glow");
+        footerGrid = document.querySelector<HTMLElement>(".footer-content-grid");
         giantWordmark = document.querySelector<HTMLElement>(
           ".footer-giant-wordmark"
         );
-        footerLetters = Array.from(
-          document.querySelectorAll<HTMLElement>("[data-footer-letter]")
-        );
-        if (giantWordmark && mainEl) {
-          gsap.set(giantWordmark, { opacity: 0, y: 24 });
+        if (footerIsland) {
+          footerIsland.style.willChange = "transform";
         }
-        if (footerLetters.length && mainEl) {
-          footerLetters.forEach((l) => l.classList.add("is-revealed"));
-          gsap.set(footerLetters, { yPercent: 45, opacity: 0 });
+        if (giantWordmark) {
+          giantWordmark.style.willChange = "transform, opacity";
+        }
+        if (footerGlow) {
+          footerGlow.style.willChange = "transform";
         }
 
         const amplitude = isDesktop ? 1 : 0.5;
@@ -854,33 +858,68 @@ export function ScrollEffects() {
           });
         });
 
-        if ((giantWordmark || footerLetters.length) && mainEl) {
-          ScrollTrigger.create({
-            trigger: mainEl,
-            start: "bottom 92%",
-            once: true,
-            onEnter: () =>
-              deferWrite(() => {
-                if (giantWordmark) {
-                  gsap.to(giantWordmark, {
-                    opacity: 0.22,
-                    y: 0,
-                    duration: 1.0,
-                    ease: "power3.out",
-                  });
-                }
-                if (footerLetters.length) {
-                  gsap.to(footerLetters, {
-                    yPercent: 0,
-                    opacity: 1,
-                    duration: 1.0,
-                    stagger: 0.09,
-                    ease: "power3.out",
-                    clearProps: "transform",
-                  });
-                }
-              }),
-          });
+        if (footerSection) {
+          // 1. Entrance reveal when footer section reaches viewport at start
+          if (footerGrid) {
+            ScrollTrigger.create({
+              trigger: footerSection,
+              start: "top 92%",
+              once: true,
+              onEnter: () =>
+                deferWrite(() => {
+                  gsap.fromTo(
+                    footerGrid,
+                    { opacity: 0, y: -24 },
+                    {
+                      opacity: 1,
+                      y: 0,
+                      duration: 0.9,
+                      ease: "power2.out",
+                      clearProps: "opacity,transform",
+                    }
+                  );
+                }),
+            });
+          }
+
+          // 2. Continuous Scroll Parallax Down as user scrolls into and through the footer
+          if (footerIsland || giantWordmark || footerGlow) {
+            const tl = gsap.timeline({
+              scrollTrigger: {
+                trigger: footerSection,
+                start: "top bottom",
+                end: "bottom bottom",
+                scrub: 0.7,
+              },
+            });
+
+            if (footerIsland) {
+              tl.fromTo(
+                footerIsland,
+                { y: -30 },
+                { y: 25, ease: "none" },
+                0
+              );
+            }
+
+            if (giantWordmark) {
+              tl.fromTo(
+                giantWordmark,
+                { y: -35, opacity: 0.75 },
+                { y: 25, opacity: 1, ease: "none" },
+                0
+              );
+            }
+
+            if (footerGlow) {
+              tl.fromTo(
+                footerGlow,
+                { y: -40, scale: 0.94 },
+                { y: 30, scale: 1.06, ease: "none" },
+                0
+              );
+            }
+          }
         }
 
         isInitializing = false;

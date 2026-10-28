@@ -53,7 +53,7 @@ export function Footer() {
 
           {/* Layer 1: Radiant Bottom Sunrise Glow (Schmidt reference - luminous warm amber bloom) */}
           <div
-            className="absolute inset-x-0 bottom-0 h-[500px] pointer-events-none"
+            className="footer-sunrise-glow absolute inset-x-0 bottom-0 h-[500px] pointer-events-none"
             style={{
               background:
                 "radial-gradient(ellipse 95% 72% at 50% 100%, rgba(215, 120, 65, 0.46) 0%, rgba(140, 56, 38, 0.3) 38%, rgba(20, 82, 64, 0.12) 65%, transparent 85%)",
@@ -81,57 +81,8 @@ export function Footer() {
             aria-hidden="true"
           />
 
-          {/* TOP INVITATION & CALLOUT BAR (Arclyn Studio + Redsun style) */}
-          <div className="relative z-10 px-6 sm:px-10 lg:px-14 pt-10 sm:pt-14 pb-10 sm:pb-12 border-b border-white/[0.08]">
-            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 lg:gap-12">
-              <div className="max-w-2xl">
-                {/* Live Kicker Badge */}
-                <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/[0.05] border border-white/[0.1] text-xs font-sans tracking-[0.16em] uppercase text-[var(--khaki)] mb-4">
-                  <span className="w-2 h-2 rounded-full bg-[#34D399] animate-pulse" />
-                  <span>Bespoke Corporate Curation · Inquiries Open</span>
-                </div>
-
-                {/* Headline */}
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-[var(--ivory)] leading-[1.15] tracking-tight">
-                  Curating enduring corporate impressions from{" "}
-                  <span className="italic text-[var(--copper-light)] font-normal">
-                    concept to doorstep.
-                  </span>
-                </h2>
-
-                <p className="mt-3.5 text-sm sm:text-base text-[var(--ivory)]/75 max-w-xl font-sans leading-relaxed">
-                  From executive milestones to nationwide welcome edits, we craft refined gifting suites for organizations that value craftsmanship and cultural elegance.
-                </p>
-              </div>
-
-              {/* Highlighted Action Buttons (Arclyn Studio reference) */}
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 shrink-0">
-                <Link
-                  href="/contact"
-                  data-magnetic
-                  className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-[#FAF6EF] text-[#120F0D] hover:bg-[#EAE0D2] font-sans text-xs tracking-[0.14em] uppercase font-semibold shadow-[0_12px_28px_rgba(247,241,231,0.22)] transition-all duration-300 hover:scale-[1.03]"
-                >
-                  <span>Request Bespoke Proposal</span>
-                  <ArrowUpRight className="w-4 h-4 text-[var(--chestnut)] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </Link>
-
-                <a
-                  href={whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  data-magnetic
-                  className="group inline-flex items-center justify-center gap-3 px-7 py-4 rounded-full bg-[var(--pine)] hover:bg-[#1A634E] text-[var(--ivory)] border border-[#2D7A62] font-sans text-xs tracking-[0.14em] uppercase font-semibold shadow-[0_12px_28px_rgba(20,82,64,0.35)] transition-all duration-300 hover:scale-[1.03]"
-                >
-                  <WhatsAppGlyph />
-                  <span>Chat on WhatsApp</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 text-[var(--khaki)] opacity-80 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* MAIN EDITORIAL FOUR-COLUMN GRID */}
-          <div className="relative z-10 px-6 sm:px-10 lg:px-14 py-12 sm:py-16">
+          {/* MAIN EDITORIAL FOUR-COLUMN GRID (Upper invitation removed per request) */}
+          <div className="footer-content-grid relative z-10 px-6 sm:px-10 lg:px-16 pt-12 sm:pt-16 lg:pt-20 pb-12 sm:pb-16">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 items-start">
               
               {/* Column 1: Brand & Curation Statement (4 cols) */}
@@ -143,7 +94,7 @@ export function Footer() {
                     </div>
                     <div className="relative w-36 h-7">
                       <Image
-                        src="/brand/wordmark-copper-gradient.svg"
+                        src="/brand/wordmark-gold-gradient.svg"
                         alt="Naqsh"
                         fill
                         className="object-contain object-left"
@@ -227,6 +178,16 @@ export function Footer() {
                   <span>Concierge Desk</span>
                 </h3>
 
+                {/* Consultation CTA Pill */}
+                <Link
+                  href="/contact"
+                  data-magnetic
+                  className="group flex items-center justify-between p-3.5 px-4 mb-3 rounded-2xl bg-[#FAF6EF] hover:bg-white text-[#120F0D] font-sans text-xs tracking-[0.14em] uppercase font-bold shadow-[0_4px_16px_rgba(247,241,231,0.12)] transition-all duration-300 hover:scale-[1.02]"
+                >
+                  <span>Request Consultation</span>
+                  <ArrowUpRight className="w-4 h-4 text-[var(--chestnut)] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </Link>
+
                 {/* Direct WhatsApp Interactive Card */}
                 <a
                   href={whatsappUrl}
@@ -293,16 +254,16 @@ export function Footer() {
             </div>
           </div>
 
-          {/* GIANT HORIZON TYPOGRAPHY (Schmidt + Arclyn Studio reference!) */}
+          {/* GIANT HORIZON TYPOGRAPHY (Schmidt + Arclyn Studio reference) */}
           <div
-            className="relative z-10 pt-4 sm:pt-8 overflow-hidden flex flex-col items-center justify-center select-none pointer-events-none"
+            className="footer-giant-wordmark-wrap relative z-10 pt-4 sm:pt-6 pb-2 sm:pb-4 overflow-hidden flex flex-col items-center justify-center select-none pointer-events-none"
             aria-hidden="true"
           >
-            <div className="w-full text-center tracking-[0.16em] font-serif font-black uppercase text-[15.5vw] sm:text-[17vw] lg:text-[18vw] leading-[0.72] translate-y-[22%] sm:translate-y-[26%]">
+            <div className="footer-giant-wordmark w-full text-center tracking-[0.16em] font-serif font-black uppercase text-[15vw] sm:text-[16vw] lg:text-[17vw] leading-[0.8] select-none">
               <span
-                className="inline-block bg-gradient-to-b from-[#F7F1E7]/12 via-[#C3733E]/60 to-[#F0A06E]/95 bg-clip-text text-transparent drop-shadow-[0_8px_40px_rgba(205,115,62,0.4)]"
+                className="inline-block bg-gradient-to-b from-[#F7F1E7]/25 via-[#DF8E57]/80 to-[#F0A06E] bg-clip-text text-transparent drop-shadow-[0_8px_40px_rgba(205,115,62,0.45)]"
                 style={{
-                  WebkitTextStroke: "1px rgba(247,241,231,0.08)",
+                  WebkitTextStroke: "1px rgba(247,241,231,0.12)",
                 }}
               >
                 NAQSH
