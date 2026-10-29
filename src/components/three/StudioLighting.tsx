@@ -1,5 +1,6 @@
 "use client";
 
+import "./patchThree";
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { useFrame, useThree } from "@react-three/fiber";
@@ -80,14 +81,6 @@ export function StudioLighting({
 
     return () => {
       win.__naqsh3DContexts?.delete(gl);
-      disposeObject3D(scene);
-      try {
-        gl.renderLists?.dispose();
-        gl.dispose();
-        gl.forceContextLoss();
-      } catch {
-        // Ignore if context already lost
-      }
     };
   }, [gl, scene]);
 

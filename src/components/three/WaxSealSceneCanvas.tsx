@@ -1,5 +1,6 @@
 "use client";
 
+import "./patchThree";
 import { useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import gsap from "gsap";
