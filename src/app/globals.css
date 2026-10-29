@@ -218,6 +218,7 @@ html.lenis body {
   letter-spacing: -.01em;
   text-wrap: balance;
   text-shadow: 0 2px 16px rgba(0,0,0,.24);
+  opacity: 1 !important;
 }
 .hero-subline {
   font-family: var(--font-body);

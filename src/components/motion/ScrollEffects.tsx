@@ -254,18 +254,22 @@ export function ScrollEffects() {
           const existingLines = Array.from(
             heroHeading.querySelectorAll<HTMLElement>(".motion-line-inner")
           );
-          if (existingLines.length && runEntrance) {
-            gsap.fromTo(
-              existingLines,
-              { yPercent: isDesktop ? 110 : 35 },
-              {
-                yPercent: 0,
-                duration: 1.05,
-                stagger: 0.12,
-                delay: 0.08,
-                ease: "power3.out",
-              }
-            );
+          if (existingLines.length) {
+            if (runEntrance) {
+              gsap.fromTo(
+                existingLines,
+                { yPercent: isDesktop ? 110 : 35 },
+                {
+                  yPercent: 0,
+                  duration: 1.05,
+                  stagger: 0.12,
+                  delay: 0.08,
+                  ease: "power3.out",
+                }
+              );
+            } else {
+              gsap.set(existingLines, { yPercent: 0 });
+            }
           }
         }
 

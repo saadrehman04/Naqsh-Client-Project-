@@ -107,9 +107,7 @@ export function Hero() {
           {/* Main Headline */}
           <div className="hero-heading-wrap">
             <h1
-              className="hero-heading font-serif text-4xl sm:text-5xl lg:text-[66px] xl:text-[72px] leading-[1.03] tracking-tight is-revealed select-none"
-              data-reveal="lines"
-              data-stagger="0.12"
+              className="hero-heading font-serif text-4xl sm:text-5xl lg:text-[66px] xl:text-[72px] leading-[1.03] tracking-tight is-revealed select-none opacity-100"
               aria-label="Crafting Lasting Impressions"
             >
               <span className="motion-line-mask block" aria-hidden="true">
