@@ -62,11 +62,11 @@ export function ServicesTeaser() {
                   </span>
                   <h3>{service.title}</h3>
                   <p>{service.desc}</p>
-                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-3 gap-y-1.5 py-2.5 mb-3 border-y border-[var(--hairline)]">
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 py-3 mb-4 border-y border-[var(--hairline)]">
                     {service.benefits.map((item) => (
                       <li
                         key={item}
-                        className="flex items-center gap-2 text-xs sm:text-[13px] text-[var(--text-strong)] font-sans"
+                        className="flex items-center gap-2 text-sm text-[var(--text-strong)] font-sans"
                       >
                         <Check className="w-3.5 h-3.5 text-[var(--pine)] shrink-0" aria-hidden="true" />
                         <span>{item}</span>
