@@ -154,73 +154,8 @@ export const homeContent = {
     intro:
       "Seven signature gifting collections curated around key corporate occasions and relationships.",
   },
-  signatureProjects: {
-    label: "05 · Signature Concepts",
-    heading: "Created to Be Remembered.",
-    intro:
-      "Explore signature NAQSH curation concepts illustrating how we bring product selection, bespoke branding, and luxury presentation together for corporate occasions.",
-    note: "Concept Showcases · Every edition is customized to your brand identity, recipient profile, and budget.",
-    items: [
-      {
-        id: "onboarding-experience",
-        badge: "Concept Presentation · Employee Onboarding",
-        title: "The First-Day Executive Welcome",
-        occasion: "New Hire Onboarding & Team Expansion",
-        concept:
-          "A cohesive desk and carry suite designed to make new team members feel immediately valued and connected to company culture.",
-        personalization:
-          "Blind-debossed hardcover journal, laser-engraved insulated tumbler, custom-molded rigid presentation box, and personalized welcome note.",
-        presentation: "Deep emerald rigid keepsake box with satin-ribbon pull and custom insert tray.",
-        image: "/images/products/new-hire-welcome-kit.webp",
-        imageAlt: "NAQSH New Hire Welcome Kit in deep emerald presentation box",
-        href: "/portfolio/new-hire-welcome-kits",
-      },
-      {
-        id: "heritage-vip-suite",
-        badge: "Concept Presentation · Executive & Diplomatic",
-        title: "The Heritage & Craft Appreciation Suite",
-        occasion: "VIP Client Appreciation & Visiting Delegations",
-        concept:
-          "An authentic celebration of regional craftsmanship pairing wearable heritage textiles with artisanal ceramics and gourmet sweets.",
-        personalization:
-          "Custom woven presentation sleeve, gold-foiled greeting card, and bespoke wax-sealed envelope.",
-        presentation: "Layered archival gift box with hand-wrapped tissue and artisanal ceramic keepsakes.",
-        image: "/images/products/pakistan-heritage-gift-set.webp",
-        imageAlt: "NAQSH Pakistan Heritage Gift Set featuring printed shawl, hand-painted mug and keepsakes",
-        href: "/portfolio/client-packages",
-      },
-      {
-        id: "ramadan-eid-edition",
-        badge: "Concept Presentation · Seasonal Campaign",
-        title: "The Sacred Season Hamper",
-        occasion: "Ramadan & Eid Corporate Gifting",
-        concept:
-          "Warm, dignified seasonal gifting crafted for clients, partners, and leadership teams during Ramadan and Eid.",
-        personalization:
-          "Gold-foiled emblem on textured ivory rigid box, custom seasonal message card, and curated gourmet assortment.",
-        presentation: "Compartmentalized ivory & gold presentation box with artisan-filled dates and festive accents.",
-        image: "/images/products/ramadan-delights.webp",
-        imageAlt: "NAQSH Ramadan Delights ivory presentation box with embossed emblem and gourmet dates",
-        href: "/portfolio/ramadan-eid-baskets",
-      },
-      {
-        id: "summit-delegate-folio",
-        badge: "Concept Presentation · Corporate Events",
-        title: "The Leadership Summit Folio",
-        occasion: "Annual Conferences, Seminars & Board Retreats",
-        concept:
-          "Functional, quietly branded leather and stationery essentials designed to be carried long after the conference concludes.",
-        personalization:
-          "Subtle tone-on-tone emblem embossing on leather accessories, custom event agenda insert, and branded carry bag.",
-        presentation: "Charcoal executive tote paired with croc-embossed pouch, cardholder, and hardcover notebook.",
-        image: "/images/products/seminar-conference-kit.webp",
-        imageAlt: "NAQSH Seminar and Conference Kit with leather bag, pouch and embossed green notebook",
-        href: "/portfolio/annual-event-giveaways",
-      },
-    ],
-  },
   approach: {
-    label: "06 · Our Approach",
+    label: "05 · Our Approach",
     heading: "From First Thought to Final Delivery.",
     intro:
       "A structured four-stage process that turns corporate gifting into a seamless, stress-free experience for your team.",
@@ -246,38 +181,6 @@ export const homeContent = {
         number: "04",
         name: "Deliver",
         desc: "Coordinate preparation, presentation, and delivery according to the agreed requirements.",
-      },
-    ],
-  },
-  signatureDetails: {
-    label: "07 · The NAQSH Signature",
-    heading: "Every Detail Carries Intention.",
-    intro:
-      "True luxury lives in the finishing touches. Before any NAQSH package leaves our studio, it is finished with tactile materials, restrained branding, and our signature mark of craftsmanship.",
-    details: [
-      {
-        title: "The NAQSH Wax Seal",
-        desc: "Our signature hand-stamped impression symbolizing authenticity, care, and distinction on every presentation.",
-      },
-      {
-        title: "Bespoke Rigid Packaging",
-        desc: "Architectural keepsake boxes and woven hampers engineered to protect contents and elevate the unboxing ritual.",
-      },
-      {
-        title: "Foil Stamping & Debossing",
-        desc: "Subtle gold, copper, or blind-debossed brand impressions that honor your identity without feeling promotional.",
-      },
-      {
-        title: "Precision Engraving",
-        desc: "Clean laser engraving on crystal awards, metal tumblers, pens, and executive desk accessories.",
-      },
-      {
-        title: "Personalized Message Cards",
-        desc: "Fine-stock stationery printed with your leadership message or tailored to individual recipients.",
-      },
-      {
-        title: "Artisanal Gift Wrapping",
-        desc: "Coordinated ribbons, custom sleeves, tissue layering, and quality inspection prior to dispatch.",
       },
     ],
   },
@@ -313,7 +216,7 @@ export const homeContent = {
     ],
   },
   faqPreview: {
-    label: "08 · Common Questions",
+    label: "06 · Common Questions",
     heading: "Everything You Need to Know.",
     intro:
       "Quick answers to the most common questions about planning, customizing, and delivering corporate gifts with NAQSH.",

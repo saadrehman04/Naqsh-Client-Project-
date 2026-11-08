@@ -3,9 +3,7 @@ import { About } from "@/components/sections/About";
 import { ServicesTeaser } from "@/components/sections/ServicesTeaser";
 import { WhySetsApart } from "@/components/sections/WhySetsApart";
 import { CollectionGallery } from "@/components/sections/CollectionGallery";
-import { SignatureProjects } from "@/components/sections/SignatureProjects";
 import { ApproachSection } from "@/components/sections/ApproachSection";
-import { NaqshSignature } from "@/components/sections/NaqshSignature";
 import { SocialProof } from "@/components/sections/SocialProof";
 import { HomeFaqPreview } from "@/components/sections/HomeFaqPreview";
 import { BrandTicker } from "@/components/sections/BrandTicker";
@@ -31,25 +29,19 @@ export default function HomePage() {
         <CollectionGallery />
       </div>
 
-      {/* SECTION 06 — SIGNATURE PROJECTS / PORTFOLIO */}
-      <SignatureProjects />
-
-      {/* SECTION 07 — OUR APPROACH (4-Step Process & 3D GiftBox) */}
+      {/* SECTION 06 — OUR APPROACH (4-Step Process & 3D GiftBox) */}
       <ApproachSection />
 
-      {/* SECTION 08 — THE NAQSH SIGNATURE (Interactive 3D Wax Seal & Finishing Craft) */}
-      <NaqshSignature />
-
-      {/* SECTION 09 — CLIENT TESTIMONIALS (Hidden until verified testimonials are provided) */}
+      {/* CLIENT TESTIMONIALS (Hidden until verified testimonials are provided) */}
       <SocialProof />
 
-      {/* SECTION 10 — FAQ PREVIEW */}
+      {/* SECTION 07 — FAQ PREVIEW */}
       <HomeFaqPreview />
 
       {/* Marquee Strip */}
       <BrandTicker />
 
-      {/* SECTION 11 — FINAL CTA */}
+      {/* SECTION 08 — FINAL CTA */}
       <CTABand />
     </>
   );
