@@ -24,6 +24,12 @@ export function GiftBoxScene({ className = "" }: { className?: string }) {
   useWindowPointerTilt();
 
   useEffect(() => {
+    if (can3D) {
+      import("./GiftBoxSceneCanvas");
+    }
+  }, [can3D]);
+
+  useEffect(() => {
     if (!shouldMount) {
       setHasDrawnFirstFrame(false);
     }

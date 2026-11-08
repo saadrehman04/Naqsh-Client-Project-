@@ -185,17 +185,11 @@ export function ScrollEffects() {
       const enqueueSlice = (fn: () => void) => {
         sliceQueue.push(fn);
       };
-      const pumpQueue = (delayMs = 20) => {
-        const id = window.setTimeout(() => {
-          if (isCancelled) return;
+      const pumpQueue = () => {
+        while (sliceQueue.length > 0 && !isCancelled) {
           const next = sliceQueue.shift();
-          if (!next) return;
-          ctx.add(next);
-          if (sliceQueue.length > 0) {
-            pumpQueue(20);
-          }
-        }, delayMs);
-        timers.push(id);
+          if (next) ctx.add(next);
+        }
       };
 
       const hero = document.querySelector<HTMLElement>(".hero-section");
@@ -348,7 +342,6 @@ export function ScrollEffects() {
         travel: number;
       }> = [];
       let mobileSteps: HTMLElement[] = [];
-      let marqueeTracks: HTMLElement[] = [];
 
       // SLICE 1A: Pure DOM Write — split words for all [data-reveal="lines" | "words"]
       enqueueSlice(() => {
@@ -579,15 +572,6 @@ export function ScrollEffects() {
             gsap.set(step, { opacity: 0, y: 30 });
           });
         }
-
-        marqueeTracks = Array.from(
-          document.querySelectorAll<HTMLElement>(
-            ".brand-ticker-track, .portfolio-marquee-track"
-          )
-        );
-        marqueeTracks.forEach((track) => {
-          track.style.animation = "none";
-        });
       });
 
       // SLICE 2A-1: Register ScrollTriggers for splitElements + first half of standardElements
@@ -1445,96 +1429,9 @@ export function ScrollEffects() {
           isMobInit = false;
           pendingMob.forEach((fn) => fn());
         }
-
-        marqueeTracks.forEach((track) => {
-          let loop: gsap.core.Tween | null = null;
-          let skewTo: gsap.QuickToFunc | null = null;
-          let isVisibleInViewport = false;
-          let currentDirection = 1;
-
-          const ensureLoop = () => {
-            if (!loop) {
-              loop = gsap.to(track, {
-                xPercent: -50,
-                duration: 34,
-                repeat: -1,
-                ease: "none",
-                paused: true,
-                modifiers: {
-                  xPercent: gsap.utils.wrap(-50, 0),
-                },
-              });
-              skewTo = gsap.quickTo(track, "skewX", {
-                duration: 0.22,
-                ease: "power2.out",
-              });
-            }
-          };
-
-          ScrollTrigger.create({
-            trigger: track,
-            start: "top bottom+=100",
-            end: "bottom top-=100",
-            onToggle: (self) => {
-              isVisibleInViewport = self.isActive;
-              ensureLoop();
-              if (self.isActive) {
-                loop?.play();
-              } else {
-                loop?.timeScale(currentDirection);
-                skewTo?.(0);
-                loop?.pause();
-              }
-            },
-          });
-
-          let idleTimer: number | null = null;
-          let lastScrollY = window.scrollY;
-
-          const onScrollVelocity = () => {
-            if (!isVisibleInViewport) return;
-            ensureLoop();
-            const currentY = window.scrollY;
-            const deltaY = currentY - lastScrollY;
-            lastScrollY = currentY;
-
-            const activeLenis = lenisRef.current;
-            const rawVel = activeLenis ? activeLenis.velocity : deltaY * 0.08;
-            const rawDir = activeLenis
-              ? activeLenis.direction
-              : deltaY === 0
-              ? 0
-              : deltaY > 0
-              ? 1
-              : -1;
-
-            if (rawDir !== 0) {
-              currentDirection = rawDir < 0 ? -1 : 1;
-            }
-            const clampedVel = Math.min(Math.abs(rawVel), 3.5);
-            const targetScale = currentDirection * (1 + clampedVel * 0.45);
-            const targetSkew = Math.max(-6, Math.min(6, rawVel * -1.2));
-
-            loop?.timeScale(targetScale);
-            skewTo?.(targetSkew);
-
-            if (idleTimer !== null) window.clearTimeout(idleTimer);
-            idleTimer = window.setTimeout(() => {
-              loop?.timeScale(currentDirection);
-              skewTo?.(0);
-            }, 120);
-          };
-
-          window.addEventListener("scroll", onScrollVelocity, { passive: true });
-          cleanups.push(() => {
-            if (idleTimer !== null) window.clearTimeout(idleTimer);
-            window.removeEventListener("scroll", onScrollVelocity);
-            loop?.kill();
-          });
-        });
       });
 
-      pumpQueue(20);
+      pumpQueue();
 
       return () => {
         isCancelled = true;

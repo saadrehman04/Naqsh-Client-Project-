@@ -13,7 +13,6 @@ import { cn } from "@/lib/utils";
 
 export function Header() {
   const pathname = usePathname();
-  const isHomePage = pathname === "/";
   const { lenis } = useMotion();
 
   const [isScrolled, setIsScrolled] = useState(false);
@@ -65,8 +64,9 @@ export function Header() {
     };
   }, [lenis]);
 
-  // If on inner pages, header should always show dark logo and ivory background
-  const isTransparent = isHomePage && !isScrolled;
+  // Every page now opens on a dark hero, so the header stays transparent
+  // (gold logo, ivory links) until the user scrolls past the hero.
+  const isTransparent = !isScrolled;
 
   return (
     <>

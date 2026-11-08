@@ -22,13 +22,6 @@ export default function ServicesPage() {
     { bg: "bg-[var(--pine)]", text: "text-[var(--ivory)]", border: "border-[var(--pine)]" },
   ];
 
-  const workflowColors = [
-    { num: "text-[var(--pine)]", border: "border-t-4 border-[var(--pine)]", badge: "bg-[var(--pine)]" },
-    { num: "text-[#145240]", border: "border-t-4 border-[#145240]", badge: "bg-[#145240]" },
-    { num: "text-[var(--terracotta-deep)]", border: "border-t-4 border-[var(--terracotta-deep)]", badge: "bg-[var(--terracotta-deep)]" },
-    { num: "text-[var(--chestnut)]", border: "border-t-4 border-[var(--chestnut)]", badge: "bg-[var(--chestnut)]" },
-  ];
-
   return (
     <div className="bg-[var(--ivory)] min-h-screen">
       {/* Editorial Page Hero */}
@@ -37,10 +30,11 @@ export default function ServicesPage() {
         subtitle={header.intro}
         label={header.label}
         breadcrumbs={[{ label: "Services" }]}
+        image="/images/products/client-onboarding-kit.webp"
       />
 
       {/* Services Deep Dive */}
-      <section className="py-20 sm:py-28" aria-label="Detailed Services">
+      <section className="py-20 sm:py-28 bg-[var(--ivory-deep)]" aria-label="Detailed Services">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24 sm:space-y-32">
           {services.map((service, idx) => {
             const isReversed = idx % 2 === 1;
@@ -110,18 +104,23 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Rich Pine Teal Workflow Strip */}
+      {/* Dark Obsidian Workflow Strip */}
       <section
-        className="workflow-editorial section-y"
+        className="workflow-editorial on-dark section-y relative overflow-hidden"
         aria-label="Workflow Process"
       >
+        <div
+          className="absolute -bottom-40 -left-32 w-[560px] h-[560px] max-w-[120vw] rounded-full pointer-events-none"
+          style={{ background: "radial-gradient(circle, rgba(171,108,73,0.16) 0%, transparent 70%)" }}
+          aria-hidden="true"
+        />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="t-label text-[var(--pine)] mb-4 block" data-reveal="up">
+            <span className="t-label text-[#E5A666] mb-4 block" data-reveal="up">
               {workflowStrip.label}
             </span>
             <h2
-              className="font-serif text-3xl sm:text-4xl text-[var(--black)] font-normal tracking-tight"
+              className="font-serif text-3xl sm:text-4xl text-[var(--ivory)] font-normal tracking-tight"
               data-reveal="lines"
             >
               {workflowStrip.heading}
@@ -133,25 +132,21 @@ export default function ServicesPage() {
             data-reveal="stagger"
             data-stagger="0.1"
           >
-            {workflowStrip.steps.map((st, i) => (
+            {workflowStrip.steps.map((st) => (
               <div
                 key={st.step}
-                className="workflow-step"
-                style={{
-                  borderTop: `4px solid ${
-                    i === 0 ? "var(--pine)" : i === 1 ? "#145240" : i === 2 ? "var(--terracotta)" : "var(--chestnut)"
-                  }`,
-                }}
+                className="workflow-step rounded-2xl bg-white/[0.03] border border-white/[0.08] hover:border-[var(--copper)]/45 hover:bg-white/[0.05] transition-colors duration-300 p-6"
               >
                 <div className="flex items-center justify-between mb-4">
-                  <span className={`font-serif text-3xl font-semibold ${workflowColors[i].num}`}>
+                  <span className="font-serif text-3xl font-semibold text-[var(--copper-light)]">
                     {st.step}
                   </span>
+                  <span className="w-8 h-px bg-[var(--copper)]/60" aria-hidden="true" />
                 </div>
-                <h3 className="font-serif text-xl text-[var(--black)] font-normal mb-2">
+                <h3 className="font-serif text-xl text-[var(--ivory)] font-normal mb-2">
                   {st.name}
                 </h3>
-                <p className="font-sans text-sm text-[var(--charcoal)] font-light leading-relaxed">
+                <p className="font-sans text-sm text-[var(--ivory)]/70 font-light leading-relaxed">
                   {st.desc}
                 </p>
               </div>

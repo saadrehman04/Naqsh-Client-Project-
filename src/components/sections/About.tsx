@@ -43,18 +43,21 @@ export function About() {
           <p className="t-lead" data-reveal="up" data-delay="0.08">
             {about.text}
           </p>
-          <div className="about-slogan relative border-0" data-reveal="up" data-delay="0.12">
-            <span
-              className="about-slogan-hairline about-slogan-hairline--top"
-              data-draw="center"
-              aria-hidden="true"
-            />
-            <span>{about.slogan}</span>
-            <span
-              className="about-slogan-hairline about-slogan-hairline--bottom"
-              data-draw="center"
-              aria-hidden="true"
-            />
+          <div
+            className="grid grid-cols-3 gap-3 sm:gap-5 py-5 my-2 border-y border-white/12"
+            data-reveal="up"
+            data-delay="0.12"
+          >
+            {about.highlights.map((item) => (
+              <div key={item.label} className="flex flex-col">
+                <span className="font-serif text-xl sm:text-2xl text-[#E5B869] leading-tight">
+                  {item.value}
+                </span>
+                <span className="text-[11px] sm:text-xs uppercase tracking-[0.12em] text-[var(--ivory)]/75 mt-1">
+                  {item.label}
+                </span>
+              </div>
+            ))}
           </div>
           <div data-reveal="up" data-delay="0.16">
             <Link href="/our-approach" className="link-arrow">

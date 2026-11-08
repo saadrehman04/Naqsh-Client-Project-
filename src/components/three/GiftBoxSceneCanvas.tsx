@@ -8,7 +8,6 @@ import { ContactShadows, PerspectiveCamera, RoundedBox } from "@react-three/drei
 import { sceneProgress } from "@/lib/sceneProgress";
 import { pointerNormalized } from "@/lib/useCan3D";
 import { NAQSH_3D_PALETTE, StudioLighting } from "./StudioLighting";
-import { WaxSealActor } from "./WaxSealSceneCanvas";
 
 function smoothstepRange(value: number, min: number, max: number): number {
   const x = THREE.MathUtils.clamp((value - min) / Math.max(0.0001, max - min), 0, 1);
@@ -81,65 +80,59 @@ function GiftBoxActor({ onReady }: { onReady: (ready: boolean) => void }) {
   const itemRefs = useRef<Array<THREE.Group | null>>([null, null, null, null, null]);
 
   const dampedProgressRef = useRef(sceneProgress.approach || 0);
-  const sealProgressRef = useRef(0);
 
   const materials = useMemo(() => {
-    const bodyMat = new THREE.MeshPhysicalMaterial({
+    const bodyMat = new THREE.MeshStandardMaterial({
       color: NAQSH_3D_PALETTE.black,
-      roughness: 0.7,
+      roughness: 0.68,
+      metalness: 0.08,
+      transparent: true,
+      opacity: 1,
+    });
+    const linerMat = new THREE.MeshStandardMaterial({
+      color: NAQSH_3D_PALETTE.chestnut,
+      roughness: 0.62,
+      metalness: 0.05,
+      transparent: true,
+      opacity: 1,
+    });
+    const lidMat = new THREE.MeshStandardMaterial({
+      color: NAQSH_3D_PALETTE.ivoryDeep,
+      roughness: 0.48,
+      metalness: 0.04,
+      transparent: true,
+      opacity: 1,
+    });
+    const ribbonMat = new THREE.MeshStandardMaterial({
+      color: NAQSH_3D_PALETTE.sage,
+      roughness: 0.45,
       metalness: 0.06,
       transparent: true,
       opacity: 1,
     });
-    const linerMat = new THREE.MeshPhysicalMaterial({
-      color: NAQSH_3D_PALETTE.chestnut,
-      roughness: 0.65,
-      metalness: 0.04,
-      transparent: true,
-      opacity: 1,
-    });
-    const lidMat = new THREE.MeshPhysicalMaterial({
-      color: NAQSH_3D_PALETTE.ivoryDeep,
-      roughness: 0.5,
-      metalness: 0.03,
-      transparent: true,
-      opacity: 1,
-    });
-    const ribbonMat = new THREE.MeshPhysicalMaterial({
-      color: NAQSH_3D_PALETTE.sage,
-      roughness: 0.48,
-      metalness: 0.04,
-      sheen: 0.38,
-      sheenColor: new THREE.Color(NAQSH_3D_PALETTE.khaki),
-      transparent: true,
-      opacity: 1,
-    });
-    const terracottaMat = new THREE.MeshPhysicalMaterial({
+    const terracottaMat = new THREE.MeshStandardMaterial({
       color: NAQSH_3D_PALETTE.terracotta,
-      roughness: 0.52,
-      metalness: 0.05,
+      roughness: 0.5,
+      metalness: 0.06,
     });
-    const copperMat = new THREE.MeshPhysicalMaterial({
+    const copperMat = new THREE.MeshStandardMaterial({
       color: NAQSH_3D_PALETTE.copper,
-      metalness: 0.94,
-      roughness: 0.3,
-      clearcoat: 0.2,
+      metalness: 0.92,
+      roughness: 0.28,
     });
-    const khakiMat = new THREE.MeshPhysicalMaterial({
+    const khakiMat = new THREE.MeshStandardMaterial({
       color: NAQSH_3D_PALETTE.khaki,
-      roughness: 0.58,
+      roughness: 0.55,
       metalness: 0.08,
     });
-    const pineMat = new THREE.MeshPhysicalMaterial({
+    const pineMat = new THREE.MeshStandardMaterial({
       color: NAQSH_3D_PALETTE.pine,
-      roughness: 0.62,
-      metalness: 0.05,
-      sheen: 0.25,
-      sheenColor: new THREE.Color(NAQSH_3D_PALETTE.sage),
+      roughness: 0.58,
+      metalness: 0.06,
     });
-    const ivoryMat = new THREE.MeshPhysicalMaterial({
+    const ivoryMat = new THREE.MeshStandardMaterial({
       color: NAQSH_3D_PALETTE.ivory,
-      roughness: 0.54,
+      roughness: 0.52,
       metalness: 0.02,
     });
 
@@ -265,11 +258,13 @@ function GiftBoxActor({ onReady }: { onReady: (ready: boolean) => void }) {
     }
 
     // Miniature WaxSeal stamp on the Ivory card during Customize (0.50 -> 0.75)
+    // Keep mesh visible at all times and animate scale so zero shader compilation occurs mid-scroll
     const rawSealP =
       smoothstepRange(p, 0.51, 0.68) * (1 - smoothstepRange(p, 0.75, 0.84));
-    sealProgressRef.current = rawSealP;
     if (miniSealGroupRef.current) {
-      miniSealGroupRef.current.visible = rawSealP > 0.01;
+      const s = Math.max(0.001, rawSealP * 0.13);
+      miniSealGroupRef.current.scale.setScalar(s);
+      miniSealGroupRef.current.position.y = 0.026 + (1 - rawSealP) * 0.08;
     }
 
     // Box rotation, slide, and fade across the 4 steps
@@ -414,7 +409,7 @@ function GiftBoxActor({ onReady }: { onReady: (ready: boolean) => void }) {
           </mesh>
         </group>
 
-        {/* 3: Card (Ivory) + Reused WaxSeal3D Actor */}
+        {/* 3: Card (Ivory) + Lightweight Miniature Wax Seal */}
         <group
           ref={(el) => {
             itemRefs.current[3] = el;
@@ -431,19 +426,18 @@ function GiftBoxActor({ onReady }: { onReady: (ready: boolean) => void }) {
             <ringGeometry args={[0.22, 0.23, 4]} />
             <meshBasicMaterial color={NAQSH_3D_PALETTE.copper} />
           </mesh>
-          {/* Miniature WaxSeal3D stamping onto the card during Customize */}
+          {/* Miniature Wax Seal stamping onto the card during Customize */}
           <group
             ref={miniSealGroupRef}
-            visible={false}
             position={[0.14, 0.032, 0.06]}
-            rotation={[-Math.PI / 2, 0, 0]}
-            scale={0.13}
+            scale={0.001}
           >
-            <WaxSealActor
-              progressDrivenRef={sealProgressRef}
-              hideShadows
-              onReady={() => {}}
-            />
+            <mesh material={materials.terracottaMat}>
+              <cylinderGeometry args={[0.95, 1.02, 0.16, 24]} />
+            </mesh>
+            <mesh position={[0, 0.09, 0]} material={materials.copperMat}>
+              <cylinderGeometry args={[0.52, 0.52, 0.05, 16]} />
+            </mesh>
           </group>
         </group>
 
@@ -512,9 +506,9 @@ function GiftBoxActor({ onReady }: { onReady: (ready: boolean) => void }) {
         position={[0, -0.92, 0]}
         opacity={0.44}
         scale={5.2}
-        blur={2.2}
+        blur={2.0}
         far={3.4}
-        resolution={256}
+        resolution={128}
         frames={1}
         color={NAQSH_3D_PALETTE.black}
       />
@@ -535,7 +529,7 @@ export default function GiftBoxSceneCanvas({
 
   return (
     <Canvas
-      dpr={[1, 1.5]}
+      dpr={[1, 1.25]}
       frameloop={isVisible ? "always" : "never"}
       gl={{
         antialias: true,

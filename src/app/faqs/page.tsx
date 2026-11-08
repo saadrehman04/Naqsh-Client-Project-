@@ -36,10 +36,11 @@ export default function FAQsPage() {
         subtitle="Have a question about a gifting request? Contact Naqsh to discuss your project."
         label="Frequently Asked Questions"
         breadcrumbs={[{ label: "FAQs" }]}
+        image="/images/products/ramadan-delights.webp"
       />
 
       {/* Grouped Accordions Section */}
-      <section className="py-20 sm:py-28" aria-label="FAQ Categories">
+      <section className="py-20 sm:py-28 bg-[var(--ivory-deep)]" aria-label="FAQ Categories">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 sm:space-y-20">
           {faqGroups.map((grp) => {
             const badge = groupBadges[grp.group] || {
@@ -84,9 +85,9 @@ export default function FAQsPage() {
             );
           })}
 
-          {/* Deep Pine Teal Support Callout */}
+          {/* Deep Obsidian Support Callout */}
           <div
-            className="rounded-[var(--radius-card)] bg-[var(--pine)] text-[var(--ivory)] border border-[var(--sage)]/40 p-8 sm:p-12 text-center shadow-2xl relative overflow-hidden"
+            className="rounded-[var(--radius-card)] bg-[#12100E] text-[var(--ivory)] border border-[var(--copper)]/25 p-8 sm:p-12 text-center shadow-2xl relative overflow-hidden"
             data-reveal="up"
           >
             <div

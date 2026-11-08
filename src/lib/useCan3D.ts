@@ -88,9 +88,9 @@ export function useCan3D(minWidth = 1024): boolean {
 }
 
 /**
- * Mounts a 3D scene when its wrapper is within ~600px of the viewport,
- * pauses rendering (`isVisible = false`) when off-screen, and unmounts it
- * when farther than ~1.5 screens away so at most 2 WebGL contexts exist at once.
+ * Mounts a 3D scene early (within ~2200px of the viewport) so shaders and geometries
+ * warm up well before the user reaches the section, and pauses rendering (`isVisible = false`)
+ * when off-screen so GPU load is zero when not visible.
  */
 export function useSceneViewportLifecycle(
   wrapperRef: RefObject<HTMLElement | null>,
@@ -107,17 +107,13 @@ export function useSceneViewportLifecycle(
       return;
     }
 
-    // Check initial distance synchronously in case already near viewport
     const checkBounds = () => {
       const rect = el.getBoundingClientRect();
       const vh = window.innerHeight || 900;
-      const within600 = rect.top <= vh + 600 && rect.bottom >= -600;
-      const within150Pct = rect.top <= vh * 2.5 && rect.bottom >= -vh * 1.5;
-      const onScreen = rect.top <= vh + 40 && rect.bottom >= -40;
-      if (within600) {
+      const withinPreload = rect.top <= vh + 2400 && rect.bottom >= -2400;
+      const onScreen = rect.top <= vh + 120 && rect.bottom >= -120;
+      if (withinPreload) {
         setShouldMount(true);
-      } else if (!within150Pct) {
-        setShouldMount(false);
       }
       setIsVisible(onScreen);
     };
@@ -130,33 +126,21 @@ export function useSceneViewportLifecycle(
           setShouldMount(true);
         }
       },
-      { rootMargin: "600px 0px 600px 0px", threshold: 0 }
-    );
-
-    const unmountObserver = new IntersectionObserver(
-      ([entry]) => {
-        if (entry && !entry.isIntersecting) {
-          setShouldMount(false);
-          setIsVisible(false);
-        }
-      },
-      { rootMargin: "150% 0px 150% 0px", threshold: 0 }
+      { rootMargin: "2400px 0px 2400px 0px", threshold: 0 }
     );
 
     const visibleObserver = new IntersectionObserver(
       ([entry]) => {
         setIsVisible(Boolean(entry?.isIntersecting));
       },
-      { rootMargin: "40px 0px 40px 0px", threshold: 0 }
+      { rootMargin: "120px 0px 120px 0px", threshold: 0 }
     );
 
     mountObserver.observe(el);
-    unmountObserver.observe(el);
     visibleObserver.observe(el);
 
     return () => {
       mountObserver.disconnect();
-      unmountObserver.disconnect();
       visibleObserver.disconnect();
     };
   }, [wrapperRef, can3D]);

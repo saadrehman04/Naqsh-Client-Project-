@@ -24,6 +24,12 @@ export function EmblemScene() {
   useWindowPointerTilt();
 
   useEffect(() => {
+    if (can3D) {
+      import("./EmblemSceneCanvas");
+    }
+  }, [can3D]);
+
+  useEffect(() => {
     if (!shouldMount) {
       setHasDrawnFirstFrame(false);
     }

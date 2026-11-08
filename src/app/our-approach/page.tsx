@@ -12,9 +12,17 @@ export const metadata: Metadata = buildMetadata({
 });
 
 export default function OurApproachPage() {
-  return <div className="min-h-screen bg-[var(--ivory)]">
-    <PageHero title="Our Approach" subtitle={homeContent.approach.intro} label="Our Approach" breadcrumbs={[{ label: "Our Approach" }]} />
-    <ApproachSection compact />
-    <CTABand />
-  </div>;
+  return (
+    <div className="min-h-screen bg-[var(--ivory-deep)]">
+      <PageHero
+        title="A considered journey from concept to doorstep."
+        subtitle={homeContent.approach.intro}
+        label="Our Approach"
+        breadcrumbs={[{ label: "Our Approach" }]}
+        image="/images/products/new-hire-welcome-kit.webp"
+      />
+      <ApproachSection compact />
+      <CTABand />
+    </div>
+  );
 }

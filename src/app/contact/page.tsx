@@ -20,114 +20,125 @@ export default function ContactPage() {
   );
 
   return (
-    <div className="bg-[var(--ivory)] min-h-screen">
+    <div className="bg-[var(--ivory-deep)] min-h-screen">
       {/* Editorial Page Hero */}
       <PageHero
         title="Let's craft your next gifting experience."
-        subtitle="Share your occasion, timeline, and audience requirements. Our team will prepare a bespoke curation proposal tailored to your brand."
+        subtitle="Share your occasion, timeline, and audience—we’ll prepare a tailored curation proposal."
         label="Get In Touch"
         breadcrumbs={[{ label: "Contact" }]}
+        image="/images/products/excellence-award.webp"
       />
 
       {/* Main Contact Section */}
-      <section className="py-20 sm:py-28" aria-label="Contact Channels & Consultation Form">
+      <section className="py-12 sm:py-24" aria-label="Contact Channels & Consultation Form">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-            {/* Left Column: Direct Channels & Studio Information */}
-            <div className="lg:col-span-5 space-y-10">
-              <div data-reveal="up">
-                <span className="text-xs uppercase tracking-[0.18em] font-sans font-semibold text-[var(--terracotta-deep)] mb-2 block">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            {/* Left Column: Dark Luxury Direct Channels Panel */}
+            <div className="lg:col-span-5 rounded-2xl sm:rounded-3xl bg-[#12100E] text-[var(--ivory)] p-6 sm:p-9 border border-white/10 shadow-xl space-y-8 relative overflow-hidden">
+              <div
+                className="absolute -top-24 -right-24 w-64 h-64 rounded-full pointer-events-none"
+                style={{
+                  background:
+                    "radial-gradient(circle, rgba(171, 108, 73, 0.2) 0%, transparent 70%)",
+                }}
+                aria-hidden="true"
+              />
+
+              <div className="relative z-10" data-reveal="up">
+                <span className="text-xs uppercase tracking-[0.18em] font-sans font-semibold text-[#E5B869] mb-2 block">
                   Direct Channels
                 </span>
                 <h2
-                  className="font-serif text-3xl sm:text-4xl text-[var(--black)] font-normal tracking-tight mb-4"
+                  className="font-serif text-3xl sm:text-4xl text-[var(--ivory)] font-normal tracking-tight mb-3"
                   data-reveal="lines"
                 >
                   Attentive Consultation
                 </h2>
-                <p className="font-sans text-base text-[var(--charcoal)] font-light leading-relaxed">
-                  We invite corporate leaders, HR teams, and marketing directors to speak directly with our curation team.
+                <p className="font-sans text-sm sm:text-base text-[var(--ivory)]/75 font-light leading-relaxed">
+                  Speak directly with our curation specialists for executive, onboarding, or milestone gifting.
                 </p>
               </div>
 
-              {/* Channels List with Distinct Palette Accents */}
-              <div className="space-y-6" data-reveal="stagger" data-stagger="0.1">
-                {/* Phone - Terracotta accent */}
-                <div className="flex items-start gap-4 p-6 rounded-[var(--radius-card)] bg-[var(--ivory-warm)] border-l-4 border-[var(--terracotta-deep)] border-y border-r border-[var(--border-light)] shadow-sm hover:shadow-md transition-shadow">
-                  <div className="w-11 h-11 rounded-full bg-[var(--terracotta)]/15 text-[var(--terracotta-deep)] flex items-center justify-center flex-shrink-0">
+              {/* Channels List */}
+              <div className="relative z-10 space-y-4" data-reveal="stagger" data-stagger="0.1">
+                {/* Phone */}
+                <div className="flex items-start gap-4 p-5 rounded-xl bg-white/[0.04] border border-white/10 hover:border-[#E5B869]/40 transition-colors">
+                  <div className="w-11 h-11 rounded-full bg-[var(--terracotta)]/25 text-[#E5B869] flex items-center justify-center flex-shrink-0">
                     <Phone className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="block text-xs uppercase tracking-[0.16em] font-sans font-semibold text-[var(--terracotta-deep)]">
+                    <span className="block text-[11px] uppercase tracking-[0.16em] font-sans font-semibold text-[#E5B869]">
                       Direct Phone
                     </span>
                     <a
                       href={`tel:${DISPLAY_PHONE.replace(/[^0-9+]/g, "")}`}
-                      className="font-serif text-2xl text-[var(--black)] hover:text-[var(--terracotta-deep)] transition-colors mt-0.5 inline-flex items-center min-h-[44px] py-1"
+                      className="font-serif text-xl sm:text-2xl text-[var(--ivory)] hover:text-[#E5B869] transition-colors mt-0.5 inline-flex items-center min-h-[44px] py-1"
                     >
                       {DISPLAY_PHONE}
                     </a>
                   </div>
                 </div>
 
-                {/* WhatsApp - Pine Teal accent */}
-                <div className="flex items-start gap-4 p-6 rounded-[var(--radius-card)] bg-[var(--ivory-warm)] border-l-4 border-[var(--pine)] border-y border-r border-[var(--border-light)] shadow-sm hover:shadow-md transition-shadow">
-                  <div className="w-11 h-11 rounded-full bg-[var(--pine)]/15 text-[var(--pine)] flex items-center justify-center flex-shrink-0">
+                {/* WhatsApp */}
+                <div className="flex items-start gap-4 p-5 rounded-xl bg-white/[0.04] border border-white/10 hover:border-[#789675]/50 transition-colors">
+                  <div className="w-11 h-11 rounded-full bg-[var(--pine)]/40 text-[#9CC498] flex items-center justify-center flex-shrink-0">
                     <MessageCircle className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="block text-xs uppercase tracking-[0.16em] font-sans font-semibold text-[var(--pine)]">
+                    <span className="block text-[11px] uppercase tracking-[0.16em] font-sans font-semibold text-[#9CC498]">
                       WhatsApp Quick Chat
                     </span>
                     <a
                       href={whatsappUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-serif text-2xl text-[var(--black)] hover:text-[var(--pine)] transition-colors mt-0.5 inline-flex items-center min-h-[44px] py-1"
+                      className="font-serif text-xl sm:text-2xl text-[var(--ivory)] hover:text-[#9CC498] transition-colors mt-0.5 inline-flex items-center min-h-[44px] py-1"
                     >
                       +{WHATSAPP_NUMBER}
                     </a>
-                    <span className="text-xs text-[var(--charcoal)] font-light block mt-1">
-                      Send a WhatsApp message to start a conversation.
+                    <span className="text-xs text-[var(--ivory)]/65 font-light block">
+                      Instant response for project inquiries.
                     </span>
                   </div>
                 </div>
 
-                {/* Location - Khaki / Sand accent */}
-                <div className="flex items-start gap-4 p-6 rounded-[var(--radius-card)] bg-[var(--ivory-warm)] border-l-4 border-[var(--khaki)] border-y border-r border-[var(--border-light)] shadow-sm hover:shadow-md transition-shadow">
-                  <div className="w-11 h-11 rounded-full bg-[var(--khaki)]/25 text-[var(--chestnut)] flex items-center justify-center flex-shrink-0">
+                {/* Location */}
+                <div className="flex items-start gap-4 p-5 rounded-xl bg-white/[0.04] border border-white/10">
+                  <div className="w-11 h-11 rounded-full bg-white/10 text-[var(--khaki)] flex items-center justify-center flex-shrink-0">
                     <MapPin className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="block text-xs uppercase tracking-[0.16em] font-sans font-semibold text-[var(--chestnut)]">
-                      Location
+                    <span className="block text-[11px] uppercase tracking-[0.16em] font-sans font-semibold text-[var(--khaki)]">
+                      Studio Location
                     </span>
-                    <span className="font-serif text-2xl text-[var(--black)] mt-0.5 block">
+                    <span className="font-serif text-xl sm:text-2xl text-[var(--ivory)] mt-0.5 block">
                       {siteConfig.location}
                     </span>
                   </div>
                 </div>
 
                 {/* Unconfirmed details in dev */}
-                <div className="space-y-3 pt-2">
-                  <div className="flex items-center gap-3 text-xs text-[var(--charcoal)]">
-                    <Mail className="w-4 h-4 text-[var(--sage)]" />
+                <div className="space-y-2.5 pt-2">
+                  <div className="flex items-center gap-3 text-xs text-[var(--ivory)]/70">
+                    <Mail className="w-4 h-4 text-[#E5B869]" />
                     <span>Official Email:</span>
                     <Confirm label="Email address not yet confirmed by client" />
                   </div>
-                  <div className="flex items-center gap-3 text-xs text-[var(--charcoal)]">
-                    <Clock className="w-4 h-4 text-[var(--sage)]" />
+                  <div className="flex items-center gap-3 text-xs text-[var(--ivory)]/70">
+                    <Clock className="w-4 h-4 text-[#E5B869]" />
                     <span>Studio Hours:</span>
                     <Confirm label="Working hours not yet confirmed by client" />
                   </div>
                 </div>
               </div>
-
-              <p className="border-y border-[var(--hairline)] py-5 font-serif text-2xl text-[var(--chestnut)]">Beyond the box, into an experience.</p>
             </div>
 
             {/* Right Column: Interactive Consultation Portal */}
-            <div className="lg:col-span-7" data-reveal="fade-up">
+            <div
+              className="lg:col-span-7 rounded-2xl sm:rounded-3xl bg-[#FAF6EF] p-6 sm:p-9 border border-[#26211D]/12 shadow-lg"
+              data-reveal="fade-up"
+            >
               <div className="mb-6">
                 <span className="text-xs uppercase tracking-[0.18em] font-sans font-semibold text-[var(--pine)] mb-1 block">
                   Project Brief

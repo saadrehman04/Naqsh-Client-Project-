@@ -31,7 +31,7 @@ export default async function CollectionDetailPage({ params }: Props) {
   if (!collection) notFound();
   const items = products.filter((product) => product.collection === slug);
   return (
-    <div className="min-h-screen bg-[var(--ivory)]">
+    <div className="min-h-screen bg-[var(--ivory-deep)]">
       <PageHero
         title={collection.title}
         subtitle={collection.tagline}
@@ -40,12 +40,14 @@ export default async function CollectionDetailPage({ params }: Props) {
           { label: "Portfolio", href: "/portfolio" },
           { label: collection.title },
         ]}
+        image={collection.image}
+        imageAlt={collection.alt}
       />
       <section className="section-y">
         <div className="container-x">
-          <div className="collection-detail-lead">
+          <div className="collection-detail-lead rounded-2xl sm:rounded-3xl bg-[#12100E] text-[var(--ivory)] p-5 sm:p-8 lg:p-10 border border-white/10 shadow-xl">
             <div
-              className="collection-detail-image"
+              className="collection-detail-image rounded-xl overflow-hidden"
               data-reveal="clip"
               data-parallax="0.08"
             >
@@ -59,10 +61,10 @@ export default async function CollectionDetailPage({ params }: Props) {
               />
             </div>
             <div data-reveal="stagger" data-stagger="0.1">
-              <p className="t-label text-[var(--pine)]">{collection.title}</p>
-              <h2 className="t-h2">Selected products</h2>
-              <p className="text-[var(--charcoal)] leading-relaxed">
-                Explore the client-provided products in this collection.
+              <p className="t-label text-[#E5B869]">{collection.title}</p>
+              <h2 className="t-h2 text-[var(--ivory)] mt-2">Curated Editions</h2>
+              <p className="text-[var(--ivory)]/75 leading-relaxed mt-3">
+                Every piece in this collection can be customized with your brand emblem, bespoke packaging, and personal notes.
               </p>
             </div>
           </div>

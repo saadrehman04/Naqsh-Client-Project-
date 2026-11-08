@@ -13,12 +13,13 @@ export const metadata: Metadata = buildMetadata({
 
 export default function PortfolioPage() {
   return (
-    <div className="bg-[var(--ivory)] min-h-screen">
+    <div className="bg-[var(--ivory-deep)] min-h-screen">
       <PageHero
         title="Gifts shaped around the occasion."
-        subtitle="Explore our collections and the products selected for corporate gifting."
+        subtitle="Explore our seven signature collections and custom-curated corporate gift editions."
         label="Product Portfolio"
         breadcrumbs={[{ label: "Portfolio" }]}
+        image="/images/products/pakistan-heritage-gift-set.webp"
       />
       <CollectionGallery />
       <ProductCatalog />

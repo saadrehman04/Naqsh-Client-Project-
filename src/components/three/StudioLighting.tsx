@@ -87,7 +87,7 @@ export function StudioLighting({
   useFrame(() => {
     if (!ready || firedRef.current) return;
     frameCountRef.current += 1;
-    if (frameCountRef.current >= 2) {
+    if (frameCountRef.current >= 1) {
       firedRef.current = true;
       onFirstFrame?.();
     }
@@ -101,7 +101,7 @@ export function StudioLighting({
         intensity={1.35}
         color={NAQSH_3D_PALETTE.ivory}
       />
-      <Environment resolution={128} frames={1}>
+      <Environment resolution={64} frames={1}>
         {/* Large soft ivory rect from the upper left */}
         <Lightformer
           form="rect"

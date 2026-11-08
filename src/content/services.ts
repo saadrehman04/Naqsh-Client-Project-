@@ -3,7 +3,7 @@ export const servicesContent = {
     label: "Our Services",
     title: "Gifting solutions crafted for corporate relationships.",
     intro:
-      "Whether you need bespoke welcome kits for an expanding team or an ongoing corporate gifting partnership, Naqsh guides you from first concept to final doorstep delivery.",
+      "From bespoke welcome kits to executive appreciation, Naqsh guides you from concept to doorstep.",
   },
   services: [
     {
@@ -11,14 +11,14 @@ export const servicesContent = {
       number: "01",
       title: "Personalized Gifts",
       summary:
-        "Gifts designed around your brand, your people and the occasion. We curate, customize and finish every detail, from the product to the packaging.",
+        "Bespoke gifts designed around your brand, people, and occasion—crafted from product to packaging.",
       image: "/images/products/retirement-award.webp",
       imageAlt: "Personalized awards and commemorative sets in bespoke packaging",
       features: [
-        "Tailored product selection reflecting your brand identity and values",
-        "Subtle, elevated branding techniques including foil stamping, debossing, and wax sealing",
-        "Custom stationery and handwritten or printed personal notes",
-        "Packaging crafted with sustainable, tactile materials",
+        "Tailored selection reflecting your brand and values",
+        "Foil stamping, debossing, laser engraving, and wax seals",
+        "Custom stationery and personal greeting cards",
+        "Sustainable, tactile luxury packaging",
       ],
       ctaText: "Request Consultation",
       ctaHref: "/contact?service=personalized-gifts",
@@ -28,14 +28,14 @@ export const servicesContent = {
       number: "02",
       title: "Gifting Consultations",
       summary:
-        "A conversation before the box. We learn about the occasion, audience, brand and budget, then recommend a gifting plan that fits.",
+        "Share your occasion, audience, and budget—we’ll recommend a tailored gifting plan that fits.",
       image: "/images/products/pakistan-heritage-gift-set.webp",
       imageAlt: "Corporate gifting consultation showcase with artisan heritage curation",
       features: [
-        "In-depth discovery session discussing recipient demographics and company milestones",
-        "Ethical and conscious curation guidance with vetted regional alternatives",
-        "Tiered proposal options designed to balance budget and presentation impact",
-        "Full project timeline and logistical delivery planning",
+        "Discovery session on recipient profile and milestones",
+        "Conscious curation with vetted ethical alternatives",
+        "Tiered proposals balanced for budget and impact",
+        "Turnkey timeline and nationwide delivery planning",
       ],
       ctaText: "Book a Consultation",
       ctaHref: "/contact?service=gifting-consultations",
