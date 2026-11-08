@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowUpRight, Phone, Mail, MapPin, Sparkles, Clock, ShieldCheck } from "lucide-react";
+import { ArrowUpRight, Phone, MapPin } from "lucide-react";
 import { siteConfig } from "@/content/site";
 import { getWhatsAppUrl, DISPLAY_PHONE } from "@/lib/whatsapp";
 
@@ -12,61 +12,46 @@ function WhatsAppGlyph() {
   );
 }
 
-function InstagramGlyph() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-    </svg>
-  );
-}
-
-function LinkedInGlyph() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className="w-4 h-4" fill="currentColor">
-      <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.64 1.64 0 1 0 0-3.28 1.64 1.64 0 0 0 0 3.28m1.39 9.74v-8.37H5.07v8.37h2.78Z" />
-    </svg>
-  );
-}
-
 const collectionsList = [
-  { label: "New Hire Welcome Kits", href: "/portfolio/new-hire-welcome-kits" },
-  { label: "Client Packages & VIP Suites", href: "/portfolio/client-packages" },
+  { label: "Employee Welcome Kits", href: "/portfolio/new-hire-welcome-kits" },
+  { label: "Client Packages", href: "/portfolio/client-packages" },
   { label: "Ramadan & Eid Baskets", href: "/portfolio/ramadan-eid-baskets" },
+  { label: "Appreciation Gifts", href: "/portfolio/appreciation-gifts" },
+  { label: "Bespoke & Occasion Gifting", href: "/portfolio/custom-occasion-gifts" },
   { label: "Annual Event Giveaways", href: "/portfolio/annual-event-giveaways" },
-  { label: "Brand Souvenirs & Merchandise", href: "/portfolio/brand-souvenirs" },
-  { label: "Appreciation & Milestone Awards", href: "/portfolio/appreciation-gifts" },
+  { label: "Brand Souvenirs", href: "/portfolio/brand-souvenirs" },
 ];
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
   const whatsappUrl = getWhatsAppUrl(
-    "Hello Naqsh Concierge, I would like to consult on a bespoke corporate gifting requirement."
+    "Hello NAQSH Concierge, I would like to consult on a bespoke corporate gifting requirement."
   );
 
   return (
-    <footer className="site-footer relative z-10 bg-[var(--ivory)] pt-4 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8" role="contentinfo">
+    <footer
+      className="site-footer relative z-10 bg-[var(--ivory)] pt-4 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8"
+      role="contentinfo"
+    >
       <div className="max-w-[1400px] mx-auto">
-        {/* Floating Luxury Island Container (Schmidt & Arclyn Studio reference) */}
+        {/* Floating Luxury Island Container */}
         <div className="footer-island relative rounded-[28px] sm:rounded-[38px] lg:rounded-[46px] bg-[#0E0C0A] border-[2px] border-[#2A231D] text-[var(--ivory)] overflow-hidden shadow-[0_36px_100px_-24px_rgba(14,12,10,0.65),0_16px_36px_-8px_rgba(14,12,10,0.35)]">
-
-          {/* Layer 1: Radiant Bottom Sunrise Glow (Schmidt reference - luminous warm amber bloom) */}
+          {/* Layer 1: Radiant Bottom Sunrise Glow */}
           <div
             className="footer-sunrise-glow absolute inset-x-0 bottom-0 h-[500px] pointer-events-none"
             style={{
               background:
-                "radial-gradient(ellipse 95% 72% at 50% 100%, rgba(215, 120, 65, 0.46) 0%, rgba(140, 56, 38, 0.3) 38%, rgba(20, 82, 64, 0.12) 65%, transparent 85%)",
+                "radial-gradient(ellipse 95% 72% at 50% 100%, rgba(201, 154, 83, 0.42) 0%, rgba(140, 56, 38, 0.28) 38%, rgba(16, 29, 25, 0.16) 65%, transparent 85%)",
             }}
             aria-hidden="true"
           />
 
-          {/* Layer 2: Top-left subtle warm ambient illumination (Redsun reference) */}
+          {/* Layer 2: Top-left subtle warm ambient illumination */}
           <div
             className="footer-top-glow absolute -top-32 -left-32 w-96 h-96 rounded-full pointer-events-none"
             style={{
               background:
-                "radial-gradient(circle, rgba(171, 108, 73, 0.18) 0%, transparent 70%)",
+                "radial-gradient(circle, rgba(201, 154, 83, 0.18) 0%, transparent 70%)",
             }}
             aria-hidden="true"
           />
@@ -81,77 +66,72 @@ export function Footer() {
             aria-hidden="true"
           />
 
-          {/* MAIN EDITORIAL FOUR-COLUMN GRID (Upper invitation removed per request) */}
+          {/* MAIN EDITORIAL FOUR-COLUMN GRID */}
           <div className="footer-content-grid relative z-10 px-6 sm:px-10 lg:px-16 pt-12 sm:pt-16 lg:pt-20 pb-12 sm:pb-16">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 items-start">
-              
-              {/* Column 1: Brand & Curation Statement (4 cols) */}
-              <div className="lg:col-span-4 flex flex-col justify-between" data-footer-col="0">
+              {/* Column 1: Brand (4 cols) */}
+              <div
+                className="lg:col-span-4 flex flex-col justify-between"
+                data-footer-col="0"
+              >
                 <div>
-                  <Link href="/" aria-label="Naqsh Home" className="flex items-center gap-3 group">
-                    <div className="w-9 h-9 rounded-xl bg-[var(--pine)] text-[var(--ivory)] flex items-center justify-center font-serif text-lg font-bold border border-[#2D7A62] shadow-sm group-hover:scale-105 transition-transform duration-200">
+                  <Link
+                    href="/"
+                    aria-label="NAQSH Home"
+                    className="flex items-center gap-3 group"
+                  >
+                    <div className="w-9 h-9 rounded-xl bg-[#101D19] text-[var(--ivory)] flex items-center justify-center font-serif text-lg font-bold border border-[#C99A53]/40 shadow-sm group-hover:scale-105 transition-transform duration-200">
                       ن
                     </div>
                     <div className="relative w-36 h-7">
                       <Image
                         src="/brand/wordmark-gold-gradient.svg"
-                        alt="Naqsh"
+                        alt="NAQSH"
                         fill
                         className="object-contain object-left"
                       />
                     </div>
                   </Link>
 
-                  <p className="mt-4 text-sm font-sans text-[var(--ivory)]/75 leading-relaxed max-w-sm">
-                    Corporate gifting, considered from concept to doorstep. Refined packages hand-finished in Lahore, delivered across Pakistan and worldwide.
+                  <p className="mt-4 text-sm font-sans text-[var(--ivory)]/80 leading-relaxed max-w-sm">
+                    Premium corporate gifting solutions—thoughtfully curated, personalized, and delivered from concept to doorstep across Pakistan.
                   </p>
 
-                  <div className="mt-5 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.04] border border-[var(--copper)]/30 text-xs font-sans text-[var(--khaki)]">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[var(--copper)]" />
-                    <span>Beyond the box, into an experience</span>
+                  <div className="mt-5 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.04] border border-[#C99A53]/30 text-xs font-sans text-[#D6C8B3]">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#C99A53]" />
+                    <span>Crafting Lasting Impressions</span>
                   </div>
                 </div>
 
-                {/* Direct Concierge Badge */}
-                <div className="mt-8 pt-6 border-t border-white/[0.08] space-y-2.5 text-xs font-sans text-[var(--ivory)]/70">
-                  <div className="flex items-center gap-2.5">
-                    <MapPin className="w-3.5 h-3.5 text-[var(--copper-light)] shrink-0" />
-                    <span>Lahore, Pakistan · Nationwide Delivery</span>
-                  </div>
-                  <div className="flex items-center gap-2.5">
-                    <Clock className="w-3.5 h-3.5 text-[var(--copper-light)] shrink-0" />
-                    <span>24-Hour Custom Proposal Turnaround</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Column 2: Curated Collections (3 cols) */}
-              <div className="lg:col-span-3" data-footer-col="1">
-                <h3 className="flex items-center gap-2 text-xs font-sans font-semibold tracking-[0.16em] uppercase text-[var(--copper-light)] mb-5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--copper)]" />
-                  <span>Curated Collections</span>
-                </h3>
-                <ul className="space-y-1 font-sans text-sm text-[var(--ivory)]/80">
-                  {collectionsList.map((col) => (
-                    <li key={col.href}>
-                      <Link
-                        href={col.href}
-                        className="group flex items-center justify-between hover:text-[var(--ivory)] transition-colors duration-200 min-h-[44px] py-2"
+                {/* Verified Social Links (only rendered if configured) */}
+                {siteConfig.socials.length > 0 && (
+                  <div className="mt-6 flex items-center gap-2.5">
+                    {siteConfig.socials.map((soc) => (
+                      <a
+                        key={soc.platform}
+                        href={soc.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white/[0.04] hover:bg-white/[0.1] border border-white/[0.08] text-xs font-sans text-[var(--ivory)]/85 transition-colors"
                       >
-                        <span className="group-hover:translate-x-1 transition-transform duration-200">
-                          {col.label}
-                        </span>
-                        <ArrowUpRight className="w-3.5 h-3.5 text-[var(--copper)] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200" />
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
+                        <span>{soc.platform}</span>
+                      </a>
+                    ))}
+                  </div>
+                )}
+
+                <div className="mt-8 pt-6 border-t border-white/[0.08] space-y-2 text-xs font-sans text-[var(--ivory)]/75">
+                  <div className="flex items-center gap-2.5">
+                    <MapPin className="w-3.5 h-3.5 text-[#C99A53] shrink-0" aria-hidden="true" />
+                    <span>Lahore, Pakistan · Nationwide Corporate Delivery</span>
+                  </div>
+                </div>
               </div>
 
-              {/* Column 3: Explore & Studio (2 cols) */}
-              <div className="lg:col-span-2" data-footer-col="2">
-                <h3 className="flex items-center gap-2 text-xs font-sans font-semibold tracking-[0.16em] uppercase text-[var(--copper-light)] mb-5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--copper)]" />
+              {/* Column 2: Explore (2 cols) */}
+              <div className="lg:col-span-2" data-footer-col="1">
+                <h3 className="flex items-center gap-2 text-xs font-sans font-semibold tracking-[0.16em] uppercase text-[#C99A53] mb-5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#C99A53]" />
                   <span>Explore</span>
                 </h3>
                 <ul className="space-y-1 font-sans text-sm text-[var(--ivory)]/80">
@@ -164,97 +144,96 @@ export function Footer() {
                         <span className="group-hover:translate-x-1 transition-transform duration-200">
                           {item.label}
                         </span>
-                        <ArrowUpRight className="w-3.5 h-3.5 text-[var(--copper)] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200" />
+                        <ArrowUpRight className="w-3.5 h-3.5 text-[#C99A53] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200" />
                       </Link>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              {/* Column 4: Direct Desk & Social Channels (3 cols) */}
+              {/* Column 3: Collections (3 cols) */}
+              <div className="lg:col-span-3" data-footer-col="2">
+                <h3 className="flex items-center gap-2 text-xs font-sans font-semibold tracking-[0.16em] uppercase text-[#C99A53] mb-5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#C99A53]" />
+                  <span>Collections</span>
+                </h3>
+                <ul className="space-y-1 font-sans text-sm text-[var(--ivory)]/80">
+                  {collectionsList.map((col) => (
+                    <li key={col.href}>
+                      <Link
+                        href={col.href}
+                        className="group flex items-center justify-between hover:text-[var(--ivory)] transition-colors duration-200 min-h-[44px] py-2"
+                      >
+                        <span className="group-hover:translate-x-1 transition-transform duration-200">
+                          {col.label}
+                        </span>
+                        <ArrowUpRight className="w-3.5 h-3.5 text-[#C99A53] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200" />
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Column 4: Contact (3 cols) */}
               <div className="lg:col-span-3" data-footer-col="3">
-                <h3 className="flex items-center gap-2 text-xs font-sans font-semibold tracking-[0.16em] uppercase text-[var(--copper-light)] mb-5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--copper)]" />
-                  <span>Concierge Desk</span>
+                <h3 className="flex items-center gap-2 text-xs font-sans font-semibold tracking-[0.16em] uppercase text-[#C99A53] mb-5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#C99A53]" />
+                  <span>Contact</span>
                 </h3>
 
                 {/* Consultation CTA Pill */}
                 <Link
                   href="/contact"
                   data-magnetic
-                  className="group flex items-center justify-between p-3.5 px-4 mb-3 rounded-2xl bg-[#FAF6EF] hover:bg-white text-[#120F0D] font-sans text-xs tracking-[0.14em] uppercase font-bold shadow-[0_4px_16px_rgba(247,241,231,0.12)] transition-all duration-300 hover:scale-[1.02]"
+                  className="group flex items-center justify-between p-3.5 px-4 mb-3 rounded-2xl bg-gradient-to-r from-[#F0B87A] via-[#C99A53] to-[#B86C35] text-[#101010] font-sans text-xs tracking-[0.14em] uppercase font-bold shadow-[0_4px_16px_rgba(201,154,83,0.2)] transition-all duration-300 hover:scale-[1.02]"
                 >
                   <span>Request Consultation</span>
-                  <ArrowUpRight className="w-4 h-4 text-[var(--chestnut)] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <ArrowUpRight className="w-4 h-4 text-[#101010] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </Link>
 
-                {/* Direct WhatsApp Interactive Card */}
+                {/* Direct WhatsApp Card */}
                 <a
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group block p-4 rounded-2xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.09] hover:border-[var(--copper)]/40 transition-all duration-300"
+                  className="group block p-4 rounded-2xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.09] hover:border-[#C99A53]/45 transition-all duration-300"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-[var(--pine)] flex items-center justify-center text-[var(--ivory)] shadow-md group-hover:scale-105 transition-transform duration-200 shrink-0">
+                    <div className="w-10 h-10 rounded-xl bg-[#101D19] border border-[#C99A53]/40 flex items-center justify-center text-[#C99A53] shadow-md group-hover:scale-105 transition-transform duration-200 shrink-0">
                       <WhatsAppGlyph />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <div className="flex items-center gap-1.5 text-[11px] font-sans text-[var(--khaki)] uppercase tracking-wider">
+                      <div className="flex items-center gap-1.5 text-[11px] font-sans text-[#D6C8B3] uppercase tracking-wider">
                         <span className="w-1.5 h-1.5 rounded-full bg-[#34D399] animate-pulse" />
-                        <span>Live WhatsApp</span>
+                        <span>WhatsApp Concierge</span>
                       </div>
                       <div className="text-sm font-semibold font-sans text-[var(--ivory)] tracking-wide mt-0.5">
                         {DISPLAY_PHONE}
                       </div>
                     </div>
-                    <ArrowUpRight className="w-4 h-4 text-[var(--copper-light)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200 shrink-0" />
+                    <ArrowUpRight className="w-4 h-4 text-[#C99A53] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200 shrink-0" />
                   </div>
                 </a>
 
-                {/* Direct Phone & Hotline */}
-                <div className="mt-3.5 space-y-2 font-sans text-xs text-[var(--ivory)]/75">
+                {/* Direct Phone & Location */}
+                <div className="mt-3.5 space-y-1.5 font-sans text-xs text-[var(--ivory)]/80">
                   <a
                     href={`tel:${DISPLAY_PHONE.replace(/[^0-9+]/g, "")}`}
                     className="flex items-center gap-2.5 px-3 py-2.5 min-h-[44px] rounded-lg hover:bg-white/[0.04] transition-colors"
                   >
-                    <Phone className="w-3.5 h-3.5 text-[var(--copper-light)]" />
-                    <span>Direct: {DISPLAY_PHONE}</span>
+                    <Phone className="w-3.5 h-3.5 text-[#C99A53]" aria-hidden="true" />
+                    <span>Phone: {DISPLAY_PHONE}</span>
                   </a>
-                </div>
-
-                {/* Social Channels Strip */}
-                <div className="mt-5 pt-4 border-t border-white/[0.08]">
-                  <div className="text-[11px] font-sans tracking-[0.14em] uppercase text-[var(--khaki)]/80 mb-3">
-                    Follow Our Lookbook
-                  </div>
-                  <div className="flex items-center gap-2.5">
-                    <a
-                      href="https://instagram.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-3.5 py-2.5 min-h-[44px] rounded-full bg-white/[0.04] hover:bg-white/[0.1] border border-white/[0.08] hover:border-[var(--copper)]/40 text-xs font-sans text-[var(--ivory)]/85 transition-all duration-200"
-                    >
-                      <InstagramGlyph />
-                      <span>Instagram</span>
-                    </a>
-                    <a
-                      href="https://linkedin.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-3.5 py-2.5 min-h-[44px] rounded-full bg-white/[0.04] hover:bg-white/[0.1] border border-white/[0.08] hover:border-[var(--copper)]/40 text-xs font-sans text-[var(--ivory)]/85 transition-all duration-200"
-                    >
-                      <LinkedInGlyph />
-                      <span>LinkedIn</span>
-                    </a>
+                  <div className="flex items-center gap-2.5 px-3 py-2 text-[var(--ivory)]/70">
+                    <MapPin className="w-3.5 h-3.5 text-[#C99A53] shrink-0" aria-hidden="true" />
+                    <span>Location: {siteConfig.location}</span>
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
 
-          {/* GIANT HORIZON TYPOGRAPHY (Schmidt + Arclyn Studio reference) */}
+          {/* GIANT HORIZON TYPOGRAPHY */}
           <div
             className="footer-giant-wordmark-wrap relative z-10 pt-4 sm:pt-6 pb-2 sm:pb-4 overflow-hidden flex flex-col items-center justify-center select-none pointer-events-none"
             aria-hidden="true"
@@ -264,7 +243,7 @@ export function Footer() {
                 <span
                   key={idx}
                   data-footer-char={idx}
-                  className="footer-wordmark-char inline-block bg-gradient-to-b from-[#F7F1E7]/30 via-[#DF8E57]/85 to-[#F0A06E] bg-clip-text text-transparent drop-shadow-[0_8px_40px_rgba(205,115,62,0.45)]"
+                  className="footer-wordmark-char inline-block bg-gradient-to-b from-[#F7F1E7]/30 via-[#C99A53]/85 to-[#DF8E57] bg-clip-text text-transparent drop-shadow-[0_8px_40px_rgba(201,154,83,0.45)]"
                   style={{
                     WebkitTextStroke: "1px rgba(247,241,231,0.14)",
                   }}
@@ -274,19 +253,18 @@ export function Footer() {
               ))}
             </div>
           </div>
-
         </div>
 
-        {/* SUB-FOOTER OUTSIDE THE CARD (Clean Arclyn Studio & Schmidt style) */}
+        {/* SUB-FOOTER OUTSIDE THE CARD */}
         <div className="footer-subbar mt-5 px-3 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-sans text-[var(--charcoal)]/80">
           <div className="flex items-center gap-2">
-            <span>© {currentYear} Naqsh. All rights reserved.</span>
+            <span>© {currentYear} NAQSH. All rights reserved.</span>
             <span className="text-[var(--charcoal)]/30 hidden sm:inline">|</span>
-            <span className="hidden sm:inline">Quiet Luxury Corporate Gifting</span>
+            <span className="hidden sm:inline">Crafting Lasting Impressions</span>
           </div>
 
           <div className="text-center text-[11px] text-[var(--chestnut)]/90 tracking-wider uppercase font-medium">
-            Handcrafted in Lahore, Pakistan · Global Delivery
+            Handcrafted in Lahore, Pakistan · Nationwide Corporate Gifting
           </div>
 
           <div className="flex flex-wrap items-center gap-5 sm:gap-6">
@@ -301,7 +279,6 @@ export function Footer() {
             ))}
           </div>
         </div>
-
       </div>
     </footer>
   );

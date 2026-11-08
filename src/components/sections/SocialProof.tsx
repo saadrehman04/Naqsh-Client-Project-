@@ -43,6 +43,12 @@ export function SocialProof() {
 
         {hasTestimonials && (
           <div className="mx-auto max-w-7xl" data-reveal="fade-up">
+            <div className="text-center max-w-2xl mx-auto mb-12">
+              <SectionLabel variant="pine" className="mb-3 justify-center">
+                Client Voices
+              </SectionLabel>
+              <h2 className="t-h2">Relationships Worth Celebrating.</h2>
+            </div>
             <div
               className="social-proof-track flex snap-x snap-mandatory gap-5 overflow-x-auto pb-5 sm:gap-7"
               role="region"

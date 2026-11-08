@@ -1513,21 +1513,21 @@ dialog::backdrop {
   display: inline-flex;
   align-items: center;
   gap: .8rem;
-  min-height: 4rem;
-  padding: .65rem 1.15rem .65rem .7rem;
-  border: 1px solid rgb(255 255 255 / .55);
+  min-height: 3.75rem;
+  padding: .55rem 1.15rem .55rem .65rem;
+  border: 1px solid rgb(201 154 83 / .65);
   border-radius: 999px;
-  background: var(--pine);
+  background: #101D19;
   color: var(--ivory);
-  box-shadow: 0 10px 32px rgb(20 45 34 / .34), 0 0 0 5px rgb(36 75 57 / .1);
-  transition: transform .25s, box-shadow .25s, background .25s;
+  box-shadow: 0 12px 32px rgb(16 29 25 / .42), 0 0 0 4px rgb(201 154 83 / .14);
+  transition: transform .25s, box-shadow .25s, background .25s, border-color .25s;
 }
-.floating-whatsapp:hover { transform: translateY(-3px); background: #1b5138; box-shadow: 0 14px 38px rgb(20 45 34 / .42), 0 0 0 7px rgb(36 75 57 / .12); }
-.floating-whatsapp-icon { display: grid; place-items: center; width: 2.7rem; height: 2.7rem; border-radius: 50%; background: var(--ivory); color: var(--pine); }
-.floating-whatsapp-icon svg { width: 1.55rem; height: 1.55rem; }
+.floating-whatsapp:hover { transform: translateY(-3px); background: #142822; border-color: #C99A53; box-shadow: 0 16px 38px rgb(16 29 25 / .52), 0 0 0 6px rgb(201 154 83 / .2); }
+.floating-whatsapp-icon { display: grid; place-items: center; width: 2.55rem; height: 2.55rem; border-radius: 50%; background: linear-gradient(135deg, #F0B87A 0%, #C99A53 60%, #B86C35 100%); color: #101010; }
+.floating-whatsapp-icon svg { width: 1.4rem; height: 1.4rem; }
 .floating-whatsapp-copy strong, .floating-whatsapp-copy small { display: block; }
-.floating-whatsapp-copy strong { font-size: .82rem; }
-.floating-whatsapp-copy small { margin-top: .1rem; color: rgb(247 241 231 / .78); font-size: .68rem; }
+.floating-whatsapp-copy strong { font-size: .8rem; letter-spacing: .04em; color: var(--ivory); }
+.floating-whatsapp-copy small { margin-top: .08rem; color: #D6C8B3; font-size: .66rem; }
 @media (max-width: 480px) {
   .floating-whatsapp { right: 1rem; bottom: 1rem; min-height: 3.6rem; padding: .45rem; }
   .floating-whatsapp-icon { width: 2.65rem; height: 2.65rem; }

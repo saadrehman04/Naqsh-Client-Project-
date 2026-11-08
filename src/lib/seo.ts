@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/content/site";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://naqsh.pk";
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://naqsh-client-project.vercel.app";
 
 export interface PageMetaOptions {
   title?: string;
@@ -15,17 +16,33 @@ export const buildMetadata = constructMetadata;
 
 export function constructMetadata({
   title,
-  description = "Naqsh curates, customizes and delivers premium corporate gifts for businesses. Welcome kits, client packages, Ramadan & Eid baskets and more.",
+  description = "Discover premium corporate gifting with NAQSH. Explore personalized gifts, employee welcome kits, executive hampers, festive collections, and bespoke corporate gifting solutions.",
   path = "",
   noIndex = false,
   image = "/opengraph-image",
 }: PageMetaOptions = {}): Metadata {
-  const fullTitle = title ? `${title} | ${siteConfig.name}` : `${siteConfig.name} | Premium Corporate Gifting in Pakistan`;
+  const fullTitle = title
+    ? `${title} | NAQSH`
+    : "NAQSH | Premium Corporate Gifting & Bespoke Gift Solutions";
   const url = `${siteUrl}${path}`;
 
   return {
     title: fullTitle,
     description,
+    keywords: [
+      "corporate gifting",
+      "luxury corporate gifts",
+      "personalized corporate gifts",
+      "employee welcome kits",
+      "executive gifting",
+      "client appreciation gifts",
+      "corporate gift hampers",
+      "bespoke corporate gifting",
+      "corporate gifts Lahore",
+      "corporate gifting Pakistan",
+      "Ramadan corporate gifts",
+      "Eid corporate hampers",
+    ],
     metadataBase: new URL(siteUrl),
     alternates: {
       canonical: url,
@@ -34,7 +51,7 @@ export function constructMetadata({
       title: fullTitle,
       description,
       url,
-      siteName: siteConfig.name,
+      siteName: "NAQSH Luxury Corporate Gifting",
       locale: "en_PK",
       type: "website",
       images: [
@@ -42,7 +59,7 @@ export function constructMetadata({
           url: image,
           width: 1200,
           height: 630,
-          alt: `${siteConfig.name} - ${siteConfig.tagline}`,
+          alt: `NAQSH - ${siteConfig.tagline}`,
         },
       ],
     },
@@ -70,12 +87,13 @@ export function generateOrganizationSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: siteConfig.name,
-    legalName: "Naqsh Corporate Gifting",
+    name: "NAQSH",
+    legalName: "NAQSH Corporate Gifting",
     url: siteUrl,
     logo: `${siteUrl}/brand/wordmark-black.svg`,
-    slogan: siteConfig.slogan,
-    description: "Curated, bespoke corporate gifting experiences for businesses, from idea to doorstep.",
+    slogan: siteConfig.tagline,
+    description:
+      "Discover premium corporate gifting with NAQSH. Personalized gifts, employee welcome kits, executive hampers, festive collections, and bespoke corporate gifting solutions in Lahore, Pakistan.",
     telephone: siteConfig.phone,
     address: {
       "@type": "PostalAddress",

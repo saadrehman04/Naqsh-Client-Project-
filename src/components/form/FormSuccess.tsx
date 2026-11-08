@@ -22,7 +22,6 @@ export function FormSuccess({
   return (
     <div
       className="bg-[var(--ivory-warm)] border border-[var(--border-light)] rounded-[var(--radius-card)] p-8 sm:p-12 text-center shadow-lg"
-      data-reveal="fade-up"
     >
       {/* Animated tactile 3D wax seal stamp with 2D fallback */}
       <div className="flex justify-center mb-6">

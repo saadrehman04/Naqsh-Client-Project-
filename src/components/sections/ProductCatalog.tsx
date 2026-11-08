@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { X } from "lucide-react";
+import { X, Check, ArrowUpRight } from "lucide-react";
 import { collections } from "@/content/collections";
 import { products, type Product } from "@/content/products";
 
@@ -35,18 +35,17 @@ export function ProductCatalog() {
       <div className="container-x">
         <div className="catalog-heading">
           <p className="t-label text-[var(--pine)]" data-reveal="up">
-            Product catalogue
+            Curated Product Catalogue
           </p>
           <h2 id="all-products-heading" className="t-h2" data-reveal="lines">
-            All products
+            Explore Our Gift Editions.
           </h2>
           <p
             className="max-w-2xl text-base leading-relaxed text-[var(--charcoal)] sm:text-lg"
             data-reveal="up"
             data-delay="0.08"
           >
-            Our solutions are designed around corporate occasions rather than a
-            fixed catalogue.
+            Browse 21 signature NAQSH gifting editions across our seven collections. Every gift can be tailored around your brand identity, occasion, and budget.
           </p>
         </div>
 
@@ -67,7 +66,7 @@ export function ProductCatalog() {
             aria-pressed={collection === "all"}
             onClick={() => setCollection("all")}
           >
-            All products
+            All Editions ({products.length})
           </button>
           {collections.map((item) => (
             <button
@@ -100,9 +99,9 @@ export function ProductCatalog() {
               <button
                 key={item.slug}
                 type="button"
-                className="product-tile"
+                className="product-tile text-left"
                 onClick={() => setSelected(item)}
-                data-cursor-label="Explore"
+                data-cursor-label="Inspect"
               >
                 <span className="product-tile-image">
                   <Image
@@ -112,7 +111,7 @@ export function ProductCatalog() {
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                   <span className="product-tile-open" aria-hidden="true">
-                    View
+                    Request Details
                   </span>
                 </span>
                 <span className="product-tile-meta">
@@ -151,7 +150,7 @@ export function ProductCatalog() {
                 sizes="(max-width: 768px) 100vw, 60vw"
               />
             </div>
-            <div className="product-dialog-copy">
+            <div className="product-dialog-copy space-y-4">
               <p className="t-label text-[var(--pine)]">
                 {
                   collections.find((item) => item.slug === selected.collection)
@@ -159,19 +158,39 @@ export function ProductCatalog() {
                 }
               </p>
               <h2 className="t-h2">{selected.name}</h2>
-              <p className="text-base leading-relaxed text-[var(--charcoal)]">
-                Request a quote for this product.
+              <p className="text-sm sm:text-base leading-relaxed text-[var(--charcoal)]">
+                {selected.description}
               </p>
-              <Link
-                className="btn"
-                href={`/contact?product=${selected.slug}`}
-                onClick={() => dialogRef.current?.close()}
-              >
-                <span>Request a quote</span>
-                <span className="btn-arrow" aria-hidden="true">
-                  ↗
-                </span>
-              </Link>
+
+              {selected.customization && selected.customization.length > 0 && (
+                <div className="pt-3 border-t border-[var(--hairline)]">
+                  <span className="text-xs font-sans uppercase tracking-[0.14em] font-semibold text-[var(--black)] block mb-2">
+                    Available Customization
+                  </span>
+                  <ul className="space-y-1.5">
+                    {selected.customization.map((customItem) => (
+                      <li
+                        key={customItem}
+                        className="flex items-start gap-2 text-xs sm:text-sm text-[var(--charcoal)] font-sans"
+                      >
+                        <Check className="w-4 h-4 text-[var(--pine)] shrink-0 mt-0.5" aria-hidden="true" />
+                        <span>{customItem}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              <div className="pt-3 flex flex-wrap items-center gap-3">
+                <Link
+                  className="btn"
+                  href={`/contact?product=${selected.slug}`}
+                  onClick={() => dialogRef.current?.close()}
+                >
+                  <span>Inquire About This Gift</span>
+                  <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
+                </Link>
+              </div>
             </div>
           </div>
         )}

@@ -1,7 +1,8 @@
+import Image from "next/image";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { homeContent } from "@/content/home";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { ArrowRight } from "lucide-react";
 import { GiftBoxScene } from "@/components/three/GiftBoxScene";
 
 export function ApproachSection({ compact = false }: { compact?: boolean }) {
@@ -33,9 +34,21 @@ export function ApproachSection({ compact = false }: { compact?: boolean }) {
                   <p data-reveal="up" data-delay="0.08">
                     {approach.intro}
                   </p>
-                  <div data-reveal="up" data-delay="0.14">
+                  <div
+                    className="flex flex-wrap items-center gap-4 pt-1"
+                    data-reveal="up"
+                    data-delay="0.14"
+                  >
+                    <Link
+                      href={approach.ctaHref}
+                      className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-[#101D19] hover:bg-[var(--chestnut)] text-[var(--ivory)] text-xs font-sans tracking-[0.14em] uppercase font-semibold transition-all duration-300 shadow-sm"
+                    >
+                      <span>{approach.ctaText}</span>
+                      <ArrowRight className="w-3.5 h-3.5 text-[#C99A53]" aria-hidden="true" />
+                    </Link>
                     <Link href="/our-approach" className="link-arrow">
-                      Learn about our process <ArrowRight size={16} />
+                      <span>Explore Our Process</span>
+                      <ArrowRight size={16} aria-hidden="true" />
                     </Link>
                   </div>
                 </div>

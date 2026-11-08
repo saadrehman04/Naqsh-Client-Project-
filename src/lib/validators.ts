@@ -1,18 +1,22 @@
 import { z } from "zod";
 
 export const occasionOptions = [
-  { value: "new-hire-welcome-kits", label: "New Hire Welcome Kits" },
-  { value: "client-packages", label: "Client Packages" },
-  { value: "ramadan-eid-baskets", label: "Ramadan & Eid Baskets" },
-  { value: "annual-event-giveaways", label: "Annual Event Giveaways" },
-  { value: "brand-souvenirs", label: "Brand Souvenirs" },
-  { value: "appreciation-gifts", label: "Appreciation Gifts" },
-  { value: "custom-occasion-gifts", label: "Custom & Occasion Specific Gifts" },
-  { value: "other", label: "Other / Multiple Occasions" },
+  { value: "corporate-employee-gifting", label: "Corporate & Employee Gifting" },
+  { value: "executive-client-gifting", label: "Executive & Client Gifting" },
+  { value: "events-brand-merchandise", label: "Events & Brand Merchandise" },
+  { value: "bespoke-seasonal-gifting", label: "Bespoke & Seasonal Gifting" },
+  { value: "new-hire-welcome-kits", label: "Collection · New Hire Welcome Kits" },
+  { value: "client-packages", label: "Collection · Client Packages" },
+  { value: "ramadan-eid-baskets", label: "Collection · Ramadan & Eid Baskets" },
+  { value: "annual-event-giveaways", label: "Collection · Annual Event Giveaways" },
+  { value: "brand-souvenirs", label: "Collection · Brand Souvenirs" },
+  { value: "appreciation-gifts", label: "Collection · Appreciation Gifts" },
+  { value: "custom-occasion-gifts", label: "Collection · Custom & Occasion Specific Gifts" },
+  { value: "other", label: "Other / Multiple Corporate Occasions" },
 ] as const;
 
 export const inquirySchema = z.object({
-  name: z.string().trim().min(2, "Please enter your name."),
+  name: z.string().trim().min(2, "Please enter your full name."),
   company: z.string().trim().min(2, "Please enter your company name."),
   email: z
     .string()
@@ -26,19 +30,11 @@ export const inquirySchema = z.object({
       (val) => !val || /^[\d\s+\-().]{7,20}$/.test(val),
       "Please enter a valid phone or WhatsApp number."
     ),
-  occasion: z.string().min(1, "Please select an occasion for your gifts."),
-  quantity: z
-    .string()
-    .trim()
-    .optional(),
-  budgetRange: z
-    .string()
-    .trim()
-    .optional(),
-  dateNeeded: z
-    .string()
-    .trim()
-    .optional(),
+  occasion: z.string().min(1, "Please select a gifting category or occasion."),
+  quantity: z.string().trim().optional(),
+  budgetRange: z.string().trim().optional(),
+  dateNeeded: z.string().trim().optional(),
+  deliveryLocation: z.string().trim().optional(),
   message: z
     .string()
     .trim()

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Check } from "lucide-react";
 import { homeContent } from "@/content/home";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 
@@ -18,23 +18,27 @@ export function ServicesTeaser() {
             <h2 id="services-teaser-heading" className="t-h2" data-reveal="lines">
               {servicesTeaser.heading}
             </h2>
+            <p className="mt-3 max-w-2xl text-base sm:text-lg text-[var(--charcoal)] font-light leading-relaxed">
+              {servicesTeaser.intro}
+            </p>
           </div>
           <Link href="/services" className="link-arrow" data-reveal="up" data-delay="0.1">
-            <span>View all services</span>
+            <span>View All Services</span>
             <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
           </Link>
         </div>
+
         <div className="service-rows">
           {servicesTeaser.services.map((service, index) => {
             const isReversed = index % 2 === 1;
             return (
               <article
                 className={`service-row ${isReversed ? "service-row-reverse" : ""}`}
-                key={service.title}
+                key={service.id}
               >
                 <Link
                   href={service.link}
-                  className="service-row-image overflow-hidden"
+                  className="service-row-image overflow-hidden rounded-[var(--radius-image)]"
                   data-reveal="clip"
                   data-clip-from={isReversed ? "right" : "left"}
                   data-parallax="0.10"
@@ -45,19 +49,30 @@ export function ServicesTeaser() {
                     alt={service.imageAlt}
                     fill
                     sizes="(max-width: 768px) 100vw, 52vw"
-                    className="object-cover scale-[1.15]"
+                    className="object-cover scale-[1.18]"
                   />
                 </Link>
-                <div className="service-row-copy" data-reveal="stagger" data-stagger="0.1">
+                <div className="service-row-copy" data-reveal="stagger" data-stagger="0.08">
                   <span
                     className="service-row-number inline-block"
                     data-count-to={index + 1}
                     data-count-pad="2"
                   >
-                    0{index + 1}
+                    {service.number}
                   </span>
                   <h3 className="t-h2">{service.title}</h3>
                   <p>{service.desc}</p>
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 pt-2 pb-3 border-y border-[var(--hairline)]">
+                    {service.benefits.map((item) => (
+                      <li
+                        key={item}
+                        className="flex items-center gap-2 text-sm text-[var(--text-strong)] font-sans"
+                      >
+                        <Check className="w-3.5 h-3.5 text-[var(--pine)] shrink-0" aria-hidden="true" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
                   <Link href={service.link} className="link-arrow">
                     <span>{service.cta}</span>
                     <ArrowUpRight className="h-4 w-4" aria-hidden="true" />

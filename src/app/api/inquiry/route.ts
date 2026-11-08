@@ -49,15 +49,15 @@ export async function POST(request: Request) {
 
             <table style="width: 100%; border-collapse: collapse; margin-bottom: 24px; font-size: 14px;">
               <tr>
-                <td style="padding: 8px 0; color: #4D4E52; width: 140px;"><strong>Client Name:</strong></td>
+                <td style="padding: 8px 0; color: #4D4E52; width: 160px;"><strong>Full Name:</strong></td>
                 <td style="padding: 8px 0; color: #000000;">${data.name}</td>
               </tr>
               <tr>
-                <td style="padding: 8px 0; color: #4D4E52;"><strong>Company:</strong></td>
+                <td style="padding: 8px 0; color: #4D4E52;"><strong>Company Name:</strong></td>
                 <td style="padding: 8px 0; color: #000000;">${data.company}</td>
               </tr>
               <tr>
-                <td style="padding: 8px 0; color: #4D4E52;"><strong>Email:</strong></td>
+                <td style="padding: 8px 0; color: #4D4E52;"><strong>Work Email:</strong></td>
                 <td style="padding: 8px 0; color: #000000;"><a href="mailto:${data.email}">${data.email}</a></td>
               </tr>
               <tr>
@@ -65,30 +65,34 @@ export async function POST(request: Request) {
                 <td style="padding: 8px 0; color: #000000;">${data.phone || "Not provided"}</td>
               </tr>
               <tr>
-                <td style="padding: 8px 0; color: #4D4E52;"><strong>Occasion:</strong></td>
+                <td style="padding: 8px 0; color: #4D4E52;"><strong>Gifting Category:</strong></td>
                 <td style="padding: 8px 0; color: #7F3021; font-weight: bold;">${data.occasion}</td>
               </tr>
               <tr>
-                <td style="padding: 8px 0; color: #4D4E52;"><strong>Estimated Count:</strong></td>
+                <td style="padding: 8px 0; color: #4D4E52;"><strong>Estimated Quantity:</strong></td>
                 <td style="padding: 8px 0; color: #000000;">${data.quantity || "Not specified"}</td>
               </tr>
               <tr>
-                <td style="padding: 8px 0; color: #4D4E52;"><strong>Target Date:</strong></td>
+                <td style="padding: 8px 0; color: #4D4E52;"><strong>Approx. Budget / Gift:</strong></td>
+                <td style="padding: 8px 0; color: #000000;">${data.budgetRange || "To be discussed"}</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0; color: #4D4E52;"><strong>Required Delivery Date:</strong></td>
                 <td style="padding: 8px 0; color: #000000;">${data.dateNeeded || "Flexible"}</td>
               </tr>
               <tr>
-                <td style="padding: 8px 0; color: #4D4E52;"><strong>Budget Scope:</strong></td>
-                <td style="padding: 8px 0; color: #000000;">${data.budgetRange || "To be discussed"}</td>
+                <td style="padding: 8px 0; color: #4D4E52;"><strong>Delivery Location:</strong></td>
+                <td style="padding: 8px 0; color: #000000;">${data.deliveryLocation || "Not specified"}</td>
               </tr>
             </table>
 
             <div style="background: #EFE5DA; padding: 16px; border-left: 3px solid #7F3021; margin-bottom: 24px;">
-              <p style="margin: 0 0 8px; font-weight: bold; color: #000000; font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em;">Client Project Notes:</p>
+              <p style="margin: 0 0 8px; font-weight: bold; color: #000000; font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em;">Project Details:</p>
               <p style="margin: 0; white-space: pre-wrap; color: #4D4E52; font-size: 14px; line-height: 1.6;">${data.message || "No additional notes provided."}</p>
             </div>
 
             <footer style="font-size: 12px; color: #4D4E52; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 16px;">
-              Sent via Naqsh Consultation Portal · Lahore, Pakistan
+              Sent via NAQSH Consultation Portal · Lahore, Pakistan
             </footer>
           </div>
         `,
@@ -99,22 +103,23 @@ export async function POST(request: Request) {
         "\n=======================================================\n" +
           " [DEV INQUIRY LOG] New Corporate Gifting Consultation:\n" +
           "-------------------------------------------------------\n" +
-          ` Name:         ${data.name}\n` +
-          ` Company:      ${data.company}\n` +
-          ` Email:        ${data.email}\n` +
-          ` Phone:        ${data.phone || "N/A"}\n` +
-          ` Occasion:     ${data.occasion}\n` +
-          ` Quantity:     ${data.quantity || "N/A"}\n` +
-          ` Date Needed:  ${data.dateNeeded || "N/A"}\n` +
-          ` Budget:       ${data.budgetRange || "N/A"}\n` +
-          ` Message:      ${data.message || "N/A"}\n` +
+          ` Name:              ${data.name}\n` +
+          ` Company:           ${data.company}\n` +
+          ` Email:             ${data.email}\n` +
+          ` Phone:             ${data.phone || "N/A"}\n` +
+          ` Category:          ${data.occasion}\n` +
+          ` Quantity:          ${data.quantity || "N/A"}\n` +
+          ` Budget per Gift:   ${data.budgetRange || "N/A"}\n` +
+          ` Delivery Date:     ${data.dateNeeded || "N/A"}\n` +
+          ` Delivery Location: ${data.deliveryLocation || "N/A"}\n` +
+          ` Details:           ${data.message || "N/A"}\n` +
           "=======================================================\n"
       );
     }
 
     return NextResponse.json({
       ok: true,
-      message: "Thank you for contacting Naqsh. Your inquiry has been received.",
+      message: "Thank you for contacting NAQSH. Your inquiry has been received.",
     });
   } catch (error) {
     console.error("Inquiry API Error:", error);

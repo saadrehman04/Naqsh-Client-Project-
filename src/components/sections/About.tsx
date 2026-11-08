@@ -27,7 +27,7 @@ export function About() {
         className="absolute -top-32 -left-32 w-96 h-96 rounded-full pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle, rgba(171, 108, 73, 0.15) 0%, transparent 70%)",
+            "radial-gradient(circle, rgba(201, 154, 83, 0.14) 0%, transparent 70%)",
         }}
         aria-hidden="true"
       />
@@ -38,11 +38,22 @@ export function About() {
             <SectionLabel variant="khaki">{about.label}</SectionLabel>
           </div>
           <h2 id="about-heading" className="t-h2" data-reveal="lines">
-            Beyond the box, into an experience.
+            {about.heading}
           </h2>
-          <p className="t-lead" data-reveal="up" data-delay="0.08">
-            {about.text}
-          </p>
+          <div className="space-y-4" data-reveal="up" data-delay="0.08">
+            {about.paragraphs.map((paragraph, idx) => (
+              <p
+                key={idx}
+                className={
+                  idx === 0
+                    ? "t-lead"
+                    : "text-base text-[var(--ivory)]/80 leading-relaxed font-light"
+                }
+              >
+                {paragraph}
+              </p>
+            ))}
+          </div>
           <div
             className="grid grid-cols-3 gap-3 sm:gap-5 py-5 my-2 border-y border-white/12"
             data-reveal="up"
@@ -50,7 +61,7 @@ export function About() {
           >
             {about.highlights.map((item) => (
               <div key={item.label} className="flex flex-col">
-                <span className="font-serif text-xl sm:text-2xl text-[#E5B869] leading-tight">
+                <span className="font-serif text-xl sm:text-2xl text-[#C99A53] leading-tight">
                   {item.value}
                 </span>
                 <span className="text-[11px] sm:text-xs uppercase tracking-[0.12em] text-[var(--ivory)]/75 mt-1">
@@ -60,9 +71,12 @@ export function About() {
             ))}
           </div>
           <div data-reveal="up" data-delay="0.16">
-            <Link href="/our-approach" className="link-arrow">
-              <span>Discover our approach</span>
-              <ArrowRight className="w-4 h-4 text-[var(--copper-light)]" aria-hidden="true" />
+            <Link href={about.ctaHref} className="link-arrow">
+              <span>{about.ctaText}</span>
+              <ArrowRight
+                className="w-4 h-4 text-[#C99A53]"
+                aria-hidden="true"
+              />
             </Link>
           </div>
         </div>
@@ -84,7 +98,7 @@ export function About() {
           >
             <Image
               src="/images/products/excellence-award.webp"
-              alt="Crystal employee appreciation award"
+              alt="NAQSH crystal employee appreciation award with marble base and copper accent"
               fill
               sizes="(max-width: 768px) 42vw, 20vw"
               className="object-cover scale-[1.28]"
