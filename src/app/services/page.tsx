@@ -50,10 +50,10 @@ export default function ServicesPage() {
 
       {/* 4 Primary Service Categories Deep Dive */}
       <section
-        className="py-20 sm:py-28 bg-[var(--ivory-deep)]"
+        className="py-14 sm:py-20 bg-[var(--ivory-deep)]"
         aria-label="Corporate Gifting Service Categories"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24 sm:space-y-32">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-16">
           {services.map((service, idx) => {
             const isReversed = idx % 2 === 1;
 
@@ -63,12 +63,12 @@ export default function ServicesPage() {
                 id={service.id}
                 className={`scroll-mt-28 flex flex-col ${
                   isReversed ? "lg:flex-row-reverse" : "lg:flex-row"
-                } items-start gap-10 lg:gap-16 rounded-3xl bg-[var(--ivory)] border border-[var(--hairline)] p-6 sm:p-10 lg:p-12 shadow-sm`}
+                } items-start gap-7 lg:gap-10 rounded-2xl bg-[var(--ivory)] border border-[var(--hairline)] p-5 sm:p-7 lg:p-8 shadow-sm`}
               >
                 {/* Visual & Occasions Card */}
-                <div className="w-full lg:w-5/12 space-y-6">
+                <div className="w-full lg:w-5/12 space-y-4">
                   <div
-                    className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-[#12100E] border border-[var(--hairline)] shadow-lg group"
+                    className="relative aspect-[16/10] max-h-[260px] rounded-xl overflow-hidden bg-[#12100E] border border-[var(--hairline)] shadow-md group"
                     data-reveal="clip"
                     data-clip-from={isReversed ? "right" : "left"}
                     data-parallax="0.08"
