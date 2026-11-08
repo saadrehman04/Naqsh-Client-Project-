@@ -8,7 +8,7 @@ export function Hero() {
 
   return (
     <section
-      className="hero-section relative w-full min-h-[max(100svh,760px)] flex flex-col justify-between overflow-hidden bg-[#0A0807] text-[var(--ivory)]"
+      className="hero-section relative w-full min-h-[100svh] lg:min-h-[max(100svh,740px)] flex flex-col justify-between overflow-hidden bg-[#0A0807] text-[var(--ivory)]"
       aria-label="Hero Introduction"
     >
       {/* Background Image: Desktop & Mobile Responsive Crops with LCP fetchpriority */}
@@ -122,23 +122,23 @@ export function Hero() {
           </div>
 
           {/* Supporting Headline & Description */}
-          <div className="hero-sub-wrap mt-5 sm:mt-6">
+          <div className="hero-sub-wrap mt-4 sm:mt-6">
             <div
-              className="hero-subline space-y-2.5 max-w-xl"
+              className="hero-subline space-y-2 max-w-xl"
               data-reveal="up"
               data-delay="0.1"
             >
-              <p className="font-serif text-lg sm:text-xl text-[#FBE2AA] font-normal tracking-wide leading-snug">
+              <p className="font-serif text-base sm:text-xl text-[#FBE2AA] font-normal tracking-wide leading-snug">
                 {hero.supportingHeadline}
               </p>
-              <p className="text-sm sm:text-base text-[var(--ivory)]/85 font-sans font-light leading-relaxed">
+              <p className="hidden sm:block text-sm sm:text-base text-[var(--ivory)]/85 font-sans font-light leading-relaxed">
                 {hero.subline}
               </p>
             </div>
 
             {/* Action Buttons */}
             <div
-              className="hero-actions flex flex-wrap items-center gap-4 mt-7 sm:mt-8"
+              className="hero-actions flex flex-wrap items-center gap-3 sm:gap-4 mt-5 sm:mt-8"
               data-reveal="up"
               data-delay="0.18"
             >
@@ -146,10 +146,10 @@ export function Hero() {
               <Link
                 href="/contact"
                 data-magnetic
-                className="group inline-flex items-center gap-3 pl-7 pr-3 py-3 rounded-full bg-gradient-to-r from-[#F0B87A] via-[#C99A53] to-[#B86C35] hover:from-[#FBE2AA] hover:to-[#C99A53] text-[#101010] font-sans text-xs tracking-[0.14em] uppercase font-bold shadow-[0_8px_25px_rgba(201,154,83,0.32)] transition-all duration-300 hover:scale-[1.02]"
+                className="group inline-flex items-center gap-3 pl-6 pr-2.5 py-2.5 sm:pl-7 sm:pr-3 sm:py-3 rounded-full bg-gradient-to-r from-[#F0B87A] via-[#C99A53] to-[#B86C35] hover:from-[#FBE2AA] hover:to-[#C99A53] text-[#101010] font-sans text-[11px] sm:text-xs tracking-[0.14em] uppercase font-bold shadow-[0_8px_25px_rgba(201,154,83,0.32)] transition-all duration-300 hover:scale-[1.02]"
               >
                 <span>Request Consultation</span>
-                <span className="w-7 h-7 rounded-full bg-[#101010]/20 flex items-center justify-center text-[#101010] transition-transform duration-300 group-hover:translate-x-0.5">
+                <span className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-[#101010]/20 flex items-center justify-center text-[#101010] transition-transform duration-300 group-hover:translate-x-0.5">
                   <ArrowRight className="w-3.5 h-3.5" />
                 </span>
               </Link>
@@ -158,7 +158,7 @@ export function Hero() {
               <Link
                 href="/portfolio"
                 data-magnetic
-                className="group inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-black/45 hover:bg-black/65 backdrop-blur-md border border-[#C99A53]/60 hover:border-[#C99A53] text-[var(--ivory)] font-sans text-xs tracking-[0.14em] uppercase font-semibold shadow-md transition-all duration-300 hover:scale-[1.02]"
+                className="group inline-flex items-center gap-2 px-5 py-3 sm:px-6 sm:py-3.5 rounded-full bg-black/45 hover:bg-black/65 backdrop-blur-md border border-[#C99A53]/60 hover:border-[#C99A53] text-[var(--ivory)] font-sans text-[11px] sm:text-xs tracking-[0.14em] uppercase font-semibold shadow-md transition-all duration-300 hover:scale-[1.02]"
               >
                 <span>Explore Collections</span>
                 <ArrowRight className="w-3.5 h-3.5 text-[#C99A53] transition-transform duration-300 group-hover:translate-x-0.5" />
@@ -167,35 +167,35 @@ export function Hero() {
 
             {/* Trust Indicators */}
             <div
-              className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 pt-7 mt-7 border-t border-white/[0.14] max-w-xl"
+              className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-5 pt-4 mt-5 sm:pt-6 sm:mt-7 border-t border-white/[0.14] max-w-xl"
               data-reveal="up"
               data-delay="0.24"
             >
-              <div className="flex flex-col items-start gap-1.5">
-                <Diamond className="w-4 h-4 text-[#C99A53]" aria-hidden="true" />
-                <span className="text-[10px] font-sans tracking-[0.16em] uppercase text-[var(--ivory)] font-semibold leading-tight">
-                  Premium<br />Quality
+              <div className="flex items-center gap-2">
+                <Diamond className="w-3.5 h-3.5 text-[#C99A53] shrink-0" aria-hidden="true" />
+                <span className="text-[10px] font-sans tracking-[0.14em] uppercase text-[var(--ivory)] font-semibold leading-tight">
+                  Premium Quality
                 </span>
               </div>
 
-              <div className="flex flex-col items-start gap-1.5">
-                <ShieldCheck className="w-4 h-4 text-[#C99A53]" aria-hidden="true" />
-                <span className="text-[10px] font-sans tracking-[0.16em] uppercase text-[var(--ivory)] font-semibold leading-tight">
-                  Trusted<br />Service
+              <div className="flex items-center gap-2">
+                <ShieldCheck className="w-3.5 h-3.5 text-[#C99A53] shrink-0" aria-hidden="true" />
+                <span className="text-[10px] font-sans tracking-[0.14em] uppercase text-[var(--ivory)] font-semibold leading-tight">
+                  Trusted Service
                 </span>
               </div>
 
-              <div className="flex flex-col items-start gap-1.5">
-                <Leaf className="w-4 h-4 text-[#C99A53]" aria-hidden="true" />
-                <span className="text-[10px] font-sans tracking-[0.16em] uppercase text-[var(--ivory)] font-semibold leading-tight">
-                  Sustainable<br />Choices
+              <div className="flex items-center gap-2">
+                <Leaf className="w-3.5 h-3.5 text-[#C99A53] shrink-0" aria-hidden="true" />
+                <span className="text-[10px] font-sans tracking-[0.14em] uppercase text-[var(--ivory)] font-semibold leading-tight">
+                  Sustainable
                 </span>
               </div>
 
-              <div className="flex flex-col items-start gap-1.5">
-                <Gift className="w-4 h-4 text-[#C99A53]" aria-hidden="true" />
-                <span className="text-[10px] font-sans tracking-[0.16em] uppercase text-[var(--ivory)] font-semibold leading-tight">
-                  Bespoke<br />Solutions
+              <div className="flex items-center gap-2">
+                <Gift className="w-3.5 h-3.5 text-[#C99A53] shrink-0" aria-hidden="true" />
+                <span className="text-[10px] font-sans tracking-[0.14em] uppercase text-[var(--ivory)] font-semibold leading-tight">
+                  Bespoke
                 </span>
               </div>
             </div>

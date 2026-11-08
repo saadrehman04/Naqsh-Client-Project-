@@ -3,7 +3,7 @@ export const approachContent = {
     label: "Our Approach",
     title: "From First Thought to Final Delivery.",
     intro:
-      "We begin by understanding your brand, occasion, audience, and budget—then curate the right products, customize every presentation detail, and coordinate seamless delivery from concept to doorstep.",
+      "A structured four-step process—from initial brief to bespoke curation, branding, and doorstep delivery.",
   },
   steps: [
     {
@@ -11,11 +11,11 @@ export const approachContent = {
       name: "Understand",
       tagline: "Listening before creating.",
       detail:
-        "Every engagement begins with an attentive consultation. We explore your occasion, recipient profile, brand identity, delivery timeline, and budget parameters. Establishing these foundations ensures every recommendation feels intentional and appropriate.",
+        "We align on your occasion, recipient profile, brand identity, timeline, and budget so every recommendation feels intentional.",
       deliverables: [
-        "Occasion, audience & cultural context alignment",
-        "Budget per gift & total quantity scoping",
-        "Delivery timeline & logistics planning",
+        "Occasion & audience alignment",
+        "Budget & quantity scoping",
+        "Timeline & logistics planning",
       ],
       image: "/images/products/client-onboarding-kit.webp",
       imageAlt: "NAQSH consultation and executive onboarding concept curation",
@@ -25,11 +25,11 @@ export const approachContent = {
       name: "Curate",
       tagline: "Purposeful, conscious sourcing.",
       detail:
-        "With clear parameters in place, we develop tailored gifting concepts and select products that balance utility, aesthetics, and ethical integrity. We prioritize high-craft regional artisans and vetted quality essentials over generic promotional items.",
+        "We develop tailored gifting concepts and select high-craft products that balance utility, aesthetics, and lasting value.",
       deliverables: [
-        "Tailored gifting concepts & product pairings",
-        "Conscious sourcing & ethical brand alternatives",
-        "Tiered options aligned with your budget",
+        "Tailored concepts & product pairings",
+        "Conscious regional sourcing",
+        "Tiered options for your budget",
       ],
       image: "/images/products/pakistan-heritage-gift-set.webp",
       imageAlt: "NAQSH curated heritage gift set with artisanal ceramics and textiles",
@@ -39,11 +39,11 @@ export const approachContent = {
       name: "Customize",
       tagline: "The craft of lasting impressions.",
       detail:
-        "We shape every sensory touchpoint of the unboxing experience—from rigid box textures, foil stamping, and blind debossing to laser engraving, personalized greeting cards, and our signature wax seal. Your brand identity is presented with quiet luxury.",
+        "We shape every touchpoint—from custom rigid boxes, foil stamping, and debossing to engraved keepsakes and wax-sealed notes.",
       deliverables: [
-        "Bespoke rigid boxes, sleeves & woven hampers",
-        "Debossing, foil stamping & laser engraving",
-        "Individualized message cards & wax seal finishing",
+        "Bespoke boxes & woven hampers",
+        "Debossing, foil & laser engraving",
+        "Custom cards & wax seal finishing",
       ],
       image: "/images/products/retirement-award.webp",
       imageAlt: "NAQSH bespoke customization with engraved plaque and dark green presentation box",
@@ -53,11 +53,11 @@ export const approachContent = {
       name: "Deliver",
       tagline: "Flawless logistics to the doorstep.",
       detail:
-        "Every gift undergoes multi-point quality inspection and protective packing in our Lahore studio before dispatch. Whether delivering in bulk to your office or coordinating multi-address delivery to recipients nationwide, we ensure pristine arrival.",
+        "Every gift undergoes studio quality inspection and protective packing for seamless bulk or multi-address doorstep delivery across Pakistan.",
       deliverables: [
-        "Item-by-item quality check & hand assembly",
-        "Protective outer transit packaging",
-        "Single-location bulk or multi-address doorstep delivery",
+        "Multi-point quality check & assembly",
+        "Protective transit packaging",
+        "Bulk or nationwide doorstep delivery",
       ],
       image: "/images/products/new-hire-welcome-kit.webp",
       imageAlt: "NAQSH completed welcome kit ready for doorstep delivery",
@@ -67,7 +67,7 @@ export const approachContent = {
     label: "The NAQSH Advantage",
     heading: "Why Partner With NAQSH Instead of Managing Gifting In-House.",
     intro:
-      "Coordinating corporate gifts internally often consumes weeks of procurement, vendor follow-ups, packaging mismatches, and packing logistics. NAQSH replaces fragmented effort with a single accountable partner.",
+      "Replace fragmented vendor follow-ups and manual packing with a single accountable corporate gifting partner.",
     points: [
       {
         title: "One Point of Accountability",

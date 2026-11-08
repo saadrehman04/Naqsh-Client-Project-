@@ -18,7 +18,7 @@ export const servicesContent = {
     label: "Our Services",
     title: "Gifting Solutions for Every Business Occasion.",
     intro:
-      "From thoughtful employee onboarding kits to distinguished executive suites and seasonal hampers, NAQSH manages every detail from concept to delivery.",
+      "Tailored employee, executive, event, and seasonal gifting—managed from concept to delivery.",
   },
   services: [
     {

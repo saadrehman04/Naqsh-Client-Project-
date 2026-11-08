@@ -26,8 +26,7 @@ export const homeContent = {
     label: "01 · Brand Introduction",
     heading: "More Than a Gift. A Lasting Impression.",
     paragraphs: [
-      "At NAQSH, we believe corporate gifting is more than the exchange of objects. It is an opportunity to express appreciation, strengthen relationships, and celebrate meaningful milestones.",
-      "We bring thoughtful curation, personalized details, and refined presentation together to create gifting experiences that reflect the value of every relationship.",
+      "We transform corporate gifting into a meaningful expression of appreciation—combining thoughtful curation, bespoke branding, and refined presentation for every milestone.",
     ],
     slogan: "BEYOND THE BOX, INTO AN EXPERIENCE!",
     highlights: [
@@ -35,7 +34,7 @@ export const homeContent = {
       { value: "Refined", label: "Signature Packaging" },
       { value: "Turnkey", label: "Concept to Doorstep" },
     ],
-    ctaText: "Learn More About Our Approach",
+    ctaText: "Explore Our Approach",
     ctaHref: "/our-approach",
     image: "/images/products/client-onboarding-kit.webp",
     imageAlt:
@@ -45,13 +44,13 @@ export const homeContent = {
     label: "02 · Our Services",
     heading: "Gifting Solutions for Every Business Occasion.",
     intro:
-      "Four specialized corporate gifting pillars designed around your recipients, brand identity, and business milestones.",
+      "Four specialized gifting pillars tailored around your recipients, brand identity, and corporate milestones.",
     services: [
       {
         id: "corporate-employee-gifting",
         number: "01",
         title: "Corporate & Employee Gifting",
-        desc: "Celebrate your people from their very first day to career-defining milestones with thoughtfully assembled team gifting.",
+        desc: "Celebrate your team from onboarding to career milestones with thoughtfully assembled gifting.",
         benefits: [
           "Employee welcome kits",
           "Employee appreciation gifts",
@@ -69,7 +68,7 @@ export const homeContent = {
         id: "executive-client-gifting",
         number: "02",
         title: "Executive & Client Gifting",
-        desc: "Distinguished gifting suites designed to honor key partnerships, board members, and high-value client relationships.",
+        desc: "Distinguished gifting suites designed to honor key partnerships, board members, and VIP clients.",
         benefits: [
           "Executive gifts",
           "VIP gift collections",
@@ -86,7 +85,7 @@ export const homeContent = {
         id: "events-brand-merchandise",
         number: "03",
         title: "Events & Brand Merchandise",
-        desc: "Refined conference kits, corporate keepsakes, and quietly branded merchandise your guests will genuinely value.",
+        desc: "Refined conference kits, corporate keepsakes, and quietly branded merchandise built to last.",
         benefits: [
           "Conference kits",
           "Corporate event giveaways",
@@ -104,7 +103,7 @@ export const homeContent = {
         id: "bespoke-seasonal-gifting",
         number: "04",
         title: "Bespoke & Seasonal Gifting",
-        desc: "Artisanal seasonal hampers and custom-built gift boxes tailored to cultural occasions, family milestones, and unique briefs.",
+        desc: "Artisanal seasonal hampers and custom-built gift boxes tailored to cultural occasions.",
         benefits: [
           "Ramadan and Eid gifting",
           "Festive collections",
@@ -124,7 +123,7 @@ export const homeContent = {
     label: "03 · Why NAQSH",
     heading: "Thoughtful Gifting. Exceptional Execution.",
     intro:
-      "We combine luxury editorial presentation with dependable corporate fulfillment—built around four foundational pillars.",
+      "Luxury editorial presentation paired with dependable corporate fulfillment across four pillars.",
     promises: [
       {
         title: "Thoughtful & Responsible Curation",
@@ -152,35 +151,35 @@ export const homeContent = {
     label: "04 · Featured Collections",
     heading: "Explore Our Gift Collections.",
     intro:
-      "Seven signature gifting collections curated around key corporate occasions and relationships.",
+      "Seven signature gifting collections curated around key corporate occasions.",
   },
   approach: {
     label: "05 · Our Approach",
     heading: "From First Thought to Final Delivery.",
     intro:
-      "A structured four-stage process that turns corporate gifting into a seamless, stress-free experience for your team.",
+      "A structured four-stage process that turns corporate gifting into a seamless experience.",
     ctaText: "LET'S PLAN YOUR NEXT GIFTING EXPERIENCE",
     ctaHref: "/contact",
     steps: [
       {
         number: "01",
         name: "Understand",
-        desc: "Understand the client's brand, occasion, audience, requirements, and budget.",
+        desc: "Align on your brand, occasion, audience, and budget.",
       },
       {
         number: "02",
         name: "Curate",
-        desc: "Develop suitable gifting concepts and select products.",
+        desc: "Develop tailored gifting concepts and select purposeful products.",
       },
       {
         number: "03",
         name: "Customize",
-        desc: "Apply branding, personalization, packaging, and finishing details.",
+        desc: "Apply bespoke branding, packaging, and finishing touches.",
       },
       {
         number: "04",
         name: "Deliver",
-        desc: "Coordinate preparation, presentation, and delivery according to the agreed requirements.",
+        desc: "Coordinate quality inspection and doorstep fulfillment nationwide.",
       },
     ],
   },
@@ -219,7 +218,7 @@ export const homeContent = {
     label: "06 · Common Questions",
     heading: "Everything You Need to Know.",
     intro:
-      "Quick answers to the most common questions about planning, customizing, and delivering corporate gifts with NAQSH.",
+      "Quick answers on customizing and delivering corporate gifts with NAQSH.",
     ctaText: "View All 19 FAQs",
     ctaHref: "/faqs",
   },
@@ -234,7 +233,7 @@ export const homeContent = {
     label: "Let's Connect",
     heading: "Let's Create Something Meaningful.",
     subline:
-      "Tell us about your next corporate gifting requirement. Our team will help you explore thoughtful ideas and create a gifting experience that reflects your brand.",
+      "Share your next corporate gifting brief and our team will curate a tailored proposal for your brand.",
     button: "REQUEST A CONSULTATION",
     secondary: "CHAT WITH US",
   },

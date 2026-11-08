@@ -55,16 +55,16 @@ export function About() {
             ))}
           </div>
           <div
-            className="grid grid-cols-3 gap-3 sm:gap-5 py-5 my-2 border-y border-white/12"
+            className="grid grid-cols-3 gap-3 sm:gap-5 py-3.5 sm:py-5 my-1 sm:my-2 border-y border-white/12"
             data-reveal="up"
             data-delay="0.12"
           >
             {about.highlights.map((item) => (
               <div key={item.label} className="flex flex-col">
-                <span className="font-serif text-xl sm:text-2xl text-[#C99A53] leading-tight">
+                <span className="font-serif text-lg sm:text-2xl text-[#C99A53] leading-tight">
                   {item.value}
                 </span>
-                <span className="text-[11px] sm:text-xs uppercase tracking-[0.12em] text-[var(--ivory)]/75 mt-1">
+                <span className="text-[10px] sm:text-xs uppercase tracking-[0.1em] sm:tracking-[0.12em] text-[var(--ivory)]/75 mt-1">
                   {item.label}
                 </span>
               </div>

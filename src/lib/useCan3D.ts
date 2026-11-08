@@ -33,7 +33,7 @@ export function checkWebGL2Support(): boolean {
   return cachedWebGL2Support;
 }
 
-export function evaluateCan3D(minWidth = 1024): boolean {
+export function evaluateCan3D(minWidth = 320): boolean {
   if (typeof window === "undefined" || typeof navigator === "undefined") {
     return false;
   }
@@ -50,24 +50,13 @@ export function evaluateCan3D(minWidth = 1024): boolean {
   if (nav.connection?.saveData === true) {
     return false;
   }
-  if (
-    typeof nav.hardwareConcurrency === "number" &&
-    nav.hardwareConcurrency < 4
-  ) {
-    return false;
-  }
-  if (typeof nav.deviceMemory === "number" && nav.deviceMemory < 4) {
-    return false;
-  }
   return checkWebGL2Support();
 }
 
 /**
  * Decides if real-time WebGL 3D may run for a scene at a given minimum viewport width.
- * - Copper Emblem & Gift Box: `minWidth = 1024`
- * - Wax Seal: `minWidth = 768`
  */
-export function useCan3D(minWidth = 1024): boolean {
+export function useCan3D(minWidth = 320): boolean {
   const [can3D, setCan3D] = useState(false);
 
   useEffect(() => {

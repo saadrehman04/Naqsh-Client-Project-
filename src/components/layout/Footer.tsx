@@ -67,11 +67,11 @@ export function Footer() {
           />
 
           {/* MAIN EDITORIAL FOUR-COLUMN GRID */}
-          <div className="footer-content-grid relative z-10 px-6 sm:px-10 lg:px-16 pt-12 sm:pt-16 lg:pt-20 pb-12 sm:pb-16">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 items-start">
+          <div className="footer-content-grid relative z-10 px-5 sm:px-10 lg:px-16 pt-10 sm:pt-16 lg:pt-20 pb-10 sm:pb-16">
+            <div className="grid grid-cols-2 lg:grid-cols-12 gap-x-6 gap-y-8 lg:gap-8 items-start">
               {/* Column 1: Brand (4 cols) */}
               <div
-                className="lg:col-span-4 flex flex-col justify-between"
+                className="col-span-2 lg:col-span-4 flex flex-col justify-between"
                 data-footer-col="0"
               >
                 <div>
@@ -93,11 +93,11 @@ export function Footer() {
                     </div>
                   </Link>
 
-                  <p className="mt-4 text-sm font-sans text-[var(--ivory)]/80 leading-relaxed max-w-sm">
-                    Premium corporate gifting solutions—thoughtfully curated, personalized, and delivered from concept to doorstep across Pakistan.
+                  <p className="mt-3 sm:mt-4 text-xs sm:text-sm font-sans text-[var(--ivory)]/80 leading-relaxed max-w-sm">
+                    Premium corporate gifting—curated, personalized, and delivered across Pakistan.
                   </p>
 
-                  <div className="mt-5 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.04] border border-[#C99A53]/30 text-xs font-sans text-[#D6C8B3]">
+                  <div className="mt-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.04] border border-[#C99A53]/30 text-xs font-sans text-[#D6C8B3]">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#C99A53]" />
                     <span>Crafting Lasting Impressions</span>
                   </div>
@@ -105,7 +105,7 @@ export function Footer() {
 
                 {/* Verified Social Links (only rendered if configured) */}
                 {siteConfig.socials.length > 0 && (
-                  <div className="mt-6 flex items-center gap-2.5">
+                  <div className="mt-5 flex items-center gap-2.5">
                     {siteConfig.socials.map((soc) => (
                       <a
                         key={soc.platform}
@@ -120,7 +120,7 @@ export function Footer() {
                   </div>
                 )}
 
-                <div className="mt-8 pt-6 border-t border-white/[0.08] space-y-2 text-xs font-sans text-[var(--ivory)]/75">
+                <div className="hidden sm:block mt-6 pt-5 border-t border-white/[0.08] space-y-2 text-xs font-sans text-[var(--ivory)]/75">
                   <div className="flex items-center gap-2.5">
                     <MapPin className="w-3.5 h-3.5 text-[#C99A53] shrink-0" aria-hidden="true" />
                     <span>Lahore, Pakistan · Nationwide Corporate Delivery</span>
@@ -128,18 +128,18 @@ export function Footer() {
                 </div>
               </div>
 
-              {/* Column 2: Explore (2 cols) */}
-              <div className="lg:col-span-2" data-footer-col="1">
-                <h3 className="flex items-center gap-2 text-xs font-sans font-semibold tracking-[0.16em] uppercase text-[#C99A53] mb-5">
+              {/* Column 2: Explore (1 col on mobile, 2 cols on desktop) */}
+              <div className="col-span-1 lg:col-span-2" data-footer-col="1">
+                <h3 className="flex items-center gap-2 text-[11px] sm:text-xs font-sans font-semibold tracking-[0.16em] uppercase text-[#C99A53] mb-3 sm:mb-5">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#C99A53]" />
                   <span>Explore</span>
                 </h3>
-                <ul className="space-y-1 font-sans text-sm text-[var(--ivory)]/80">
+                <ul className="space-y-0.5 sm:space-y-1 font-sans text-xs sm:text-sm text-[var(--ivory)]/80">
                   {siteConfig.nav.map((item) => (
                     <li key={item.href}>
                       <Link
                         href={item.href}
-                        className="group flex items-center justify-between hover:text-[var(--ivory)] transition-colors duration-200 min-h-[44px] py-2"
+                        className="group flex items-center justify-between hover:text-[var(--ivory)] transition-colors duration-200 min-h-[34px] sm:min-h-[40px] py-1 sm:py-1.5"
                       >
                         <span className="group-hover:translate-x-1 transition-transform duration-200">
                           {item.label}
@@ -151,18 +151,18 @@ export function Footer() {
                 </ul>
               </div>
 
-              {/* Column 3: Collections (3 cols) */}
-              <div className="lg:col-span-3" data-footer-col="2">
-                <h3 className="flex items-center gap-2 text-xs font-sans font-semibold tracking-[0.16em] uppercase text-[#C99A53] mb-5">
+              {/* Column 3: Collections (1 col on mobile, 3 cols on desktop) */}
+              <div className="col-span-1 lg:col-span-3" data-footer-col="2">
+                <h3 className="flex items-center gap-2 text-[11px] sm:text-xs font-sans font-semibold tracking-[0.16em] uppercase text-[#C99A53] mb-3 sm:mb-5">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#C99A53]" />
                   <span>Collections</span>
                 </h3>
-                <ul className="space-y-1 font-sans text-sm text-[var(--ivory)]/80">
+                <ul className="space-y-0.5 sm:space-y-1 font-sans text-xs sm:text-sm text-[var(--ivory)]/80">
                   {collectionsList.map((col) => (
                     <li key={col.href}>
                       <Link
                         href={col.href}
-                        className="group flex items-center justify-between hover:text-[var(--ivory)] transition-colors duration-200 min-h-[44px] py-2"
+                        className="group flex items-center justify-between hover:text-[var(--ivory)] transition-colors duration-200 min-h-[34px] sm:min-h-[40px] py-1 sm:py-1.5"
                       >
                         <span className="group-hover:translate-x-1 transition-transform duration-200">
                           {col.label}
@@ -174,9 +174,9 @@ export function Footer() {
                 </ul>
               </div>
 
-              {/* Column 4: Contact (3 cols) */}
-              <div className="lg:col-span-3" data-footer-col="3">
-                <h3 className="flex items-center gap-2 text-xs font-sans font-semibold tracking-[0.16em] uppercase text-[#C99A53] mb-5">
+              {/* Column 4: Contact (2 cols on mobile, 3 cols on desktop) */}
+              <div className="col-span-2 lg:col-span-3" data-footer-col="3">
+                <h3 className="flex items-center gap-2 text-[11px] sm:text-xs font-sans font-semibold tracking-[0.16em] uppercase text-[#C99A53] mb-3 sm:mb-5">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#C99A53]" />
                   <span>Contact</span>
                 </h3>

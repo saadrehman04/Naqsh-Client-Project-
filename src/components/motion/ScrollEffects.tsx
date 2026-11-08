@@ -557,7 +557,7 @@ export function ScrollEffects() {
           char.style.willChange = "transform, opacity";
         });
 
-        const amplitude = isDesktop ? 1 : 0.55;
+        const amplitude = isDesktop ? 1 : 0.85;
         parallaxItems = Array.from(
           document.querySelectorAll<HTMLElement>("[data-parallax]")
         )
@@ -592,7 +592,7 @@ export function ScrollEffects() {
           );
           mobileSteps.forEach((step) => {
             step.classList.add("is-revealed");
-            gsap.set(step, { opacity: 0, y: 30 });
+            gsap.set(step, { opacity: 0, y: 28 });
           });
         }
       });
@@ -620,13 +620,12 @@ export function ScrollEffects() {
           if (mode === "lines") {
             ScrollTrigger.create({
               trigger: element,
-              start: "top 85%",
-              once: true,
+              start: "top 88%",
               onEnter: () =>
                 deferWrite(() => {
                   gsap.to(split.targets, {
                     yPercent: 0,
-                    duration: 1.05,
+                    duration: 0.95,
                     stagger,
                     delay,
                     ease: "power3.out",
@@ -649,7 +648,7 @@ export function ScrollEffects() {
                 clearProps: "transform",
                 scrollTrigger: {
                   trigger: element,
-                  start: "top 85%",
+                  start: "top 88%",
                   end: "bottom 55%",
                   scrub: numberAttr(element, "scrub", 0.6),
                 },
@@ -657,8 +656,7 @@ export function ScrollEffects() {
             } else {
               ScrollTrigger.create({
                 trigger: element,
-                start: "top 85%",
-                once: true,
+                start: "top 88%",
                 onEnter: () =>
                   deferWrite(() => {
                     gsap.to(split.targets, {
@@ -690,14 +688,13 @@ export function ScrollEffects() {
 
           ScrollTrigger.create({
             trigger: element,
-            start: "top 85%",
-            once: true,
+            start: "top 88%",
             onEnter: () =>
               deferWrite(() => {
                 gsap.to(element, {
                   ...toVars,
                   delay,
-                  duration: 1.0,
+                  duration: 0.9,
                   ease: "power3.out",
                   clearProps: "transform",
                   overwrite: "auto",
@@ -968,29 +965,17 @@ export function ScrollEffects() {
       // SLICE 2B-2: Register ScrollTriggers for parallax & catalog filter observer
       enqueueSlice(() => {
         parallaxItems.forEach(({ element, target, axis, travel }) => {
-          if (isDesktop) {
-            gsap.to(target, {
-              [axis]: travel,
-              ease: "none",
-              immediateRender: false,
-              scrollTrigger: {
-                trigger: element,
-                start: "top bottom",
-                end: "bottom top",
-                scrub: 0.6,
-              },
-            });
-          } else {
-            const setProp = gsap.quickSetter(target, axis);
-            ScrollTrigger.create({
+          gsap.to(target, {
+            [axis]: travel,
+            ease: "none",
+            immediateRender: false,
+            scrollTrigger: {
               trigger: element,
               start: "top bottom",
               end: "bottom top",
-              onUpdate: (self) => {
-                setProp(-travel + self.progress * travel * 2);
-              },
-            });
-          }
+              scrub: isDesktop ? 0.6 : 0.45,
+            },
+          });
         });
 
         // PageHero background & content scroll parallax on inner pages
@@ -1015,9 +1000,9 @@ export function ScrollEffects() {
               }
             );
           }
-          if (pageHeroContent && isDesktop) {
+          if (pageHeroContent) {
             gsap.to(pageHeroContent, {
-              y: -42,
+              y: isDesktop ? -42 : -22,
               ease: "none",
               scrollTrigger: {
                 trigger: pageHero,
@@ -1036,7 +1021,7 @@ export function ScrollEffects() {
         if (ctaBandContainer) {
           gsap.fromTo(
             ctaBandContainer,
-            { y: isDesktop ? 75 : 35, scale: 0.96 },
+            { y: isDesktop ? 75 : 42, scale: 0.95 },
             {
               y: 0,
               scale: 1,
@@ -1044,8 +1029,8 @@ export function ScrollEffects() {
               scrollTrigger: {
                 trigger: ctaBandContainer,
                 start: "top bottom",
-                end: "top 48%",
-                scrub: 0.65,
+                end: "top 55%",
+                scrub: 0.55,
               },
             }
           );
@@ -1076,138 +1061,155 @@ export function ScrollEffects() {
         }
       });
 
-      // SLICE 3: Breakpoint-specific scenes + Marquee velocity (Pure Read pass on mobile)
+      // SLICE 3: Breakpoint-specific scenes + Hero/Why/CTA scroll choreography on both Desktop & Mobile
       enqueueSlice(() => {
-        if (isDesktop) {
-          if (hero) {
-            const heroParallaxLayer =
-              hero.querySelector<HTMLElement>(".hero-photo-parallax") ??
-              heroPhoto;
-            const heroHeadlineBlock =
-              hero.querySelector<HTMLElement>(".hero-heading-wrap") ??
-              hero.querySelector<HTMLElement>(".hero-heading");
-            const heroSubBlock =
-              hero.querySelector<HTMLElement>(".hero-sub-wrap") ??
-              hero.querySelector<HTMLElement>(".hero-subline");
-            const heroBottomStripWrap = hero.querySelector<HTMLElement>(
-              ".hero-bottom-strip"
+        if (hero) {
+          const heroParallaxLayer =
+            hero.querySelector<HTMLElement>(".hero-photo-parallax") ??
+            heroPhoto;
+          const heroHeadlineBlock =
+            hero.querySelector<HTMLElement>(".hero-heading-wrap") ??
+            hero.querySelector<HTMLElement>(".hero-heading");
+          const heroSubBlock =
+            hero.querySelector<HTMLElement>(".hero-sub-wrap") ??
+            hero.querySelector<HTMLElement>(".hero-subline");
+          const heroBottomStripWrap = hero.querySelector<HTMLElement>(
+            ".hero-bottom-strip"
+          );
+          const heroCopperLine =
+            hero.querySelector<HTMLElement>(".hero-copper-line");
+          const heroScrollCue =
+            hero.querySelector<HTMLElement>(".hero-scroll-cue");
+
+          if (heroParallaxLayer) {
+            heroParallaxLayer.style.willChange = "transform";
+          }
+          if (heroCopperLine) {
+            gsap.set(heroCopperLine, {
+              transformOrigin: "left center",
+              scaleX: 0,
+            });
+          }
+
+          const heroTl = gsap.timeline({
+            scrollTrigger: {
+              trigger: hero,
+              start: "top top",
+              end: "bottom top",
+              scrub: 0.5,
+            },
+          });
+
+          if (heroParallaxLayer) {
+            heroTl.fromTo(
+              heroParallaxLayer,
+              { yPercent: 0 },
+              { yPercent: 18, ease: "none", immediateRender: false },
+              0
             );
-            const heroCopperLine =
-              hero.querySelector<HTMLElement>(".hero-copper-line");
-            const heroScrollCue =
-              hero.querySelector<HTMLElement>(".hero-scroll-cue");
-
-            if (heroParallaxLayer) {
-              heroParallaxLayer.style.willChange = "transform";
-            }
-            if (heroCopperLine) {
-              gsap.set(heroCopperLine, {
-                transformOrigin: "left center",
-                scaleX: 0,
-              });
-            }
-
-            const heroTl = gsap.timeline({
-              scrollTrigger: {
-                trigger: hero,
-                start: "top top",
-                end: "bottom top",
-                scrub: 0.6,
+          }
+          if (heroHeadlineBlock) {
+            heroTl.fromTo(
+              heroHeadlineBlock,
+              { y: 0, opacity: 1 },
+              {
+                y: isDesktop ? -90 : -45,
+                opacity: 0.15,
+                ease: "none",
+                immediateRender: false,
               },
-            });
-
-            if (heroParallaxLayer) {
-              heroTl.fromTo(
-                heroParallaxLayer,
-                { yPercent: 0 },
-                { yPercent: 18, ease: "none", immediateRender: false },
-                0
-              );
-            }
-            if (heroHeadlineBlock) {
-              heroTl.fromTo(
-                heroHeadlineBlock,
-                { y: 0, opacity: 1 },
-                {
-                  y: -90,
-                  opacity: 0.15,
-                  ease: "none",
-                  immediateRender: false,
+              0
+            );
+          }
+          if (heroSubBlock) {
+            heroTl.fromTo(
+              heroSubBlock,
+              { y: 0, opacity: 1 },
+              {
+                y: isDesktop ? -50 : -28,
+                opacity: 0,
+                ease: "none",
+                immediateRender: false,
+              },
+              0
+            );
+          }
+          if (heroBottomStripWrap) {
+            heroTl.fromTo(
+              heroBottomStripWrap,
+              { opacity: 1 },
+              { opacity: 0, ease: "none", immediateRender: false },
+              0
+            );
+          }
+          if (heroCopperLine) {
+            heroTl.fromTo(
+              heroCopperLine,
+              { scaleX: 0 },
+              { scaleX: 1, ease: "none", immediateRender: false },
+              0
+            );
+          }
+          if (heroScrollCue) {
+            gsap.fromTo(
+              heroScrollCue,
+              { opacity: 1, y: 0 },
+              {
+                opacity: 0,
+                y: -8,
+                ease: "none",
+                immediateRender: false,
+                scrollTrigger: {
+                  trigger: hero,
+                  start: "top top",
+                  end: "+=80",
+                  scrub: 0.5,
                 },
-                0
-              );
-            }
-            if (heroSubBlock) {
-              heroTl.fromTo(
-                heroSubBlock,
-                { y: 0, opacity: 1 },
-                { y: -50, opacity: 0, ease: "none", immediateRender: false },
-                0
-              );
-            }
-            if (heroBottomStripWrap) {
-              heroTl.fromTo(
-                heroBottomStripWrap,
-                { opacity: 1 },
-                { opacity: 0, ease: "none", immediateRender: false },
-                0
-              );
-            }
-            if (heroCopperLine) {
-              heroTl.fromTo(
-                heroCopperLine,
-                { scaleX: 0 },
-                { scaleX: 1, ease: "none", immediateRender: false },
-                0
-              );
-            }
-            if (heroScrollCue) {
-              gsap.fromTo(
-                heroScrollCue,
-                { opacity: 1, y: 0 },
-                {
-                  opacity: 0,
-                  y: -8,
-                  ease: "none",
-                  immediateRender: false,
-                  scrollTrigger: {
-                    trigger: hero,
-                    start: "top top",
-                    end: "+=80",
-                    scrub: 0.6,
-                  },
-                }
-              );
-            }
+              }
+            );
           }
+        }
 
-          const whyItems = Array.from(
-            document.querySelectorAll<HTMLElement>("[data-why-item]")
+        const whyItems = Array.from(
+          document.querySelectorAll<HTMLElement>("[data-why-item]")
+        );
+        const whyImages = Array.from(
+          document.querySelectorAll<HTMLElement>("[data-why-image]")
+        );
+        const activateWhy = (activeIndex: number) => {
+          whyItems.forEach((item, i) =>
+            item.classList.toggle("is-active", i === activeIndex)
           );
-          const whyImages = Array.from(
-            document.querySelectorAll<HTMLElement>("[data-why-image]")
+          whyImages.forEach((image, i) =>
+            image.classList.toggle("is-active", i === activeIndex)
           );
-          const activateWhy = (activeIndex: number) => {
-            whyItems.forEach((item, i) =>
-              item.classList.toggle("is-active", i === activeIndex)
-            );
-            whyImages.forEach((image, i) =>
-              image.classList.toggle("is-active", i === activeIndex)
-            );
-          };
-          if (whyItems.length) {
-            activateWhy(0);
-            whyItems.forEach((item, index) => {
-              ScrollTrigger.create({
-                trigger: item,
-                start: "top 55%",
-                end: "bottom 45%",
-                onEnter: () => activateWhy(index),
-                onEnterBack: () => activateWhy(index),
-              });
+        };
+        if (whyItems.length) {
+          activateWhy(0);
+          whyItems.forEach((item, index) => {
+            ScrollTrigger.create({
+              trigger: item,
+              start: "top 65%",
+              end: "bottom 35%",
+              onEnter: () => activateWhy(index),
+              onEnterBack: () => activateWhy(index),
             });
-          }
+          });
+        }
 
+        const ctaBand = document.querySelector<HTMLElement>(".cta-band");
+        if (ctaBand) {
+          ScrollTrigger.create({
+            trigger: ctaBand,
+            start: "top bottom",
+            end: "top 65%",
+            onUpdate: (self) => {
+              setSceneProgress("cta", self.progress, ctaBand);
+            },
+          });
+        }
+
+        if (isDesktop) {
           // 1. Collection Gallery (Horizontal Track Pin, FIRST in DOM order — Section 05)
           const gallery = document.querySelector<HTMLElement>(
             "[data-horizontal-gallery]"
@@ -1263,7 +1265,7 @@ export function ScrollEffects() {
             }
           }
 
-          // 2. Our Approach Sequence (Pinned 300vh, SECOND in DOM order — Section 07)
+          // 2. Our Approach Sequence (Pinned 300vh, SECOND in DOM order — Section 06)
           const approach = document.querySelector<HTMLElement>(
             "[data-approach-sequence]"
           );
@@ -1461,20 +1463,6 @@ export function ScrollEffects() {
 
           ScrollTrigger.sort();
 
-          const ctaBand = document.querySelector<HTMLElement>(".cta-band");
-          if (ctaBand) {
-            ScrollTrigger.create({
-              trigger: ctaBand,
-              start: "top bottom",
-              end: "top 65%",
-              onUpdate: (self) => {
-                setSceneProgress("cta", self.progress, ctaBand);
-              },
-            });
-          }
-
-
-
           document
             .querySelectorAll<HTMLElement>("[data-pin]")
             .forEach((element) => {
@@ -1505,19 +1493,65 @@ export function ScrollEffects() {
               });
             });
         } else {
+          // Mobile: drive 3D GiftBox opening, progress rail & active step highlighting on scroll
+          const approach = document.querySelector<HTMLElement>(
+            "[data-approach-sequence]"
+          );
+          const approachSteps = Array.from(
+            approach?.querySelectorAll<HTMLElement>("[data-approach-step]") ?? []
+          );
+          const approachProgressFill = approach?.querySelector<HTMLElement>(
+            "[data-approach-progress]"
+          );
+
+          if (approach && approachSteps.length) {
+            const activateStep = (activeIndex: number) => {
+              approachSteps.forEach((step, idx) => {
+                const isActive = idx === activeIndex;
+                step.classList.toggle("is-active", isActive);
+                step.setAttribute("aria-current", isActive ? "step" : "false");
+              });
+            };
+            activateStep(0);
+
+            if (approachProgressFill) {
+              gsap.set(approachProgressFill, {
+                scaleY: 0,
+                transformOrigin: "top center",
+              });
+            }
+
+            ScrollTrigger.create({
+              trigger: approach,
+              start: "top 80%",
+              end: "bottom 20%",
+              scrub: 0.4,
+              onUpdate: (self) => {
+                setSceneProgress("approach", self.progress, approach);
+                if (approachProgressFill) {
+                  approachProgressFill.style.transform = `scaleY(${self.progress.toFixed(4)})`;
+                }
+                const activeIdx = Math.min(
+                  approachSteps.length - 1,
+                  Math.floor(self.progress * approachSteps.length)
+                );
+                activateStep(activeIdx);
+              },
+            });
+          }
+
           let isMobInit = true;
           const pendingMob: Array<() => void> = [];
           mobileSteps.forEach((step) => {
             ScrollTrigger.create({
               trigger: step,
-              start: "top 85%",
-              once: true,
+              start: "top 88%",
               onEnter: () => {
                 const run = () => {
                   gsap.to(step, {
                     opacity: 1,
                     y: 0,
-                    duration: 0.9,
+                    duration: 0.85,
                     ease: "power3.out",
                     clearProps: "transform",
                     overwrite: "auto",

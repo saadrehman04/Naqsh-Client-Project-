@@ -36,7 +36,7 @@ export function PageHero({
   return (
     <section
       className={cn(
-        "page-hero on-dark relative overflow-hidden bg-[#0E0C0A] text-[var(--ivory)] pt-32 pb-16 sm:pt-40 sm:pb-24",
+        "page-hero on-dark relative overflow-hidden bg-[#0E0C0A] text-[var(--ivory)] pt-24 pb-10 sm:pt-36 sm:pb-20",
         className
       )}
     >
@@ -101,21 +101,21 @@ export function PageHero({
         )}
         <div className="max-w-4xl">
           <div
-            className="flex items-center gap-3 mb-5 text-xs font-sans tracking-[0.24em] uppercase text-[#E5A666] font-semibold select-none"
+            className="flex items-center gap-3 mb-3 sm:mb-4 text-xs font-sans tracking-[0.24em] uppercase text-[#E5A666] font-semibold select-none"
             data-reveal={fadeOnly ? undefined : "up"}
           >
             <span className="w-8 h-px bg-[#E5A666]/60" aria-hidden="true" />
             <span>{label}</span>
           </div>
           <h1
-            className="t-h1 mb-6 text-[var(--ivory)] drop-shadow-[0_2px_18px_rgba(0,0,0,0.45)]"
+            className="t-h1 mb-3.5 sm:mb-5 text-[var(--ivory)] drop-shadow-[0_2px_18px_rgba(0,0,0,0.45)]"
             data-reveal={fadeOnly ? undefined : "lines"}
           >
             {title}
           </h1>
           {displayIntro && (
             <p
-              className="t-lead text-[var(--ivory)]/80 max-w-2xl font-light"
+              className="text-sm sm:text-lg leading-relaxed text-[var(--ivory)]/80 max-w-xl font-light"
               data-reveal={fadeOnly ? undefined : "up"}
               data-delay={fadeOnly ? undefined : "0.1"}
             >

@@ -41,7 +41,7 @@ export function HomeFaqPreview() {
             data-reveal="stagger"
             data-stagger="0.08"
           >
-            {homepageFaqs.map((item, idx) => (
+            {homepageFaqs.slice(0, 4).map((item, idx) => (
               <AccordionItem
                 key={item.id}
                 id={item.id}

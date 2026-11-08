@@ -24,7 +24,7 @@ export function WaxSeal3D({
   className = "",
 }: WaxSeal3DProps) {
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const can3D = useCan3D(768);
+  const can3D = useCan3D(320);
   const { shouldMount, isVisible } = useSceneViewportLifecycle(
     wrapperRef,
     can3D

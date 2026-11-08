@@ -14,7 +14,7 @@ const GiftBoxSceneCanvas = dynamic(() => import("./GiftBoxSceneCanvas"), {
 
 export function GiftBoxScene({ className = "" }: { className?: string }) {
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const can3D = useCan3D(1024);
+  const can3D = useCan3D(320);
   const { shouldMount, isVisible } = useSceneViewportLifecycle(
     wrapperRef,
     can3D

@@ -185,7 +185,7 @@ export function InquiryForm() {
       <form
         onSubmit={handleSubmit}
         noValidate
-        className="bg-[var(--ivory-warm)] border border-[var(--border-light)] rounded-[var(--radius-card)] p-6 sm:p-10 shadow-sm space-y-6"
+        className="bg-[var(--ivory-warm)] border border-[var(--border-light)] rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-sm space-y-4 sm:space-y-5"
         aria-label="Corporate Gifting Consultation Form"
       >
         {serverError && (
@@ -218,13 +218,13 @@ export function InquiryForm() {
           />
         </div>
 
-        <div className="space-y-6" data-reveal="stagger" data-stagger="0.06">
+        <div className="space-y-4 sm:space-y-5" data-reveal="stagger" data-stagger="0.06">
           {/* Row 1: Full Name & Company Name */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 gap-3 sm:gap-5">
             <div>
               <label
                 htmlFor="name"
-                className="block text-xs uppercase tracking-[0.14em] font-sans font-medium text-[var(--black)] mb-2"
+                className="block text-[11px] sm:text-xs uppercase tracking-[0.12em] font-sans font-medium text-[var(--black)] mb-1.5"
               >
                 Full Name <span className="text-[var(--terracotta)]">*</span>
               </label>
@@ -235,8 +235,8 @@ export function InquiryForm() {
                 required
                 value={formData.name}
                 onChange={handleChange}
-                placeholder="e.g. Tariq Ahmed"
-                className={`w-full px-4 py-3 rounded-lg bg-[var(--ivory)] border text-[var(--black)] placeholder:text-[var(--charcoal)]/45 font-sans text-sm transition-colors focus:outline-none focus:ring-1 ${
+                placeholder="Tariq Ahmed"
+                className={`w-full px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-lg bg-[var(--ivory)] border text-[var(--black)] placeholder:text-[var(--charcoal)]/45 font-sans text-sm transition-colors focus:outline-none focus:ring-1 ${
                   errors.name
                     ? "border-red-500 focus:border-red-500 focus:ring-red-500"
                     : "border-[var(--border-light)] focus:border-[var(--terracotta)] focus:ring-[var(--terracotta)]"
@@ -252,9 +252,9 @@ export function InquiryForm() {
             <div>
               <label
                 htmlFor="company"
-                className="block text-xs uppercase tracking-[0.14em] font-sans font-medium text-[var(--black)] mb-2"
+                className="block text-[11px] sm:text-xs uppercase tracking-[0.12em] font-sans font-medium text-[var(--black)] mb-1.5"
               >
-                Company Name <span className="text-[var(--terracotta)]">*</span>
+                Company <span className="text-[var(--terracotta)]">*</span>
               </label>
               <input
                 id="company"
@@ -263,8 +263,8 @@ export function InquiryForm() {
                 required
                 value={formData.company}
                 onChange={handleChange}
-                placeholder="e.g. Apex Enterprises"
-                className={`w-full px-4 py-3 rounded-lg bg-[var(--ivory)] border text-[var(--black)] placeholder:text-[var(--charcoal)]/45 font-sans text-sm transition-colors focus:outline-none focus:ring-1 ${
+                placeholder="Apex Enterprises"
+                className={`w-full px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-lg bg-[var(--ivory)] border text-[var(--black)] placeholder:text-[var(--charcoal)]/45 font-sans text-sm transition-colors focus:outline-none focus:ring-1 ${
                   errors.company
                     ? "border-red-500 focus:border-red-500 focus:ring-red-500"
                     : "border-[var(--border-light)] focus:border-[var(--terracotta)] focus:ring-[var(--terracotta)]"
@@ -279,11 +279,11 @@ export function InquiryForm() {
           </div>
 
           {/* Row 2: Work Email & Phone / WhatsApp */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
             <div>
               <label
                 htmlFor="email"
-                className="block text-xs uppercase tracking-[0.14em] font-sans font-medium text-[var(--black)] mb-2"
+                className="block text-[11px] sm:text-xs uppercase tracking-[0.12em] font-sans font-medium text-[var(--black)] mb-1.5"
               >
                 Work Email <span className="text-[var(--terracotta)]">*</span>
               </label>
@@ -294,8 +294,8 @@ export function InquiryForm() {
                 required
                 value={formData.email}
                 onChange={handleChange}
-                placeholder="e.g. tariq@company.com"
-                className={`w-full px-4 py-3 rounded-lg bg-[var(--ivory)] border text-[var(--black)] placeholder:text-[var(--charcoal)]/45 font-sans text-sm transition-colors focus:outline-none focus:ring-1 ${
+                placeholder="tariq@company.com"
+                className={`w-full px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-lg bg-[var(--ivory)] border text-[var(--black)] placeholder:text-[var(--charcoal)]/45 font-sans text-sm transition-colors focus:outline-none focus:ring-1 ${
                   errors.email
                     ? "border-red-500 focus:border-red-500 focus:ring-red-500"
                     : "border-[var(--border-light)] focus:border-[var(--terracotta)] focus:ring-[var(--terracotta)]"
@@ -311,7 +311,7 @@ export function InquiryForm() {
             <div>
               <label
                 htmlFor="phone"
-                className="block text-xs uppercase tracking-[0.14em] font-sans font-medium text-[var(--black)] mb-2"
+                className="block text-[11px] sm:text-xs uppercase tracking-[0.12em] font-sans font-medium text-[var(--black)] mb-1.5"
               >
                 Phone / WhatsApp
               </label>
@@ -321,8 +321,8 @@ export function InquiryForm() {
                 type="tel"
                 value={formData.phone}
                 onChange={handleChange}
-                placeholder="e.g. +92 300 1234567"
-                className={`w-full px-4 py-3 rounded-lg bg-[var(--ivory)] border text-[var(--black)] placeholder:text-[var(--charcoal)]/45 font-sans text-sm transition-colors focus:outline-none focus:ring-1 ${
+                placeholder="+92 300 1234567"
+                className={`w-full px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-lg bg-[var(--ivory)] border text-[var(--black)] placeholder:text-[var(--charcoal)]/45 font-sans text-sm transition-colors focus:outline-none focus:ring-1 ${
                   errors.phone
                     ? "border-red-500 focus:border-red-500 focus:ring-red-500"
                     : "border-[var(--border-light)] focus:border-[var(--terracotta)] focus:ring-[var(--terracotta)]"
@@ -337,11 +337,11 @@ export function InquiryForm() {
           </div>
 
           {/* Row 3: Gifting Category & Estimated Quantity */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
             <div>
               <label
                 htmlFor="occasion"
-                className="block text-xs uppercase tracking-[0.14em] font-sans font-medium text-[var(--black)] mb-2"
+                className="block text-[11px] sm:text-xs uppercase tracking-[0.12em] font-sans font-medium text-[var(--black)] mb-1.5"
               >
                 Gifting Category <span className="text-[var(--terracotta)]">*</span>
               </label>
@@ -351,14 +351,14 @@ export function InquiryForm() {
                 required
                 value={formData.occasion}
                 onChange={handleChange}
-                className={`w-full px-4 py-3 rounded-lg bg-[var(--ivory)] border text-[var(--black)] font-sans text-sm transition-colors focus:outline-none focus:ring-1 ${
+                className={`w-full px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-lg bg-[var(--ivory)] border text-[var(--black)] font-sans text-sm transition-colors focus:outline-none focus:ring-1 ${
                   errors.occasion
                     ? "border-red-500 focus:border-red-500 focus:ring-red-500"
                     : "border-[var(--border-light)] focus:border-[var(--terracotta)] focus:ring-[var(--terracotta)]"
                 }`}
               >
                 <option value="" disabled>
-                  Select gifting category or collection...
+                  Select gifting category...
                 </option>
                 {occasionOptions.map((opt) => (
                   <option key={opt.value} value={opt.value}>
@@ -376,7 +376,7 @@ export function InquiryForm() {
             <div>
               <label
                 htmlFor="quantity"
-                className="block text-xs uppercase tracking-[0.14em] font-sans font-medium text-[var(--black)] mb-2"
+                className="block text-[11px] sm:text-xs uppercase tracking-[0.12em] font-sans font-medium text-[var(--black)] mb-1.5"
               >
                 Estimated Quantity
               </label>
@@ -385,9 +385,9 @@ export function InquiryForm() {
                 name="quantity"
                 value={formData.quantity}
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-lg bg-[var(--ivory)] border border-[var(--border-light)] text-[var(--black)] font-sans text-sm focus:outline-none focus:ring-1 focus:ring-[var(--terracotta)] focus:border-[var(--terracotta)]"
+                className="w-full px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-lg bg-[var(--ivory)] border border-[var(--border-light)] text-[var(--black)] font-sans text-sm focus:outline-none focus:ring-1 focus:ring-[var(--terracotta)] focus:border-[var(--terracotta)]"
               >
-                <option value="">Select approximate quantity...</option>
+                <option value="">Select quantity...</option>
                 <option value="10-25 kits">10 – 25 packages (Executive)</option>
                 <option value="25-50 kits">25 – 50 packages</option>
                 <option value="50-100 kits">50 – 100 packages</option>
@@ -397,80 +397,22 @@ export function InquiryForm() {
             </div>
           </div>
 
-          {/* Row 4: Approximate Budget per Gift & Required Delivery Date */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div>
-              <label
-                htmlFor="budgetRange"
-                className="block text-xs uppercase tracking-[0.14em] font-sans font-medium text-[var(--black)] mb-2"
-              >
-                Approximate Budget per Gift
-              </label>
-              <input
-                id="budgetRange"
-                name="budgetRange"
-                type="text"
-                value={formData.budgetRange}
-                onChange={handleChange}
-                placeholder="e.g. PKR 6,000 – 12,000 per gift"
-                className="w-full px-4 py-3 rounded-lg bg-[var(--ivory)] border border-[var(--border-light)] text-[var(--black)] placeholder:text-[var(--charcoal)]/45 font-sans text-sm focus:outline-none focus:ring-1 focus:ring-[var(--terracotta)] focus:border-[var(--terracotta)]"
-              />
-            </div>
-
-            <div>
-              <label
-                htmlFor="dateNeeded"
-                className="block text-xs uppercase tracking-[0.14em] font-sans font-medium text-[var(--black)] mb-2"
-              >
-                Required Delivery Date
-              </label>
-              <input
-                id="dateNeeded"
-                name="dateNeeded"
-                type="text"
-                value={formData.dateNeeded}
-                onChange={handleChange}
-                placeholder="e.g. Mid-December 2026"
-                className="w-full px-4 py-3 rounded-lg bg-[var(--ivory)] border border-[var(--border-light)] text-[var(--black)] placeholder:text-[var(--charcoal)]/45 font-sans text-sm focus:outline-none focus:ring-1 focus:ring-[var(--terracotta)] focus:border-[var(--terracotta)]"
-              />
-            </div>
-          </div>
-
-          {/* Row 5: Delivery Location */}
-          <div>
-            <label
-              htmlFor="deliveryLocation"
-              className="block text-xs uppercase tracking-[0.14em] font-sans font-medium text-[var(--black)] mb-2"
-            >
-              Delivery Location
-            </label>
-            <input
-              id="deliveryLocation"
-              name="deliveryLocation"
-              type="text"
-              value={formData.deliveryLocation}
-              onChange={handleChange}
-              placeholder="e.g. Lahore office bulk delivery, or multi-city across Lahore, Karachi & Islamabad"
-              className="w-full px-4 py-3 rounded-lg bg-[var(--ivory)] border border-[var(--border-light)] text-[var(--black)] placeholder:text-[var(--charcoal)]/45 font-sans text-sm focus:outline-none focus:ring-1 focus:ring-[var(--terracotta)] focus:border-[var(--terracotta)]"
-            />
-          </div>
-
-          {/* Row 6: Project Details */}
+          {/* Row 4: Project Details */}
           <div>
             <label
               htmlFor="message"
-              className="block text-xs uppercase tracking-[0.14em] font-sans font-medium text-[var(--black)] mb-2"
+              className="block text-[11px] sm:text-xs uppercase tracking-[0.12em] font-sans font-medium text-[var(--black)] mb-1.5"
             >
-              Project Details
+              Project Brief & Requirements
             </label>
             <textarea
               id="message"
               name="message"
-              rows={4}
+              rows={3}
               value={formData.message}
               onChange={handleChange}
-              placeholder="Share your gifting occasion, preferred items, branding or personalization preferences, and any specific requirements..."
-              className="w-full px-4 py-3 rounded-lg bg-[var(--ivory)] border border-[var(--border-light)] text-[var(--black)] placeholder:text-[var(--charcoal)]/45 font-sans text-sm focus:outline-none focus:ring-1 focus:ring-[var(--terracotta)] focus:border-[var(--terracotta)] resize-y"
+              placeholder="Share your occasion, target delivery date, budget range, or customization preferences..."
+              className="w-full px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-lg bg-[var(--ivory)] border border-[var(--border-light)] text-[var(--black)] placeholder:text-[var(--charcoal)]/45 font-sans text-sm focus:outline-none focus:ring-1 focus:ring-[var(--terracotta)] focus:border-[var(--terracotta)] resize-y"
             />
           </div>
 
