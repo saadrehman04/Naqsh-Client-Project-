@@ -78,71 +78,76 @@ export function WaxSeal3D({
       aria-hidden="true"
       tabIndex={-1}
     >
-      {/* 2D Fallback: SVG wax seal disc with visible Ivory Emblem and CSS stamp animation */}
+      {/* 2D Fallback: SVG wax seal disc with visible Gold-Copper Emblem and CSS stamp animation */}
       <div
         className={`scene-fallback wax-seal-fallback ${
           effectiveTrigger ? "is-stamped" : ""
         } ${hasDrawnFirstFrame ? "is-faded" : ""}`}
       >
-        {shouldMount && (
-          <img
-            src="/3d/seal.webp"
-            alt=""
-            width={size}
-            height={size}
-            loading="lazy"
-            decoding="async"
-            className="scene-poster-img"
-          />
-        )}
         <svg
           viewBox="0 0 200 200"
           className="wax-seal-fallback-disc"
           aria-hidden="true"
         >
           <defs>
-            <radialGradient id="naqsh-wax-grad" cx="36%" cy="32%" r="68%">
-              <stop offset="0%" stopColor="#9E3E2E" />
-              <stop offset="58%" stopColor="#7F3021" />
-              <stop offset="100%" stopColor="#5C1E14" />
+            <radialGradient id="naqsh-wax-grad" cx="35%" cy="30%" r="70%">
+              <stop offset="0%" stopColor="#9E3A2B" />
+              <stop offset="55%" stopColor="#7A2619" />
+              <stop offset="100%" stopColor="#4E140C" />
             </radialGradient>
-            <radialGradient id="naqsh-wax-well" cx="55%" cy="58%" r="55%">
-              <stop offset="0%" stopColor="#7F3021" />
-              <stop offset="100%" stopColor="#541810" />
+            <radialGradient id="naqsh-wax-well" cx="50%" cy="50%" r="55%">
+              <stop offset="0%" stopColor="#5E1B11" />
+              <stop offset="100%" stopColor="#3D0E07" />
             </radialGradient>
+            <linearGradient id="naqsh-gold-rim" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#F0C792" />
+              <stop offset="50%" stopColor="#C88D58" />
+              <stop offset="100%" stopColor="#9A6234" />
+            </linearGradient>
           </defs>
-          {/* Organic perturbed wax outer silhouette */}
-          <path
-            d="M100,8 C124,7 148,16 166,33 C184,50 193,74 192,100 C191,126 181,150 163,167 C145,184 123,193 99,192 C74,191 50,182 33,164 C16,146 7,124 8,99 C9,74 18,50 36,33 C54,16 76,9 100,8 Z"
-            fill="url(#naqsh-wax-grad)"
-            stroke="#7F3021"
-            strokeWidth="2.5"
-          />
-          {/* Raised inner rim */}
+          {/* Balanced organic circular wax outer silhouette */}
           <circle
             cx="100"
             cy="100"
-            r="74"
-            fill="url(#naqsh-wax-well)"
-            stroke="#AB6C49"
-            strokeWidth="3.5"
-            strokeOpacity="0.65"
+            r="88"
+            fill="url(#naqsh-wax-grad)"
+            stroke="#5A180E"
+            strokeWidth="2"
           />
+          {/* Raised outer wax cushion ring */}
+          <circle
+            cx="100"
+            cy="100"
+            r="79"
+            fill="none"
+            stroke="#9E3A2B"
+            strokeWidth="5"
+            strokeOpacity="0.55"
+          />
+          {/* Recessed inner stamp well */}
           <circle
             cx="100"
             cy="100"
             r="68"
+            fill="url(#naqsh-wax-well)"
+            stroke="url(#naqsh-gold-rim)"
+            strokeWidth="2.5"
+          />
+          <circle
+            cx="100"
+            cy="100"
+            r="62"
             fill="none"
-            stroke="#F7F1E7"
+            stroke="url(#naqsh-gold-rim)"
             strokeWidth="1"
-            strokeOpacity="0.22"
+            strokeOpacity="0.55"
           />
         </svg>
         <img
-          src="/brand/emblem-ivory.svg"
+          src="/brand/emblem-copper.svg"
           alt=""
-          width={68}
-          height={126}
+          width={64}
+          height={118}
           decoding="async"
           className="wax-seal-fallback-emblem"
         />

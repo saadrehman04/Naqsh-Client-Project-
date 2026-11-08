@@ -129,6 +129,15 @@ export function StudioLighting({
           position={[0, -4.4, 1.8]}
           target={[0, 0, 0]}
         />
+        {/* Soft warm front-fill rect so front-facing medallions & seals catch rich specular light */}
+        <Lightformer
+          form="rect"
+          intensity={1.45}
+          color={NAQSH_3D_PALETTE.ivory}
+          scale={[6.0, 6.0, 1]}
+          position={[1.2, 1.8, 6.0]}
+          target={[0, 0, 0]}
+        />
       </Environment>
     </>
   );

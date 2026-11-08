@@ -1807,12 +1807,12 @@ html.motion-ok:not(.reduced-motion) .vision-panel {
 
 /* CTA Seal shadow tightening */
 .cta-seal-scene {
-  border-radius: 50%;
-  box-shadow: 0 28px 34px rgb(0 0 0 / 0.38);
-  transition: box-shadow 1.1s var(--ease-out);
+  border-radius: 0;
+  box-shadow: none;
+  overflow: visible;
 }
 .cta-seal-scene.is-stamped {
-  box-shadow: 0 10px 18px rgb(0 0 0 / 0.22);
+  box-shadow: none;
 }
 
 /* Footer parallax reveal & staggered giant wordmark */
@@ -2022,7 +2022,8 @@ html.motion-ok:not(.reduced-motion) .vision-panel {
 .wax-seal-3d-host {
   position: relative;
   display: inline-block;
-  border-radius: 50%;
+  overflow: visible;
+  filter: drop-shadow(0 14px 22px rgb(38 20 14 / 0.28));
 }
 
 .cta-band .cta-seal-scene {

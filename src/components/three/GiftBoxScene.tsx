@@ -50,17 +50,6 @@ export function GiftBoxScene({ className = "" }: { className?: string }) {
           hasDrawnFirstFrame ? "is-faded" : ""
         }`}
       >
-        {shouldMount && (
-          <img
-            src="/3d/box.webp"
-            alt=""
-            width={420}
-            height={350}
-            loading="lazy"
-            decoding="async"
-            className="scene-poster-img"
-          />
-        )}
         <svg
           viewBox="0 0 420 380"
           className="gift-box-fallback-svg"
