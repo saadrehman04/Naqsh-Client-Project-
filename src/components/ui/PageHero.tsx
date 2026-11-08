@@ -40,16 +40,19 @@ export function PageHero({
         className
       )}
     >
-      {/* Background photograph (dimmed, right-weighted) */}
+      {/* Background photograph (dimmed, right-weighted, with scroll parallax) */}
       {image && (
-        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <div
+          className="page-hero-bg absolute -inset-y-12 inset-x-0 pointer-events-none"
+          aria-hidden="true"
+        >
           <Image
             src={image}
             alt={imageAlt}
             fill
             priority
             sizes="100vw"
-            className="object-cover object-[75%_center] opacity-45"
+            className="object-cover object-[75%_center] opacity-45 scale-110"
           />
           <div
             className="absolute inset-0"

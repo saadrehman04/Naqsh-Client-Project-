@@ -333,8 +333,13 @@ export function ScrollEffects() {
       let footerSection: HTMLElement | null = null;
       let footerIsland: HTMLElement | null = null;
       let footerGlow: HTMLElement | null = null;
+      let footerTopGlow: HTMLElement | null = null;
+      let footerLattice: HTMLElement | null = null;
       let footerGrid: HTMLElement | null = null;
+      let footerCols: HTMLElement[] = [];
       let giantWordmark: HTMLElement | null = null;
+      let footerChars: HTMLElement[] = [];
+      let footerSubbar: HTMLElement | null = null;
       let parallaxItems: Array<{
         element: HTMLElement;
         target: HTMLElement;
@@ -520,10 +525,19 @@ export function ScrollEffects() {
         footerSection = document.querySelector<HTMLElement>(".site-footer");
         footerIsland = document.querySelector<HTMLElement>(".footer-island");
         footerGlow = document.querySelector<HTMLElement>(".footer-sunrise-glow");
+        footerTopGlow = document.querySelector<HTMLElement>(".footer-top-glow");
+        footerLattice = document.querySelector<HTMLElement>(".footer-lattice-layer");
         footerGrid = document.querySelector<HTMLElement>(".footer-content-grid");
+        footerCols = Array.from(
+          document.querySelectorAll<HTMLElement>("[data-footer-col]")
+        );
         giantWordmark = document.querySelector<HTMLElement>(
           ".footer-giant-wordmark"
         );
+        footerChars = Array.from(
+          document.querySelectorAll<HTMLElement>("[data-footer-char]")
+        );
+        footerSubbar = document.querySelector<HTMLElement>(".footer-subbar");
         if (footerIsland) {
           footerIsland.style.willChange = "transform";
         }
@@ -533,8 +547,17 @@ export function ScrollEffects() {
         if (footerGlow) {
           footerGlow.style.willChange = "transform";
         }
+        if (footerLattice) {
+          footerLattice.style.willChange = "transform";
+        }
+        footerCols.forEach((col) => {
+          col.style.willChange = "transform";
+        });
+        footerChars.forEach((char) => {
+          char.style.willChange = "transform, opacity";
+        });
 
-        const amplitude = isDesktop ? 1 : 0.5;
+        const amplitude = isDesktop ? 1 : 0.55;
         parallaxItems = Array.from(
           document.querySelectorAll<HTMLElement>("[data-parallax]")
         )
@@ -543,20 +566,20 @@ export function ScrollEffects() {
             const raw = element.dataset.parallax;
             const factor =
               raw === "true" || raw === ""
-                ? 0.1
-                : numberAttr(element, "parallax", 0.1);
+                ? 0.12
+                : numberAttr(element, "parallax", 0.12);
             const axis =
               element.dataset.parallaxAxis === "x" ? "xPercent" : "yPercent";
             const target =
               element.querySelector<HTMLElement>("[data-parallax-target]") ??
               element.querySelector<HTMLElement>("img") ??
               element;
-            const travel = factor * 100 * amplitude;
+            const travel = factor * 160 * amplitude;
             target.style.willChange = "transform";
             gsap.set(target, {
               ...(target.tagName === "IMG" &&
               !element.hasAttribute("data-reveal")
-                ? { scale: 1.15 }
+                ? { scale: 1.2 }
                 : {}),
               [axis]: -travel,
             });
@@ -847,54 +870,40 @@ export function ScrollEffects() {
         });
 
         if (footerSection) {
-          // 1. Entrance reveal when footer section reaches viewport at start
-          if (footerGrid) {
-            ScrollTrigger.create({
-              trigger: footerSection,
-              start: "top 92%",
-              once: true,
-              onEnter: () =>
-                deferWrite(() => {
-                  gsap.fromTo(
-                    footerGrid,
-                    { opacity: 0, y: -24 },
-                    {
-                      opacity: 1,
-                      y: 0,
-                      duration: 0.9,
-                      ease: "power2.out",
-                      clearProps: "opacity,transform",
-                    }
-                  );
-                }),
-            });
-          }
-
-          // 2. Continuous Scroll Parallax Down as user scrolls into and through the footer
+          // Multi-layered Continuous Scroll Parallax Down as user scrolls into and through the footer
           if (footerIsland || giantWordmark || footerGlow) {
             const tl = gsap.timeline({
               scrollTrigger: {
                 trigger: footerSection,
                 start: "top bottom",
                 end: "bottom bottom",
-                scrub: 0.7,
+                scrub: 0.65,
               },
             });
 
             if (footerIsland) {
               tl.fromTo(
                 footerIsland,
-                { y: -30 },
-                { y: 25, ease: "none" },
+                { y: isDesktop ? -115 : -60, scale: 0.94 },
+                { y: 0, scale: 1, ease: "none" },
                 0
               );
             }
 
-            if (giantWordmark) {
+            if (footerLattice) {
               tl.fromTo(
-                giantWordmark,
-                { y: -35, opacity: 0.75 },
-                { y: 25, opacity: 1, ease: "none" },
+                footerLattice,
+                { y: -80 },
+                { y: 70, ease: "none" },
+                0
+              );
+            }
+
+            if (footerTopGlow) {
+              tl.fromTo(
+                footerTopGlow,
+                { y: -55, scale: 0.85, opacity: 0.4 },
+                { y: 25, scale: 1.12, opacity: 1, ease: "none" },
                 0
               );
             }
@@ -902,8 +911,50 @@ export function ScrollEffects() {
             if (footerGlow) {
               tl.fromTo(
                 footerGlow,
-                { y: -40, scale: 0.94 },
-                { y: 30, scale: 1.06, ease: "none" },
+                { y: -100, scale: 0.78, opacity: 0.45 },
+                { y: 40, scale: 1.16, opacity: 1, ease: "none" },
+                0
+              );
+            }
+
+            if (footerCols.length) {
+              footerCols.forEach((col, idx) => {
+                const startY = isDesktop ? -(85 - idx * 16) : -(38 - idx * 6);
+                tl.fromTo(
+                  col,
+                  { y: startY, opacity: 0.35 },
+                  { y: 0, opacity: 1, ease: "none" },
+                  0
+                );
+              });
+            }
+
+            if (giantWordmark) {
+              tl.fromTo(
+                giantWordmark,
+                { y: isDesktop ? -95 : -45 },
+                { y: 18, ease: "none" },
+                0
+              );
+            }
+
+            if (footerChars.length) {
+              footerChars.forEach((char, idx) => {
+                const startYPercent = -(55 + idx * 12);
+                tl.fromTo(
+                  char,
+                  { yPercent: startYPercent, opacity: 0.3 },
+                  { yPercent: 0, opacity: 1, ease: "none" },
+                  0
+                );
+              });
+            }
+
+            if (footerSubbar) {
+              tl.fromTo(
+                footerSubbar,
+                { y: -32, opacity: 0.25 },
+                { y: 0, opacity: 1, ease: "none" },
                 0
               );
             }
@@ -941,6 +992,64 @@ export function ScrollEffects() {
             });
           }
         });
+
+        // PageHero background & content scroll parallax on inner pages
+        const pageHero = document.querySelector<HTMLElement>(".page-hero");
+        if (pageHero) {
+          const pageHeroBg = pageHero.querySelector<HTMLElement>(".page-hero-bg");
+          const pageHeroContent =
+            pageHero.querySelector<HTMLElement>(".container-x");
+          if (pageHeroBg) {
+            gsap.fromTo(
+              pageHeroBg,
+              { yPercent: -8 },
+              {
+                yPercent: 18,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: pageHero,
+                  start: "top top",
+                  end: "bottom top",
+                  scrub: 0.5,
+                },
+              }
+            );
+          }
+          if (pageHeroContent && isDesktop) {
+            gsap.to(pageHeroContent, {
+              y: -42,
+              ease: "none",
+              scrollTrigger: {
+                trigger: pageHero,
+                start: "top top",
+                end: "bottom top",
+                scrub: 0.5,
+              },
+            });
+          }
+        }
+
+        // CTABand container parallax lift into view before the footer
+        const ctaBandContainer = document.querySelector<HTMLElement>(
+          ".cta-band-container"
+        );
+        if (ctaBandContainer) {
+          gsap.fromTo(
+            ctaBandContainer,
+            { y: isDesktop ? 75 : 35, scale: 0.96 },
+            {
+              y: 0,
+              scale: 1,
+              ease: "none",
+              scrollTrigger: {
+                trigger: ctaBandContainer,
+                start: "top bottom",
+                end: "top 48%",
+                scrub: 0.65,
+              },
+            }
+          );
+        }
 
         const productGrid = document.querySelector<HTMLElement>(".product-grid");
         if (productGrid) {

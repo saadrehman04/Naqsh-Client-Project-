@@ -63,7 +63,7 @@ export function Footer() {
 
           {/* Layer 2: Top-left subtle warm ambient illumination (Redsun reference) */}
           <div
-            className="absolute -top-32 -left-32 w-96 h-96 rounded-full pointer-events-none"
+            className="footer-top-glow absolute -top-32 -left-32 w-96 h-96 rounded-full pointer-events-none"
             style={{
               background:
                 "radial-gradient(circle, rgba(171, 108, 73, 0.18) 0%, transparent 70%)",
@@ -73,7 +73,7 @@ export function Footer() {
 
           {/* Layer 3: Cultural diamond lattice watermark */}
           <div
-            className="absolute inset-0 opacity-[0.035] pointer-events-none mix-blend-overlay"
+            className="footer-lattice-layer absolute -inset-y-16 inset-x-0 opacity-[0.045] pointer-events-none mix-blend-overlay"
             style={{
               backgroundImage: "url('/brand/diamond-lattice.svg')",
               backgroundSize: "160px 160px",
@@ -86,7 +86,7 @@ export function Footer() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 items-start">
               
               {/* Column 1: Brand & Curation Statement (4 cols) */}
-              <div className="lg:col-span-4 flex flex-col justify-between">
+              <div className="lg:col-span-4 flex flex-col justify-between" data-footer-col="0">
                 <div>
                   <Link href="/" aria-label="Naqsh Home" className="flex items-center gap-3 group">
                     <div className="w-9 h-9 rounded-xl bg-[var(--pine)] text-[var(--ivory)] flex items-center justify-center font-serif text-lg font-bold border border-[#2D7A62] shadow-sm group-hover:scale-105 transition-transform duration-200">
@@ -126,7 +126,7 @@ export function Footer() {
               </div>
 
               {/* Column 2: Curated Collections (3 cols) */}
-              <div className="lg:col-span-3">
+              <div className="lg:col-span-3" data-footer-col="1">
                 <h3 className="flex items-center gap-2 text-xs font-sans font-semibold tracking-[0.16em] uppercase text-[var(--copper-light)] mb-5">
                   <span className="w-1.5 h-1.5 rounded-full bg-[var(--copper)]" />
                   <span>Curated Collections</span>
@@ -149,7 +149,7 @@ export function Footer() {
               </div>
 
               {/* Column 3: Explore & Studio (2 cols) */}
-              <div className="lg:col-span-2">
+              <div className="lg:col-span-2" data-footer-col="2">
                 <h3 className="flex items-center gap-2 text-xs font-sans font-semibold tracking-[0.16em] uppercase text-[var(--copper-light)] mb-5">
                   <span className="w-1.5 h-1.5 rounded-full bg-[var(--copper)]" />
                   <span>Explore</span>
@@ -172,7 +172,7 @@ export function Footer() {
               </div>
 
               {/* Column 4: Direct Desk & Social Channels (3 cols) */}
-              <div className="lg:col-span-3">
+              <div className="lg:col-span-3" data-footer-col="3">
                 <h3 className="flex items-center gap-2 text-xs font-sans font-semibold tracking-[0.16em] uppercase text-[var(--copper-light)] mb-5">
                   <span className="w-1.5 h-1.5 rounded-full bg-[var(--copper)]" />
                   <span>Concierge Desk</span>
@@ -259,22 +259,26 @@ export function Footer() {
             className="footer-giant-wordmark-wrap relative z-10 pt-4 sm:pt-6 pb-2 sm:pb-4 overflow-hidden flex flex-col items-center justify-center select-none pointer-events-none"
             aria-hidden="true"
           >
-            <div className="footer-giant-wordmark w-full text-center tracking-[0.16em] font-serif font-black uppercase text-[15vw] sm:text-[16vw] lg:text-[17vw] leading-[0.8] select-none">
-              <span
-                className="inline-block bg-gradient-to-b from-[#F7F1E7]/25 via-[#DF8E57]/80 to-[#F0A06E] bg-clip-text text-transparent drop-shadow-[0_8px_40px_rgba(205,115,62,0.45)]"
-                style={{
-                  WebkitTextStroke: "1px rgba(247,241,231,0.12)",
-                }}
-              >
-                NAQSH
-              </span>
+            <div className="footer-giant-wordmark w-full text-center tracking-[0.16em] font-serif font-black uppercase text-[15vw] sm:text-[16vw] lg:text-[17vw] leading-[0.8] select-none flex items-center justify-center gap-[0.04em]">
+              {["N", "A", "Q", "S", "H"].map((letter, idx) => (
+                <span
+                  key={idx}
+                  data-footer-char={idx}
+                  className="footer-wordmark-char inline-block bg-gradient-to-b from-[#F7F1E7]/30 via-[#DF8E57]/85 to-[#F0A06E] bg-clip-text text-transparent drop-shadow-[0_8px_40px_rgba(205,115,62,0.45)]"
+                  style={{
+                    WebkitTextStroke: "1px rgba(247,241,231,0.14)",
+                  }}
+                >
+                  {letter}
+                </span>
+              ))}
             </div>
           </div>
 
         </div>
 
         {/* SUB-FOOTER OUTSIDE THE CARD (Clean Arclyn Studio & Schmidt style) */}
-        <div className="mt-5 px-3 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-sans text-[var(--charcoal)]/80">
+        <div className="footer-subbar mt-5 px-3 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-sans text-[var(--charcoal)]/80">
           <div className="flex items-center gap-2">
             <span>© {currentYear} Naqsh. All rights reserved.</span>
             <span className="text-[var(--charcoal)]/30 hidden sm:inline">|</span>
