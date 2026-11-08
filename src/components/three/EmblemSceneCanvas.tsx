@@ -271,11 +271,12 @@ export default function EmblemSceneCanvas({
   onFirstFrame,
 }: EmblemSceneCanvasProps) {
   const [ready, setReady] = useState(false);
+  const [warmedUp, setWarmedUp] = useState(false);
 
   return (
     <Canvas
-      dpr={[1, 1.5]}
-      frameloop={isVisible ? "always" : "never"}
+      dpr={[1, 1.25]}
+      frameloop={isVisible || !warmedUp ? "always" : "never"}
       gl={{
         antialias: true,
         powerPreference: "high-performance",
@@ -284,7 +285,13 @@ export default function EmblemSceneCanvas({
       style={{ background: "transparent", pointerEvents: "none" }}
     >
       <PerspectiveCamera makeDefault position={[0, 0, 5.1]} fov={34} />
-      <StudioLighting ready={ready} onFirstFrame={onFirstFrame} />
+      <StudioLighting
+        ready={ready}
+        onFirstFrame={() => {
+          setWarmedUp(true);
+          onFirstFrame();
+        }}
+      />
       <CopperEmblemActors onReady={setReady} />
     </Canvas>
   );

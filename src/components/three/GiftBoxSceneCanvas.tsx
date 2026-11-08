@@ -526,11 +526,12 @@ export default function GiftBoxSceneCanvas({
   onFirstFrame,
 }: GiftBoxSceneCanvasProps) {
   const [ready, setReady] = useState(false);
+  const [warmedUp, setWarmedUp] = useState(false);
 
   return (
     <Canvas
       dpr={[1, 1.25]}
-      frameloop={isVisible ? "always" : "never"}
+      frameloop={isVisible || !warmedUp ? "always" : "never"}
       gl={{
         antialias: true,
         powerPreference: "high-performance",
@@ -539,7 +540,13 @@ export default function GiftBoxSceneCanvas({
       style={{ background: "transparent", pointerEvents: "none" }}
     >
       <PerspectiveCamera makeDefault position={[0, 1.45, 6.2]} fov={32} />
-      <StudioLighting ready={ready} onFirstFrame={onFirstFrame} />
+      <StudioLighting
+        ready={ready}
+        onFirstFrame={() => {
+          setWarmedUp(true);
+          onFirstFrame();
+        }}
+      />
       <GiftBoxActor onReady={setReady} />
     </Canvas>
   );

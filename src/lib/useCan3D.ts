@@ -110,8 +110,8 @@ export function useSceneViewportLifecycle(
     const checkBounds = () => {
       const rect = el.getBoundingClientRect();
       const vh = window.innerHeight || 900;
-      const withinPreload = rect.top <= vh + 2400 && rect.bottom >= -2400;
-      const onScreen = rect.top <= vh + 120 && rect.bottom >= -120;
+      const withinPreload = rect.top <= vh + 3800 && rect.bottom >= -3800;
+      const onScreen = rect.top <= vh + 180 && rect.bottom >= -180;
       if (withinPreload) {
         setShouldMount(true);
       }
@@ -126,14 +126,14 @@ export function useSceneViewportLifecycle(
           setShouldMount(true);
         }
       },
-      { rootMargin: "2400px 0px 2400px 0px", threshold: 0 }
+      { rootMargin: "3800px 0px 3800px 0px", threshold: 0 }
     );
 
     const visibleObserver = new IntersectionObserver(
       ([entry]) => {
         setIsVisible(Boolean(entry?.isIntersecting));
       },
-      { rootMargin: "120px 0px 120px 0px", threshold: 0 }
+      { rootMargin: "180px 0px 180px 0px", threshold: 0 }
     );
 
     mountObserver.observe(el);

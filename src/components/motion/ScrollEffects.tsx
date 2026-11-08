@@ -1432,6 +1432,7 @@ export function ScrollEffects() {
       });
 
       pumpQueue();
+      ScrollTrigger.refresh();
 
       return () => {
         isCancelled = true;
