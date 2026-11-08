@@ -10,72 +10,31 @@ import { pointerNormalized } from "@/lib/useCan3D";
 import { loadNormalizedEmblemShapes } from "./emblemShapes";
 import { NAQSH_3D_PALETTE, StudioLighting } from "./StudioLighting";
 
-function outerWaxRadius(theta: number, baseRadius: number): number {
-  // Subtle, symmetrical organic wax edge (no lopsided bulges)
-  const n =
-    0.006 * Math.cos(8 * theta) +
-    0.004 * Math.sin(12 * theta);
-  return baseRadius * (1 + n);
-}
-
 function buildWaxSealGeometries() {
-  const segments = 128;
-  const outerPts: THREE.Vector2[] = [];
-  const rimOuterPts: THREE.Vector2[] = [];
-  const rimInnerPts: THREE.Vector2[] = [];
+  // 1. Smooth cylindrical base wax disc (rotated to face +Z)
+  const discGeometry = new THREE.CylinderGeometry(0.96, 0.99, 0.06, 128);
+  discGeometry.rotateX(Math.PI / 2);
+  discGeometry.translate(0, 0, -0.032);
 
-  for (let i = 0; i < segments; i++) {
-    const theta = (i / segments) * Math.PI * 2;
-    const rOuter = outerWaxRadius(theta, 0.98);
-    const rRimOut = outerWaxRadius(theta, 0.92);
-    const rRimIn = 0.74;
+  // 2. Smooth rounded wax cushion rim (Torus scaled in Z for seamless specular roll-off, zero ExtrudeGeometry bevel creases)
+  const rimGeometry = new THREE.TorusGeometry(0.835, 0.125, 48, 128);
+  rimGeometry.scale(1, 1, 0.42);
+  rimGeometry.translate(0, 0, 0.005);
 
-    outerPts.push(
-      new THREE.Vector2(Math.cos(theta) * rOuter, Math.sin(theta) * rOuter)
-    );
-    rimOuterPts.push(
-      new THREE.Vector2(Math.cos(theta) * rRimOut, Math.sin(theta) * rRimOut)
-    );
-    rimInnerPts.push(
-      new THREE.Vector2(Math.cos(theta) * rRimIn, Math.sin(theta) * rRimIn)
-    );
-  }
+  // 3. Recessed circular inner well floor
+  const wellGeometry = new THREE.CircleGeometry(0.73, 128);
 
-  const discShape = new THREE.Shape(outerPts);
-  const discGeometry = new THREE.ExtrudeGeometry(discShape, {
-    depth: 0.09,
-    bevelEnabled: true,
-    bevelThickness: 0.032,
-    bevelSize: 0.03,
-    bevelSegments: 5,
-    curveSegments: 32,
-  });
-  discGeometry.translate(0, 0, -0.045);
-  discGeometry.computeVertexNormals();
+  // 4. Raised 3D brass-gold inner bezel torus rings framing the stamp cavity
+  const bezelGeometry = new THREE.TorusGeometry(0.695, 0.016, 24, 128);
+  const innerBezelGeometry = new THREE.TorusGeometry(0.648, 0.006, 16, 128);
 
-  // Raised outer wax cushion rim around the circular brass-stamped center well
-  const rimShape = new THREE.Shape(rimOuterPts);
-  const holePath = new THREE.Path([...rimInnerPts].reverse());
-  rimShape.holes.push(holePath);
-
-  const rimGeometry = new THREE.ExtrudeGeometry(rimShape, {
-    depth: 0.042,
-    bevelEnabled: true,
-    bevelThickness: 0.022,
-    bevelSize: 0.022,
-    bevelSegments: 4,
-    curveSegments: 32,
-  });
-  rimGeometry.translate(0, 0, 0.038);
-  rimGeometry.computeVertexNormals();
-
-  // Recessed circular inner well floor
-  const wellGeometry = new THREE.CircleGeometry(0.75, 64);
-
-  // Raised 3D brass-gold inner bezel torus ring framing the stamp cavity
-  const bezelGeometry = new THREE.TorusGeometry(0.715, 0.016, 16, 96);
-
-  return { discGeometry, rimGeometry, wellGeometry, bezelGeometry };
+  return {
+    discGeometry,
+    rimGeometry,
+    wellGeometry,
+    bezelGeometry,
+    innerBezelGeometry,
+  };
 }
 
 interface WaxSealActorProps {
@@ -96,19 +55,22 @@ export function WaxSealActor({
   const [emblemGeometry, setEmblemGeometry] =
     useState<THREE.ExtrudeGeometry | null>(null);
 
-  const { discGeometry, rimGeometry, wellGeometry, bezelGeometry } = useMemo(
-    () => buildWaxSealGeometries(),
-    []
-  );
+  const {
+    discGeometry,
+    rimGeometry,
+    wellGeometry,
+    bezelGeometry,
+    innerBezelGeometry,
+  } = useMemo(() => buildWaxSealGeometries(), []);
 
   // Rich crimson-chestnut sealing wax material for the outer disc & cushion rim
   const waxMaterial = useMemo(
     () =>
       new THREE.MeshStandardMaterial({
-        color: "#8B291B",
+        color: "#8E291B",
         roughness: 0.34,
         metalness: 0.08,
-        emissive: "#260804",
+        emissive: "#2A0804",
         emissiveIntensity: 0.22,
         transparent: true,
         opacity: 1,
@@ -120,11 +82,11 @@ export function WaxSealActor({
   const wellMaterial = useMemo(
     () =>
       new THREE.MeshStandardMaterial({
-        color: "#4A130B",
-        roughness: 0.52,
-        metalness: 0.05,
-        emissive: "#180402",
-        emissiveIntensity: 0.2,
+        color: "#44110A",
+        roughness: 0.55,
+        metalness: 0.04,
+        emissive: "#160301",
+        emissiveIntensity: 0.18,
         transparent: true,
         opacity: 1,
       }),
@@ -135,11 +97,11 @@ export function WaxSealActor({
   const emblemReliefMaterial = useMemo(
     () =>
       new THREE.MeshStandardMaterial({
-        color: "#ECC37E",
-        roughness: 0.28,
-        metalness: 0.48,
-        emissive: "#6E4418",
-        emissiveIntensity: 0.34,
+        color: "#F0C882",
+        roughness: 0.26,
+        metalness: 0.52,
+        emissive: "#784B1B",
+        emissiveIntensity: 0.36,
         transparent: true,
         opacity: 1,
       }),
@@ -162,18 +124,18 @@ export function WaxSealActor({
 
   useEffect(() => {
     let active = true;
-    loadNormalizedEmblemShapes(1.06, 0.012)
+    loadNormalizedEmblemShapes(0.98, 0.012)
       .then((shapes) => {
         if (!active) return;
         const geom = new THREE.ExtrudeGeometry(shapes, {
-          depth: 0.036,
+          depth: 0.028,
           bevelEnabled: true,
           bevelThickness: 0.005,
           bevelSize: 0.0035,
           bevelSegments: 2,
           curveSegments: 16,
         });
-        geom.translate(0, 0, 0.052);
+        geom.translate(0, 0, 0.004);
         geom.computeVertexNormals();
         setEmblemGeometry(geom);
         onReady(true);
@@ -193,6 +155,7 @@ export function WaxSealActor({
       rimGeometry.dispose();
       wellGeometry.dispose();
       bezelGeometry.dispose();
+      innerBezelGeometry.dispose();
       emblemGeometry?.dispose();
       waxMaterial.dispose();
       wellMaterial.dispose();
@@ -203,6 +166,7 @@ export function WaxSealActor({
     rimGeometry,
     wellGeometry,
     bezelGeometry,
+    innerBezelGeometry,
     emblemGeometry,
     waxMaterial,
     wellMaterial,
@@ -375,24 +339,29 @@ export function WaxSealActor({
   return (
     <>
       <group ref={sealGroupRef} scale={0.86}>
-        {/* Organic outer wax disc */}
+        {/* Organic outer wax disc (front face at z = 0.000) */}
         <mesh geometry={discGeometry} material={waxMaterial} />
 
-        {/* Deep recessed circular brass-stamped cavity floor */}
+        {/* Deep recessed circular brass-stamped cavity floor (at z = 0.003) */}
         <mesh
           geometry={wellGeometry}
           material={wellMaterial}
-          position={[0, 0, 0.052]}
+          position={[0, 0, 0.003]}
         />
 
-        {/* Raised outer wax cushion rim */}
+        {/* Raised outer wax cushion rim (rises from z = 0.004 to +0.048) */}
         <mesh geometry={rimGeometry} material={waxMaterial} />
 
-        {/* 3D gilded-brass inner stamp bezel ring framing the Naqsh emblem */}
+        {/* 3D gilded-brass outer & inner stamp bezel rings framing the Naqsh emblem */}
         <mesh
           geometry={bezelGeometry}
           material={emblemReliefMaterial}
-          position={[0, 0, 0.062]}
+          position={[0, 0, 0.016]}
+        />
+        <mesh
+          geometry={innerBezelGeometry}
+          material={emblemReliefMaterial}
+          position={[0, 0, 0.01]}
         />
 
         {/* Embossed gilded-copper Naqsh emblem in the center face */}
