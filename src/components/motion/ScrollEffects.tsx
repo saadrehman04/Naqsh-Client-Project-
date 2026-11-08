@@ -884,7 +884,7 @@ export function ScrollEffects() {
             if (footerIsland) {
               tl.fromTo(
                 footerIsland,
-                { y: isDesktop ? -115 : -60, scale: 0.94 },
+                { y: isDesktop ? -24 : -14, scale: 0.96 },
                 { y: 0, scale: 1, ease: "none" },
                 0
               );
@@ -1208,7 +1208,62 @@ export function ScrollEffects() {
             });
           }
 
-          // 1. Our Approach Sequence (Pinned 300vh, top priority in DOM order)
+          // 1. Collection Gallery (Horizontal Track Pin, FIRST in DOM order — Section 05)
+          const gallery = document.querySelector<HTMLElement>(
+            "[data-horizontal-gallery]"
+          );
+          const galleryTrack = gallery?.querySelector<HTMLElement>(
+            "[data-horizontal-track]"
+          );
+          if (gallery && galleryTrack) {
+            const getDistance = () =>
+              Math.max(0, galleryTrack.scrollWidth - gallery.clientWidth);
+            const progressRule = gallery
+              .closest(".collection-gallery")
+              ?.querySelector<HTMLElement>(".collection-gallery-progress-fill");
+
+            if (progressRule) {
+              gsap.set(progressRule, { scaleX: 0, transformOrigin: "left center" });
+            }
+
+            const galleryTl = gsap.timeline({
+              scrollTrigger: {
+                trigger: gallery,
+                start: "top top",
+                end: () => `+=${getDistance()}`,
+                pin: gallery,
+                pinSpacing: true,
+                scrub: true,
+                anticipatePin: 1,
+                refreshPriority: 3,
+                invalidateOnRefresh: true,
+              },
+            });
+
+            galleryTl.to(
+              galleryTrack,
+              {
+                x: () => -getDistance(),
+                ease: "none",
+                duration: 1,
+              },
+              0
+            );
+
+            if (progressRule) {
+              galleryTl.to(
+                progressRule,
+                {
+                  scaleX: 1,
+                  ease: "none",
+                  duration: 1,
+                },
+                0
+              );
+            }
+          }
+
+          // 2. Our Approach Sequence (Pinned 300vh, SECOND in DOM order — Section 07)
           const approach = document.querySelector<HTMLElement>(
             "[data-approach-sequence]"
           );
@@ -1247,7 +1302,7 @@ export function ScrollEffects() {
               pinSpacing: true,
               scrub: numberAttr(approachPin, "scrub", 0.6),
               anticipatePin: 1,
-              refreshPriority: 3,
+              refreshPriority: 2,
               invalidateOnRefresh: true,
               onUpdate: (self) => {
                 setSceneProgress("approach", self.progress, approach);
@@ -1261,61 +1316,6 @@ export function ScrollEffects() {
                 activateStep(activeIdx);
               },
             });
-          }
-
-          // 2. Collection Gallery (Horizontal Track Pin, second in DOM order)
-          const gallery = document.querySelector<HTMLElement>(
-            "[data-horizontal-gallery]"
-          );
-          const galleryTrack = gallery?.querySelector<HTMLElement>(
-            "[data-horizontal-track]"
-          );
-          if (gallery && galleryTrack) {
-            const getDistance = () =>
-              Math.max(0, galleryTrack.scrollWidth - gallery.clientWidth);
-            const progressRule = gallery
-              .closest(".collection-gallery")
-              ?.querySelector<HTMLElement>(".collection-gallery-progress-fill");
-
-            if (progressRule) {
-              gsap.set(progressRule, { scaleX: 0, transformOrigin: "left center" });
-            }
-
-            const galleryTl = gsap.timeline({
-              scrollTrigger: {
-                trigger: gallery,
-                start: "top top",
-                end: () => `+=${getDistance()}`,
-                pin: gallery,
-                pinSpacing: true,
-                scrub: true,
-                anticipatePin: 1,
-                refreshPriority: 2,
-                invalidateOnRefresh: true,
-              },
-            });
-
-            galleryTl.to(
-              galleryTrack,
-              {
-                x: () => -getDistance(),
-                ease: "none",
-                duration: 1,
-              },
-              0
-            );
-
-            if (progressRule) {
-              galleryTl.to(
-                progressRule,
-                {
-                  scaleX: 1,
-                  ease: "none",
-                  duration: 1,
-                },
-                0
-              );
-            }
           }
 
           // 3. Vision & Mission (Below Seven Collections in DOM order)
@@ -1463,19 +1463,12 @@ export function ScrollEffects() {
 
           const ctaBand = document.querySelector<HTMLElement>(".cta-band");
           if (ctaBand) {
-            gsap.set(ctaBand, { y: 40 });
-            gsap.to(ctaBand, {
-              y: 0,
-              ease: "none",
-              immediateRender: false,
-              scrollTrigger: {
-                trigger: ctaBand,
-                start: "top bottom",
-                end: "top 65%",
-                scrub: 0.6,
-                onUpdate: (self) => {
-                  setSceneProgress("cta", self.progress, ctaBand);
-                },
+            ScrollTrigger.create({
+              trigger: ctaBand,
+              start: "top bottom",
+              end: "top 65%",
+              onUpdate: (self) => {
+                setSceneProgress("cta", self.progress, ctaBand);
               },
             });
           }
