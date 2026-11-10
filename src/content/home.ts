@@ -215,7 +215,7 @@ export const homeContent = {
     ],
   },
   faqPreview: {
-    label: "06 · Common Questions",
+    label: "07 · Common Questions",
     heading: "Everything You Need to Know.",
     intro:
       "Quick answers on customizing and delivering corporate gifts with NAQSH.",

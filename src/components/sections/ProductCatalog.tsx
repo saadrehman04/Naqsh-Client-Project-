@@ -35,7 +35,7 @@ export function ProductCatalog() {
       <div className="container-x">
         <div className="catalog-heading">
           <p className="t-label text-[var(--pine)]" data-reveal="up">
-            Curated Product Catalogue
+            06 · Curated Product Catalogue
           </p>
           <h2 id="all-products-heading" className="t-h2" data-reveal="lines">
             Explore Our Gift Editions.

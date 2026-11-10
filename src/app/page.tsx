@@ -4,6 +4,7 @@ import { ServicesTeaser } from "@/components/sections/ServicesTeaser";
 import { WhySetsApart } from "@/components/sections/WhySetsApart";
 import { CollectionGallery } from "@/components/sections/CollectionGallery";
 import { ApproachSection } from "@/components/sections/ApproachSection";
+import { ProductCatalog } from "@/components/sections/ProductCatalog";
 import { SocialProof } from "@/components/sections/SocialProof";
 import { HomeFaqPreview } from "@/components/sections/HomeFaqPreview";
 import { BrandTicker } from "@/components/sections/BrandTicker";
@@ -32,16 +33,19 @@ export default function HomePage() {
       {/* SECTION 06 — OUR APPROACH (4-Step Process & 3D GiftBox) */}
       <ApproachSection />
 
+      {/* SECTION 07 — PRODUCT CATALOGUE (21 Gift Editions across 7 Collections) */}
+      <ProductCatalog />
+
       {/* CLIENT TESTIMONIALS (Hidden until verified testimonials are provided) */}
       <SocialProof />
 
-      {/* SECTION 07 — FAQ PREVIEW */}
+      {/* SECTION 08 — FAQ PREVIEW */}
       <HomeFaqPreview />
 
       {/* Marquee Strip */}
       <BrandTicker />
 
-      {/* SECTION 08 — FINAL CTA */}
+      {/* SECTION 09 — FINAL CTA */}
       <CTABand />
     </>
   );
