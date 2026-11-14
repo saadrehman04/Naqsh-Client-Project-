@@ -108,11 +108,11 @@ export function Footer() {
           <div>
             <Link href="/" aria-label="NAQSH home" className="inline-block">
               <Image
-                src="/brand/wordmark-copper-gradient.svg"
+                src="/brand/emblem-copper-gradient.svg"
                 alt="NAQSH"
-                width={176}
-                height={32}
-                className="w-[176px] h-auto"
+                width={2120}
+                height={3958}
+                className="h-20 w-auto"
               />
             </Link>
 
