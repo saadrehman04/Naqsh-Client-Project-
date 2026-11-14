@@ -6,8 +6,17 @@ export interface NavItem {
 }
 
 export interface SocialLink {
-  platform: string;
-  url: string;
+  platform: "Instagram" | "LinkedIn";
+  /** null until the client confirms the profile URL (shown as a dev-only [CONFIRM] flag). */
+  url: string | null;
+}
+
+export interface FooterContent {
+  policiesHeading: string;
+  contactHeading: string;
+  copyright: string;
+  tagline: string;
+  craftedLine: string;
 }
 
 export interface Testimonial {
@@ -36,6 +45,7 @@ export interface SiteConfig {
   nav: NavItem[];
   policies: NavItem[];
   socials: SocialLink[];
+  footer: FooterContent;
   testimonials: Testimonial[];
   clientLogos: ClientLogo[];
 }
@@ -62,8 +72,19 @@ export const siteConfig: SiteConfig = {
     { label: "Data Privacy", href: "/privacy" },
     { label: "Shipping & Delivery", href: "/shipping-delivery" },
   ],
+  // [CONFIRM: Instagram and LinkedIn profile URLs not yet provided by client]
+  socials: [
+    { platform: "Instagram", url: null },
+    { platform: "LinkedIn", url: null },
+  ],
+  footer: {
+    policiesHeading: "Our Policies",
+    contactHeading: "Get in Touch",
+    copyright: "NAQSH. All rights reserved.",
+    tagline: "Crafting Lasting Impressions",
+    craftedLine: "Handcrafted in Lahore, Pakistan · Nationwide Corporate Gifting",
+  },
   // Rule: Hidden until real content exists. Never invent fake logos or testimonials.
-  socials: [],
   testimonials: [],
   clientLogos: [],
 };

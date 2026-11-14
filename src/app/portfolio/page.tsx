@@ -1,8 +1,6 @@
 import { Metadata } from "next";
 import { PageHero } from "@/components/ui/PageHero";
-import { CollectionGallery } from "@/components/sections/CollectionGallery";
 import { ProductCatalog } from "@/components/sections/ProductCatalog";
-import { CTABand } from "@/components/sections/CTABand";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
@@ -23,29 +21,8 @@ export default function PortfolioPage() {
         image="/images/products/pakistan-heritage-gift-set.webp"
       />
 
-      {/* Seven Collections */}
-      <div id="collections-showcase">
-        <CollectionGallery />
-      </div>
-
       {/* Complete Product Catalogue */}
       <ProductCatalog />
-
-      <div
-        className="portfolio-marquee"
-        aria-label="Welcome Kits · Client Gifts · Ramadan and Eid · Event Giveaways · Souvenirs · Awards"
-      >
-        <div className="portfolio-marquee-track" data-marquee-track>
-          <span>
-            Welcome Kits · Client Gifts · Ramadan &amp; Eid · Event Giveaways · Souvenirs · Awards ·{" "}
-          </span>
-          <span aria-hidden="true">
-            Welcome Kits · Client Gifts · Ramadan &amp; Eid · Event Giveaways · Souvenirs · Awards ·{" "}
-          </span>
-        </div>
-      </div>
-
-      <CTABand />
     </div>
   );
 }

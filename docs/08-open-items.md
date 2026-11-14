@@ -7,7 +7,7 @@ The site must not imply unconfirmed operational, commercial, or legal details. `
 - Official corporate email address.
 - Studio / business hours and response-time promise.
 - Public business address beyond the confirmed location “Lahore, Pakistan.”
-- Social profiles and approved client logos or testimonials.
+- Instagram and LinkedIn profile URLs (footer icons are in place, hidden in production until provided), and approved client logos or testimonials.
 - Final copper specification, if the current brand token needs adjustment.
 
 ## Commercial and delivery details

@@ -22,11 +22,14 @@ export default function FAQsPage() {
 
   const allFaqs = faqGroups.flatMap((group) =>
     group.items.map((item) => ({
+      id: item.id,
       question: item.question,
       answer: item.answer,
     }))
   );
-  const faqSchema = generateFaqSchema(allFaqs);
+  const faqSchema = generateFaqSchema(
+    allFaqs.map(({ question, answer }) => ({ question, answer }))
+  );
 
   return (
     <div className="bg-[var(--ivory)] min-h-screen">
@@ -45,76 +48,26 @@ export default function FAQsPage() {
         image="/images/products/ramadan-delights.webp"
       />
 
-      {/* Category Quick-Jump Bar */}
-      <div className="bg-[#101D19] border-b border-white/10 py-4 sticky top-[70px] z-30">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between gap-3">
-          <span className="text-[11px] font-sans uppercase tracking-[0.18em] text-[#C99A53] font-semibold">
-            6 Topic Categories · 19 Questions
-          </span>
-          <div className="flex flex-wrap items-center gap-2">
-            {faqGroups.map((grp) => (
-              <a
-                key={grp.group}
-                href={`#faq-cat-${grp.group.toLowerCase().replace(/\s+/g, "-")}`}
-                className="px-3.5 py-1.5 rounded-full bg-white/[0.06] hover:bg-[#C99A53] text-[var(--ivory)] hover:text-[#101010] border border-white/10 text-xs font-sans transition-colors"
-              >
-                {grp.group} ({grp.items.length})
-              </a>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Grouped Accordions Section */}
-      <section className="py-20 sm:py-28 bg-[var(--ivory-deep)]" aria-label="FAQ Categories">
+      {/* All Questions — single list */}
+      <section className="py-20 sm:py-28 bg-[var(--ivory-deep)]" aria-label="Frequently asked questions">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14 sm:space-y-16">
-          {faqGroups.map((grp, groupIdx) => {
-            const catId = `faq-cat-${grp.group.toLowerCase().replace(/\s+/g, "-")}`;
-            return (
-              <div
-                key={grp.group}
-                id={catId}
-                className="scroll-mt-32 rounded-3xl bg-[var(--ivory)] border border-[var(--hairline)] p-6 sm:p-10 shadow-sm space-y-6"
-              >
-                <div
-                  className="border-b border-[var(--hairline)] pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2"
-                  data-reveal="up"
-                >
-                  <div>
-                    <div className="flex items-center gap-2.5 mb-1">
-                      <span className="px-2.5 py-0.5 rounded-full text-[10px] uppercase tracking-[0.18em] font-sans font-semibold bg-[#101D19] text-[#C99A53]">
-                        0{groupIdx + 1}
-                      </span>
-                      <h2 className="font-serif text-2xl sm:text-3xl text-[var(--black)] font-normal">
-                        {grp.group}
-                      </h2>
-                    </div>
-                    {grp.description && (
-                      <p className="text-xs sm:text-sm font-sans text-[var(--charcoal)] font-light">
-                        {grp.description}
-                      </p>
-                    )}
-                  </div>
-                </div>
-
-                <div
-                  className="divide-y divide-[var(--hairline)]"
-                  data-reveal="stagger"
-                  data-stagger="0.06"
-                >
-                  {grp.items.map((item, itemIdx) => (
-                    <AccordionItem
-                      key={item.id}
-                      id={item.id}
-                      question={item.question}
-                      answer={item.answer}
-                      defaultOpen={groupIdx === 0 && itemIdx === 0}
-                    />
-                  ))}
-                </div>
-              </div>
-            );
-          })}
+          <div className="rounded-3xl bg-[var(--ivory)] border border-[var(--hairline)] p-6 sm:p-10 shadow-sm">
+            <div
+              className="divide-y divide-[var(--hairline)]"
+              data-reveal="stagger"
+              data-stagger="0.06"
+            >
+              {allFaqs.map((item, idx) => (
+                <AccordionItem
+                  key={item.id}
+                  id={item.id}
+                  question={item.question}
+                  answer={item.answer}
+                  defaultOpen={idx === 0}
+                />
+              ))}
+            </div>
+          </div>
 
           {/* Deep Emerald Consultation Callout */}
           <div

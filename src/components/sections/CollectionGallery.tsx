@@ -4,11 +4,22 @@ import { ArrowUpRight } from "lucide-react";
 import { collections } from "@/content/collections";
 import { homeContent } from "@/content/home";
 
-export function CollectionGallery() {
+type CollectionGalleryProps = {
+  /** How many collections to show. Defaults to all. */
+  limit?: number;
+};
+
+/** Static grid of gifting collections (no horizontal scroll pin). */
+export function CollectionGallery({ limit }: CollectionGalleryProps) {
   const { collectionsSection } = homeContent;
+  const items = typeof limit === "number" ? collections.slice(0, limit) : collections;
+
   return (
-    <section className="collection-gallery" aria-label="Gifting collections">
-      <div className="collection-gallery-pin" data-horizontal-gallery>
+    <section
+      className="collection-gallery collection-gallery--static"
+      aria-label="Gifting collections"
+    >
+      <div className="collection-gallery-pin">
         <div className="collection-gallery-intro container-x">
           <p className="t-label text-[var(--pine)]" data-reveal="up">
             {collectionsSection.label}
@@ -21,11 +32,8 @@ export function CollectionGallery() {
           </p>
         </div>
         <div className="collection-gallery-viewport container-x">
-          <div
-            className="collection-gallery-track"
-            data-horizontal-track
-          >
-            {collections.map((item, index) => (
+          <div className="collection-gallery-track" data-reveal="stagger" data-stagger="0.08">
+            {items.map((item, index) => (
               <Link
                 href={`/portfolio/${item.slug}`}
                 className="collection-gallery-item group"
@@ -37,7 +45,7 @@ export function CollectionGallery() {
                     src={item.image}
                     alt={item.alt}
                     fill
-                    sizes="(max-width: 1024px) 80vw, 32vw"
+                    sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
                   />
                 </span>
                 <span className="collection-gallery-meta">
@@ -56,12 +64,6 @@ export function CollectionGallery() {
               </Link>
             ))}
           </div>
-        </div>
-        <div className="collection-gallery-bottom container-x">
-          <span>Seven curated corporate gifting collections · Tailored to your brand</span>
-          <span className="collection-gallery-progress" aria-hidden="true">
-            <span className="collection-gallery-progress-fill collection-gallery-rule" />
-          </span>
         </div>
       </div>
     </section>

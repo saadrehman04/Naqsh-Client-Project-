@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Check, Sparkles } from "lucide-react";
 import { PageHero } from "@/components/ui/PageHero";
-import { CTABand } from "@/components/sections/CTABand";
 import { servicesContent } from "@/content/services";
 import { buildMetadata } from "@/lib/seo";
 
@@ -15,7 +14,9 @@ export const metadata: Metadata = buildMetadata({
 });
 
 export default function ServicesPage() {
-  const { header, services, endToEndService } = servicesContent;
+  const { header } = servicesContent;
+  // Only the first two service pillars are shown on this page.
+  const services = servicesContent.services.slice(0, 2);
 
   return (
     <div className="bg-[var(--ivory)] min-h-screen">
@@ -32,7 +33,7 @@ export default function ServicesPage() {
       <div className="bg-[#101D19] border-b border-white/10 py-3.5 sm:py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-3">
           <span className="text-[11px] font-sans uppercase tracking-[0.18em] text-[#C99A53] font-semibold">
-            Four Service Pillars
+            Service Pillars
           </span>
           <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2 sm:gap-3">
             {services.map((s) => (
@@ -48,7 +49,7 @@ export default function ServicesPage() {
         </div>
       </div>
 
-      {/* 4 Primary Service Categories Deep Dive */}
+      {/* Service Categories Deep Dive */}
       <section
         className="py-10 sm:py-20 bg-[var(--ivory-deep)]"
         aria-label="Corporate Gifting Service Categories"
@@ -189,83 +190,6 @@ export default function ServicesPage() {
           })}
         </div>
       </section>
-
-      {/* End-to-End Gifting Service Section */}
-      <section
-        className="workflow-editorial on-dark section-y relative overflow-hidden bg-[#101D19] text-[var(--ivory)]"
-        aria-labelledby="end-to-end-heading"
-      >
-        <div
-          className="absolute -bottom-40 -left-32 w-[560px] h-[560px] max-w-[120vw] rounded-full pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(201,154,83,0.16) 0%, transparent 70%)",
-          }}
-          aria-hidden="true"
-        />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="t-label text-[#C99A53] mb-3 block" data-reveal="up">
-              {endToEndService.label}
-            </span>
-            <h2
-              id="end-to-end-heading"
-              className="font-serif text-3xl sm:text-5xl text-[var(--ivory)] font-normal tracking-tight mb-4"
-              data-reveal="lines"
-            >
-              {endToEndService.heading}
-            </h2>
-            <p
-              className="font-sans text-base sm:text-lg text-[var(--ivory)]/80 font-light leading-relaxed"
-              data-reveal="up"
-              data-delay="0.08"
-            >
-              {endToEndService.intro}
-            </p>
-          </div>
-
-          <div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8"
-            data-reveal="stagger"
-            data-stagger="0.1"
-          >
-            {endToEndService.pillars.map((pillar) => (
-              <div
-                key={pillar.step}
-                className="workflow-step rounded-2xl bg-white/[0.04] border border-white/[0.1] hover:border-[#C99A53]/50 hover:bg-white/[0.06] transition-colors duration-300 p-6 sm:p-7 flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-5">
-                    <span className="font-serif text-3xl font-semibold text-[#C99A53]">
-                      {pillar.step}
-                    </span>
-                    <span className="w-8 h-px bg-[#C99A53]/60" aria-hidden="true" />
-                  </div>
-                  <h3 className="font-serif text-xl sm:text-2xl text-[var(--ivory)] font-normal mb-2.5">
-                    {pillar.title}
-                  </h3>
-                  <p className="font-sans text-sm text-[var(--ivory)]/75 font-light leading-relaxed">
-                    {pillar.desc}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-12 text-center" data-reveal="up">
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-gradient-to-r from-[#F0B87A] via-[#C99A53] to-[#B86C35] text-[#101010] font-sans text-xs tracking-[0.16em] uppercase font-bold shadow-lg hover:scale-[1.02] transition-all duration-300"
-            >
-              <span>Discuss Your Corporate Gifting Brief</span>
-              <ArrowRight className="w-4 h-4" aria-hidden="true" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Call to action band */}
-      <CTABand />
     </div>
   );
 }

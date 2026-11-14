@@ -1239,9 +1239,15 @@ dialog::backdrop {
 
 .site-footer {
   position: relative;
-  background: var(--ivory);
+  background: var(--black);
   color: var(--ivory);
   padding: 0;
+}
+.site-footer .confirm-flag {
+  color: var(--khaki);
+  border-color: var(--khaki);
+  background: transparent;
+  font-size: 11px;
 }
 .site-footer > .container-x { position: relative; z-index: 1; }
 .footer-invitation {
@@ -2162,4 +2168,37 @@ html.motion-ok:not(.reduced-motion) .approach-steps li:not(.is-active) {
     opacity: var(--glare-opacity, 0);
     transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   }
+}
+
+/* Static collections grid (homepage section 04): no pin, no horizontal travel. */
+.collection-gallery--static {
+  padding-block: clamp(4rem, 8vw, 8rem);
+  background: var(--ivory);
+}
+.collection-gallery--static .collection-gallery-pin {
+  display: block;
+  min-height: 0;
+  padding: 0;
+}
+.collection-gallery--static .collection-gallery-viewport { display: block; overflow: visible; }
+.collection-gallery--static .collection-gallery-track {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.25rem, 2.2vw, 2rem);
+  width: auto;
+  padding: 0;
+  transform: none;
+  will-change: auto;
+}
+.collection-gallery--static .collection-gallery-item { flex: none; width: auto; min-width: 0; }
+.collection-gallery--static .collection-gallery-image { aspect-ratio: 4 / 3; }
+@media (min-width: 768px) and (max-width: 1023px) {
+  .collection-gallery--static .collection-gallery-track { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .collection-gallery--static .collection-gallery-meta strong { font-size: 1.3rem; line-height: 1.1; }
+}
+@media (max-width: 767px) {
+  .collection-gallery--static { padding-block: 3rem; }
+  .collection-gallery--static .collection-gallery-track { grid-template-columns: minmax(0, 1fr); }
+  .collection-gallery--static .collection-gallery-item:first-child { grid-column: auto; }
+  .collection-gallery--static .collection-gallery-item:first-child .collection-gallery-image { aspect-ratio: 4 / 3; }
 }

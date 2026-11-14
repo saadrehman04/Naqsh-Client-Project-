@@ -36,3 +36,4 @@ Status: **ASSUMED** = default I (Saad) have not confirmed with the client. Chang
 - **2026-10-27**: Implemented automated honeypot spam protection (`website` hidden input) on the inquiry form route `/api/inquiry`.
 - **2026-10-27**: Set the header to an exact 72px outer height and refined the tablet hero strip to keep its scroll cue and seasonal card clear.
 - **2026-10-27**: Replaced low-contrast opacity fades in the pinned Vision/Mission reveal with contrast-safe word reveals and corrected the Customization FAQ badge to chestnut.
+- **2026-11-14**: Replaced the footer with a plain full-width black footer on every page: copper-gradient wordmark with Instagram/LinkedIn links, an "Our Policies" column (Data Privacy, Shipping & Delivery) and a "Get in Touch" column (call, WhatsApp, email). Removed the giant NAQSH wordmark and moved the copyright line inside the footer. Social URLs and email stay dev-only `[CONFIRM]` flags and are hidden in production until provided.
