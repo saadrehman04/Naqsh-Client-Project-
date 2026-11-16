@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ChatbotLauncher } from "@/components/chatbot/ChatbotLauncher";
+import { ScrollTrace } from "@/components/layout/ScrollTrace";
 import { SkipLink } from "@/components/layout/SkipLink";
 import { MotionProvider } from "@/components/motion/MotionProvider";
 import { ScrollEffectsGate } from "@/components/motion/ScrollEffectsGate";
@@ -76,6 +77,7 @@ export default function RootLayout({
             <Footer />
           </div>
           <ChatbotLauncher />
+          <ScrollTrace />
           <ScrollEffectsGate />
         </MotionProvider>
       </body>

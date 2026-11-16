@@ -124,6 +124,70 @@
   }
 }
 
+/* No page scrollbar gutter (client request): sections run edge to edge.
+   Wheel, touchpad, touch and keyboard scrolling are unaffected. */
+html {
+  scrollbar-width: none;
+}
+html::-webkit-scrollbar {
+  display: none;
+}
+
+/* Branded scroll trace (ScrollTrace.tsx): faint khaki line, glowing terracotta thumb */
+.scroll-trace {
+  position: fixed;
+  inset-block: 0;
+  inset-inline-end: 0;
+  z-index: 960;
+  width: 14px;
+  pointer-events: none;
+  touch-action: none;
+}
+.scroll-trace::before {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  inset-inline-end: 4px;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgb(192 164 142 / .35) 12%, rgb(192 164 142 / .35) 88%, transparent);
+  opacity: .45;
+  transition: opacity .5s var(--ease-out, ease);
+}
+.scroll-trace-thumb {
+  position: absolute;
+  top: 0;
+  inset-inline-end: 3px;
+  width: 3px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--terracotta-on-dark), var(--terracotta));
+  box-shadow: 0 0 10px rgb(178 76 59 / .45);
+  opacity: .55;
+  will-change: transform;
+  transition: opacity .5s var(--ease-out, ease), width .25s var(--ease-out, ease), box-shadow .5s var(--ease-out, ease);
+}
+.scroll-trace.is-hidden { display: none; }
+.scroll-trace.is-active::before { opacity: 1; }
+.scroll-trace.is-active .scroll-trace-thumb {
+  opacity: 1;
+  box-shadow: 0 0 14px rgb(178 76 59 / .7), 0 0 3px rgb(178 76 59 / .9);
+}
+/* Mouse and trackpad users can grab it; on touch it is a pure indicator. */
+@media (hover: hover) and (pointer: fine) {
+  .scroll-trace { pointer-events: auto; cursor: pointer; }
+  .scroll-trace-thumb { cursor: grab; }
+  .scroll-trace:hover::before { opacity: 1; }
+  .scroll-trace:hover .scroll-trace-thumb,
+  .scroll-trace-thumb:active { width: 5px; opacity: 1; }
+  .scroll-trace-thumb:active { cursor: grabbing; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-trace::before,
+  .scroll-trace-thumb { transition: none; }
+}
+@media print {
+  .scroll-trace { display: none; }
+}
+
 /* Lenis */
 html.lenis,
 html.lenis body {

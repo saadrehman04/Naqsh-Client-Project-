@@ -16,7 +16,8 @@ export interface FooterContent {
   contactHeading: string;
   copyright: string;
   tagline: string;
-  craftedLine: string;
+  /** Shown after the copyright and tagline in the footer's bottom line, evenly spaced. */
+  craftedLine: string[];
 }
 
 export interface Testimonial {
@@ -82,7 +83,7 @@ export const siteConfig: SiteConfig = {
     contactHeading: "Get in Touch",
     copyright: "NAQSH. All rights reserved.",
     tagline: "Crafting Lasting Impressions",
-    craftedLine: "Handcrafted in Lahore, Pakistan · Nationwide Corporate Gifting",
+    craftedLine: ["Handcrafted in Lahore, Pakistan", "Nationwide Corporate Gifting"],
   },
   // Rule: Hidden until real content exists. Never invent fake logos or testimonials.
   testimonials: [],
