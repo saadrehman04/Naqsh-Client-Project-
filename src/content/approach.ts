@@ -1,4 +1,60 @@
+export type ApproachIcon =
+  | "occasion" | "audience" | "brand" | "budget"
+  | "products" | "ideas" | "experience" | "selection"
+  | "branding" | "personalization" | "packaging" | "message"
+  | "qualityCheck" | "orderCoordination" | "logistics" | "doorstepDelivery";
+
 export const approachContent = {
+  // Our Approach page hero. Heading + intro are client copy verbatim (docs/03-content.md).
+  // Step names are client copy; descriptions are the [DRAFT] lines from the same doc.
+  // The four focus points per step are the client's labels (approach icon reference, Nov 2026).
+  hero: {
+    heading: "Our Approach",
+    intro:
+      "We begin by understanding the occasion, audience, brand, and budget. We then curate the right products, customize the experience, manage the details, and deliver a polished solution from concept to doorstep.",
+    steps: [
+      {
+        name: "Understand",
+        desc: "We learn the occasion, the audience, your brand and your budget.",
+        points: [
+          { icon: "occasion", label: "Occasion" },
+          { icon: "audience", label: "Audience" },
+          { icon: "brand", label: "Brand" },
+          { icon: "budget", label: "Budget" },
+        ],
+      },
+      {
+        name: "Curate",
+        desc: "We select products and alternatives that suit your people and your values.",
+        points: [
+          { icon: "products", label: "Products" },
+          { icon: "ideas", label: "Ideas" },
+          { icon: "experience", label: "Experience" },
+          { icon: "selection", label: "Selection" },
+        ],
+      },
+      {
+        name: "Customize",
+        desc: "We shape the experience: branding, packaging, notes and finishing touches.",
+        points: [
+          { icon: "branding", label: "Branding" },
+          { icon: "personalization", label: "Personalization" },
+          { icon: "packaging", label: "Packaging" },
+          { icon: "message", label: "Message" },
+        ],
+      },
+      {
+        name: "Deliver",
+        desc: "We manage the details and deliver a polished solution to the doorstep.",
+        points: [
+          { icon: "qualityCheck", label: "Quality Check" },
+          { icon: "orderCoordination", label: "Order Coordination" },
+          { icon: "logistics", label: "Logistics" },
+          { icon: "doorstepDelivery", label: "Doorstep Delivery" },
+        ],
+      },
+    ] as { name: string; desc: string; points: { icon: ApproachIcon; label: string }[] }[],
+  },
   header: {
     label: "Our Approach",
     title: "From First Thought to Final Delivery.",

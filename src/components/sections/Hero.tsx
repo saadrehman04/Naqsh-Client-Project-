@@ -1,216 +1,105 @@
 import Image from "next/image";
-import Link from "next/link";
-import { ArrowRight, ChevronDown, Diamond, ShieldCheck, Leaf, Gift } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { homeContent } from "@/content/home";
 
+/**
+ * Home hero (black, photo-led). Client photo: NAQSH box with copper bow on the right,
+ * dark empty space on the left for the copy. The photo is already dark on the left,
+ * so the vignette only deepens it slightly for contrast.
+ */
 export function Hero() {
   const { hero } = homeContent;
+  const [lineOne, lineTwo] = hero.headlineLines;
 
   return (
     <section
-      className="hero-section relative w-full min-h-[100svh] lg:min-h-[max(100svh,740px)] flex flex-col justify-between overflow-hidden bg-[#0A0807] text-[var(--ivory)]"
+      className="hero-section relative w-full min-h-[100svh] lg:min-h-[max(100svh,740px)] flex flex-col justify-between overflow-hidden bg-[var(--black)] text-[var(--ivory)]"
       aria-label="Hero Introduction"
     >
-      {/* Background Image: Desktop & Mobile Responsive Crops with LCP fetchpriority */}
       <div className="absolute inset-0 z-0 overflow-hidden">
+        {/* Phones and tablets: photo fills the lower part so the copy sits on clean black above the box */}
+        <div className="absolute inset-x-0 bottom-0 top-[33%] sm:top-[40%] lg:top-0">
         <div className="hero-photo-parallax absolute inset-[-8%_0]">
           <picture>
-            <source
-              media="(max-width: 768px)"
-              srcSet="/images/hero/hero-mobile.webp"
-            />
+            <source media="(max-width: 1023px)" srcSet={hero.imageMobile} />
             <Image
-              src="/images/hero/hero-desktop.webp"
-              alt="NAQSH luxury corporate welcome kit presentation featuring embossed box, notebook, tumbler, pen, power bank and leather keyring"
+              src={hero.image}
+              alt={hero.imageAlt}
               fill
               priority
               sizes="100vw"
-              className="hero-photo object-cover object-[78%_center] lg:object-[74%_center] xl:object-[70%_center]"
+              className="hero-photo object-cover object-[50%_35%] sm:object-[50%_80%] lg:object-[85%_center] xl:object-[70%_center]"
             />
           </picture>
         </div>
+        </div>
 
-        {/* Left-to-right balanced vignette so text has crisp contrast while product photography shines */}
+        {/* Start-side vignette: keeps the copy crisp, leaves the box untouched */}
         <div
-          className="absolute inset-0 pointer-events-none"
+          className="absolute inset-0 pointer-events-none hidden lg:block"
           style={{
             background:
-              "linear-gradient(90deg, #090807 0%, rgba(9,8,7,0.93) 26%, rgba(9,8,7,0.78) 44%, rgba(9,8,7,0.22) 66%, transparent 100%)",
+              "linear-gradient(90deg, rgb(0 0 0 / 0.72) 0%, rgb(0 0 0 / 0.5) 34%, rgb(0 0 0 / 0.12) 58%, transparent 72%)",
           }}
           aria-hidden="true"
         />
-
-        {/* Top-down soft vignette for header legibility */}
+        {/* Phones and tablets: blend the photo's top edge into the black ground */}
+        <div
+          className="absolute inset-0 pointer-events-none lg:hidden"
+          style={{
+            background:
+              "linear-gradient(180deg, #000 0%, #000 33%, rgb(0 0 0 / 0.55) 45%, rgb(0 0 0 / 0) 60%, rgb(0 0 0 / 0.55) 100%)",
+          }}
+          aria-hidden="true"
+        />
+        {/* Header legibility */}
         <div
           className="absolute inset-x-0 top-0 h-36 pointer-events-none"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(9,8,7,0.68) 0%, transparent 100%)",
-          }}
+          style={{ background: "linear-gradient(180deg, rgb(0 0 0 / 0.55) 0%, transparent 100%)" }}
           aria-hidden="true"
         />
-
-        {/* Bottom-up soft vignette for scroll cue */}
-        <div
-          className="absolute inset-x-0 bottom-0 h-40 pointer-events-none"
-          style={{
-            background:
-              "linear-gradient(0deg, #090807 0%, rgba(9,8,7,0.6) 50%, transparent 100%)",
-          }}
-          aria-hidden="true"
-        />
-
-        {/* Subtle decorative deep emerald foliage accents in corners */}
-        <div
-          className="absolute -top-10 -left-10 w-72 h-72 opacity-25 pointer-events-none mix-blend-screen filter blur-[0.5px]"
-          aria-hidden="true"
-        >
-          <svg viewBox="0 0 200 200" fill="none" className="w-full h-full text-[#145240]">
-            <path
-              d="M30 0 C60 40 100 60 140 50 C120 90 90 130 30 160 C10 120 0 70 30 0 Z"
-              fill="currentColor"
-            />
-          </svg>
-        </div>
-
-        <div
-          className="absolute -bottom-10 -left-10 w-80 h-80 opacity-20 pointer-events-none mix-blend-screen filter blur-[1px]"
-          aria-hidden="true"
-        >
-          <svg viewBox="0 0 200 200" fill="none" className="w-full h-full text-[#145240]">
-            <path
-              d="M0 180 C40 140 80 120 130 140 C100 80 60 40 0 10 C-10 60 -10 120 0 180 Z"
-              fill="currentColor"
-            />
-          </svg>
-        </div>
       </div>
 
-      {/* Top Spacer for fixed header */}
+      {/* Spacer for the fixed header */}
       <div className="w-full h-[78px] sm:h-[86px]" aria-hidden="true" />
 
-      {/* Main Content Area */}
-      <div className="container-x relative z-10 my-auto py-8 sm:py-12">
-        <div className="max-w-2xl">
-          {/* Section Kicker with Champagne Gold Lines */}
-          <div
-            className="flex items-center gap-3 mb-4 sm:mb-5 text-xs font-sans tracking-[0.24em] uppercase text-[#C99A53] font-semibold"
-            data-reveal="up"
-          >
-            <span className="w-6 sm:w-8 h-[1px] bg-[#C99A53]/60" />
-            <span>{hero.kicker}</span>
-            <span className="w-6 sm:w-8 h-[1px] bg-[#C99A53]/60" />
-          </div>
-
-          {/* Main Headline */}
+      <div className="container-x relative z-10 mb-auto pt-6 pb-8 sm:pt-12 lg:my-auto lg:py-12">
+        <div className="max-w-[54rem]">
           <div className="hero-heading-wrap">
             <h1
-              className="hero-heading font-serif text-4xl sm:text-5xl lg:text-[66px] xl:text-[72px] leading-[1.03] tracking-tight is-revealed select-none opacity-100"
-              aria-label="Crafting Lasting Impressions"
+              className="hero-heading text-[length:clamp(2.75rem,6.4vw,5.5rem)] leading-[1.02] select-none opacity-100"
+              aria-label={hero.headline}
             >
               <span className="motion-line-mask block" aria-hidden="true">
-                <span className="motion-line-inner block text-[var(--ivory)] drop-shadow-[0_2px_18px_rgba(0,0,0,0.5)]">
-                  Crafting Lasting
-                </span>
+                <span className="motion-line-inner block text-[var(--ivory)]">{lineOne}</span>
               </span>
               <span className="motion-line-mask block" aria-hidden="true">
-                <span className="motion-line-inner block text-transparent bg-clip-text bg-gradient-to-r from-[#FBE2AA] via-[#C99A53] to-[#B86C35] drop-shadow-[0_4px_24px_rgba(201,154,83,0.35)]">
-                  Impressions
+                <span className="motion-line-inner block text-[var(--terracotta-on-dark)]">
+                  {lineTwo}
                 </span>
               </span>
             </h1>
           </div>
 
-          {/* Supporting Headline & Description */}
-          <div className="hero-sub-wrap mt-4 sm:mt-6">
-            <div
-              className="hero-subline space-y-2 max-w-xl"
+          <div className="hero-sub-wrap mt-6 sm:mt-8">
+            <p
+              className="hero-subline max-w-[30rem] font-sans text-[1.25rem] sm:text-[1.5rem] lg:text-[1.625rem] font-light leading-[1.5] tracking-[0.02em] text-[var(--ivory)]/90"
               data-reveal="up"
               data-delay="0.1"
             >
-              <p className="font-serif text-base sm:text-xl text-[#FBE2AA] font-normal tracking-wide leading-snug">
-                {hero.supportingHeadline}
-              </p>
-              <p className="hidden sm:block text-sm sm:text-base text-[var(--ivory)]/85 font-sans font-light leading-relaxed">
-                {hero.subline}
-              </p>
-            </div>
-
-            {/* Action Buttons */}
-            <div
-              className="hero-actions flex flex-wrap items-center gap-3 sm:gap-4 mt-5 sm:mt-8"
-              data-reveal="up"
-              data-delay="0.18"
-            >
-              {/* Primary CTA: REQUEST CONSULTATION */}
-              <Link
-                href="/contact"
-                data-magnetic
-                className="group inline-flex items-center gap-3 pl-6 pr-2.5 py-2.5 sm:pl-7 sm:pr-3 sm:py-3 rounded-full bg-gradient-to-r from-[#F0B87A] via-[#C99A53] to-[#B86C35] hover:from-[#FBE2AA] hover:to-[#C99A53] text-[#101010] font-sans text-[11px] sm:text-xs tracking-[0.14em] uppercase font-bold shadow-[0_8px_25px_rgba(201,154,83,0.32)] transition-all duration-300 hover:scale-[1.02]"
-              >
-                <span>Request Consultation</span>
-                <span className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-[#101010]/20 flex items-center justify-center text-[#101010] transition-transform duration-300 group-hover:translate-x-0.5">
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </span>
-              </Link>
-
-              {/* Secondary CTA: EXPLORE COLLECTIONS */}
-              <Link
-                href="/portfolio"
-                data-magnetic
-                className="group inline-flex items-center gap-2 px-5 py-3 sm:px-6 sm:py-3.5 rounded-full bg-black/45 hover:bg-black/65 backdrop-blur-md border border-[#C99A53]/60 hover:border-[#C99A53] text-[var(--ivory)] font-sans text-[11px] sm:text-xs tracking-[0.14em] uppercase font-semibold shadow-md transition-all duration-300 hover:scale-[1.02]"
-              >
-                <span>Explore Collections</span>
-                <ArrowRight className="w-3.5 h-3.5 text-[#C99A53] transition-transform duration-300 group-hover:translate-x-0.5" />
-              </Link>
-            </div>
-
-            {/* Trust Indicators */}
-            <div
-              className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-5 pt-4 mt-5 sm:pt-6 sm:mt-7 border-t border-white/[0.14] max-w-xl"
-              data-reveal="up"
-              data-delay="0.24"
-            >
-              <div className="flex items-center gap-2">
-                <Diamond className="w-3.5 h-3.5 text-[#C99A53] shrink-0" aria-hidden="true" />
-                <span className="text-[10px] font-sans tracking-[0.14em] uppercase text-[var(--ivory)] font-semibold leading-tight">
-                  Premium Quality
-                </span>
-              </div>
-
-              <div className="flex items-center gap-2">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#C99A53] shrink-0" aria-hidden="true" />
-                <span className="text-[10px] font-sans tracking-[0.14em] uppercase text-[var(--ivory)] font-semibold leading-tight">
-                  Trusted Service
-                </span>
-              </div>
-
-              <div className="flex items-center gap-2">
-                <Leaf className="w-3.5 h-3.5 text-[#C99A53] shrink-0" aria-hidden="true" />
-                <span className="text-[10px] font-sans tracking-[0.14em] uppercase text-[var(--ivory)] font-semibold leading-tight">
-                  Sustainable
-                </span>
-              </div>
-
-              <div className="flex items-center gap-2">
-                <Gift className="w-3.5 h-3.5 text-[#C99A53] shrink-0" aria-hidden="true" />
-                <span className="text-[10px] font-sans tracking-[0.14em] uppercase text-[var(--ivory)] font-semibold leading-tight">
-                  Bespoke
-                </span>
-              </div>
-            </div>
+              {hero.supportingHeadline}
+            </p>
           </div>
         </div>
       </div>
 
-      {/* Bottom Center Scroll Indicator */}
       <div className="relative z-10 pb-5 sm:pb-7 flex flex-col items-center justify-center gap-1 text-center hero-scroll-cue">
-        <div className="flex items-center gap-2.5 text-[11px] font-sans tracking-[0.2em] uppercase text-[#C99A53] font-semibold">
-          <span className="w-6 h-[1px] bg-[#C99A53]/50" />
+        <div className="flex items-center gap-2.5 text-[11px] font-sans tracking-[0.2em] uppercase text-[var(--ivory)]/80 font-semibold">
+          <span className="w-6 h-[1px] bg-[var(--terracotta-on-dark)]" />
           <span>{hero.scrollCue}</span>
-          <span className="w-6 h-[1px] bg-[#C99A53]/50" />
+          <span className="w-6 h-[1px] bg-[var(--terracotta-on-dark)]" />
         </div>
-        <ChevronDown className="w-4 h-4 text-[#C99A53] animate-bounce" aria-hidden="true" />
+        <ChevronDown className="w-4 h-4 text-[var(--terracotta-on-dark)] animate-bounce" aria-hidden="true" />
       </div>
     </section>
   );

@@ -14,11 +14,37 @@ interface PageHeroProps {
   /** Optional background photograph, rendered dimmed behind a dark vignette. */
   image?: string;
   imageAlt?: string;
+  /**
+   * How the background image is treated:
+   * - "dim" (default): dimmed photo behind a start-to-end black fade.
+   * - "blur": blurred photo, black fade solid at the start where the copy sits, clear at the end.
+   * - "fade": full-strength photo (already dark), black fade at the start for the copy.
+   * - "plain": an abstract backdrop stretched to the banner, no dimming or extra glow.
+   */
+  imageTreatment?: "dim" | "blur" | "fade" | "plain";
+  /** object-position for the background image. */
+  imagePosition?: string;
 }
+
+const TREATMENT = {
+  dim: {
+    img: "opacity-45 scale-110",
+    fade: "linear-gradient(90deg, #000000 0%, rgba(0,0,0,0.94) 38%, rgba(0,0,0,0.7) 62%, rgba(0,0,0,0.35) 100%)",
+  },
+  blur: {
+    img: "opacity-90 scale-110 blur-[6px]",
+    fade: "linear-gradient(90deg, #000000 0%, rgba(0,0,0,0.92) 30%, rgba(0,0,0,0.55) 55%, rgba(0,0,0,0.12) 80%, transparent 100%)",
+  },
+  fade: {
+    img: "scale-105",
+    fade: "linear-gradient(90deg, #000000 0%, rgba(0,0,0,0.9) 32%, rgba(0,0,0,0.45) 58%, transparent 85%)",
+  },
+  plain: { img: "!object-fill", fade: "" },
+} as const;
 
 /**
  * Dark, cinematic inner-page hero that matches the homepage hero:
- * deep obsidian ground, warm copper glow, faint lattice, ivory serif headline
+ * deep obsidian ground, warm terracotta glow, faint lattice, ivory serif headline
  * and an optional dimmed product photograph on the right.
  */
 export function PageHero({
@@ -31,12 +57,16 @@ export function PageHero({
   fadeOnly = false,
   image,
   imageAlt = "",
+  imageTreatment = "dim",
+  imagePosition = "75% center",
 }: PageHeroProps) {
   const displayIntro = intro || subtitle;
+  const treatment = TREATMENT[imageTreatment];
+  const plain = imageTreatment === "plain";
   return (
     <section
       className={cn(
-        "page-hero on-dark relative overflow-hidden bg-[#0E0C0A] text-[var(--ivory)] pt-24 pb-10 sm:pt-36 sm:pb-20",
+        "page-hero on-dark relative overflow-hidden bg-[var(--black)] text-[var(--ivory)] pt-24 pb-10 sm:pt-36 sm:pb-20",
         className
       )}
     >
@@ -52,27 +82,26 @@ export function PageHero({
             fill
             priority
             sizes="100vw"
-            className="object-cover object-[75%_center] opacity-45 scale-110"
+            className={cn("object-cover", treatment.img)}
+            style={{ objectPosition: imagePosition }}
           />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(90deg, #0E0C0A 0%, rgba(14,12,10,0.94) 38%, rgba(14,12,10,0.7) 62%, rgba(14,12,10,0.35) 100%)",
-            }}
-          />
+          {treatment.fade && (
+            <div className="absolute inset-0" style={{ background: treatment.fade }} />
+          )}
         </div>
       )}
 
-      {/* Warm copper ambient glow */}
+      {/* Warm terracotta ambient glow (skipped over a plain backdrop) */}
+      {!plain && (
       <div
         className="absolute -top-40 -right-32 w-[620px] h-[620px] max-w-[120vw] rounded-full pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle, rgba(171,108,73,0.22) 0%, transparent 68%)",
+            "radial-gradient(circle, rgba(178,76,59,0.26) 0%, transparent 68%)",
         }}
         aria-hidden="true"
       />
+      )}
       {/* Faint cultural lattice */}
       <div
         className="absolute inset-0 opacity-[0.05] pointer-events-none mix-blend-overlay"
@@ -82,14 +111,14 @@ export function PageHero({
         }}
         aria-hidden="true"
       />
-      {/* Bottom fade + copper hairline */}
+      {/* Bottom fade + terracotta hairline */}
       <div
         className="absolute inset-x-0 bottom-0 h-24 pointer-events-none"
-        style={{ background: "linear-gradient(0deg, #0E0C0A 0%, transparent 100%)" }}
+        style={{ background: "linear-gradient(0deg, #000000 0%, transparent 100%)" }}
         aria-hidden="true"
       />
       <div
-        className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[var(--copper)]/50 to-transparent"
+        className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[var(--terracotta-on-dark)]/60 to-transparent"
         aria-hidden="true"
       />
 
@@ -101,10 +130,10 @@ export function PageHero({
         )}
         <div className="max-w-4xl">
           <div
-            className="flex items-center gap-3 mb-3 sm:mb-4 text-xs font-sans tracking-[0.24em] uppercase text-[#E5A666] font-semibold select-none"
+            className="flex items-center gap-3 mb-3 sm:mb-4 text-xs font-sans tracking-[0.24em] uppercase text-[var(--ivory)]/80 font-semibold select-none"
             data-reveal={fadeOnly ? undefined : "up"}
           >
-            <span className="w-8 h-px bg-[#E5A666]/60" aria-hidden="true" />
+            <span className="w-8 h-px bg-[var(--terracotta-on-dark)]" aria-hidden="true" />
             <span>{label}</span>
           </div>
           <h1

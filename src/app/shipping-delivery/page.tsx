@@ -26,23 +26,23 @@ export default function ShippingDeliveryPage() {
 
       {/* Policy Content */}
       <article
-        className="py-12 sm:py-24"
+        className="section-y bg-[var(--ivory)]"
         aria-label="Shipping & Delivery Policy"
         data-reveal="fade"
       >
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="rounded-2xl sm:rounded-3xl bg-[#FAF6EF] p-6 sm:p-12 border border-[#26211D]/12 shadow-sm">
-            <div className="text-xs uppercase tracking-[0.18em] font-sans font-medium text-[var(--pine)] mb-10 pb-4 border-b border-[var(--border-light)]">
+          <div>
+            <div className="font-sans text-[0.75rem] font-semibold uppercase tracking-[0.16em] text-[var(--pine)] mb-10 pb-5 border-b border-[var(--hairline)]">
               Delivery details pending confirmation
             </div>
 
             <div className="space-y-10">
               {shippingPolicy.sections.map((section, idx) => (
                 <section key={idx} className="space-y-3" data-reveal="fade">
-                  <h2 className="font-serif text-2xl sm:text-3xl text-[var(--black)] font-normal tracking-tight">
+                  <h2 className="font-display font-normal text-[length:clamp(1.75rem,2.6vw,2.25rem)] leading-[1.1] tracking-[-0.01em] text-[var(--black)]">
                     {section.heading}
                   </h2>
-                  <div className="space-y-3 font-sans text-base text-[var(--charcoal)] font-light leading-relaxed">
+                  <div className="space-y-3 font-sans text-[1.0625rem] leading-[1.75] text-[var(--charcoal)]">
                     {section.body.map((para, pIdx) => (
                       <p key={pIdx}>{para}</p>
                     ))}

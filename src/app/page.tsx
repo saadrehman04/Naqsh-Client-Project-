@@ -1,8 +1,8 @@
 import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
-import { ServicesTeaser } from "@/components/sections/ServicesTeaser";
+import { VisionMission } from "@/components/sections/VisionMission";
 import { WhySetsApart } from "@/components/sections/WhySetsApart";
-import { CollectionGallery } from "@/components/sections/CollectionGallery";
+import { CoreValues } from "@/components/sections/CoreValues";
 
 export default function HomePage() {
   return (
@@ -10,19 +10,17 @@ export default function HomePage() {
       {/* HERO */}
       <Hero />
 
-      {/* 01 — BRAND INTRODUCTION */}
+      {/* ABOUT US */}
       <About />
 
-      {/* 02 — OUR SERVICES (4 Categories) */}
-      <ServicesTeaser />
+      {/* VISION & MISSION (ivory) */}
+      <VisionMission />
 
       {/* 03 — WHY NAQSH */}
       <WhySetsApart />
 
-      {/* 04 — FEATURED COLLECTIONS (3 collections, static grid) */}
-      <div id="portfolio-preview">
-        <CollectionGallery limit={3} />
-      </div>
+      {/* CORE VALUES (ivory) */}
+      <CoreValues />
     </>
   );
 }

@@ -21,7 +21,7 @@ export function FormSuccess({
 
   return (
     <div
-      className="bg-[var(--ivory-warm)] border border-[var(--border-light)] rounded-[var(--radius-card)] p-8 sm:p-12 text-center shadow-lg"
+      className="bg-[var(--ivory-deep)] border border-[var(--hairline)] rounded-[var(--radius-card)] p-8 sm:p-12 text-center shadow-lg"
     >
       {/* Animated tactile 3D wax seal stamp with 2D fallback */}
       <div className="flex justify-center mb-6">
@@ -41,14 +41,14 @@ export function FormSuccess({
       </p>
 
       {/* Secondary quick action */}
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 border-t border-[var(--border-light)]">
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 border-t border-[var(--hairline)]">
         <a
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[var(--pine)] hover:bg-[var(--black)] text-[var(--ivory)] font-sans text-xs tracking-[0.14em] uppercase font-medium transition-colors"
         >
-          <MessageCircle className="w-4 h-4 text-[var(--copper)]" />
+          <MessageCircle className="w-4 h-4 text-[var(--terracotta)]" />
           <span>Connect via WhatsApp Now</span>
         </a>
 
@@ -56,7 +56,7 @@ export function FormSuccess({
           <button
             type="button"
             onClick={onReset}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[var(--ivory)] hover:bg-[var(--ivory-deep)] text-[var(--black)] border border-[var(--border-light)] font-sans text-xs tracking-[0.14em] uppercase font-medium transition-colors"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[var(--ivory)] hover:bg-[var(--ivory-deep)] text-[var(--black)] border border-[var(--hairline)] font-sans text-xs tracking-[0.14em] uppercase font-medium transition-colors"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>Submit Another Brief</span>

@@ -27,15 +27,15 @@ export function AccordionItem({
       name={name}
       open={defaultOpen}
       className={cn(
-        "faq-item group border-b border-[var(--hairline)] py-5 sm:py-6 transition-colors duration-300"
+        "faq-item group border-b border-[var(--hairline)] py-5 sm:py-6"
       )}
     >
       <summary className="flex items-center justify-between gap-4 cursor-pointer select-none text-left">
-        <span className="font-serif text-xl sm:text-2xl text-[var(--text-strong)] group-hover:text-[var(--chestnut)] transition-colors duration-200 leading-snug">
+        <span className="font-display text-[1.3125rem] sm:text-[1.5rem] leading-[1.3] text-[var(--text-strong)] group-hover:text-[var(--chestnut)] transition-colors duration-200">
           {question}
         </span>
         <span
-          className="faq-icon flex-none w-8 h-8 rounded-full border border-[var(--hairline)] flex items-center justify-center text-[var(--charcoal)] group-hover:border-[var(--chestnut)] group-hover:text-[var(--chestnut)] transition-colors duration-200"
+          className="faq-icon flex-none w-9 h-9 rounded-full border border-[var(--hairline)] flex items-center justify-center text-[var(--charcoal)] group-hover:border-[var(--chestnut)] group-hover:text-[var(--chestnut)] transition-colors duration-200"
           aria-hidden="true"
         >
           <svg
@@ -57,7 +57,7 @@ export function AccordionItem({
 
       <div className="faq-content-grid grid grid-rows-[0fr] group-open:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-[var(--ease-out)]">
         <div className="overflow-hidden">
-          <div className="pt-3 pb-2 text-[var(--text)] text-base sm:text-lg leading-relaxed max-w-prose">
+          <div className="pt-3 pb-2 pe-12 font-sans text-[1rem] sm:text-[1.0625rem] leading-[1.75] text-[var(--text)] max-w-prose">
             <p>{answer}</p>
             {confirmTag && (
               <div className="mt-2">

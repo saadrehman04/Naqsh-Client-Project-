@@ -15,8 +15,13 @@
 
   /* Client palette accents */
   --ivory-deep: #EFE5DA;
-  --copper: #AB6C49;
-  --copper-light: #AB6C49;
+  /* Terracotta is the primary accent (client, 2026-11-14): the old copper/gold accent
+     tokens now resolve to terracotta so no golden accent is left anywhere. */
+  --terracotta-on-dark: #B24C3B; /* = design/tokens.css --terracotta-deep. For black/dark grounds:
+                                    4:1 on black (icons, rules, large text) and ivory text on it passes AA (4.65:1).
+                                    The softened --terracotta is too dark on black (2.5:1). */
+  --copper: var(--terracotta-on-dark);
+  --copper-light: var(--terracotta-on-dark);
   --copper-dark: #7F3021;
   --hairline: rgb(192 164 142 / 0.45);       /* khaki hairline on ivory */
   --hairline-dark: rgb(247 241 231 / 0.18);  /* ivory hairline on dark */
@@ -39,8 +44,8 @@
   /* DO NOT use --sage or --olive as text on ivory (about 3:1). Decoration, icons, borders only. */
 
   /* Typography */
-  --font-display: "Cormorant Garamond", "Times New Roman", serif;   /* headlines, 400/500 */
-  --font-body: "Manrope", system-ui, sans-serif;                    /* body and UI, 400/500/600 */
+  --font-display: "Marcellus", "Times New Roman", serif;   /* headlines, 400 only (client choice, option D) */
+  --font-body: "Mulish", system-ui, sans-serif;                     /* body and UI, 300–800 variable */
   --fs-display: clamp(3.25rem, 8vw, 8rem);
   --fs-h1: clamp(2.5rem, 5vw, 5rem);
   --fs-h2: clamp(2rem, 3.6vw, 3.5rem);

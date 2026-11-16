@@ -73,7 +73,7 @@ cp .env.example .env.local
 |---|---|---|
 | `NEXT_PUBLIC_SITE_URL` | Canonical site URL for metadata & sitemaps | `https://naqsh.pk` |
 | `RESEND_API_KEY` | Resend API key for inquiry email dispatch | If unset, inquiries are logged cleanly to the server terminal |
-| `INQUIRY_RECIPIENT_EMAIL` | Target inbox for corporate inquiries | `consultations@naqsh.pk` |
+| `INQUIRY_RECIPIENT_EMAIL` | Target inbox for corporate inquiries | `contact@naqshonline.co` (siteConfig.email) |
 | `NEXT_PUBLIC_SANITY_PROJECT_ID` | Sanity Studio Project ID | If unset, loads from `src/content/` |
 | `NEXT_PUBLIC_SANITY_DATASET` | Sanity Dataset | `production` |
 

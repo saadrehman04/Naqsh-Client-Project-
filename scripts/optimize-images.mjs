@@ -46,28 +46,51 @@ async function products() {
 
 async function hero() {
   await mkdir(path.join(outDir, "hero"), { recursive: true });
-  const src = path.join(srcDir, "new-hire-welcome-kit.png");
-  // Trim the top 33% (printed lid copy that would sit behind the headline): 1800 x 905 (~2:1).
-  const trimTop = Math.round(1350 * 0.33);
-  const trimmed = await sharp(src)
-    .extract({ left: 0, top: trimTop, width: 1800, height: 1350 - trimTop })
-    .toBuffer();
+  // Client-supplied hero (box with the full bow), 1600 x 1007. Dark empty space on the left holds the copy.
+  const src = path.join(root, "assets/images/site/hero-gift-box.webp");
+  const desktop = await writeWebp(sharp(src), path.join(outDir, "hero/hero-bow-desktop.webp"), 82);
+  console.log(`hero/hero-bow-desktop.webp  ${kb(desktop)}`);
 
-  const desktop = await writeWebp(sharp(trimmed), path.join(outDir, "hero/hero-desktop.webp"), 80);
-  console.log(`hero/hero-desktop.webp  ${kb(desktop)}`);
-
-  // 4:5 portrait crop centered on the tray for mobile.
-  const h = 1350 - trimTop;
-  const w = Math.round((h * 4) / 5);
-  const left = 420;
+  // 4:5 portrait crop centered on the box for phones.
+  const { width, height } = await sharp(src).metadata();
+  const w = Math.round((height * 4) / 5);
+  const left = Math.min(width - w, 760);
   const mobile = await writeWebp(
-    sharp(trimmed).extract({ left, top: 0, width: w, height: h }),
-    path.join(outDir, "hero/hero-mobile.webp"),
+    sharp(src).extract({ left, top: 0, width: w, height }),
+    path.join(outDir, "hero/hero-bow-mobile.webp"),
     80,
   );
-  console.log(`hero/hero-mobile.webp  ${w}x${h}  ${kb(mobile)}`);
+  console.log(`hero/hero-bow-mobile.webp  ${w}x${height}  ${kb(mobile)}`);
+}
+
+/** Client-supplied section photos (assets/images/site). Optional crop: [left, top, width, height]. */
+const SITE_IMAGES = [
+  { src: "about-wax-seal.webp", out: "about-wax-seal" },
+  { src: "why-heritage-box.webp", out: "why-heritage-box" },
+  // Bottom 204 px of the original is an empty black band.
+  { src: "services-cover.webp", out: "services-cover", crop: [0, 0, 1500, 996] },
+  { src: "portfolio-cover.png", out: "portfolio-cover" },
+  // Client asked to crop from the top: trims empty dark space above the envelope.
+  { src: "contact-cover.webp", out: "contact-cover", crop: [0, 220, 1600, 680] },
+  { src: "gifting-consultation.webp", out: "gifting-consultation" },
+  { src: "contact-gift-box.webp", out: "contact-gift-box" },
+];
+
+async function site() {
+  await mkdir(path.join(outDir, "site"), { recursive: true });
+  for (const item of SITE_IMAGES) {
+    let pipeline = sharp(path.join(root, "assets/images/site", item.src));
+    if (item.crop) {
+      const [left, top, width, height] = item.crop;
+      pipeline = pipeline.extract({ left, top, width, height });
+    }
+    const out = path.join(outDir, "site", `${item.out}.webp`);
+    const size = await writeWebp(pipeline.resize({ width: 1600, withoutEnlargement: true }), out, 80);
+    console.log(`site/${item.out}.webp  <- ${item.src}  ${kb(size)}`);
+  }
 }
 
 await products();
 await hero();
+await site();
 console.log("Done. Originals untouched.");

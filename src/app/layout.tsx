@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Manrope } from "next/font/google";
+import localFont from "next/font/local";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { FloatingWhatsApp } from "@/components/layout/FloatingWhatsApp";
+import { ChatbotLauncher } from "@/components/chatbot/ChatbotLauncher";
 import { SkipLink } from "@/components/layout/SkipLink";
 import { MotionProvider } from "@/components/motion/MotionProvider";
 import { ScrollEffectsGate } from "@/components/motion/ScrollEffectsGate";
@@ -10,18 +10,24 @@ import { MotionChrome } from "@/components/motion/MotionChrome";
 import { constructMetadata, generateOrganizationSchema } from "@/lib/seo";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-cormorant",
+/* Self-hosted (Latin, variable weight) so dev and build never depend on reaching Google Fonts. */
+/* Client-selected pairing (font sheet option D, "Engraved & classical"): Marcellus + Mulish. */
+const marcellus = localFont({
+  src: "../fonts/Marcellus-latin.woff2",
+  weight: "400",
+  style: "normal",
+  variable: "--font-marcellus",
   display: "swap",
+  fallback: ["Times New Roman", "serif"],
 });
 
-const manrope = Manrope({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-manrope",
+const mulish = localFont({
+  src: "../fonts/Mulish-latin.woff2",
+  weight: "300 800",
+  style: "normal",
+  variable: "--font-mulish",
   display: "swap",
+  fallback: ["system-ui", "sans-serif"],
 });
 
 export const metadata: Metadata = constructMetadata();
@@ -37,7 +43,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${cormorant.variable} ${manrope.variable} antialiased`}
+      className={`${marcellus.variable} ${mulish.variable} antialiased`}
     >
       <head>
         {/* Add .js class before first paint so hidden starting states only apply when JS runs */}
@@ -52,8 +58,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
         />
-        {/* Favicon & Theme */}
-        <link rel="icon" href="/brand/emblem-black.svg" type="image/svg+xml" />
+        {/* Favicon: terracotta emblem via src/app/icon.svg, apple-icon.png and public/favicon.ico */}
         <meta name="theme-color" content="#F7F1E7" />
       </head>
       <body className="flex flex-col min-h-screen bg-[var(--ivory)] text-[var(--text)]">
@@ -70,7 +75,7 @@ export default function RootLayout({
             </main>
             <Footer />
           </div>
-          <FloatingWhatsApp />
+          <ChatbotLauncher />
           <ScrollEffectsGate />
         </MotionProvider>
       </body>

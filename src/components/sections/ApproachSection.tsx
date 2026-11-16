@@ -41,10 +41,10 @@ export function ApproachSection({ compact = false }: { compact?: boolean }) {
                   >
                     <Link
                       href={approach.ctaHref}
-                      className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-[#101D19] hover:bg-[var(--chestnut)] text-[var(--ivory)] text-xs font-sans tracking-[0.14em] uppercase font-semibold transition-all duration-300 shadow-sm"
+                      className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-[var(--black)] hover:bg-[var(--chestnut)] text-[var(--ivory)] text-xs font-sans tracking-[0.14em] uppercase font-semibold transition-all duration-300 shadow-sm"
                     >
                       <span>{approach.ctaText}</span>
-                      <ArrowRight className="w-3.5 h-3.5 text-[#C99A53]" aria-hidden="true" />
+                      <ArrowRight className="w-3.5 h-3.5 text-[var(--terracotta-on-dark)]" aria-hidden="true" />
                     </Link>
                     <Link href="/our-approach" className="link-arrow">
                       <span>Explore Our Process</span>

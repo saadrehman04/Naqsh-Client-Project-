@@ -10,22 +10,33 @@ Voice: warm, refined, plain. Short sentences. No hype words ("revolutionary", "w
 - Name: Naqsh · Tagline: Crafting Lasting Impressions · Slogan: Beyond the box, into an experience!
 - Phone: +92-346-9171798 (client-confirmed) · WhatsApp: https://wa.me/923469171798 · Location: Lahore, Pakistan
 
-## Hero [DRAFT]
-- Headline: **Crafting Lasting Impressions** (the tagline)
-- Subline: Premium corporate gifting, from idea to doorstep.
-- Button: Request Consultation
-- Small tagline (bottom-left, small caps) [CLIENT]: BEYOND THE BOX, INTO AN EXPERIENCE!
-- Bottom-right card [DRAFT]: "Ramadan & Eid baskets" with arrow, links to that collection.
+## Hero [CLIENT, mockup Nov 2026]
+- Headline: **Crafting** / **Lasting Impressions.** (two lines; line two in terracotta)
+- Subline: Premium gifting solutions for meaningful connections.
+- Buttons: none (removed at client request, Nov 2026)
 - Scroll cue: Scroll to explore
+- Removed with the client mockup: kicker, long supporting lines, trust badges.
 
 ## About Us [CLIENT]
 Naqsh transforms corporate gifting from a transactional task into a meaningful relationship-building experience. We partner with businesses to curate thoughtful, premium gifts that reflect their brand, culture, and people - creating moments that go beyond the box and leave a lasting impression.
 Slogan: BEYOND THE BOX, INTO AN EXPERIENCE!
 
-## Services teaser and Services page [DRAFT]
-**Personalized Gifts** — Gifts designed around your brand, your people and the occasion. We curate, customize and finish every detail, from the product to the packaging.
-**Gifting Consultations** — A conversation before the box. We learn about the occasion, audience, brand and budget, then recommend a gifting plan that fits.
-Link text: Learn more · Book a consultation
+## Services page [CLIENT, "Website Content.pdf", Nov 2026]
+**Premium Gifting Solutions** — We transform corporate gifting from a simple exchange into a meaningful lasting connection. Through an interactive consultation, we blend your vision with our creative expertise and design thoughtful, premium gifts that reflect your brand, culture, and people - leaving a lasting impression. From custom curation to seamless delivery, our end-to-end service handles every detail effortlessly.
+
+**Gifting Consultation** — Not sure what to gift? We offer one-on-one consultations to plan your corporate gifting from start to finish. We discuss your goals and budget, curate personalized gift ideas that match your brand, and handle all the sourcing, branding, and delivery for you.
+Key terms (Rushda, WhatsApp): Strategic guidance · Personalised solutions · Brand alignment · End-to-end execution
+
+**Project Workflow** — A simple and seamless process for meaningful gifting experience
+1. **Share Your Requirement** — Tell us what you're looking for, your occasion, quantity, budget or timeline.
+2. **Gifting Consultation** — We discuss your needs and help you decide what to gift, when to gift and what works best for your audience.
+3. **Gift Selection** — We share curated options aligned with your requirements and budget.
+4. **Customization Details** — Finalize branding, personalization, packaging and messaging.
+5. **Review & Confirmation** — You review the final details and confirm your order.
+6. **Production** — We source, customize, quality-check and prepare your gifts.
+7. **Delivery** — Your gifts are packed and delivered as agreed.
+
+Button labels [DRAFT]: Book a Consultation · Request Consultation
 
 ## What Sets Us Apart (Why Us) [CLIENT]
 Heading: Thoughtful by Principle. Professional by Design.
@@ -54,6 +65,11 @@ Steps (names are CLIENT, descriptions are [DRAFT]):
 2. **Curate** — We select products and alternatives that suit your people and your values.
 3. **Customize** — We shape the experience: branding, packaging, notes and finishing touches.
 4. **Deliver** — We manage the details and deliver a polished solution to the doorstep.
+Icon labels per step [CLIENT, Nov 2026]:
+- Understand: Occasion · Audience · Brand · Budget
+- Curate: Products · Ideas · Experience · Selection
+- Customize: Branding · Personalization · Packaging · Message
+- Deliver: Quality Check · Order Coordination · Logistics · Doorstep Delivery
 
 ## Product Portfolio
 Intro [CLIENT]: Our solutions are designed around corporate occasions rather than a fixed catalogue. We curate, source, customize, and deliver gifting experiences tailored to each client's objectives, brand identity, audience, and budget. These include, but are not limited to:
@@ -78,6 +94,11 @@ Subline [DRAFT]: Tell us about your occasion and we will craft the rest.
 Button: Request Consultation · secondary: WhatsApp us
 Contact line [CLIENT]: Contact Us at: +92-346-9171798
 
+## Contact page · Get in Touch panel [CLIENT design, Nov 2026]
+Label: GET IN TOUCH · Heading: Let’s Create Meaningful Connections
+Intro: Have a gifting need, a question, or want to explore ideas? We’d love to hear from you.
+Cards: WhatsApp · Call Us · Email Us: contact@naqshonline.co · Our Location: Lahore, Pakistan / Nationwide Delivery
+
 ## Contact page [DRAFT]
 Heading: Let's talk about your next gift.
 Intro: Share a few details and our team will get back to you [CONFIRM: response time].
@@ -85,7 +106,7 @@ Form labels: Name · Company · Work email · Phone / WhatsApp · Occasion · Ap
 Consent: I agree to the Privacy Policy.
 Success: Thank you. Your request has been received. We will be in touch [CONFIRM: response time].
 Error: Something went wrong. Please try again or message us on WhatsApp.
-Direct channels: Phone / WhatsApp +92-346-9171798 · Email [CONFIRM: email, not provided yet] · Location: Lahore, Pakistan · Hours [CONFIRM]
+Direct channels: Phone / WhatsApp +92-346-9171798 · Email contact@naqshonline.co [CLIENT] · Location: Lahore, Pakistan · Hours [CONFIRM]
 
 ## FAQs [DRAFT, every answer needs client confirmation]
 **Process**

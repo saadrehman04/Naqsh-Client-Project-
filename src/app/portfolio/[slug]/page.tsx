@@ -50,7 +50,7 @@ export default async function CollectionDetailPage({ params }: Props) {
 
       <section className="section-y">
         <div className="container-x space-y-16">
-          <div className="collection-detail-lead rounded-2xl sm:rounded-3xl bg-[#101D19] text-[var(--ivory)] p-6 sm:p-8 lg:p-10 border border-[#C99A53]/25 shadow-xl">
+          <div className="collection-detail-lead rounded-2xl sm:rounded-3xl bg-[var(--black)] text-[var(--ivory)] p-6 sm:p-8 lg:p-10 border border-[var(--terracotta-on-dark)]/40 shadow-xl">
             <div
               className="collection-detail-image rounded-xl overflow-hidden"
               data-reveal="clip"
@@ -66,7 +66,7 @@ export default async function CollectionDetailPage({ params }: Props) {
               />
             </div>
             <div data-reveal="stagger" data-stagger="0.1" className="space-y-4">
-              <p className="t-label text-[#C99A53]">{collection.title}</p>
+              <p className="t-label text-[var(--ivory)]/80">{collection.title}</p>
               <h2 className="t-h2 text-[var(--ivory)]">Curated Editions</h2>
               <p className="text-[var(--ivory)]/80 leading-relaxed">
                 Every edition in this collection is tailored around your brand identity, occasion, and budget—with bespoke rigid packaging, logo debossing or engraving, and personalized greeting cards.
@@ -74,7 +74,7 @@ export default async function CollectionDetailPage({ params }: Props) {
               <div className="pt-2">
                 <Link
                   href={`/contact?collection=${collection.slug}`}
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-[#F0B87A] via-[#C99A53] to-[#B86C35] text-[#101010] text-xs font-sans uppercase tracking-[0.14em] font-bold"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[var(--terracotta-on-dark)] hover:bg-[var(--chestnut)] transition-colors text-[var(--ivory)] text-xs font-sans uppercase tracking-[0.14em] font-bold"
                 >
                   <span>Request Collection Proposal</span>
                   <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
@@ -131,10 +131,10 @@ export default async function CollectionDetailPage({ params }: Props) {
                 <div className="px-6 pb-6 pt-3 border-t border-[var(--hairline)]">
                   <Link
                     href={`/contact?product=${product.slug}`}
-                    className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-[#101D19] hover:bg-[var(--chestnut)] text-[var(--ivory)] text-xs font-sans uppercase tracking-[0.14em] font-semibold transition-colors"
+                    className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-[var(--black)] hover:bg-[var(--chestnut)] text-[var(--ivory)] text-xs font-sans uppercase tracking-[0.14em] font-semibold transition-colors"
                   >
                     <span>Inquire About This Gift</span>
-                    <ArrowUpRight className="w-4 h-4 text-[#C99A53]" aria-hidden="true" />
+                    <ArrowUpRight className="w-4 h-4 text-[var(--terracotta-on-dark)]" aria-hidden="true" />
                   </Link>
                 </div>
               </article>

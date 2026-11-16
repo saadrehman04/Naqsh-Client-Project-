@@ -28,7 +28,7 @@ export function Breadcrumb({ items, className, tone = "light" }: BreadcrumbProps
             href="/"
             className={cn(
               "transition-colors duration-200",
-              isDark ? "hover:text-[#E5A666]" : "hover:text-[var(--link)]"
+              isDark ? "hover:text-[var(--ivory)]" : "hover:text-[var(--link)]"
             )}
           >
             Home
@@ -50,7 +50,7 @@ export function Breadcrumb({ items, className, tone = "light" }: BreadcrumbProps
                   href={item.href}
                   className={cn(
                     "transition-colors duration-200",
-                    isDark ? "hover:text-[#E5A666]" : "hover:text-[var(--link)]"
+                    isDark ? "hover:text-[var(--ivory)]" : "hover:text-[var(--link)]"
                   )}
                 >
                   {item.label}

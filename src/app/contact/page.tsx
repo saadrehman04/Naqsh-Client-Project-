@@ -1,9 +1,7 @@
 import { Metadata } from "next";
-import { Phone, MessageCircle, MapPin, ShieldCheck, Sparkles } from "lucide-react";
 import { PageHero } from "@/components/ui/PageHero";
 import { InquiryForm } from "@/components/form/InquiryForm";
-import { DISPLAY_PHONE, WHATSAPP_NUMBER, getWhatsAppUrl } from "@/lib/whatsapp";
-import { siteConfig } from "@/content/site";
+import { ContactPanel } from "@/components/sections/ContactPanel";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
@@ -14,148 +12,41 @@ export const metadata: Metadata = buildMetadata({
 });
 
 export default function ContactPage() {
-  const whatsappUrl = getWhatsAppUrl(
-    "Hello NAQSH, I would like to schedule a corporate gifting consultation with your team."
-  );
-
   return (
-    <div className="bg-[var(--ivory-deep)] min-h-screen">
+    <div className="bg-[var(--ivory)]">
       {/* Editorial Page Hero */}
       <PageHero
         title="Let's Craft Your Next Gifting Experience."
         subtitle="Share your requirements with us, and let's explore how NAQSH can bring your corporate gifting vision to life."
         label="Corporate Consultation"
         breadcrumbs={[{ label: "Contact" }]}
-        image="/images/products/excellence-award.webp"
+        image="/images/site/contact-cover.webp"
+        imageTreatment="fade"
+        imagePosition="85% 60%"
       />
 
-      {/* Main Contact Section */}
-      <section
-        className="py-10 sm:py-20"
-        aria-label="Contact Channels & Consultation Form"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-            {/* Left Column: Deep Emerald Direct Channels & Consultation Guide */}
-            <div className="lg:col-span-5 rounded-2xl sm:rounded-3xl bg-[#101D19] text-[var(--ivory)] p-5 sm:p-8 border border-[#C99A53]/25 shadow-xl space-y-5 sm:space-y-7 relative overflow-hidden">
-              <div
-                className="absolute -top-24 -right-24 w-64 h-64 rounded-full pointer-events-none"
-                style={{
-                  background:
-                    "radial-gradient(circle, rgba(201, 154, 83, 0.2) 0%, transparent 70%)",
-                }}
-                aria-hidden="true"
-              />
+      {/* Contact channels + consultation form */}
+      <section className="section-y bg-[var(--ivory)]" aria-label="Contact channels and consultation form">
+        <div className="container-x grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-10 xl:gap-14 items-start">
+          {/* Get in touch panel (client design) */}
+          <div className="lg:col-span-6" data-reveal="up">
+            <ContactPanel />
+          </div>
 
-              <div className="relative z-10" data-reveal="up">
-                <span className="text-xs uppercase tracking-[0.18em] font-sans font-semibold text-[#C99A53] mb-1.5 block">
-                  Direct Concierge
-                </span>
-                <h2
-                  className="font-serif text-2xl sm:text-4xl text-[var(--ivory)] font-normal tracking-tight mb-2"
-                  data-reveal="lines"
-                >
-                  Attentive Corporate Consultation
-                </h2>
-                <p className="font-sans text-xs sm:text-sm text-[var(--ivory)]/80 font-light leading-relaxed">
-                  Connect directly with our curation specialists to discuss your corporate gifting brief.
-                </p>
-              </div>
-
-              {/* Direct Contact Channels */}
-              <div
-                className="relative z-10 space-y-3"
-                data-reveal="stagger"
-                data-stagger="0.08"
-              >
-                {/* WhatsApp */}
-                <div className="flex items-center gap-3.5 p-4 rounded-xl bg-white/[0.04] border border-white/10 hover:border-[#C99A53]/50 transition-colors">
-                  <div className="w-10 h-10 rounded-full bg-[#C99A53]/20 text-[#C99A53] flex items-center justify-center flex-shrink-0">
-                    <MessageCircle className="w-4 h-4" aria-hidden="true" />
-                  </div>
-                  <div>
-                    <span className="block text-[10px] uppercase tracking-[0.16em] font-sans font-semibold text-[#C99A53]">
-                      WhatsApp Concierge
-                    </span>
-                    <a
-                      href={whatsappUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-serif text-lg sm:text-xl text-[var(--ivory)] hover:text-[#FBE2AA] transition-colors inline-flex items-center"
-                    >
-                      +{WHATSAPP_NUMBER}
-                    </a>
-                  </div>
-                </div>
-
-                {/* Direct Phone */}
-                <div className="flex items-center gap-3.5 p-4 rounded-xl bg-white/[0.04] border border-white/10 hover:border-[#C99A53]/50 transition-colors">
-                  <div className="w-10 h-10 rounded-full bg-white/10 text-[#FBE2AA] flex items-center justify-center flex-shrink-0">
-                    <Phone className="w-4 h-4" aria-hidden="true" />
-                  </div>
-                  <div>
-                    <span className="block text-[10px] uppercase tracking-[0.16em] font-sans font-semibold text-[#FBE2AA]">
-                      Direct Phone
-                    </span>
-                    <a
-                      href={`tel:${DISPLAY_PHONE.replace(/[^0-9+]/g, "")}`}
-                      className="font-serif text-lg sm:text-xl text-[var(--ivory)] hover:text-[#FBE2AA] transition-colors inline-flex items-center"
-                    >
-                      {DISPLAY_PHONE}
-                    </a>
-                  </div>
-                </div>
-
-                {/* Studio Location */}
-                <div className="flex items-center gap-3.5 p-4 rounded-xl bg-white/[0.04] border border-white/10">
-                  <div className="w-10 h-10 rounded-full bg-white/10 text-[#D6C8B3] flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-4 h-4" aria-hidden="true" />
-                  </div>
-                  <div>
-                    <span className="block text-[10px] uppercase tracking-[0.16em] font-sans font-semibold text-[#D6C8B3]">
-                      Studio Location
-                    </span>
-                    <span className="font-serif text-lg sm:text-xl text-[var(--ivory)] block">
-                      {siteConfig.location} · Nationwide Delivery
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* What Happens Next Assurance */}
-              <div className="hidden sm:block relative z-10 pt-5 border-t border-white/10 space-y-2.5 text-xs font-sans text-[var(--ivory)]/80">
-                <div className="flex items-center gap-2 text-[#C99A53] font-semibold uppercase tracking-[0.14em]">
-                  <Sparkles className="w-3.5 h-3.5" aria-hidden="true" />
-                  <span>What to Expect After Submitting</span>
-                </div>
-                <p className="font-light leading-relaxed text-[var(--ivory)]/75">
-                  Our team prepares a tailored visual proposal with product recommendations, customization options, and delivery timelines.
-                </p>
-                <div className="flex items-center gap-2 text-[#D6C8B3] pt-1">
-                  <ShieldCheck className="w-4 h-4 text-[#C99A53] shrink-0" aria-hidden="true" />
-                  <span>Confidential B2B consultation · Custom proposals</span>
-                </div>
-              </div>
+          {/* Form */}
+          <div className="lg:col-span-6" data-reveal="up" data-delay="0.08">
+            <div className="mb-6">
+              <span className="font-sans text-[0.75rem] font-semibold uppercase tracking-[0.16em] text-[var(--pine)]">
+                Corporate Gifting Brief
+              </span>
+              <h2 className="mt-2 font-display font-normal text-[length:clamp(1.75rem,2.4vw,2.25rem)] leading-[1.1] text-[var(--black)]">
+                Request a Custom Proposal
+              </h2>
+              <p className="mt-2 font-sans text-[0.9375rem] text-[var(--charcoal)]">
+                Share your requirements below and our curation desk will respond promptly.
+              </p>
             </div>
-
-            {/* Right Column: Interactive Consultation Portal */}
-            <div
-              className="lg:col-span-7"
-              data-reveal="fade-up"
-            >
-              <div className="mb-4 sm:mb-5">
-                <span className="text-xs uppercase tracking-[0.18em] font-sans font-semibold text-[var(--pine)] mb-1 block">
-                  Corporate Gifting Brief
-                </span>
-                <h2 className="font-serif text-2xl sm:text-3xl text-[var(--black)] font-normal tracking-tight">
-                  Request a Custom Proposal
-                </h2>
-                <p className="mt-1 text-xs sm:text-sm font-sans text-[var(--charcoal)] font-light">
-                  Share your requirements below and our curation desk will respond promptly.
-                </p>
-              </div>
-              <InquiryForm />
-            </div>
+            <InquiryForm />
           </div>
         </div>
       </section>

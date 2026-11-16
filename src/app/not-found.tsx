@@ -7,7 +7,7 @@ export default function NotFound() {
     <div className="min-h-[75vh] flex items-center justify-center py-24 container-x">
       <div className="max-w-md w-full text-center space-y-6">
         <div className="flex justify-center mb-6">
-          <Emblem variant="copper" className="w-16 opacity-80" />
+          <Emblem variant="black" className="w-16 opacity-80" />
         </div>
         <p className="t-label text-[var(--pine)]">404 · Not Found</p>
         <h1 className="t-h2 text-[var(--text-strong)]">

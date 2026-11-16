@@ -37,8 +37,8 @@
   /* DO NOT use --sage or --olive as text on ivory (about 3:1). Decoration, icons, borders only. */
 
   /* Typography */
-  --font-display: "Cormorant Garamond", "Times New Roman", serif;   /* headlines, 400/500 */
-  --font-body: "Manrope", system-ui, sans-serif;                    /* body and UI, 400/500/600 */
+  --font-display: "Marcellus", "Times New Roman", serif;   /* headlines, 400 only (client choice, option D) */
+  --font-body: "Mulish", system-ui, sans-serif;                     /* body and UI, 300–800 variable */
   --fs-display: clamp(3.25rem, 8vw, 8rem);
   --fs-h1: clamp(2.5rem, 5vw, 5rem);
   --fs-h2: clamp(2rem, 3.6vw, 3.5rem);

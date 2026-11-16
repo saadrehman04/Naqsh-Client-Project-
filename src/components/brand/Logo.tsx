@@ -79,3 +79,38 @@ export function BrandLockup({
 
   return content;
 }
+
+interface TerracottaLogoProps {
+  kind: "wordmark" | "emblem";
+  className?: string;
+  label?: string;
+}
+
+const LOGO_RATIO = { wordmark: "4123 / 761", emblem: "2120 / 3958" } as const;
+
+/**
+ * Terracotta logo (client request, Nov 2026). No terracotta file exists in assets/logo/svg, so the
+ * approved ivory SVG is used unchanged as a CSS mask and filled with the --terracotta-on-dark token.
+ * Shape and proportions come straight from the approved file; only the fill colour differs.
+ */
+export function TerracottaLogo({ kind, className, label = "NAQSH" }: TerracottaLogoProps) {
+  const url = `url(/brand/${kind}-ivory.svg)`;
+  return (
+    <span
+      role="img"
+      aria-label={label}
+      className={cn("bg-[var(--terracotta-on-dark)]", className)}
+      style={{
+        aspectRatio: LOGO_RATIO[kind],
+        maskImage: url,
+        WebkitMaskImage: url,
+        maskSize: "contain",
+        WebkitMaskSize: "contain",
+        maskRepeat: "no-repeat",
+        WebkitMaskRepeat: "no-repeat",
+        maskPosition: "center",
+        WebkitMaskPosition: "center",
+      }}
+    />
+  );
+}

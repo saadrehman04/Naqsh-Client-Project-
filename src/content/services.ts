@@ -13,7 +13,83 @@ export interface ServiceCategory {
   ctaHref: string;
 }
 
+export type WorkflowIcon =
+  | "requirement" | "consultation" | "selection" | "customization"
+  | "review" | "production" | "delivery";
+
+export type ConsultationIcon = "guidance" | "personalised" | "brand" | "execution";
+
 export const servicesContent = {
+  // Client copy, verbatim from "Website Content.pdf" (Nov 2026).
+  premiumGifting: {
+    id: "premium-gifting-solutions",
+    heading: "Premium Gifting Solutions",
+    body:
+      "We transform corporate gifting from a simple exchange into a meaningful lasting connection. Through an interactive consultation, we blend your vision with our creative expertise and design thoughtful, premium gifts that reflect your brand, culture, and people - leaving a lasting impression. From custom curation to seamless delivery, our end-to-end service handles every detail effortlessly.",
+  },
+  // Heading + body verbatim from the PDF; the four key terms are Rushda's (WhatsApp, Nov 2026).
+  giftingConsultation: {
+    id: "gifting-consultation",
+    heading: "Gifting Consultation",
+    body:
+      "Not sure what to gift? We offer one-on-one consultations to plan your corporate gifting from start to finish. We discuss your goals and budget, curate personalized gift ideas that match your brand, and handle all the sourcing, branding, and delivery for you.",
+    image: "/images/site/gifting-consultation.webp",
+    imageAlt:
+      "A consultant points to colour swatches in a NAQSH gifting brochure beside wrapped chestnut and black gift boxes and a teal vase of pampas grass",
+    keyTerms: [
+      { icon: "guidance", label: "Strategic guidance" },
+      { icon: "personalised", label: "Personalised solutions" },
+      { icon: "brand", label: "Brand alignment" },
+      { icon: "execution", label: "End-to-end execution" },
+    ] as { icon: ConsultationIcon; label: string }[],
+    ctaText: "Book a Consultation",
+    ctaHref: "/contact?service=gifting-consultations",
+  },
+  // Heading + body from the client brief; step names and descriptions verbatim from the client's visual.
+  projectWorkflow: {
+    id: "project-workflow",
+    heading: "Project Workflow",
+    intro: "A simple and seamless process for meaningful gifting experience",
+    steps: [
+      {
+        icon: "requirement",
+        name: "Share Your Requirement",
+        desc: "Tell us what you're looking for, your occasion, quantity, budget or timeline.",
+      },
+      {
+        icon: "consultation",
+        name: "Gifting Consultation",
+        desc: "We discuss your needs and help you decide what to gift, when to gift and what works best for your audience.",
+      },
+      {
+        icon: "selection",
+        name: "Gift Selection",
+        desc: "We share curated options aligned with your requirements and budget.",
+      },
+      {
+        icon: "customization",
+        name: "Customization Details",
+        desc: "Finalize branding, personalization, packaging and messaging.",
+      },
+      {
+        icon: "review",
+        name: "Review & Confirmation",
+        desc: "You review the final details and confirm your order.",
+      },
+      {
+        icon: "production",
+        name: "Production",
+        desc: "We source, customize, quality-check and prepare your gifts.",
+      },
+      {
+        icon: "delivery",
+        name: "Delivery",
+        desc: "Your gifts are packed and delivered as agreed.",
+      },
+    ] as { icon: WorkflowIcon; name: string; desc: string }[],
+    ctaText: "Request Consultation",
+    ctaHref: "/contact",
+  },
   header: {
     label: "Our Services",
     title: "Gifting Solutions for Every Business Occasion.",

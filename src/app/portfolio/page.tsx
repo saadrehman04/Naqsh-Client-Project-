@@ -18,7 +18,9 @@ export default function PortfolioPage() {
         subtitle="Discover our seven corporate gifting collections and customizable product catalogue."
         label="Portfolio & Catalogue"
         breadcrumbs={[{ label: "Portfolio" }]}
-        image="/images/products/pakistan-heritage-gift-set.webp"
+        image="/images/site/portfolio-cover.webp"
+        imageTreatment="plain"
+        imagePosition="center"
       />
 
       {/* Complete Product Catalogue */}

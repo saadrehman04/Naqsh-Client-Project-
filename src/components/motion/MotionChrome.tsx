@@ -8,7 +8,6 @@ export function MotionChrome() {
 
   useEffect(() => {
     const progress = document.querySelector<HTMLElement>(".scroll-progress");
-    const cursor = document.querySelector<HTMLElement>(".custom-cursor");
     const isCoarse = window.matchMedia("(pointer: coarse)").matches;
     const isDesktopFine = window.matchMedia("(min-width: 1024px) and (pointer: fine)").matches;
     const canHoverFine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
@@ -22,70 +21,6 @@ export function MotionChrome() {
       card.style.setProperty("--glare-opacity", "0");
       card.classList.remove("is-tilting");
     };
-    let pointerX = -1;
-    let pointerY = -1;
-    let hasPointer = false;
-    let rafId = 0;
-
-    const getExploreTarget = (
-      el: HTMLElement | null
-    ): { isMatch: boolean; label: string } => {
-      if (!el || !(el instanceof HTMLElement)) return { isMatch: false, label: "" };
-
-      // Never trigger over form controls or floating widgets
-      if (
-        el.closest(
-          "input, select, textarea, .floating-whatsapp, [contenteditable='true']"
-        )
-      ) {
-        return { isMatch: false, label: "" };
-      }
-
-      // 1. Explicit data-cursor-label attribute
-      const explicit = el.closest<HTMLElement>("[data-cursor-label]");
-      if (explicit) {
-        return {
-          isMatch: true,
-          label: explicit.dataset.cursorLabel || "Explore",
-        };
-      }
-
-      // 2. Images: <img>, <picture>, <figure>, <canvas>, or image wrappers
-      const imageEl = el.closest<HTMLElement>(
-        "img, picture, figure, canvas, [data-cursor-image], .collection-gallery-image, .product-tile-image, .about-images, .why-visual, .emblem-scene-host"
-      );
-      if (imageEl) {
-        return { isMatch: true, label: "Explore" };
-      }
-
-      // 3. Links: <a> tags, role='link', .btn
-      const linkEl = el.closest<HTMLElement>("a, [role='link'], .btn");
-      if (linkEl) {
-        return {
-          isMatch: true,
-          label: linkEl.dataset.cursorLabel || "Explore",
-        };
-      }
-
-      return { isMatch: false, label: "" };
-    };
-
-    const refreshCursorTarget = () => {
-      rafId = 0;
-      if (!cursor || !hasPointer || reducedMotion || isCoarse) return;
-      cursor.style.transform = `translate3d(${pointerX}px, ${pointerY}px, 0)`;
-      const underPointer = document.elementFromPoint(pointerX, pointerY);
-      const { isMatch, label } = getExploreTarget(
-        underPointer instanceof HTMLElement ? underPointer : null
-      );
-      cursor.classList.toggle("is-over", isMatch);
-      cursor.dataset.label = label;
-    };
-
-    const scheduleCursorRefresh = () => {
-      if (reducedMotion || isCoarse || !hasPointer || rafId) return;
-      rafId = window.requestAnimationFrame(refreshCursorTarget);
-    };
 
     const recomputeMaxScroll = () => {
       cachedMaxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
@@ -97,36 +32,10 @@ export function MotionChrome() {
         const ratio = Math.max(0, Math.min(1, window.scrollY / cachedMaxScroll));
         progress.style.transform = `scaleX(${ratio.toFixed(4)})`;
       }
-      if (!reducedMotion && !isCoarse && hasPointer) {
-        scheduleCursorRefresh();
-      }
-    };
-
-    const handleWheel = (event: WheelEvent) => {
-      if (reducedMotion || isCoarse) return;
-      if (event.clientX > 0 || event.clientY > 0) {
-        pointerX = event.clientX;
-        pointerY = event.clientY;
-        hasPointer = true;
-      }
-      scheduleCursorRefresh();
     };
 
     const handlePointerMove = (event: PointerEvent) => {
       if (reducedMotion || isCoarse) return;
-      pointerX = event.clientX;
-      pointerY = event.clientY;
-      hasPointer = true;
-
-      if (cursor) {
-        cursor.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`;
-        const { isMatch, label } = getExploreTarget(
-          event.target instanceof HTMLElement ? event.target : null
-        );
-        cursor.classList.toggle("is-over", isMatch);
-        cursor.dataset.label = label;
-      }
-
       if (canHoverFine) {
         const tiltCard = (event.target as HTMLElement | null)?.closest<HTMLElement>(
           ".product-tile"
@@ -189,11 +98,6 @@ export function MotionChrome() {
     };
 
     const handlePointerLeave = () => {
-      hasPointer = false;
-      if (cursor) {
-        cursor.classList.remove("is-over");
-        cursor.dataset.label = "";
-      }
       if (activeTiltCard) {
         resetTiltCard(activeTiltCard);
         activeTiltCard = null;
@@ -202,7 +106,6 @@ export function MotionChrome() {
 
     const settleTimer = window.setTimeout(recomputeMaxScroll, 400);
     window.addEventListener("scroll", updateProgress, { passive: true });
-    window.addEventListener("wheel", handleWheel, { passive: true });
     window.addEventListener("resize", recomputeMaxScroll);
     window.addEventListener("pointermove", handlePointerMove, { passive: true });
     window.addEventListener("pointerout", handlePointerOut);
@@ -214,9 +117,7 @@ export function MotionChrome() {
 
     return () => {
       window.clearTimeout(settleTimer);
-      if (rafId) window.cancelAnimationFrame(rafId);
       window.removeEventListener("scroll", updateProgress);
-      window.removeEventListener("wheel", handleWheel);
       window.removeEventListener("resize", recomputeMaxScroll);
       window.removeEventListener("pointermove", handlePointerMove);
       window.removeEventListener("pointerout", handlePointerOut);
@@ -230,7 +131,6 @@ export function MotionChrome() {
   return (
     <>
       <div className="scroll-progress" aria-hidden="true" />
-      <div className="custom-cursor" aria-hidden="true" />
     </>
   );
 }

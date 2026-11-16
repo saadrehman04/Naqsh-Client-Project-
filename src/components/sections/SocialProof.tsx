@@ -14,7 +14,7 @@ export function SocialProof() {
   return (
     <section
       id="social-proof"
-      className="bg-[var(--ivory-warm)] py-20 sm:py-28 border-b border-[var(--border-light)] overflow-hidden"
+      className="bg-[var(--ivory-deep)] py-20 sm:py-28 border-b border-[var(--hairline)] overflow-hidden"
       aria-label="Client Trust & Testimonials"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -58,12 +58,12 @@ export function SocialProof() {
               {siteConfig.testimonials.map((t, idx) => (
                 <blockquote
                   key={idx}
-                  className="flex min-h-64 w-[min(84vw,25rem)] flex-none snap-start flex-col justify-between rounded-[var(--radius-card)] border border-[var(--border-light)] bg-[var(--ivory)] p-7 sm:p-8"
+                  className="flex min-h-64 w-[min(84vw,25rem)] flex-none snap-start flex-col justify-between rounded-[var(--radius-card)] border border-[var(--hairline)] bg-[var(--ivory)] p-7 sm:p-8"
                 >
                   <p className="font-serif text-lg text-[var(--black)] italic leading-relaxed mb-6">
                     &ldquo;{t.quote}&rdquo;
                   </p>
-                  <footer className="border-t border-[var(--border-light)] pt-4">
+                  <footer className="border-t border-[var(--hairline)] pt-4">
                     <cite className="not-italic block">
                       <span className="font-sans font-medium text-sm text-[var(--black)] block">
                         {t.name}

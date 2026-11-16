@@ -57,7 +57,7 @@ export const siteConfig: SiteConfig = {
   phone: DISPLAY_PHONE,
   whatsappNumber: WHATSAPP_NUMBER,
   location: "Lahore, Pakistan",
-  email: null, // [CONFIRM: email not yet provided by client]
+  email: "contact@naqshonline.co", // client-confirmed, Nov 2026
   workingHours: null, // [CONFIRM: working hours]
   responseTime: null, // [CONFIRM: response time promise]
   nav: [

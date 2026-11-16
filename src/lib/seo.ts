@@ -27,7 +27,9 @@ export function constructMetadata({
   const url = `${siteUrl}${path}`;
 
   return {
-    title: fullTitle,
+    // Browser tab shows only the brand (client request, Nov 2026). The descriptive page title
+    // is kept for link previews (Open Graph / Twitter) below.
+    title: { absolute: "NAQSH" },
     description,
     keywords: [
       "corporate gifting",
@@ -95,6 +97,7 @@ export function generateOrganizationSchema() {
     description:
       "Discover premium corporate gifting with NAQSH. Personalized gifts, employee welcome kits, executive hampers, festive collections, and bespoke corporate gifting solutions in Lahore, Pakistan.",
     telephone: siteConfig.phone,
+    ...(siteConfig.email ? { email: siteConfig.email } : {}),
     address: {
       "@type": "PostalAddress",
       addressLocality: "Lahore",
@@ -103,6 +106,7 @@ export function generateOrganizationSchema() {
     contactPoint: {
       "@type": "ContactPoint",
       telephone: siteConfig.phone,
+      ...(siteConfig.email ? { email: siteConfig.email } : {}),
       contactType: "customer service",
       areaServed: "PK",
       availableLanguage: ["English", "Urdu"],

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 import { siteConfig } from "@/content/site";
-import { Wordmark } from "@/components/brand/Logo";
+import { TerracottaLogo } from "@/components/brand/Logo";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
 import { MobileMenu } from "./MobileMenu";
 import { cn } from "@/lib/utils";
@@ -34,25 +34,22 @@ export function Header() {
         className={cn(
           "fixed top-0 inset-x-0 z-50 transition-all duration-300 ease-[var(--ease-out)] text-[var(--ivory)]",
           isScrolled
-            ? "bg-[#101D19]/92 backdrop-blur-md border-b border-[#C99A53]/25 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.45)]"
+            ? "bg-[var(--black)]/92 backdrop-blur-md border-b border-[var(--terracotta-on-dark)]/40 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.45)]"
             : "bg-transparent border-b border-white/[0.12]"
         )}
       >
         <div className="container-x header-shell flex items-center justify-between">
-          {/* Left: Brand Lockup with Subtitle */}
+          {/* Left: terracotta wordmark */}
           <Link
             href="/"
             aria-label="NAQSH Homepage"
             className="header-brand-lockup flex flex-col items-start select-none group py-1"
           >
-            <Wordmark
-              variant="gold-gradient"
-              className="w-[115px] sm:w-[134px] transition-transform duration-300 group-hover:scale-[1.02]"
-              priority
+            <TerracottaLogo
+              kind="wordmark"
+              label="NAQSH"
+              className="block w-[115px] sm:w-[134px] transition-transform duration-300 group-hover:scale-[1.02]"
             />
-            <span className="text-[7.5px] sm:text-[8px] font-sans tracking-[0.24em] uppercase font-semibold mt-0.5 text-[#C99A53]">
-              Luxury Corporate Gifts
-            </span>
           </Link>
 
           {/* Center: Desktop Navigation */}
@@ -73,13 +70,13 @@ export function Header() {
                   className={cn(
                     "header-nav-link text-[13px] tracking-[0.04em] font-sans transition-colors relative py-1.5",
                     isActive
-                      ? "is-active text-[#C99A53] font-medium"
+                      ? "is-active text-[var(--ivory)] font-medium"
                       : "text-[var(--ivory)]/90 hover:text-[var(--ivory)]"
                   )}
                 >
                   {item.label}
                   {isActive && (
-                    <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#C99A53] rounded-full" />
+                    <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[var(--terracotta-on-dark)] rounded-full" />
                   )}
                 </Link>
               );
@@ -93,7 +90,7 @@ export function Header() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`Chat on WhatsApp (${siteConfig.phone})`}
-              className="flex items-center justify-center w-10 h-10 rounded-full border border-[#C99A53]/60 hover:border-[#C99A53] text-[#C99A53] bg-black/35 hover:bg-[#C99A53]/20 shadow-[0_2px_12px_rgba(201,154,83,0.18)] transition-all duration-300 hover:scale-105"
+              className="flex items-center justify-center w-10 h-10 rounded-full border border-[var(--terracotta-on-dark)]/70 hover:border-[var(--terracotta-on-dark)] text-[var(--terracotta-on-dark)] bg-black/35 hover:bg-[var(--terracotta-on-dark)]/20 shadow-[0_2px_12px_rgb(178_76_59/0.25)] transition-all duration-300 hover:scale-105"
             >
               <svg
                 width="19"
@@ -108,10 +105,10 @@ export function Header() {
 
             <Link
               href="/contact"
-              className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-[#C99A53]/70 hover:border-[#C99A53] text-[#F9EBD7] hover:text-white hover:bg-[#C99A53]/20 bg-black/35 shadow-[0_2px_12px_rgba(201,154,83,0.18)] text-xs font-sans tracking-[0.14em] uppercase font-semibold transition-all duration-300 hover:scale-[1.02]"
+              className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-[var(--terracotta-on-dark)] hover:border-[var(--terracotta-on-dark)] text-[var(--ivory)] hover:bg-[var(--terracotta-on-dark)] bg-black/35 shadow-[0_2px_12px_rgb(178_76_59/0.25)] text-xs font-sans tracking-[0.14em] uppercase font-semibold transition-all duration-300 hover:scale-[1.02]"
             >
               <span>Request Consultation</span>
-              <ArrowRight className="w-3.5 h-3.5 text-[#C99A53]" aria-hidden="true" />
+              <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
             </Link>
 
             {/* Mobile Menu Button */}

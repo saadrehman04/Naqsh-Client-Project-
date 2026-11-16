@@ -1,193 +1,231 @@
 import { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
-import { ArrowRight, Check, Sparkles } from "lucide-react";
+import {
+  BadgeCheck,
+  Compass,
+  FileCheck,
+  FilePen,
+  Gift,
+  MessagesSquare,
+  Pencil,
+  Settings,
+  Sparkles,
+  Truck,
+  UserRoundPen,
+  type LucideIcon,
+} from "lucide-react";
 import { PageHero } from "@/components/ui/PageHero";
-import { servicesContent } from "@/content/services";
+import { Button } from "@/components/ui/Button";
+import { Ornament } from "@/components/ui/Ornament";
+import {
+  servicesContent,
+  type ConsultationIcon,
+  type WorkflowIcon,
+} from "@/content/services";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Corporate Gifting Services · Employee, Executive, Events & Seasonal",
+  title: "Corporate Gifting Services · Premium Gifting Solutions & Gifting Consultation",
   description:
-    "Explore NAQSH's four corporate gifting service pillars: Corporate & Employee Gifting, Executive & Client Gifting, Events & Brand Merchandise, and Bespoke & Seasonal Gifting.",
+    "Premium corporate gifting solutions and one-on-one gifting consultations from NAQSH, from custom curation to seamless delivery.",
   path: "/services",
 });
 
+const CONSULTATION_ICONS: Record<ConsultationIcon, LucideIcon> = {
+  guidance: Compass,
+  personalised: UserRoundPen,
+  brand: BadgeCheck,
+  execution: Sparkles,
+};
+
+const WORKFLOW_ICONS: Record<WorkflowIcon, LucideIcon> = {
+  requirement: FilePen,
+  consultation: MessagesSquare,
+  selection: Gift,
+  customization: Pencil,
+  review: FileCheck,
+  production: Settings,
+  delivery: Truck,
+};
+
+/** Icon discs cycle through token tints: ivory-deep, sage, terracotta. */
+const DISC_TINTS = [
+  "bg-[var(--ivory-deep)]",
+  "bg-[color-mix(in_srgb,var(--sage)_22%,var(--ivory))]",
+  "bg-[color-mix(in_srgb,var(--terracotta)_16%,var(--ivory))]",
+];
+
+const sectionHeading =
+  "font-display font-normal text-[length:clamp(2.25rem,4vw,3.5rem)] leading-[1.05] tracking-[-0.015em] text-[var(--black)] [text-wrap:balance]";
+
 export default function ServicesPage() {
-  const { header } = servicesContent;
-  // Only the first two service pillars are shown on this page.
-  const services = servicesContent.services.slice(0, 2);
+  const { header, premiumGifting, giftingConsultation, projectWorkflow } = servicesContent;
 
   return (
-    <div className="bg-[var(--ivory)] min-h-screen">
-      {/* Editorial Page Hero */}
+    <div className="bg-[var(--ivory)]">
       <PageHero
         title={header.title}
         subtitle={header.intro}
         label={header.label}
         breadcrumbs={[{ label: "Services" }]}
-        image="/images/products/client-onboarding-kit.webp"
+        image="/images/site/services-cover.webp"
+        imageTreatment="blur"
+        imagePosition="70% center"
       />
 
-      {/* Quick Category Jump Bar */}
-      <div className="bg-[#101D19] border-b border-white/10 py-3.5 sm:py-4">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-3">
-          <span className="text-[11px] font-sans uppercase tracking-[0.18em] text-[#C99A53] font-semibold">
-            Service Pillars
-          </span>
-          <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2 sm:gap-3">
-            {services.map((s) => (
-              <a
-                key={s.id}
-                href={`#${s.id}`}
-                className="px-3 py-1.5 rounded-full bg-white/[0.06] hover:bg-[#C99A53] text-[var(--ivory)] hover:text-[#101010] border border-white/10 text-[11px] sm:text-xs font-sans transition-colors truncate"
-              >
-                {s.number} · {s.title}
-              </a>
-            ))}
+      {/* Premium Gifting Solutions (ivory) */}
+      <section
+        id={premiumGifting.id}
+        className="section-y scroll-mt-24 bg-[var(--ivory)]"
+        aria-labelledby="premium-gifting-heading"
+      >
+        <div className="container-x grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+          <div className="lg:col-span-5">
+            <Ornament align="start" />
+            <h2 id="premium-gifting-heading" className={`mt-5 ${sectionHeading}`} data-reveal="lines">
+              {premiumGifting.heading}
+            </h2>
+          </div>
+          <p
+            className="lg:col-span-7 lg:pt-12 font-sans text-[length:clamp(1.0625rem,0.4vw+0.98rem,1.25rem)] leading-[1.75] text-[var(--charcoal)] [text-wrap:pretty]"
+            data-reveal="up"
+            data-delay="0.08"
+          >
+            {premiumGifting.body}
+          </p>
+        </div>
+      </section>
+
+      {/* Gifting Consultation (black band, terracotta accents) */}
+      <section
+        id={giftingConsultation.id}
+        className="on-dark section-y scroll-mt-24 bg-[var(--black)] text-[var(--ivory)]"
+        aria-labelledby="gifting-consultation-heading"
+      >
+        <div className="container-x">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 rounded-[28px] border border-[var(--terracotta-on-dark)]/45 bg-[var(--black)] p-4 sm:p-6 lg:p-8 shadow-[0_0_60px_-20px_rgb(178_76_59/0.35)]">
+            <div
+              className="lg:col-span-5 relative aspect-[4/5] sm:aspect-[16/10] lg:aspect-auto lg:min-h-[34rem] overflow-hidden rounded-[var(--radius-image)] bg-[var(--charcoal)]"
+              data-reveal="clip"
+              data-clip-from="left"
+            >
+              <Image
+                src={giftingConsultation.image}
+                alt={giftingConsultation.imageAlt}
+                fill
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                className="object-cover object-[40%_center]"
+              />
+            </div>
+
+            <div className="lg:col-span-7 flex flex-col justify-between gap-10 px-2 pb-4 sm:px-4 lg:px-2 lg:py-4">
+              <div data-reveal="up">
+                <Ornament align="start" />
+                <h2
+                  id="gifting-consultation-heading"
+                  className="mt-5 font-display font-normal text-[length:clamp(2.25rem,4vw,3.5rem)] leading-[1.05] tracking-[-0.015em] text-[var(--ivory)] [text-wrap:balance]"
+                >
+                  {giftingConsultation.heading}
+                </h2>
+                <p className="mt-5 max-w-[38rem] font-sans text-[1.0625rem] leading-[1.75] text-[var(--ivory)]/80 [text-wrap:pretty]">
+                  {giftingConsultation.body}
+                </p>
+              </div>
+
+              <div>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                  {giftingConsultation.keyTerms.map((term, i) => {
+                    const Icon = CONSULTATION_ICONS[term.icon];
+                    return (
+                      <li
+                        key={term.label}
+                        className="flex items-center gap-4 min-h-[5.5rem] rounded-2xl border border-[var(--terracotta-on-dark)] bg-[linear-gradient(90deg,rgb(178_76_59/0.16),transparent_75%)] px-5 py-4"
+                        data-reveal="up"
+                        data-delay={String(0.06 * i)}
+                      >
+                        <Icon
+                          className="size-6 shrink-0 text-[var(--terracotta-on-dark)]"
+                          strokeWidth={1.5}
+                          aria-hidden="true"
+                        />
+                        <span className="font-display text-[1.375rem] leading-[1.2] text-[var(--ivory)]">
+                          {term.label}
+                        </span>
+                      </li>
+                    );
+                  })}
+                </ul>
+                <div className="mt-8">
+                  <Button
+                    href={giftingConsultation.ctaHref}
+                    className="[--btn-bg:var(--terracotta-on-dark)]"
+                  >
+                    {giftingConsultation.ctaText}
+                  </Button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Service Categories Deep Dive */}
+      {/* Project Workflow (ivory) */}
       <section
-        className="py-10 sm:py-20 bg-[var(--ivory-deep)]"
-        aria-label="Corporate Gifting Service Categories"
+        id={projectWorkflow.id}
+        className="section-y scroll-mt-24 bg-[var(--ivory)]"
+        aria-labelledby="project-workflow-heading"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-16">
-          {services.map((service, idx) => {
-            const isReversed = idx % 2 === 1;
+        <div className="container-x">
+          <header className="max-w-[44rem]">
+            <Ornament align="start" />
+            <h2 id="project-workflow-heading" className={`mt-5 ${sectionHeading}`} data-reveal="lines">
+              {projectWorkflow.heading}
+            </h2>
+            <p
+              className="mt-5 font-sans text-[1.0625rem] sm:text-[1.1875rem] leading-[1.7] text-[var(--charcoal)]"
+              data-reveal="up"
+              data-delay="0.06"
+            >
+              {projectWorkflow.intro}
+            </p>
+          </header>
 
-            return (
-              <article
-                key={service.id}
-                id={service.id}
-                className={`scroll-mt-28 flex flex-col ${
-                  isReversed ? "lg:flex-row-reverse" : "lg:flex-row"
-                } items-start gap-6 lg:gap-12 rounded-3xl bg-[var(--ivory)] border border-[var(--hairline)] p-5 sm:p-8 lg:p-10 shadow-sm`}
-              >
-                {/* Visual & Occasions Card */}
-                <div className="w-full lg:w-5/12 space-y-4">
-                  <div
-                    className="relative aspect-[16/10] max-h-[260px] sm:max-h-[300px] rounded-2xl overflow-hidden bg-[#12100E] border border-[var(--hairline)] shadow-md group"
-                    data-reveal="clip"
-                    data-clip-from={isReversed ? "right" : "left"}
-                    data-parallax="0.08"
-                  >
-                    <Image
-                      src={service.image}
-                      alt={service.imageAlt}
-                      fill
-                      sizes="(max-width: 1024px) 100vw, 45vw"
-                      className="object-cover scale-[1.15] transition-transform duration-700 ease-[var(--ease-out)] group-hover:scale-105"
-                    />
-                  </div>
-
-                  {/* Relevant Occasions Box (Desktop / Tablet) */}
-                  <div className="hidden sm:block rounded-2xl bg-[var(--ivory-deep)] border border-[var(--hairline)] p-4">
-                    <span className="text-[11px] font-sans uppercase tracking-[0.16em] font-semibold text-[var(--pine)] block mb-2.5">
-                      Key Business Occasions
-                    </span>
-                    <div className="flex flex-wrap gap-2">
-                      {service.occasions.map((occ) => (
-                        <span
-                          key={occ}
-                          className="px-3 py-1 rounded-full bg-[var(--ivory)] border border-[var(--hairline)] text-xs font-sans text-[var(--text-strong)]"
-                        >
-                          {occ}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Detailed Narrative, Solutions & Customization */}
-                <div
-                  className="w-full lg:w-7/12 flex flex-col justify-center space-y-4 sm:space-y-5"
-                  data-reveal="stagger"
-                  data-stagger="0.08"
+          <ol className="mt-12 sm:mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+            {projectWorkflow.steps.map((step, i) => {
+              const Icon = WORKFLOW_ICONS[step.icon];
+              return (
+                <li
+                  key={step.name}
+                  className="flex flex-col rounded-[var(--radius-card)] border border-[var(--hairline)] bg-[color-mix(in_srgb,var(--ivory-deep)_55%,var(--ivory))] p-6"
+                  data-reveal="up"
+                  data-delay={String(0.05 * (i % 4))}
                 >
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-start justify-between gap-4">
+                    <span className="font-sans text-[1.5rem] font-semibold leading-none tabular-nums text-[var(--chestnut)]">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
                     <span
-                      className="font-serif text-3xl sm:text-4xl text-[var(--chestnut)] font-light select-none"
-                      data-count-to={idx + 1}
-                      data-count-pad="2"
+                      className={`flex size-16 shrink-0 items-center justify-center rounded-full text-[var(--black)] ${DISC_TINTS[i % DISC_TINTS.length]}`}
+                      aria-hidden="true"
                     >
-                      {service.number}
-                    </span>
-                    <span className="h-px w-8 bg-[var(--hairline)]" aria-hidden="true" />
-                    <span className="text-xs font-sans uppercase tracking-[0.16em] text-[var(--pine)] font-semibold">
-                      Service Pillar
+                      <Icon className="size-7" strokeWidth={1.4} />
                     </span>
                   </div>
-
-                  <h2 className="font-serif text-2xl sm:text-4xl text-[var(--black)] font-normal tracking-tight">
-                    {service.title}
-                  </h2>
-
-                  <p className="font-sans text-sm sm:text-base text-[var(--text-strong)] font-normal leading-relaxed">
-                    {service.summary}
+                  <h3 className="mt-6 font-display text-[1.5rem] leading-[1.15] text-[var(--black)]">
+                    {step.name}
+                  </h3>
+                  <p className="mt-3 font-sans text-[0.9375rem] leading-[1.65] text-[var(--charcoal)]">
+                    {step.desc}
                   </p>
+                </li>
+              );
+            })}
 
-                  {/* Types of Gifting Solutions & Customization Options */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 pt-3 border-t border-[var(--hairline)]">
-                    <div>
-                      <h3 className="text-[11px] sm:text-xs font-sans uppercase tracking-[0.16em] font-semibold text-[var(--black)] mb-2.5">
-                        Solutions Included
-                      </h3>
-                      <ul className="space-y-1.5">
-                        {service.solutions.slice(0, 4).map((sol) => (
-                          <li
-                            key={sol}
-                            className="flex items-start gap-2 text-xs sm:text-sm text-[var(--charcoal)] font-sans"
-                          >
-                            <Check className="w-3.5 h-3.5 text-[var(--pine)] shrink-0 mt-0.5" aria-hidden="true" />
-                            <span>{sol}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+          </ol>
 
-                    <div>
-                      <h3 className="text-[11px] sm:text-xs font-sans uppercase tracking-[0.16em] font-semibold text-[var(--black)] mb-2.5">
-                        Customization
-                      </h3>
-                      <ul className="space-y-1.5">
-                        {service.customizationOptions.map((opt) => (
-                          <li
-                            key={opt}
-                            className="flex items-start gap-2 text-xs sm:text-sm text-[var(--charcoal)] font-sans"
-                          >
-                            <Sparkles className="w-3.5 h-3.5 text-[var(--chestnut)] shrink-0 mt-0.5" aria-hidden="true" />
-                            <span>{opt}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-
-                  {/* Call to action */}
-                  <div className="pt-3 flex flex-wrap items-center gap-4">
-                    <Link
-                      href={service.ctaHref}
-                      data-magnetic
-                      className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-[#101D19] hover:bg-[var(--chestnut)] text-[var(--ivory)] font-sans text-xs tracking-[0.14em] uppercase font-semibold transition-all duration-300 shadow-md hover:scale-[1.02]"
-                    >
-                      <span>{service.ctaText}</span>
-                      <ArrowRight className="w-4 h-4 text-[#C99A53]" aria-hidden="true" />
-                    </Link>
-                    <Link
-                      href="/portfolio"
-                      className="link-arrow text-xs"
-                    >
-                      <span>Browse Related Editions</span>
-                      <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
-                    </Link>
-                  </div>
-                </div>
-              </article>
-            );
-          })}
+          <div className="mt-12 sm:mt-14" data-reveal="up">
+            <Button href={projectWorkflow.ctaHref}>{projectWorkflow.ctaText}</Button>
+          </div>
         </div>
       </section>
     </div>

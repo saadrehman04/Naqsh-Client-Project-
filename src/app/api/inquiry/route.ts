@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { inquirySchema } from "@/lib/validators";
+import { siteConfig } from "@/content/site";
 
 export async function POST(request: Request) {
   try {
@@ -30,7 +31,7 @@ export async function POST(request: Request) {
 
     const resendApiKey = process.env.RESEND_API_KEY;
     const recipientEmail =
-      process.env.INQUIRY_RECIPIENT_EMAIL || "consultations@naqsh.pk";
+      process.env.INQUIRY_RECIPIENT_EMAIL || siteConfig.email || "contact@naqshonline.co";
 
     if (resendApiKey) {
       const resend = new Resend(resendApiKey);

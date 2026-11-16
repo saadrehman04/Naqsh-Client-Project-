@@ -33,7 +33,7 @@ export function Placeholder({
       aria-label={`Placeholder: ${label}`}
     >
       <div className="relative z-10 flex flex-col items-center gap-3 opacity-60">
-        <Emblem variant="copper" className="w-8 opacity-75" />
+        <Emblem variant="black" className="w-8 opacity-75" />
         <span className="t-label text-[var(--charcoal)] tracking-widest text-xs">
           {label}
         </span>

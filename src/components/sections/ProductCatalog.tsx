@@ -35,7 +35,7 @@ export function ProductCatalog() {
       <div className="container-x">
         <div className="catalog-heading">
           <p className="t-label text-[var(--pine)]" data-reveal="up">
-            06 · Curated Product Catalogue
+            Curated Product Catalogue
           </p>
           <h2 id="all-products-heading" className="t-h2" data-reveal="lines">
             Explore Our Gift Editions.
@@ -66,7 +66,7 @@ export function ProductCatalog() {
             aria-pressed={collection === "all"}
             onClick={() => setCollection("all")}
           >
-            All Editions ({products.length})
+            All ({products.length})
           </button>
           {collections.map((item) => (
             <button

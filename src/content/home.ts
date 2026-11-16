@@ -1,11 +1,14 @@
 export const homeContent = {
   hero: {
+    // Client hero mockup (Nov 2026): two-line headline + one supporting line.
     kicker: "Corporate Gifting Reimagined",
-    headline: "Crafting Lasting Impressions",
-    supportingHeadline:
-      "Premium Corporate Gifts. Thoughtfully Curated. Beautifully Delivered.",
-    subline:
-      "From meaningful employee welcome kits to distinguished executive gifts, NAQSH transforms corporate gifting into memorable experiences.",
+    headline: "Crafting Lasting Impressions.",
+    headlineLines: ["Crafting", "Lasting Impressions."],
+    supportingHeadline: "Premium gifting solutions for meaningful connections.",
+    image: "/images/hero/hero-bow-desktop.webp",
+    imageMobile: "/images/hero/hero-bow-mobile.webp",
+    imageAlt:
+      "Black NAQSH gift box tied with a copper satin bow and sealed with the NAQSH emblem in copper wax",
     cta: "Request Consultation",
     secondaryCta: "Explore Collections",
     slogan: "BEYOND THE BOX, INTO AN EXPERIENCE!",
@@ -23,25 +26,17 @@ export const homeContent = {
     scrollCue: "Scroll to explore",
   },
   about: {
-    label: "01 · Brand Introduction",
-    heading: "More Than a Gift. A Lasting Impression.",
-    paragraphs: [
-      "We transform corporate gifting into a meaningful expression of appreciation—combining thoughtful curation, bespoke branding, and refined presentation for every milestone.",
-    ],
+    // Client copy, verbatim from docs/03-content.md ("About Us [CLIENT]").
+    heading: "About Us",
+    paragraph:
+      "Naqsh transforms corporate gifting from a transactional task into a meaningful relationship-building experience. We partner with businesses to curate thoughtful, premium gifts that reflect their brand, culture, and people - creating moments that go beyond the box and leave a lasting impression.",
     slogan: "BEYOND THE BOX, INTO AN EXPERIENCE!",
-    highlights: [
-      { value: "Bespoke", label: "Tailored Curation" },
-      { value: "Refined", label: "Signature Packaging" },
-      { value: "Turnkey", label: "Concept to Doorstep" },
-    ],
-    ctaText: "Explore Our Approach",
-    ctaHref: "/our-approach",
-    image: "/images/products/client-onboarding-kit.webp",
+    image: "/images/site/about-wax-seal.webp",
     imageAlt:
-      "NAQSH client onboarding kit with branded laptop bag, leather folio, tumbler and executive accessories",
+      "Copper wax seal stamped with the NAQSH emblem on a black envelope, beside a brass seal stamp and copper wax sticks",
   },
   servicesTeaser: {
-    label: "02 · Our Services",
+    label: "Our Services",
     heading: "Gifting Solutions for Every Business Occasion.",
     intro:
       "Four specialized gifting pillars tailored around your recipients, brand identity, and corporate milestones.",
@@ -119,42 +114,30 @@ export const homeContent = {
       },
     ],
   },
+  // Client copy, verbatim from docs/03-content.md ("What Sets Us Apart (Why Us) [CLIENT]").
   whyUs: {
-    label: "03 · Why NAQSH",
-    heading: "Thoughtful Gifting. Exceptional Execution.",
+    heading: "What Sets Us Apart",
+    subheading: "Thoughtful by Principle. Professional by Design.",
     intro:
-      "Luxury editorial presentation paired with dependable corporate fulfillment across four pillars.",
+      "We move beyond traditional corporate gifting to create meaningful brand moments that leave lasting impressions. Naqsh provides gifting that reflects your values, expectations, and brand standards - delivered through four core promises.",
+    image: "/images/site/why-heritage-box.webp",
+    imageAlt:
+      "Carved wooden NAQSH gift box with a geometric lattice lid, holding a notebook, copper pen and a sage silk scarf",
     promises: [
-      {
-        title: "Thoughtful & Responsible Curation",
-        body: "Carefully selected products and gifting concepts designed around the recipient and occasion.",
-        borderColor: "var(--terracotta)",
-      },
-      {
-        title: "Built Around Business Needs",
-        body: "Corporate gifting solutions designed around organizational requirements, budgets, and brand identity.",
-        borderColor: "var(--pine)",
-      },
-      {
-        title: "Every Detail, Beautifully Presented",
-        body: "Attention to packaging, personalization, presentation, and finishing.",
-        borderColor: "var(--sage)",
-      },
-      {
-        title: "From Concept to Doorstep",
-        body: "A coordinated gifting experience covering planning, curation, customization, and delivery.",
-        borderColor: "var(--khaki)",
-      },
+      "Purpose-driven sourcing with thoughtfully curated alternatives to boycotted products.",
+      "Built by corporate professionals who understand business requirements, brand standards, and what recipients value.",
+      "Premium products, exceptional presentation, and uncompromising attention to detail.",
+      "End-to-end gifting solutions, from idea to doorstep, tailored to every occasion.",
     ],
   },
   collectionsSection: {
-    label: "04 · Featured Collections",
+    label: "Featured Collections",
     heading: "Explore Our Gift Collections.",
     intro:
       "Seven signature gifting collections curated around key corporate occasions.",
   },
   approach: {
-    label: "05 · Our Approach",
+    label: "Our Approach",
     heading: "From First Thought to Final Delivery.",
     intro:
       "A structured four-stage process that turns corporate gifting into a seamless experience.",
@@ -183,39 +166,39 @@ export const homeContent = {
       },
     ],
   },
+  // Client copy, verbatim from docs/03-content.md ("Vision [CLIENT]" / "Mission [CLIENT]").
   visionMission: {
-    label: "Vision & Mission",
     vision: {
       title: "Our Vision",
       statement:
-        "To be the trusted partner for organizations seeking premium, thoughtful, and reliable corporate gifting.",
+        "To redefine corporate gifting by becoming the trusted corporate experience partner for businesses seeking premium, thoughtful, and reliable solutions.",
     },
     mission: {
       title: "Our Mission",
       statement:
-        "To celebrate people and strengthen relationships through purposeful gifting that reflects your culture and values.",
+        "To help businesses celebrate their people and strengthen relationships through thoughtfully designed corporate gifting experiences that align with their values, reflect their culture, and make every occasion meaningful, memorable, and true to the people who drive their success.",
     },
   },
+  // Client copy, verbatim from docs/03-content.md ("Core Values [CLIENT]").
   coreValues: {
-    label: "Core Values",
-    heading: "Principles that guide every selection.",
+    heading: "Core Values",
     values: [
       {
         name: "Principled Excellence",
-        desc: "Uncompromising integrity, reliability, and elevated standards in every box.",
+        desc: "We operate with uncompromising integrity, consistent reliability, and elevated standards - from principle to practice.",
       },
       {
         name: "Conscious Curation",
-        desc: "Ethical sourcing and regional craftsmanship aligned with humanitarian principles.",
+        desc: "We make conscious sourcing decisions, prioritising ethical alternatives true to our values and humanitarian principles.",
       },
       {
         name: "Purposeful Partnership",
-        desc: "Lasting client relationships built on trust and seamless execution.",
+        desc: "We build lasting partnerships through trust, collaboration, and a deep understanding of our clients' goals and challenges.",
       },
     ],
   },
   faqPreview: {
-    label: "07 · Common Questions",
+    label: "Common Questions",
     heading: "Everything You Need to Know.",
     intro:
       "Quick answers on customizing and delivering corporate gifts with NAQSH.",

@@ -120,7 +120,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 
           <div className="flex items-center justify-between pt-4 text-xs text-[var(--charcoal)]">
             <span>{siteConfig.location}</span>
-            <Emblem variant="copper" className="w-5" />
+            <Emblem variant="black" className="w-5" />
             <span>{siteConfig.phone}</span>
           </div>
         </div>

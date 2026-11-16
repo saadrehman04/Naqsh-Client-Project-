@@ -31,9 +31,9 @@ Small touches of the other colors
 - Footer links: Khaki on black. Selection highlight: Khaki at 40%.
 
 ## Typography
-- Display and headings: **Cormorant Garamond** 400/500 (matches the roman serif of the NAQSH wordmark). Big, light, tight.
-- Body and UI: **Manrope** 400/500/600.
-- Labels: Manrope 600, uppercase, 0.75rem, tracking 0.16em.
+- Display and headings: **Marcellus** 400 (client choice, Nov 2026: option D "Engraved & classical"). One weight only, no italic; never fake-bold it. Use Mulish for numerals (Marcellus zero reads as the letter O).
+- Body and UI: **Mulish** (variable 300–800).
+- Labels: Mulish 600, uppercase, 0.75rem, tracking 0.16em.
 - Scale (fluid): display `--fs-display`, h1, h2, h3, body `--fs-body`, small, label. Line heights in tokens.
 - Load with `next/font`, `display: swap`, only the weights above. Headings use `text-wrap: balance`, body `text-wrap: pretty`.
 - Urdu later: plan for Noto Nastaliq Urdu; use logical CSS properties (margin-inline, padding-inline, inset-inline) now so RTL is easy.
@@ -59,7 +59,7 @@ Small touches of the other colors
 ## Hero (see `reference/hero-inspiration-oryzo.png` and `hero-inspiration-fitosauna.png`)
 - Full-screen photo, 100svh. Overlay: linear-gradient chestnut-to-black at about 35%, so ivory text stays readable.
 - Header over the hero: boxed "Menu" (mobile) / small-caps nav (desktop) at left, centered **wordmark-ivory**, right: WhatsApp icon + Request Consultation (outline).
-- Headline "Crafting Lasting Impressions": `--fs-display`, Cormorant light, ivory, left, max 3 lines.
+- Headline "Crafting Lasting Impressions": `--fs-display`, Marcellus, ivory, left, max 3 lines.
 - Subline: 1 short line. One terracotta button with round arrow.
 - Bottom-left: small-caps slogan. Bottom-right: small outlined card (thumbnail + "Ramadan & Eid baskets" + arrow). Bottom-center: "Scroll to explore" with a thin line.
 - Hairlines under the header and above the bottom strip.

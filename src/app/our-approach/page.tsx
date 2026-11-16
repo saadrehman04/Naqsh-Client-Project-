@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { PageHero } from "@/components/ui/PageHero";
-import { approachContent } from "@/content/approach";
+import { ApproachHero } from "@/components/sections/ApproachHero";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
@@ -11,17 +10,5 @@ export const metadata: Metadata = buildMetadata({
 });
 
 export default function OurApproachPage() {
-  const { header } = approachContent;
-
-  return (
-    <div className="bg-[var(--ivory-deep)]">
-      <PageHero
-        title={header.title}
-        subtitle={header.intro}
-        label={header.label}
-        breadcrumbs={[{ label: "Our Approach" }]}
-        image="/images/products/new-hire-welcome-kit.webp"
-      />
-    </div>
-  );
+  return <ApproachHero />;
 }
