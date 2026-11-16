@@ -11,12 +11,12 @@ interface PageHeroProps {
   breadcrumbs?: BreadcrumbItem[];
   className?: string;
   fadeOnly?: boolean;
-  /** Optional background photograph, rendered dimmed behind a dark vignette. */
+  /** Optional background photograph, behind a soft dark layer on the copy side. */
   image?: string;
   imageAlt?: string;
   /**
    * How the background image is treated:
-   * - "dim" (default): dimmed photo behind a start-to-end black fade.
+   * - "dim" (default): lightly dimmed photo behind a start-to-end fade.
    * - "blur": blurred photo, black fade solid at the start where the copy sits, clear at the end.
    * - "fade": full-strength photo (already dark), black fade at the start for the copy.
    * - "plain": an abstract backdrop stretched to the banner, no dimming or extra glow.
@@ -28,16 +28,16 @@ interface PageHeroProps {
 
 const TREATMENT = {
   dim: {
-    img: "opacity-45 scale-110",
-    fade: "linear-gradient(90deg, #000000 0%, rgba(0,0,0,0.94) 38%, rgba(0,0,0,0.7) 62%, rgba(0,0,0,0.35) 100%)",
+    img: "opacity-80 scale-110",
+    fade: "linear-gradient(90deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.66) 32%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0.08) 100%)",
   },
   blur: {
-    img: "opacity-90 scale-110 blur-[6px]",
-    fade: "linear-gradient(90deg, #000000 0%, rgba(0,0,0,0.92) 30%, rgba(0,0,0,0.55) 55%, rgba(0,0,0,0.12) 80%, transparent 100%)",
+    img: "scale-110 blur-[6px]",
+    fade: "linear-gradient(90deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.62) 30%, rgba(0,0,0,0.26) 55%, transparent 80%)",
   },
   fade: {
     img: "scale-105",
-    fade: "linear-gradient(90deg, #000000 0%, rgba(0,0,0,0.9) 32%, rgba(0,0,0,0.45) 58%, transparent 85%)",
+    fade: "linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.58) 30%, rgba(0,0,0,0.2) 58%, transparent 85%)",
   },
   plain: { img: "!object-fill", fade: "" },
 } as const;
@@ -90,6 +90,14 @@ export function PageHero({
           )}
         </div>
       )}
+      {/* Soft top band (outside the parallax layer) so the header links stay legible over light photos */}
+      {image && !plain && (
+        <div
+          className="absolute inset-x-0 top-0 h-40 pointer-events-none"
+          style={{ background: "linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.25) 55%, transparent 100%)" }}
+          aria-hidden="true"
+        />
+      )}
 
       {/* Warm terracotta ambient glow (skipped over a plain backdrop) */}
       {!plain && (
@@ -113,8 +121,8 @@ export function PageHero({
       />
       {/* Bottom fade + terracotta hairline */}
       <div
-        className="absolute inset-x-0 bottom-0 h-24 pointer-events-none"
-        style={{ background: "linear-gradient(0deg, #000000 0%, transparent 100%)" }}
+        className="absolute inset-x-0 bottom-0 h-20 pointer-events-none"
+        style={{ background: "linear-gradient(0deg, rgba(0,0,0,0.55) 0%, transparent 100%)" }}
         aria-hidden="true"
       />
       <div
@@ -130,7 +138,7 @@ export function PageHero({
         )}
         <div className="max-w-4xl">
           <div
-            className="flex items-center gap-3 mb-3 sm:mb-4 text-xs font-sans tracking-[0.24em] uppercase text-[var(--ivory)]/80 font-semibold select-none"
+            className="flex items-center gap-3 mb-3 sm:mb-4 text-xs font-sans tracking-[0.24em] uppercase text-[var(--ivory)]/90 font-semibold select-none [text-shadow:0_1px_10px_rgba(0,0,0,0.55)]"
             data-reveal={fadeOnly ? undefined : "up"}
           >
             <span className="w-8 h-px bg-[var(--terracotta-on-dark)]" aria-hidden="true" />
@@ -144,7 +152,7 @@ export function PageHero({
           </h1>
           {displayIntro && (
             <p
-              className="text-sm sm:text-lg leading-relaxed text-[var(--ivory)]/80 max-w-xl font-light"
+              className="text-sm sm:text-lg leading-relaxed text-[var(--ivory)]/90 max-w-xl font-light [text-shadow:0_1px_12px_rgba(0,0,0,0.55)]"
               data-reveal={fadeOnly ? undefined : "up"}
               data-delay={fadeOnly ? undefined : "0.1"}
             >
