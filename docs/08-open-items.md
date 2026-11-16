@@ -6,7 +6,8 @@ The site must not imply unconfirmed operational, commercial, or legal details. `
 
 - Studio / business hours and response-time promise.
 - Public business address beyond the confirmed location “Lahore, Pakistan.”
-- Instagram and LinkedIn profile URLs (footer icons are in place, hidden in production until provided), and approved client logos or testimonials.
+- Instagram and LinkedIn profile URLs. **Placeholders are live now** (client request 2026-11-16): both footer links point to the platforms' home pages (`siteConfig.socials` in `src/content/site.ts`). Swap in the real profile URLs before launch.
+- Approved client logos or testimonials.
 - Sign-off on the exact wording of promise 1 in What Sets Us Apart: "Purpose-driven sourcing with thoughtfully curated alternatives to boycotted products." (sensitive wording, used verbatim on the home page).
 - Final copper specification, if the current brand token needs adjustment.
 

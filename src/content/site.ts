@@ -73,10 +73,11 @@ export const siteConfig: SiteConfig = {
     { label: "Data Privacy", href: "/privacy" },
     { label: "Shipping & Delivery", href: "/shipping-delivery" },
   ],
-  // [CONFIRM: Instagram and LinkedIn profile URLs not yet provided by client]
+  // PLACEHOLDER links (client request 2026-11-16): the platforms' home pages, not real profiles.
+  // [CONFIRM: replace with NAQSH's actual Instagram and LinkedIn profile URLs]
   socials: [
-    { platform: "Instagram", url: null },
-    { platform: "LinkedIn", url: null },
+    { platform: "Instagram", url: "https://www.instagram.com/" },
+    { platform: "LinkedIn", url: "https://www.linkedin.com/" },
   ],
   footer: {
     policiesHeading: "Our Policies",
