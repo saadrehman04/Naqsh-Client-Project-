@@ -117,7 +117,7 @@ export function Footer() {
   return (
     <footer className="site-footer bg-[var(--black)] text-[var(--ivory)]">
       <div className="max-w-[1280px] mx-auto px-5 sm:px-8 lg:px-12 pt-12 sm:pt-16 pb-28">
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-10 md:gap-10">
+        <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-[minmax(0,0.8fr)_minmax(0,1fr)_minmax(0,1fr)] gap-x-6 gap-y-10 md:gap-10">
           {/* Brand */}
           <div>
             <Link href="/" aria-label="NAQSH home" className="inline-block">
@@ -126,7 +126,7 @@ export function Footer() {
           </div>
 
           {/* Policies + social */}
-          <div className="md:justify-self-center">
+          <div className="md:justify-self-center xl:justify-self-start">
             <nav aria-labelledby="footer-policies-heading">
               <h2 id="footer-policies-heading" className={headingClass}>
                 {footer.policiesHeading}
@@ -189,7 +189,7 @@ export function Footer() {
           </div>
 
           {/* Contact */}
-          <div className="col-span-2 md:col-span-1 md:justify-self-end">
+          <div className="col-span-2 md:col-span-1 md:justify-self-end xl:justify-self-center">
             <h2 className={headingClass}>{footer.contactHeading}</h2>
             <div className="flex flex-col gap-3 font-sans">
               <ContactRow
