@@ -10,6 +10,7 @@ import { products } from "@/content/products";
 
 interface PrefillPayload {
   occasion?: string;
+  occasionOther?: string;
   message?: string;
 }
 
@@ -27,6 +28,7 @@ function SearchParamsSync({
     const prefillProduct = products.find((p) => p.slug === productSlug);
 
     let occasion = "";
+    let occasionOther = "";
     if (prefillCollection) {
       const match = occasionOptions.find((o) => o.value === prefillCollection);
       if (match) occasion = match.value;
@@ -38,6 +40,7 @@ function SearchParamsSync({
         occasion = "custom-occasion-gifts";
       } else if (prefillService === "gifting-consultations") {
         occasion = "other";
+        occasionOther = "Gifting consultation";
       }
     } else if (prefillProduct) {
       occasion = prefillProduct.collection;
@@ -48,7 +51,7 @@ function SearchParamsSync({
       : "";
 
     if (occasion || message) {
-      onPrefill({ occasion, message });
+      onPrefill({ occasion, occasionOther, message });
     }
   }, [searchParams, onPrefill]);
 
@@ -62,6 +65,7 @@ export function InquiryForm() {
     email: "",
     phone: "",
     occasion: "",
+    occasionOther: "",
     quantity: "",
     budgetRange: "",
     dateNeeded: "",
@@ -81,6 +85,7 @@ export function InquiryForm() {
     setFormData((prev) => ({
       ...prev,
       occasion: prev.occasion || payload.occasion || "",
+      occasionOther: prev.occasionOther || payload.occasionOther || "",
       message: prev.message || payload.message || "",
     }));
   }, []);
@@ -163,6 +168,7 @@ export function InquiryForm() {
             email: "",
             phone: "",
             occasion: "",
+            occasionOther: "",
             quantity: "",
             budgetRange: "",
             dateNeeded: "",
@@ -370,6 +376,41 @@ export function InquiryForm() {
                 <p className="mt-1 text-xs text-[var(--chestnut)] font-sans">
                   {errors.occasion}
                 </p>
+              )}
+
+              {/* "Other" reveals a short free-text field */}
+              {formData.occasion === "other" && (
+                <div className="mt-3 occasion-other-reveal">
+                  <label
+                    htmlFor="occasionOther"
+                    className="block text-[11px] sm:text-xs uppercase tracking-[0.12em] font-sans font-medium text-[var(--black)] mb-1.5"
+                  >
+                    Please Specify <span className="text-[var(--terracotta)]">*</span>
+                  </label>
+                  <input
+                    id="occasionOther"
+                    name="occasionOther"
+                    type="text"
+                    required
+                    autoFocus
+                    maxLength={120}
+                    value={formData.occasionOther}
+                    onChange={handleChange}
+                    placeholder="e.g. Annual dinner, product launch…"
+                    aria-invalid={errors.occasionOther ? true : undefined}
+                    aria-describedby={errors.occasionOther ? "occasionOther-error" : undefined}
+                    className={`w-full px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-lg bg-[var(--ivory)] border text-[var(--black)] font-sans text-sm placeholder:text-[var(--charcoal)]/60 transition-colors focus:outline-none focus:ring-1 ${
+                      errors.occasionOther
+                        ? "border-[var(--chestnut)] focus:border-[var(--chestnut)] focus:ring-[var(--chestnut)]"
+                        : "border-[var(--hairline)] focus:border-[var(--terracotta)] focus:ring-[var(--terracotta)]"
+                    }`}
+                  />
+                  {errors.occasionOther && (
+                    <p id="occasionOther-error" className="mt-1 text-xs text-[var(--chestnut)] font-sans">
+                      {errors.occasionOther}
+                    </p>
+                  )}
+                </div>
               )}
             </div>
 

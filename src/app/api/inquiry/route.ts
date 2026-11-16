@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
-import { inquirySchema } from "@/lib/validators";
+import { inquirySchema, describeOccasion } from "@/lib/validators";
 import { siteConfig } from "@/content/site";
 
 export async function POST(request: Request) {
@@ -20,6 +20,8 @@ export async function POST(request: Request) {
     }
 
     const data = result.data;
+    const category = describeOccasion(data.occasion, data.occasionOther);
+    const categoryHtml = category.replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
 
     // Honeypot check: If bot filled the hidden website field, return success silently
     if (data.website && data.website.length > 0) {
@@ -67,7 +69,7 @@ export async function POST(request: Request) {
               </tr>
               <tr>
                 <td style="padding: 8px 0; color: #4D4E52;"><strong>Gifting Category:</strong></td>
-                <td style="padding: 8px 0; color: #7F3021; font-weight: bold;">${data.occasion}</td>
+                <td style="padding: 8px 0; color: #7F3021; font-weight: bold;">${categoryHtml}</td>
               </tr>
               <tr>
                 <td style="padding: 8px 0; color: #4D4E52;"><strong>Estimated Quantity:</strong></td>
@@ -108,7 +110,7 @@ export async function POST(request: Request) {
           ` Company:           ${data.company}\n` +
           ` Email:             ${data.email}\n` +
           ` Phone:             ${data.phone || "N/A"}\n` +
-          ` Category:          ${data.occasion}\n` +
+          ` Category:          ${category}\n` +
           ` Quantity:          ${data.quantity || "N/A"}\n` +
           ` Budget per Gift:   ${data.budgetRange || "N/A"}\n` +
           ` Delivery Date:     ${data.dateNeeded || "N/A"}\n` +
