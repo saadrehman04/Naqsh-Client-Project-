@@ -40,10 +40,6 @@ export default async function CollectionDetailPage({ params }: Props) {
         title={collection.title}
         subtitle={collection.tagline}
         label="Gifting Collection"
-        breadcrumbs={[
-          { label: "Portfolio", href: "/portfolio" },
-          { label: collection.title },
-        ]}
         image={collection.image}
         imageAlt={collection.alt}
       />

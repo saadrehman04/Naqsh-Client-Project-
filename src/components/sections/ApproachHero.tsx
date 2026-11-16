@@ -20,7 +20,6 @@ import {
   MapPin,
   type LucideIcon,
 } from "lucide-react";
-import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { approachContent, type ApproachIcon } from "@/content/approach";
 import { cn } from "@/lib/utils";
 
@@ -114,7 +113,6 @@ export function ApproachHero() {
       <div className="container-x grid grid-cols-1 xl:grid-cols-12 gap-14 xl:gap-12 items-center">
         {/* Heading + statement */}
         <div className="xl:col-span-4">
-          <Breadcrumb items={[{ label: "Our Approach" }]} tone="dark" />
           <h1
             id="approach-heading"
             className="font-display font-normal text-[length:clamp(3rem,6vw,5.5rem)] leading-[0.98] tracking-[-0.02em] text-[var(--ivory)]"

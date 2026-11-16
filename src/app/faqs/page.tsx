@@ -44,7 +44,6 @@ export default function FAQsPage() {
         title="Everything You Need to Know."
         subtitle="Clear, practical answers covering ordering, custom branding, product curation, nationwide delivery, corporate invoicing, and recurring gifting programs."
         label="Frequently Asked Questions"
-        breadcrumbs={[{ label: "FAQs" }]}
         image="/images/products/ramadan-delights.webp"
       />
 

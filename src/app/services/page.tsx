@@ -67,7 +67,6 @@ export default function ServicesPage() {
         title={header.title}
         subtitle={header.intro}
         label={header.label}
-        breadcrumbs={[{ label: "Services" }]}
         image="/images/site/services-cover.webp"
         imageTreatment="blur"
         imagePosition="70% center"

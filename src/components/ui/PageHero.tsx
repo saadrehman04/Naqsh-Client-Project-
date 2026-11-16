@@ -1,14 +1,12 @@
 import React from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { Breadcrumb, type BreadcrumbItem } from "./Breadcrumb";
 
 interface PageHeroProps {
   label: string;
   title: string;
   intro?: string;
   subtitle?: string;
-  breadcrumbs?: BreadcrumbItem[];
   className?: string;
   fadeOnly?: boolean;
   /** Optional background photograph, behind a soft dark layer on the copy side. */
@@ -52,7 +50,6 @@ export function PageHero({
   title,
   intro,
   subtitle,
-  breadcrumbs,
   className,
   fadeOnly = false,
   image,
@@ -66,7 +63,7 @@ export function PageHero({
   return (
     <section
       className={cn(
-        "page-hero on-dark relative overflow-hidden bg-[var(--black)] text-[var(--ivory)] pt-24 pb-10 sm:pt-36 sm:pb-20",
+        "page-hero on-dark relative overflow-hidden bg-[var(--black)] text-[var(--ivory)] pt-28 pb-10 sm:pt-40 sm:pb-20",
         className
       )}
     >
@@ -131,11 +128,6 @@ export function PageHero({
       />
 
       <div className="container-x relative z-10" data-reveal={fadeOnly ? "fade" : undefined}>
-        {breadcrumbs && (
-          <div data-reveal={fadeOnly ? undefined : "up"}>
-            <Breadcrumb items={breadcrumbs} tone="dark" />
-          </div>
-        )}
         <div className="max-w-4xl">
           <div
             className="flex items-center gap-3 mb-3 sm:mb-4 text-xs font-sans tracking-[0.24em] uppercase text-[var(--ivory)]/90 font-semibold select-none [text-shadow:0_1px_10px_rgba(0,0,0,0.55)]"

@@ -20,7 +20,6 @@ export default function PrivacyPage() {
         title={privacyPolicy.title}
         subtitle={privacyPolicy.intro}
         label="Legal & Transparency"
-        breadcrumbs={[{ label: "Data Privacy" }]}
         fadeOnly
       />
 

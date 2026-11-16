@@ -17,7 +17,6 @@ export default function PortfolioPage() {
         title="Explore Our Gift Collections & Portfolio."
         subtitle="Discover our six corporate gifting collections and customizable product catalogue."
         label="Portfolio & Catalogue"
-        breadcrumbs={[{ label: "Portfolio" }]}
         image="/images/site/portfolio-cover.webp"
         imageTreatment="plain"
         imagePosition="center"

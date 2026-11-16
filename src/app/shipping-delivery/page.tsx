@@ -20,7 +20,6 @@ export default function ShippingDeliveryPage() {
         title={shippingPolicy.title}
         subtitle={shippingPolicy.intro}
         label="Fulfillment & Care"
-        breadcrumbs={[{ label: "Shipping & Delivery" }]}
         fadeOnly
       />
 
