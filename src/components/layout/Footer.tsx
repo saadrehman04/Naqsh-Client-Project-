@@ -116,7 +116,7 @@ export function Footer() {
 
   return (
     <footer className="site-footer bg-[var(--black)] text-[var(--ivory)]">
-      <div className="max-w-[1280px] mx-auto px-5 sm:px-8 lg:px-12 pt-12 sm:pt-16 pb-28">
+      <div className="max-w-[1280px] mx-auto px-5 sm:px-8 lg:px-12 pt-12 sm:pt-16 pb-8">
         <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-[minmax(0,0.8fr)_minmax(0,1fr)_minmax(0,1fr)] gap-x-6 gap-y-10 md:gap-10">
           {/* Brand */}
           <div>
@@ -218,7 +218,7 @@ export function Footer() {
         </div>
 
         {/* Bottom line: four items with equal spacing between them */}
-        <ul className="mt-10 sm:mt-12 pt-6 border-t border-[var(--hairline-dark)] grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3 xl:flex xl:items-center xl:justify-between font-sans text-[11px] uppercase tracking-[0.12em] text-[var(--ivory)]/65">
+        <ul data-footer-bottom className="mt-10 sm:mt-12 pt-6 border-t border-[var(--hairline-dark)] grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3 xl:flex xl:items-center xl:justify-between font-sans text-[11px] uppercase tracking-[0.12em] text-[var(--ivory)]/65">
           {[`© ${currentYear} ${footer.copyright}`, footer.tagline, ...footer.craftedLine].map((item) => (
             <li key={item}>{item}</li>
           ))}

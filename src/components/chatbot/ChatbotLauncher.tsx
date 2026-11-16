@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { MessageCircleQuestion, X } from "lucide-react";
 
@@ -14,6 +14,16 @@ export function ChatbotLauncher() {
   const [loaded, setLoaded] = useState(false);
   const launcherRef = useRef<HTMLButtonElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  // Shrinks to the round icon while the footer's bottom line is on screen, so it never covers it.
+  const [compact, setCompact] = useState(false);
+
+  useEffect(() => {
+    const line = document.querySelector("[data-footer-bottom]");
+    if (!line) return;
+    const io = new IntersectionObserver(([entry]) => setCompact(entry.isIntersecting));
+    io.observe(line);
+    return () => io.disconnect();
+  }, []);
 
   function openChat() {
     setLoaded(true);
@@ -33,7 +43,7 @@ export function ChatbotLauncher() {
         ref={launcherRef}
         type="button"
         onClick={() => (open ? closeChat() : openChat())}
-        className={open ? "floating-chat is-open" : "floating-chat"}
+        className={`floating-chat${open ? " is-open" : ""}${compact && !open ? " is-compact" : ""}`}
         aria-expanded={open}
         aria-controls="naqsh-chat-panel"
         aria-label={open ? "Close chat" : "Open chat: ask NAQSH a question"}

@@ -1598,7 +1598,7 @@ dialog::backdrop {
   color: var(--ivory);
   text-align: start;
   box-shadow: 0 12px 32px rgb(0 0 0 / .42), 0 0 0 4px rgb(178 76 59 / .16);
-  transition: transform .25s, box-shadow .25s, border-color .25s;
+  transition: transform .25s, box-shadow .25s, border-color .25s, padding .35s var(--ease-out, ease), gap .35s var(--ease-out, ease);
 }
 .floating-chat:hover { transform: translateY(-3px); border-color: var(--terracotta-on-dark); box-shadow: 0 16px 38px rgb(0 0 0 / .52), 0 0 0 6px rgb(178 76 59 / .24); }
 .floating-chat:focus-visible { outline: 2px solid var(--terracotta-on-dark); outline-offset: 3px; }
@@ -1606,6 +1606,9 @@ dialog::backdrop {
 .floating-chat-copy strong, .floating-chat-copy small { display: block; }
 .floating-chat-copy strong { font-size: .8rem; letter-spacing: .04em; color: var(--ivory); }
 .floating-chat-copy small { margin-top: .08rem; color: rgb(247 241 231 / .72); font-size: .66rem; }
+.floating-chat-copy { max-width: 12rem; overflow: hidden; white-space: nowrap; transition: max-width .35s var(--ease-out, ease), opacity .25s; }
+.floating-chat.is-compact { gap: 0; padding: .55rem; }
+.floating-chat.is-compact .floating-chat-copy { max-width: 0; opacity: 0; }
 .floating-chat.is-open { padding: .55rem; }
 .floating-chat.is-open .floating-chat-copy { display: none; }
 
@@ -1664,6 +1667,7 @@ dialog::backdrop {
 @media (prefers-reduced-motion: reduce) {
   .chat-panel, .chat-dot { animation: none; }
   .floating-chat, .floating-chat:hover { transition: none; transform: none; }
+  .floating-chat-copy { transition: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   .brand-ticker-track { animation: none; }
