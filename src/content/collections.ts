@@ -29,13 +29,6 @@ export const collections: Collection[] = [
     alt: "Ivory Ramadan Mubarak box with an embossed Naqsh emblem and a tray of filled, decorated dates.",
   },
   {
-    slug: "annual-event-giveaways",
-    title: "Annual Event Giveaways",
-    tagline: "Memorable takeaways that carry your brand beyond the event.",
-    image: "/images/products/seminar-conference-kit.webp",
-    alt: "Charcoal leather bag, black croc-embossed pouch and card holder, key ring and a green notebook embossed with the Naqsh emblem.",
-  },
-  {
     slug: "brand-souvenirs",
     title: "Brand Souvenirs",
     tagline: "Quietly branded keepsakes your audience will actually keep.",

@@ -130,7 +130,7 @@ export default async function CollectionDetailPage({ params }: Props) {
                 </div>
                 <div className="px-6 pb-6 pt-3 border-t border-[var(--hairline)]">
                   <Link
-                    href={`/contact?product=${product.slug}`}
+                    href={`/contact?product=${product.slug}#request-form`}
                     className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-[var(--black)] hover:bg-[var(--chestnut)] text-[var(--ivory)] text-xs font-sans uppercase tracking-[0.14em] font-semibold transition-colors"
                   >
                     <span>Inquire About This Gift</span>

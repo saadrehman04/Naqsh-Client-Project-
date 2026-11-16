@@ -43,7 +43,7 @@ Footer: logo + tagline, quick links, Policies (Privacy, Shipping & Delivery), ph
 - **Policies:** clean long-form reading layout, narrow column, last-updated date.
 
 ## Collections (slugs)
-new-hire-welcome-kits · client-packages · ramadan-eid-baskets · annual-event-giveaways · brand-souvenirs · appreciation-gifts · custom-occasion-gifts
+new-hire-welcome-kits · client-packages · ramadan-eid-baskets · brand-souvenirs · appreciation-gifts · custom-occasion-gifts
 
 ## Inquiry form fields
 Name* · Company* · Work email* · Phone / WhatsApp · Occasion (select from the 7 collections + Other)* · Approx. quantity · Budget range (optional) · Date needed · Message · consent checkbox for Privacy Policy*.

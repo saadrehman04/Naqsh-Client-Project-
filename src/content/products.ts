@@ -136,7 +136,7 @@ export const products: Product[] = [
     name: "Fruit Party Favors",
     slug: "fruit-party-favors",
     image: "/images/products/fruit-party-favors.webp",
-    collection: "annual-event-giveaways",
+    collection: "custom-occasion-gifts",
     alt: "Two cellophane-wrapped baskets of mangoes and oranges tied with gold ribbon and black Naqsh tags.",
     description:
       "Seasonal orchard hampers featuring hand-selected premium mangoes and citrus arranged in woven baskets, wrapped with gold satin ribbon and black embossed gift tags.",
@@ -195,7 +195,7 @@ export const products: Product[] = [
     name: "Seminar & Conference Kit",
     slug: "seminar-conference-kit",
     image: "/images/products/seminar-conference-kit.webp",
-    collection: "annual-event-giveaways",
+    collection: "client-packages",
     featured: true,
     alt: "Charcoal leather bag, black croc-embossed pouch and card holder, key ring and a green notebook embossed with the Naqsh emblem.",
     description:
@@ -240,7 +240,7 @@ export const products: Product[] = [
     name: "Wellness Kit",
     slug: "wellness-kit",
     image: "/images/products/wellness-kit.webp",
-    collection: "appreciation-gifts",
+    collection: "custom-occasion-gifts",
     group: "Wellbeing",
     featured: true,
     alt: "Ivory box with natural honey, herbal tea, mixed nuts, a scented candle and a Wellness Looks Good On You card.",

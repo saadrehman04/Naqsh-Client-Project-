@@ -6,7 +6,7 @@ import { buildMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildMetadata({
   title: "Portfolio & Gift Collections · Luxury Corporate Gifting",
   description:
-    "Explore NAQSH's seven corporate gifting collections and 21 customizable gift editions.",
+    "Explore NAQSH's six corporate gifting collections and 21 customizable gift editions.",
   path: "/portfolio",
 });
 
@@ -15,7 +15,7 @@ export default function PortfolioPage() {
     <div className="bg-[var(--ivory-deep)] min-h-screen">
       <PageHero
         title="Explore Our Gift Collections & Portfolio."
-        subtitle="Discover our seven corporate gifting collections and customizable product catalogue."
+        subtitle="Discover our six corporate gifting collections and customizable product catalogue."
         label="Portfolio & Catalogue"
         breadcrumbs={[{ label: "Portfolio" }]}
         image="/images/site/portfolio-cover.webp"

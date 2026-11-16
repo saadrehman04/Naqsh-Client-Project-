@@ -34,7 +34,7 @@ export default function ContactPage() {
           </div>
 
           {/* Form */}
-          <div className="lg:col-span-6" data-reveal="up" data-delay="0.08">
+          <div id="request-form" className="lg:col-span-6 scroll-mt-[calc(var(--header-h)+1.5rem)]" data-reveal="up" data-delay="0.08">
             <div className="mb-6">
               <span className="font-sans text-[0.75rem] font-semibold uppercase tracking-[0.16em] text-[var(--pine)]">
                 Corporate Gifting Brief

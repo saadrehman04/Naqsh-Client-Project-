@@ -1,5 +1,7 @@
 # 09 — Product catalogue (21 items from the client)
 
+> 2026-11-16 client revision: **Annual Event Giveaways was removed** (six collections now). Its products moved: Seminar & Conference Kit → Client Packages, Fruit Party Favors → Custom & Occasion Specific Gifts. Wellness Kit moved from Appreciation Gifts to Custom & Occasion Specific Gifts. On the site the catalogue tabs and products are listed alphabetically.
+
 Source: names given by the client, one picture per item. Machine-readable copy: `docs/products.json` (use it to seed `src/content/products.ts` and the CMS).
 The **collection mapping and groups are our proposal (ASSUMED)**: the client only gave the 21 names. Confirm with the client (see `08-open-items.md`).
 The site stays quote-based: no prices, no cart. Never invent product descriptions, contents or sizes. Show name, collection and image; descriptions only when the client provides them.
@@ -10,14 +12,11 @@ The site stays quote-based: no prices, no cart. Never invent product description
 ## Client Packages  (`client-packages`)
 - **Client Onboarding Kit** · `client-onboarding-kit.png` · featured on Home
 - **Pakistan Heritage Gift Set** · `pakistan-heritage-gift-set.png` · featured on Home
+- **Seminar & Conference Kit** · `seminar-conference-kit.png` · featured on Home (moved from Annual Event Giveaways, client 2026-11-16)
 
 ## Ramadan & Eid Baskets  (`ramadan-eid-baskets`)
 - **Ramadan Delights** · `ramadan-delights.png` · featured on Home
 - **Eid Celebration Basket** · `eid-celebration-basket.png` · featured on Home
-
-## Annual Event Giveaways  (`annual-event-giveaways`)
-- **Seminar & Conference Kit** · `seminar-conference-kit.png` · featured on Home
-- **Fruit Party Favors** · `fruit-party-favors.png`
 
 ## Brand Souvenirs  (`brand-souvenirs`)
 - **Branded Merchandise** · `branded-merchandise.png`
@@ -26,7 +25,6 @@ The site stays quote-based: no prices, no cart. Never invent product description
 - **Excellence Award** · `excellence-award.png` · group: Awards & recognition · featured on Home
 - **Retirement Award** · `retirement-award.png` · group: Awards & recognition
 - **Sports Medals & Trophies** · `sports-medals-trophies.png` · group: Awards & recognition
-- **Wellness Kit** · `wellness-kit.png` · group: Wellbeing · featured on Home
 
 ## Custom & Occasion Specific Gifts  (`custom-occasion-gifts`)
 - **Newborn Welcome - Baby Boy** · `newborn-welcome-baby-boy.png` · group: Family & life moments
@@ -38,6 +36,8 @@ The site stays quote-based: no prices, no cart. Never invent product description
 - **Women's Day Gift Basket** · `womens-day-gift-basket.png` · group: Seasonal & national days
 - **Independence Day Gift** · `independence-day-gift.png` · group: Seasonal & national days
 - **New Year Celebration Box** · `new-year-celebration-box.png` · group: Seasonal & national days
+- **Fruit Party Favors** · `fruit-party-favors.png` (moved from Annual Event Giveaways, client 2026-11-16)
+- **Wellness Kit** · `wellness-kit.png` · group: Wellbeing · featured on Home (moved from Appreciation Gifts, client 2026-11-16)
 
 ## Image files
 Put one photo per item in `assets/images/products/` named `<slug>.png` (or .png/.webp). If the files have other names, the agent must view each image, match it to the right product by content, and write `docs/IMAGE-MAP.md`. List any uncertain match in `08-open-items.md`.

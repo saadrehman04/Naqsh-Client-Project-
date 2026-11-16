@@ -122,6 +122,16 @@ export function MotionProvider({ children }: { children: React.ReactNode }) {
       } else {
         window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
       }
+      // Links like /contact?product=x#request-form land on their target, not the page top.
+      const hash = window.location.hash.slice(1);
+      if (hash) {
+        window.setTimeout(() => {
+          const target = document.getElementById(decodeURIComponent(hash));
+          if (!target) return;
+          if (lenisRef.current) lenisRef.current.scrollTo(target, { offset: -96, duration: 1 });
+          else target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 150);
+      }
     }
 
     let refreshTimer: number | null = null;

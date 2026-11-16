@@ -47,7 +47,6 @@ The rows below are the earlier product-photo assignments; hero, About, What Sets
 | Collection · New Hire Welcome Kits | `new-hire-welcome-kit.png` | 4:5, focus 35% 60% | via products |
 | Collection · Client Packages | `pakistan-heritage-gift-set.png` | 4:5, focus 45% 55% | via products |
 | Collection · Ramadan & Eid Baskets | `ramadan-delights.png` | 4:5, focus 62% 60% | via products |
-| Collection · Annual Event Giveaways | `seminar-conference-kit.png` | 4:5, focus 55% 50% | via products |
 | Collection · Brand Souvenirs | `branded-merchandise.png` | 4:5, focus 55% 50% | via products |
 | Collection · Appreciation Gifts | `excellence-award.png` | 4:5, focus 50% 50% | via products |
 | Collection · Custom & Occasion Specific | `new-year-celebration-box.png` | 4:5, focus 45% 55% | via products |

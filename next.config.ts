@@ -29,6 +29,10 @@ const nextConfig: NextConfig = {
       },
     },
   },
+  async redirects() {
+    // Annual Event Giveaways was retired (its products moved to other collections).
+    return [{ source: "/portfolio/annual-event-giveaways", destination: "/portfolio", permanent: true }];
+  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },

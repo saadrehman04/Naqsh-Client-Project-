@@ -77,7 +77,6 @@ Collections (names are CLIENT, one-liners are [DRAFT]):
 - New Hire Welcome Kits — A first-day welcome that makes new team members feel chosen.
 - Client Packages — Considered gifts that thank, impress and strengthen the relationship.
 - Ramadan & Eid Baskets — Seasonal baskets presented with care for teams, clients and partners.
-- Annual Event Giveaways — Memorable takeaways that carry your brand beyond the event.
 - Brand Souvenirs — Quietly branded keepsakes your audience will actually keep.
 - Appreciation Gifts — Recognition that feels personal, not procedural.
 - Custom & Occasion Specific Gifts — Something entirely your own, designed around your moment.

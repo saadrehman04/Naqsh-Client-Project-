@@ -8,7 +8,6 @@ export const occasionOptions = [
   { value: "new-hire-welcome-kits", label: "Collection · New Hire Welcome Kits" },
   { value: "client-packages", label: "Collection · Client Packages" },
   { value: "ramadan-eid-baskets", label: "Collection · Ramadan & Eid Baskets" },
-  { value: "annual-event-giveaways", label: "Collection · Annual Event Giveaways" },
   { value: "brand-souvenirs", label: "Collection · Brand Souvenirs" },
   { value: "appreciation-gifts", label: "Collection · Appreciation Gifts" },
   { value: "custom-occasion-gifts", label: "Collection · Custom & Occasion Specific Gifts" },

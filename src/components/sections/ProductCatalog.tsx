@@ -3,28 +3,37 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { X, Check, ArrowUpRight } from "lucide-react";
+import { X, ArrowUpRight } from "lucide-react";
 import { collections } from "@/content/collections";
 import { products, type Product } from "@/content/products";
 
+const byTitle = (a: { title: string }, b: { title: string }) => a.title.localeCompare(b.title);
+const byName = (a: { name: string }, b: { name: string }) => a.name.localeCompare(b.name);
+
+// Client request: tabs and products listed alphabetically.
+const sortedCollections = [...collections].sort(byTitle);
+const sortedProducts = [...products].sort(byName);
+
+/**
+ * Product catalogue (Portfolio page). Filter tabs by collection; each card shows the photo,
+ * the name and a "Request Details" link to the consultation form (prefilled with the product).
+ * Clicking the photo opens it enlarged in a lightbox, with no text.
+ */
 export function ProductCatalog() {
   const [collection, setCollection] = useState("all");
-  const [selected, setSelected] = useState<Product | null>(null);
+  const [enlarged, setEnlarged] = useState<Product | null>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const visibleProducts = useMemo(
-    () =>
-      products.filter(
-        (item) => collection === "all" || item.collection === collection
-      ),
+    () => sortedProducts.filter((item) => collection === "all" || item.collection === collection),
     [collection]
   );
 
   useEffect(() => {
     const dialog = dialogRef.current;
     if (!dialog) return;
-    if (selected && !dialog.open) dialog.showModal();
-    if (!selected && dialog.open) dialog.close();
-  }, [selected]);
+    if (enlarged && !dialog.open) dialog.showModal();
+    if (!enlarged && dialog.open) dialog.close();
+  }, [enlarged]);
 
   return (
     <section
@@ -40,13 +49,6 @@ export function ProductCatalog() {
           <h2 id="all-products-heading" className="t-h2" data-reveal="lines">
             Explore Our Gift Editions.
           </h2>
-          <p
-            className="max-w-2xl text-base leading-relaxed text-[var(--charcoal)] sm:text-lg"
-            data-reveal="up"
-            data-delay="0.08"
-          >
-            Browse 21 signature NAQSH gifting editions across our seven collections. Every gift can be tailored around your brand identity, occasion, and budget.
-          </p>
         </div>
 
         <div
@@ -58,25 +60,17 @@ export function ProductCatalog() {
         >
           <button
             type="button"
-            className={
-              collection === "all"
-                ? "catalog-filter is-selected"
-                : "catalog-filter"
-            }
+            className={collection === "all" ? "catalog-filter is-selected" : "catalog-filter"}
             aria-pressed={collection === "all"}
             onClick={() => setCollection("all")}
           >
-            All ({products.length})
+            All
           </button>
-          {collections.map((item) => (
+          {sortedCollections.map((item) => (
             <button
               key={item.slug}
               type="button"
-              className={
-                collection === item.slug
-                  ? "catalog-filter is-selected"
-                  : "catalog-filter"
-              }
+              className={collection === item.slug ? "catalog-filter is-selected" : "catalog-filter"}
               aria-pressed={collection === item.slug}
               onClick={() => setCollection(item.slug)}
             >
@@ -85,114 +79,69 @@ export function ProductCatalog() {
           ))}
         </div>
 
-        <div
-          className="product-grid"
-          data-reveal="stagger"
-          data-stagger="0.08"
-          aria-live="polite"
-        >
-          {visibleProducts.map((item) => {
-            const collectionName =
-              collections.find((entry) => entry.slug === item.collection)
-                ?.title ?? item.collection;
-            return (
+        <div className="product-grid" data-reveal="stagger" data-stagger="0.08" aria-live="polite">
+          {visibleProducts.map((item) => (
+            <article key={item.slug} className="product-tile">
               <button
-                key={item.slug}
                 type="button"
-                className="product-tile text-left"
-                onClick={() => setSelected(item)}
-                data-cursor-label="Inspect"
+                className="product-tile-image"
+                onClick={() => setEnlarged(item)}
+                aria-label={`Enlarge photo: ${item.name}`}
+                data-cursor-label="View"
               >
-                <span className="product-tile-image">
-                  <Image
-                    src={item.image}
-                    alt={item.alt}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  />
-                  <span className="product-tile-open" aria-hidden="true">
-                    Request Details
-                  </span>
-                </span>
-                <span className="product-tile-meta">
-                  <span className="product-tile-title">{item.name}</span>
-                  <span className="product-tile-collection">
-                    {collectionName}
-                  </span>
-                </span>
+                <Image
+                  src={item.image}
+                  alt={item.alt}
+                  fill
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 33vw"
+                />
               </button>
-            );
-          })}
+              <div className="product-tile-meta">
+                <h3 className="product-tile-title">{item.name}</h3>
+                <Link
+                  href={`/contact?product=${item.slug}#request-form`}
+                  className="product-tile-request"
+                >
+                  Request Details
+                  <ArrowUpRight className="size-3.5" aria-hidden="true" />
+                </Link>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
 
+      {/* Lightbox: the photo only. Click outside the photo, the close button or Escape to close. */}
       <dialog
         ref={dialogRef}
-        className="product-dialog"
-        aria-label={selected?.name ?? "Product details"}
-        onClose={() => setSelected(null)}
+        className="product-lightbox"
+        aria-label={enlarged ? `${enlarged.name} photo` : "Product photo"}
+        onClose={() => setEnlarged(null)}
+        onClick={(e) => {
+          if (e.target === e.currentTarget) dialogRef.current?.close();
+        }}
       >
-        {selected && (
-          <div className="product-dialog-content">
+        {enlarged && (
+          <>
             <button
               type="button"
-              className="product-dialog-close"
+              className="product-lightbox-close"
               onClick={() => dialogRef.current?.close()}
-              aria-label="Close product details"
+              aria-label="Close enlarged photo"
             >
-              <X size={20} />
+              <X className="size-5" aria-hidden="true" />
             </button>
-            <div className="product-dialog-image">
-              <Image
-                src={selected.image}
-                alt={selected.alt}
-                fill
-                sizes="(max-width: 768px) 100vw, 60vw"
-              />
-            </div>
-            <div className="product-dialog-copy space-y-4">
-              <p className="t-label text-[var(--pine)]">
-                {
-                  collections.find((item) => item.slug === selected.collection)
-                    ?.title
-                }
-              </p>
-              <h2 className="t-h2">{selected.name}</h2>
-              <p className="text-sm sm:text-base leading-relaxed text-[var(--charcoal)]">
-                {selected.description}
-              </p>
-
-              {selected.customization && selected.customization.length > 0 && (
-                <div className="pt-3 border-t border-[var(--hairline)]">
-                  <span className="text-xs font-sans uppercase tracking-[0.14em] font-semibold text-[var(--black)] block mb-2">
-                    Available Customization
-                  </span>
-                  <ul className="space-y-1.5">
-                    {selected.customization.map((customItem) => (
-                      <li
-                        key={customItem}
-                        className="flex items-start gap-2 text-xs sm:text-sm text-[var(--charcoal)] font-sans"
-                      >
-                        <Check className="w-4 h-4 text-[var(--pine)] shrink-0 mt-0.5" aria-hidden="true" />
-                        <span>{customItem}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              <div className="pt-3 flex flex-wrap items-center gap-3">
-                <Link
-                  className="btn"
-                  href={`/contact?product=${selected.slug}`}
-                  onClick={() => dialogRef.current?.close()}
-                >
-                  <span>Inquire About This Gift</span>
-                  <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
-                </Link>
-              </div>
-            </div>
-          </div>
+            <Image
+              src={enlarged.image}
+              alt={enlarged.alt}
+              width={1600}
+              height={1200}
+              sizes="92vw"
+              quality={80}
+              loading="eager"
+              className="product-lightbox-image"
+            />
+          </>
         )}
       </dialog>
     </section>
