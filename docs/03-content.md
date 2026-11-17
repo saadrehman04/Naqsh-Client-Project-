@@ -8,7 +8,7 @@ Voice: warm, refined, plain. Short sentences. No hype words ("revolutionary", "w
 
 ## Brand
 - Name: Naqsh · Tagline: Crafting Lasting Impressions · Slogan: Beyond the box, into an experience!
-- Phone: +92-346-9171798 (client-confirmed) · WhatsApp: https://wa.me/923469171798 · Location: Lahore, Pakistan
+- Phone: +92-300-1462774 (client-confirmed) · WhatsApp: https://wa.me/923001462774 · Location: Lahore, Pakistan
 
 ## Hero [CLIENT, mockup Nov 2026]
 - Headline: **Crafting** / **Lasting Impressions.** (two lines; line two in terracotta)
@@ -91,7 +91,7 @@ Never write fake testimonials or use fake logos.
 Heading [CLIENT]: LET'S WORK TOGETHER
 Subline [DRAFT]: Tell us about your occasion and we will craft the rest.
 Button: Request Consultation · secondary: WhatsApp us
-Contact line [CLIENT]: Contact Us at: +92-346-9171798
+Contact line [CLIENT]: Contact Us at: +92-300-1462774
 
 ## Contact page · Get in Touch panel [CLIENT design, Nov 2026]
 Label: GET IN TOUCH · Heading: Let’s Create Meaningful Connections
@@ -105,7 +105,7 @@ Form labels: Name · Company · Work email · Phone / WhatsApp · Occasion · Ap
 Consent: I agree to the Privacy Policy.
 Success: Thank you. Your request has been received. We will be in touch [CONFIRM: response time].
 Error: Something went wrong. Please try again or message us on WhatsApp.
-Direct channels: Phone / WhatsApp +92-346-9171798 · Email contact@naqshonline.co [CLIENT] · Location: Lahore, Pakistan · Hours [CONFIRM]
+Direct channels: Phone / WhatsApp +92-300-1462774 · Email contact@naqshonline.co [CLIENT] · Location: Lahore, Pakistan · Hours [CONFIRM]
 
 ## FAQs [DRAFT, every answer needs client confirmation]
 **Process**

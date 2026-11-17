@@ -1,5 +1,6 @@
-export const WHATSAPP_NUMBER = "923469171798";
-export const DISPLAY_PHONE = "+92-346-9171798";
+// Client-confirmed 2026-11-17 (call and WhatsApp).
+export const WHATSAPP_NUMBER = "923001462774";
+export const DISPLAY_PHONE = "+92-300-1462774";
 
 export function getWhatsAppUrl(message?: string): string {
   const defaultText =

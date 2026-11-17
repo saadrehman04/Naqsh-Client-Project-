@@ -10,6 +10,7 @@ import { approachContent } from "@/content/approach";
 import { collections } from "@/content/collections";
 import { products } from "@/content/products";
 import { siteConfig } from "@/content/site";
+import { privacyPolicy, shippingPolicy, type PolicyDocument } from "@/content/policies";
 
 export interface KnowledgeLink {
   label: string;
@@ -227,11 +228,42 @@ function productEntries(): KnowledgeEntry[] {
   });
 }
 
+/** Search hints per policy section heading. */
+const POLICY_KEYWORDS: Record<string, string> = {
+  "Delivery Timelines": "delivery timeline schedule when arrive how long dispatch proposal mockup approved advance payment",
+  "Shipping Methods & Fulfillment": "shipping method deliver multiple addresses individual employees bulk single location office venue courier freight riders",
+  "Shipping Rates": "shipping rates fees charges delivery cost price weight dimensions invoice",
+  "Tracking & Delivery Confirmation": "tracking track order shipment status dispatched tracking number report",
+  "Address Accuracy & Failed Deliveries": "wrong address incorrect address failed delivery returned re delivery reshipping fee recipient unavailable",
+  "Damaged or Missing Items": "damaged broken missing item defective complaint refund replacement photos 24 hours",
+  "Information We Collect": "privacy data collect information personal details what data",
+  "How We Use Your Information": "privacy data use information purpose",
+  "Confidentiality & Recipient Data Protection": "privacy confidential confidentiality recipient data protection sell data marketing retention delete spreadsheet",
+  "Data Sharing": "privacy data sharing share third party partners vendors",
+  "Your Rights & Contact": "privacy rights access correct delete data request personal data",
+};
+
+function policyEntries(policy: PolicyDocument): KnowledgeEntry[] {
+  return policy.sections.map((section) => ({
+    id: `policy:${policy.slug}:${section.heading}`,
+    question: `${section.heading} (${policy.title})`,
+    answer: [
+      ...(section.body ?? []),
+      ...(section.items ?? []).map((item) => (item.term ? `${item.term}: ${item.text}` : item.text)),
+    ].join("\n\n"),
+    keywords: `${policy.title} policy ${POLICY_KEYWORDS[section.heading] ?? ""}`,
+    link: { label: policy.title, href: `/${policy.slug}` },
+    hideFromSuggestions: true,
+  }));
+}
+
 export const knowledgeBase: KnowledgeEntry[] = [
   ...companyEntries(),
   ...faqEntries(),
   ...collectionEntries(),
   ...productEntries(),
+  ...policyEntries(shippingPolicy),
+  ...policyEntries(privacyPolicy),
 ];
 
 /** Starter chips shown when the chat opens. */

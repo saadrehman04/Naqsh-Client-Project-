@@ -16,12 +16,13 @@ The site must not imply unconfirmed operational, commercial, or legal details. `
 - Minimum order quantities, production lead times, seasonal cutoffs, rush availability, and sample or prototype fees.
 - Branding methods and supported artwork formats.
 - Payment and invoicing terms.
-- Delivery coverage, courier providers, individual drop shipping, claims window, and replacement policy.
+- Delivery coverage (cities) and replacement terms. The Shipping & Delivery Policy (client PDF, 2026-11-17) now covers methods, multi-address delivery, rates, tracking, failed deliveries and the 24-hour damage-claim window.
 
 ## Legal and data handling
 
-- Data retention schedule, analytics/cookie use, and client-approved privacy language.
-- Shipping policy terms and legal review of both policy pages.
+- Analytics/cookie use (not covered by the client's Data Privacy Policy, published 2026-11-17).
+- Legal review of both policy pages (text is now the client's own, verbatim).
+- Confirm **support@naqshonline.co** (named in both policies) is a live inbox. The site's main email remains contact@naqshonline.co.
 
 ## Catalogue
 
