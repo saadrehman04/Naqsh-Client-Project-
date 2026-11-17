@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import { PageHero } from "@/components/ui/PageHero";
-import { CTABand } from "@/components/sections/CTABand";
 import { PolicyContent } from "@/components/sections/PolicyContent";
 import { shippingPolicy } from "@/content/policies";
 import { buildMetadata } from "@/lib/seo";
@@ -18,8 +17,6 @@ export default function ShippingDeliveryPage() {
       <PageHero title={shippingPolicy.title} subtitle={shippingPolicy.intro} label={shippingPolicy.label} fadeOnly />
 
       <PolicyContent policy={shippingPolicy} />
-
-      <CTABand />
     </div>
   );
 }

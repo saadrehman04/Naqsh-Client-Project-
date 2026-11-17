@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import { PageHero } from "@/components/ui/PageHero";
-import { CTABand } from "@/components/sections/CTABand";
 import { PolicyContent } from "@/components/sections/PolicyContent";
 import { privacyPolicy } from "@/content/policies";
 import { buildMetadata } from "@/lib/seo";
@@ -18,8 +17,6 @@ export default function PrivacyPage() {
       <PageHero title={privacyPolicy.title} subtitle={privacyPolicy.intro} label={privacyPolicy.label} fadeOnly />
 
       <PolicyContent policy={privacyPolicy} />
-
-      <CTABand />
     </div>
   );
 }
