@@ -46,21 +46,32 @@ async function products() {
 
 async function hero() {
   await mkdir(path.join(outDir, "hero"), { recursive: true });
-  // Client-supplied hero (box with the full bow), 1600 x 1007. Dark empty space on the left holds the copy.
+  // Client-supplied hero (box with the full bow), only 1600 x 1007. Shown full-bleed (and zoomed ~16%
+  // by the parallax), so it is upscaled once here with Lanczos3 plus light sharpening and saved at
+  // high quality; the page then serves it at quality 90 so it is not recompressed heavily again.
+  // A higher-resolution original from the client would still be the real fix.
   const src = path.join(root, "assets/images/site/hero-gift-box.webp");
-  const desktop = await writeWebp(sharp(src), path.join(outDir, "hero/hero-bow-desktop.webp"), 82);
-  console.log(`hero/hero-bow-desktop.webp  ${kb(desktop)}`);
+  const SHARPEN = { sigma: 0.9, m1: 0.6, m2: 1.4 };
+  const desktop = await writeWebp(
+    sharp(src).resize({ width: 2400, kernel: "lanczos3" }).sharpen(SHARPEN),
+    path.join(outDir, "hero/hero-hq-desktop.webp"),
+    90,
+  );
+  console.log(`hero/hero-hq-desktop.webp  2400w  ${kb(desktop)}`);
 
-  // 4:5 portrait crop centered on the box for phones.
+  // 4:5 portrait crop centered on the box for phones and tablets (served directly, not re-encoded).
   const { width, height } = await sharp(src).metadata();
   const w = Math.round((height * 4) / 5);
   const left = Math.min(width - w, 760);
   const mobile = await writeWebp(
-    sharp(src).extract({ left, top: 0, width: w, height }),
-    path.join(outDir, "hero/hero-bow-mobile.webp"),
-    80,
+    sharp(src)
+      .extract({ left, top: 0, width: w, height })
+      .resize({ width: Math.round(w * 1.5), kernel: "lanczos3" })
+      .sharpen(SHARPEN),
+    path.join(outDir, "hero/hero-hq-mobile.webp"),
+    88,
   );
-  console.log(`hero/hero-bow-mobile.webp  ${w}x${height}  ${kb(mobile)}`);
+  console.log(`hero/hero-hq-mobile.webp  ${Math.round(w * 1.5)}w  ${kb(mobile)}`);
 }
 
 /** Client-supplied section photos (assets/images/site). Optional crop: [left, top, width, height]. */
@@ -90,7 +101,9 @@ async function site() {
   }
 }
 
-await products();
-await hero();
-await site();
+// ONLY=hero (or products / site) regenerates one group; default runs all.
+const only = process.env.ONLY;
+if (!only || only === "products") await products();
+if (!only || only === "hero") await hero();
+if (!only || only === "site") await site();
 console.log("Done. Originals untouched.");

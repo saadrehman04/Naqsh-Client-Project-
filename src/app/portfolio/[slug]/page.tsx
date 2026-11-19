@@ -103,7 +103,7 @@ export default async function CollectionDetailPage({ params }: Props) {
                     <span className="text-[11px] font-sans uppercase tracking-[0.14em] text-[var(--pine)] font-semibold block">
                       {collection.title}
                     </span>
-                    <h3 className="font-serif text-2xl text-[var(--black)] font-normal">
+                    <h3 className="font-serif text-[length:var(--fs-h4)] text-[var(--black)] font-normal">
                       {product.name}
                     </h3>
                     <p className="text-sm font-sans text-[var(--charcoal)] font-light leading-relaxed">

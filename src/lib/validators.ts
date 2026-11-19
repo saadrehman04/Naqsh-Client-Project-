@@ -1,18 +1,16 @@
 import { z } from "zod";
+import { collections } from "@/content/collections";
 
-export const occasionOptions = [
-  { value: "corporate-employee-gifting", label: "Corporate & Employee Gifting" },
-  { value: "executive-client-gifting", label: "Executive & Client Gifting" },
-  { value: "events-brand-merchandise", label: "Events & Brand Merchandise" },
-  { value: "bespoke-seasonal-gifting", label: "Bespoke & Seasonal Gifting" },
-  { value: "new-hire-welcome-kits", label: "New Hire Welcome Kits" },
-  { value: "client-packages", label: "Client Packages" },
-  { value: "ramadan-eid-baskets", label: "Ramadan & Eid Baskets" },
-  { value: "brand-souvenirs", label: "Brand Souvenirs" },
-  { value: "appreciation-gifts", label: "Appreciation Gifts" },
-  { value: "custom-occasion-gifts", label: "Custom & Occasion Specific Gifts" },
+/**
+ * Gifting Category options: the Portfolio collections, A–Z (same order as the catalogue tabs),
+ * then "Other" (client request 2026-11-19). Values are the collection slugs.
+ */
+export const occasionOptions: { value: string; label: string }[] = [
+  ...[...collections]
+    .sort((a, b) => a.title.localeCompare(b.title))
+    .map((c) => ({ value: c.slug, label: c.title })),
   { value: "other", label: "Other" },
-] as const;
+];
 
 export const inquirySchema = z.object({
   name: z.string().trim().min(2, "Please enter your full name."),

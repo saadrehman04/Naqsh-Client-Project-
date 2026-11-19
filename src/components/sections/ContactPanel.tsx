@@ -32,21 +32,25 @@ function ChannelCard({ icon, disc, label, children, href, external }: ChannelCar
   const inner = (
     <>
       <span
-        className={`flex size-12 sm:size-14 shrink-0 items-center justify-center rounded-full text-[var(--ivory)] ${disc}`}
+        className={`flex size-11 sm:size-12 shrink-0 items-center justify-center rounded-full text-[var(--ivory)] ${disc}`}
         aria-hidden="true"
       >
         {icon}
       </span>
+      {/* Client request 2026-11-19: the channel name is one step bigger than the value, and the
+          value is small enough for the email address to stay on one line. */}
       <span className="min-w-0">
-        <span className={labelClass}>{label}</span>
-        <span className="mt-1 block font-display text-[1.25rem] sm:text-[1.375rem] leading-tight text-[var(--black)] [overflow-wrap:anywhere]">
+        <span className="block font-display text-[1.125rem] sm:text-[1.1875rem] leading-tight text-[var(--black)]">
+          {label}
+        </span>
+        <span className="mt-0.5 block font-sans text-[0.875rem] sm:text-[0.9375rem] leading-snug text-[var(--charcoal)] whitespace-nowrap">
           {children}
         </span>
       </span>
     </>
   );
   const cls =
-    "flex items-center gap-4 rounded-[var(--radius-card)] border border-[var(--hairline)] bg-[var(--ivory)] p-4 sm:p-5";
+    "flex items-center gap-3.5 rounded-[var(--radius-card)] border border-[var(--hairline)] bg-[var(--ivory)] p-3.5 sm:p-4";
   return href ? (
     <a
       href={href}
@@ -70,16 +74,16 @@ export function ContactPanel() {
   const phone = formatPhone(`+${WHATSAPP_NUMBER}`);
 
   return (
-    <div className="@container rounded-[24px] border border-[var(--hairline)] bg-[color-mix(in_srgb,var(--ivory-deep)_55%,var(--ivory))] p-4 sm:p-6">
-      <div className="grid grid-cols-1 gap-6 @[34rem]:grid-cols-[1.05fr_1fr] @[34rem]:gap-5">
+    <div className="@container h-full flex flex-col rounded-[24px] border border-[var(--hairline)] bg-[color-mix(in_srgb,var(--ivory-deep)_55%,var(--ivory))] p-4 sm:p-6">
+      <div className="flex-1 grid grid-cols-1 grid-rows-[auto_1fr] gap-6 @[34rem]:grid-cols-[1.05fr_1fr] @[34rem]:grid-rows-1 @[34rem]:gap-5">
         <div className="flex flex-col">
           <div className="px-2 pt-3 sm:px-3">
             <span className={labelClass}>{c.label}</span>
-            <h2 className="mt-4 font-display font-normal text-[length:clamp(2.25rem,3.4vw,3rem)] leading-[1.05] tracking-[-0.01em] text-[var(--black)] [text-wrap:balance]">
+            <h2 className="mt-4 font-display font-normal text-[length:var(--fs-h3)] leading-[1.05] tracking-[-0.01em] text-[var(--black)] [text-wrap:balance]">
               {c.heading}
             </h2>
             <span className="mt-6 block h-0.5 w-12 bg-[var(--terracotta)]" aria-hidden="true" />
-            <p className="mt-6 max-w-[26rem] font-sans text-[1.0625rem] leading-[1.65] text-[var(--charcoal)] [text-wrap:pretty]">
+            <p className="mt-6 max-w-[26rem] font-sans text-[length:var(--fs-body)] leading-[1.65] text-[var(--charcoal)] [text-wrap:pretty]">
               {c.intro}
             </p>
           </div>
@@ -124,7 +128,8 @@ export function ContactPanel() {
         </div>
 
         {/* Photo: beside the cards when the panel is wide, below them when narrow */}
-        <div className="relative min-h-[24rem] @[34rem]:min-h-0 overflow-hidden rounded-[20px] bg-[var(--ivory-deep)]">
+        {/* Narrow panel beside the form (laptops): the photo fills whatever height is left, so the panel ends where the form ends */}
+        <div className="relative min-h-[24rem] lg:min-h-[8rem] @[34rem]:min-h-0 overflow-hidden rounded-[20px] bg-[var(--ivory-deep)]">
           <Image
             src={c.image}
             alt={c.imageAlt}
@@ -136,20 +141,19 @@ export function ContactPanel() {
       </div>
 
       <div className="mt-6 border-t border-[var(--hairline)] pt-6">
-        <div className="flex items-center gap-5 rounded-[var(--radius-card)] border border-[var(--hairline)] bg-[var(--ivory)] p-5 sm:p-6">
+        <div className="flex items-center gap-3.5 rounded-[var(--radius-card)] border border-[var(--hairline)] bg-[var(--ivory)] p-3.5 sm:p-4">
           <span
-            className="flex size-14 sm:size-16 shrink-0 items-center justify-center rounded-full bg-[var(--sage)] text-[var(--ivory)]"
+            className="flex size-11 sm:size-12 shrink-0 items-center justify-center rounded-full bg-[var(--sage)] text-[var(--ivory)]"
             aria-hidden="true"
           >
             <MapPin className="size-6" strokeWidth={1.6} />
           </span>
           <span>
-            <span className={labelClass}>{c.locationLabel}</span>
-            <span className="mt-1 block font-display text-[1.5rem] leading-tight text-[var(--black)]">
-              {siteConfig.location}
+            <span className="block font-display text-[1.125rem] sm:text-[1.1875rem] leading-tight text-[var(--black)]">
+              {c.locationLabel}
             </span>
-            <span className="mt-1 block font-sans text-[0.9375rem] text-[var(--charcoal)]">
-              {c.locationNote}
+            <span className="mt-0.5 block font-sans text-[0.875rem] sm:text-[0.9375rem] text-[var(--charcoal)]">
+              {siteConfig.location} · {c.locationNote}
             </span>
           </span>
         </div>

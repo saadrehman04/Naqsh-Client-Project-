@@ -9,9 +9,9 @@ import { Ornament } from "@/components/ui/Ornament";
  * between the two rows. Logical alignment (text-start / text-end) keeps it RTL-ready.
  */
 const headingClass =
-  "font-display font-normal text-[length:clamp(2.75rem,6vw,5.5rem)] leading-[0.98] tracking-[-0.02em] text-[var(--black)]";
+  "font-display font-normal text-[length:var(--fs-h2)] leading-[1.02] tracking-[-0.02em] text-[var(--black)]";
 const statementClass =
-  "font-display text-[length:clamp(1.375rem,1.9vw,1.875rem)] leading-[1.45] text-[var(--charcoal)] [text-wrap:pretty]";
+  "font-display text-[length:var(--fs-h4)] leading-[1.45] text-[var(--charcoal)] [text-wrap:pretty]";
 
 export function VisionMission() {
   const { vision, mission } = homeContent.visionMission;

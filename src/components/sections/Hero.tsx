@@ -27,6 +27,7 @@ export function Hero() {
               alt={hero.imageAlt}
               fill
               priority
+              quality={90}
               sizes="100vw"
               className="hero-photo object-cover object-[50%_35%] sm:object-[50%_80%] lg:object-[85%_center] xl:object-[70%_center]"
             />

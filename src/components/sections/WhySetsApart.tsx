@@ -25,20 +25,20 @@ export function WhySetsApart() {
             <Ornament align="start" className="mb-6" />
             <h2
               id="why-us-heading"
-              className="font-display font-normal text-[length:clamp(2.5rem,5vw,4.5rem)] leading-[1.02] tracking-[-0.015em] text-[var(--ivory)] [text-wrap:balance]"
+              className="font-display font-normal text-[length:var(--fs-h2)] leading-[1.02] tracking-[-0.015em] text-[var(--ivory)] [text-wrap:balance]"
               data-reveal="lines"
             >
               {whyUs.heading}
             </h2>
             <p
-              className="mt-6 font-display text-[length:clamp(1.375rem,2.2vw,2rem)] leading-[1.2] text-[var(--sage)] [text-wrap:balance]"
+              className="mt-6 font-display text-[length:var(--fs-h3)] leading-[1.2] text-[var(--sage)] [text-wrap:balance]"
               data-reveal="up"
               data-delay="0.06"
             >
               {whyUs.subheading}
             </p>
             <p
-              className="mt-5 max-w-[40rem] font-sans text-base sm:text-[1.0625rem] leading-[1.7] text-[var(--ivory)]/80 [text-wrap:pretty]"
+              className="mt-5 max-w-[40rem] font-sans text-[length:var(--fs-body)] leading-[1.7] text-[var(--ivory)]/80 [text-wrap:pretty]"
               data-reveal="up"
               data-delay="0.12"
             >
@@ -72,7 +72,7 @@ export function WhySetsApart() {
                   >
                     {String(index + 1).padStart(2, "0")}
                   </span>
-                  <p className="font-sans text-[1.0625rem] sm:text-[1.1875rem] xl:text-[1.3125rem] leading-[1.5] text-[var(--ivory)]/90 [text-wrap:pretty]">
+                  <p className="font-sans text-[length:var(--fs-lead)] leading-[1.5] text-[var(--ivory)]/90 [text-wrap:pretty]">
                     {promise}
                   </p>
                 </div>

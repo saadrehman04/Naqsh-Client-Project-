@@ -12,12 +12,13 @@ export interface SocialLink {
 }
 
 export interface FooterContent {
-  policiesHeading: string;
+  discoverHeading: string;
   contactHeading: string;
+  followHeading: string;
   copyright: string;
-  tagline: string;
-  /** Shown after the copyright and tagline in the footer's bottom line, evenly spaced. */
-  craftedLine: string[];
+  /** Bottom line, centre and end (client request 2026-11-19). */
+  deliveryLine: string;
+  locationLine: string;
 }
 
 export interface Testimonial {
@@ -44,7 +45,8 @@ export interface SiteConfig {
   workingHours: string | null;
   responseTime: string | null;
   nav: NavItem[];
-  policies: NavItem[];
+  /** Footer "Discover" list. */
+  discover: NavItem[];
   socials: SocialLink[];
   footer: FooterContent;
   testimonials: Testimonial[];
@@ -69,9 +71,12 @@ export const siteConfig: SiteConfig = {
     { label: "FAQs", href: "/faqs" },
     { label: "Contact", href: "/contact" },
   ],
-  policies: [
-    { label: "Data Privacy", href: "/privacy" },
+  // Footer "Discover" list (client request 2026-11-19). Our Philosophy → Our Approach page,
+  // Terms & Policies → the Data Privacy Policy page.
+  discover: [
+    { label: "Our Philosophy", href: "/our-approach" },
     { label: "Shipping & Delivery", href: "/shipping-delivery" },
+    { label: "Terms & Policies", href: "/privacy" },
   ],
   // PLACEHOLDER links (client request 2026-11-16): the platforms' home pages, not real profiles.
   // [CONFIRM: replace with NAQSH's actual Instagram and LinkedIn profile URLs]
@@ -80,11 +85,12 @@ export const siteConfig: SiteConfig = {
     { platform: "LinkedIn", url: "https://www.linkedin.com/" },
   ],
   footer: {
-    policiesHeading: "Our Policies",
+    discoverHeading: "Discover",
     contactHeading: "Get in Touch",
+    followHeading: "Follow Us",
     copyright: "NAQSH. All rights reserved.",
-    tagline: "Crafting Lasting Impressions",
-    craftedLine: ["Handcrafted in Lahore, Pakistan", "Nationwide Corporate Gifting"],
+    deliveryLine: "Nationwide Delivery",
+    locationLine: "Lahore, Pakistan",
   },
   // Rule: Hidden until real content exists. Never invent fake logos or testimonials.
   testimonials: [],

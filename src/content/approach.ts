@@ -9,6 +9,8 @@ export const approachContent = {
   // Step names are client copy; descriptions are the [DRAFT] lines from the same doc.
   // The four focus points per step are the client's labels (approach icon reference, Nov 2026).
   hero: {
+    // Small label above the heading (client request 2026-11-19).
+    label: "How We Work",
     heading: "Our Approach",
     intro:
       "We begin by understanding the occasion, audience, brand, and budget. We then curate the right products, customize the experience, manage the details, and deliver a polished solution from concept to doorstep.",

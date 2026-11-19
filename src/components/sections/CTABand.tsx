@@ -32,12 +32,12 @@ export function CTABand({ title, subline, className = "" }: CTABandProps) {
           <Ornament align="start" />
           <h2
             id="cta-band-heading"
-            className="mt-6 font-display font-normal text-[length:clamp(2.5rem,5vw,4.5rem)] leading-[1.02] tracking-[-0.015em] text-[var(--black)] [text-wrap:balance]"
+            className="mt-6 font-display font-normal text-[length:var(--fs-h2)] leading-[1.02] tracking-[-0.015em] text-[var(--black)] [text-wrap:balance]"
             data-reveal="lines"
           >
             {title || cta.heading}
           </h2>
-          <p className="mt-6 max-w-[34rem] font-sans text-[length:clamp(1.0625rem,0.35vw+0.98rem,1.1875rem)] leading-[1.7] text-[var(--charcoal)] [text-wrap:pretty]">
+          <p className="mt-6 max-w-[34rem] font-sans text-[length:var(--fs-body)] leading-[1.7] text-[var(--charcoal)] [text-wrap:pretty]">
             {subline || cta.subline}
           </p>
 

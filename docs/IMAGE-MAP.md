@@ -22,8 +22,8 @@ Originals in `assets/images/site/`, optimized by `npm run images` into `public/i
 
 | Slot | Source | Crop / treatment | Output |
 |---|---|---|---|
-| Home hero, desktop | `hero-gift-box.webp` (box with full bow) | none; `object-position` 85% (lg) / 70% (xl) | `hero/hero-bow-desktop.webp` |
-| Home hero, phones/tablets | `hero-gift-box.webp` | 4:5 crop from x=760, shown in the lower 60% of the hero | `hero/hero-bow-mobile.webp` |
+| Home hero, desktop | `hero-gift-box.webp` (box with full bow) | none; `object-position` 85% (lg) / 70% (xl) | `hero/hero-hq-desktop.webp` (2400w q90, Lanczos3 + sharpen) |
+| Home hero, phones/tablets | `hero-gift-box.webp` | 4:5 crop from x=760, shown in the lower 60% of the hero | `hero/hero-hq-mobile.webp` (1209w q88) |
 | Home · About | `about-wax-seal.webp` | 4:5 | `site/about-wax-seal.webp` |
 | Home · What Sets Us Apart | `why-heritage-box.webp` | 4:5 arch frame | `site/why-heritage-box.webp` |
 | Services banner | `services-cover.webp` | bottom 204 px black band cut; blurred + start fade | `site/services-cover.webp` |

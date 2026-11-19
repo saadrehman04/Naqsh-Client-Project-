@@ -36,12 +36,12 @@ export function PolicyContent({ policy }: { policy: PolicyDocument }) {
                 {String(idx + 1).padStart(2, "0")}
               </span>
               <section className="min-w-0 border-t border-[var(--hairline)] pt-4">
-                <h2 className="font-display font-normal text-[length:clamp(1.6rem,2.4vw,2.1rem)] leading-[1.15] tracking-[-0.01em] text-[var(--black)]">
+                <h2 className="font-display font-normal text-[length:var(--fs-h3)] leading-[1.15] tracking-[-0.01em] text-[var(--black)]">
                   {section.heading}
                 </h2>
 
                 {section.body?.map((para) => (
-                  <p key={para} className="mt-4 font-sans text-[1.0625rem] leading-[1.75] text-[var(--charcoal)]">
+                  <p key={para} className="mt-4 font-sans text-[length:var(--fs-body)] leading-[1.75] text-[var(--charcoal)]">
                     {withEmailLink(para)}
                   </p>
                 ))}
@@ -51,7 +51,7 @@ export function PolicyContent({ policy }: { policy: PolicyDocument }) {
                     {section.items.map((item) => (
                       <li
                         key={item.text}
-                        className="relative ps-5 font-sans text-[1.0625rem] leading-[1.75] text-[var(--charcoal)]"
+                        className="relative ps-5 font-sans text-[length:var(--fs-body)] leading-[1.75] text-[var(--charcoal)]"
                       >
                         <span
                           className="absolute start-0 top-[0.72em] size-1.5 rotate-45 bg-[var(--terracotta)]"

@@ -51,7 +51,8 @@ const ICONS: Record<ApproachIcon, LucideIcon> = {
   doorstepDelivery: MapPin,
 };
 
-const STEP_MS = 1700;
+// Time per step (client asked for a slower loop, 2026-11-19; was 1.7s).
+const STEP_MS = 2800;
 // Diagram geometry (rem). Rows are 4rem tall with a 2rem gap.
 const ROW = 4;
 const GAP = 2;
@@ -68,7 +69,7 @@ const dotted = (lit: boolean) =>
   lit ? "border-[var(--terracotta-on-dark)]" : "border-[var(--hairline-dark)]";
 
 export function ApproachHero() {
-  const { heading, intro, steps } = approachContent.hero;
+  const { label, heading, intro, steps } = approachContent.hero;
   const [active, setActive] = useState(0);
   const [reduced, setReduced] = useState(false);
   const [inView, setInView] = useState(true);
@@ -107,22 +108,26 @@ export function ApproachHero() {
   return (
     <section
       ref={rootRef}
-      className="on-dark relative overflow-hidden bg-[var(--black)] text-[var(--ivory)] pt-[calc(var(--header-h)+3rem)] pb-20 sm:pt-[calc(var(--header-h)+4rem)] sm:pb-28"
+      className="on-dark relative overflow-hidden bg-[var(--black)] text-[var(--ivory)] min-h-[100svh] flex flex-col justify-center pt-[calc(var(--header-h)+3rem)] pb-20 sm:pt-[calc(var(--header-h)+4rem)] sm:pb-28"
       aria-labelledby="approach-heading"
     >
-      <div className="container-x grid grid-cols-1 xl:grid-cols-12 gap-14 xl:gap-12 items-center">
+      <div className="container-x w-full grid grid-cols-1 xl:grid-cols-12 gap-14 xl:gap-12 items-center">
         {/* Heading + statement */}
         <div className="xl:col-span-4">
+          <p className="mb-4 sm:mb-5 flex items-center gap-3 font-sans text-xs font-semibold uppercase tracking-[0.24em] text-[var(--ivory)]/80">
+            <span className="h-px w-8 bg-[var(--terracotta-on-dark)]" aria-hidden="true" />
+            {label}
+          </p>
           <h1
             id="approach-heading"
-            className="font-display font-normal text-[length:clamp(3rem,6vw,5.5rem)] leading-[0.98] tracking-[-0.02em] text-[var(--ivory)]"
+            className="font-display font-normal text-[length:var(--fs-h1)] leading-[0.98] tracking-[-0.02em] text-[var(--ivory)]"
           >
             {heading}
           </h1>
 
           <figure className="mt-10 max-w-[34rem]">
             <QuoteRule glyph="“" />
-            <blockquote className="py-5 font-sans text-[1.0625rem] leading-[1.75] text-[var(--ivory)]/85 [text-wrap:pretty]">
+            <blockquote className="py-5 font-sans text-[length:var(--fs-body)] leading-[1.75] text-[var(--ivory)]/85 [text-wrap:pretty]">
               {intro}
             </blockquote>
             <QuoteRule glyph="”" />
@@ -183,7 +188,7 @@ export function ApproachHero() {
                       )}
                       style={{
                         top: `${top}rem`,
-                        animation: isOn(i) && !reduced ? "naqsh-breathe 1.7s ease-in-out infinite" : undefined,
+                        animation: isOn(i) && !reduced ? "naqsh-breathe 2.8s ease-in-out infinite" : undefined,
                       }}
                     />
 
@@ -192,7 +197,7 @@ export function ApproachHero() {
                       type="button"
                       tabIndex={-1}
                       onClick={() => setActive(i)}
-                      className="absolute start-[4.5rem] w-[17rem] h-16 overflow-hidden text-start ps-5 cursor-pointer"
+                      className="absolute z-10 start-[4.5rem] w-[17rem] h-16 overflow-hidden text-start ps-5 cursor-pointer bg-[var(--black)]"
                       style={{ top: `${top}rem` }}
                     >
                       <span className="absolute inset-0 bg-[linear-gradient(90deg,var(--chestnut)_0%,rgb(127_48_33/0.55)_40%,transparent_100%)]" />
@@ -229,7 +234,7 @@ export function ApproachHero() {
                     {!last && (
                       <span
                         className={cn(
-                          "absolute z-10 border-2 border-dotted transition-[border-color,filter] duration-300",
+                          "absolute z-0 border-2 border-dotted transition-[border-color,filter] duration-300",
                           i % 2 === 0
                             ? "start-[14.5rem] w-12 border-s-0 rounded-e-full"
                             : "start-[2rem] w-10 border-e-0 rounded-s-full",
@@ -391,21 +396,6 @@ export function ApproachHero() {
               </li>
             ))}
           </ol>
-
-          {/* Active step description */}
-          <div className="mt-14 lg:ms-[4.5rem] grid min-h-[3.5rem]" aria-hidden="true">
-            {steps.map((step, i) => (
-              <p
-                key={step.name}
-                className={cn(
-                  "[grid-area:1/1] max-w-[36rem] font-sans text-[1rem] leading-[1.7] text-[var(--ivory)]/80 transition-[opacity,transform] duration-300 ease-[var(--ease-out)]",
-                  i === active ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
-                )}
-              >
-                {step.desc}
-              </p>
-            ))}
-          </div>
         </div>
       </div>
     </section>

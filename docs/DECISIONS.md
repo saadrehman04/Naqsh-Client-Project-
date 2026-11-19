@@ -114,3 +114,50 @@ Status: **ASSUMED** = default I (Saad) have not confirmed with the client. Chang
   - The chatbot now answers shipping-rate, tracking, damaged/missing-item, wrong-address, delivery-method and data-privacy questions from the policy sections, linking to the page (17/17 routing checks pass).
 - **2026-11-17**: Removed the "Let's Create Something Meaningful" CTA band (with the NAQSH seal) from the Data Privacy and Shipping & Delivery pages (client request). Each policy now goes straight into the footer. The band still appears on the individual collection pages.
 - **2026-11-19**: Saved the client's **final edited logos** (`Final_Logos.zip`) unchanged in `assets/logo/final/`. It has `PDF/` and `PNG/` subfolders, original file names, and is byte-identical to the archive (checked with sha256). There are 10 artwork files, each as PDF and PNG: `logo1` (emblem: black-on-white, ivory-on-black, copper-shiny 2D, copper-shiny 3D), `logo2-3d` (black-on-white, ivory-on-black) and `naqsh-wordmark` (black-on-white, ivory-on-black, copper-shiny 2D, copper-shiny 3D). PNGs are 6000px wide RGBA. **Not wired into the site yet**: the header, footer and favicon still use `assets/logo/svg` (terracotta via CSS mask). Swapping them in is a separate step if wanted.
+- **2026-11-19**: Client revision round (24 points).
+  - **Logos**
+    - Header wordmark and footer emblem are the client's **copper metallic 2D** finals. Web copies are built by `scripts/build-copper-logos.mjs` (trimmed, black background turned to transparency, artwork untouched) into `public/brand/copper-*.webp` and rendered by `CopperLogo`.
+    - The copper art is designed for dark grounds, so the header now stays solid black on pages with an ivory top (`LIGHT_TOP_PATHS`: FAQs).
+    - Rule note: these are raster files from `assets/logo/final`, not `assets/logo/svg`, at the client's instruction.
+  - **Footer**
+    - Columns are emblem | Discover (Our Philosophy → /our-approach, Shipping & Delivery, Terms & Policies → /privacy) | Get in Touch | Follow Us (Instagram, LinkedIn). The lists sit closer to the emblem.
+    - The emblem cell stretches to the row, so the emblem runs from the first heading line to the last list line.
+    - Bottom line: © (start) · Nationwide Delivery (centre) · Lahore, Pakistan (end).
+  - **Hero image**
+    - The source is only 1600×1007 and was compressed three times (source, export q82, next/image q75).
+    - Now it is exported once with a Lanczos3 2400w upscale, light sharpening and q90; the phone crop is 1209w q88. `<Image quality={90}>` with 90 added to `images.qualities`.
+    - Renamed `hero-hq-*.webp` to bust image caches. A higher-resolution original is still the real fix (open items).
+  - **Home**
+    - About Us background is black (was a dark green gradient).
+    - The slogan is bold **sage**: pine fails contrast on black.
+    - Core Values hairlines are terracotta.
+    - Rule note: the dark photo hero is still followed directly by the dark About section, at the client's request.
+  - **Services**
+    - "Premium Gifting Solutions" (heading + body) is now the cover/hero text, and its separate section is removed; "Gifting Solutions for Every Business Occasion" is gone.
+    - Project Workflow's Request Consultation button is removed.
+    - Book a Consultation is terracotta for fill, border and hover.
+    - Rule note: the hero is now directly followed by the black Gifting Consultation band.
+  - **Our Approach**
+    - Added a "How We Work" label.
+    - The hero is full viewport height, so the footer only appears after scrolling; the diagram is vertically centred with the left column.
+    - Step one-liners removed.
+    - Serpentine curves sit behind the step boxes (boxes `z-10` with a black base, curves `z-0`).
+    - The loop is slower: 2.8s per step, was 1.7s.
+  - **Portfolio**
+    - "Curated Product Catalogue" label removed.
+    - Intro is the company profile's PRODUCT PORTFOLIO paragraph, ending "…not limited to the following:" as the client wrote it (the PDF ends "…not limited to:").
+    - Request Details opens the contact form in a new tab.
+  - **FAQs**
+    - No cover image: a plain ivory title "Everything You Need to Know" (one line from 1024px).
+    - The side heading is smaller, so it fits on two lines.
+    - The side text now ends "…tailored to your organizational requirements."
+    - Removed four FAQs (bespoke concepts, payment process, seasonal campaigns, corporate events), leaving 15. Chatbot search hints for bespoke and seasonal questions moved to the nearest remaining answers.
+  - **Contact**
+    - Gifting Category lists the Portfolio collections A–Z plus Other, built from `collections`.
+    - Please Specify spans the full row under Category + Quantity.
+    - Channel cards: the name (Marcellus, ~1.19rem) is one step larger than the value (Mulish, ~0.94rem, no wrap), so the email fits on one line.
+    - The panel stretches to the form and ends on the same line; its photo flexes on laptops.
+    - Rushda's panel text is still to come; the current text stays.
+  - **Type scale**
+    - One set of tokens (`--fs-h1/h2/h3/h4/lead/body`, mirrored in `design/tokens.css`) applied to every section heading, sub-heading, card title and body paragraph across Home, Services, Approach, Portfolio, FAQs, Contact, policies and collection pages.
+    - The home hero headline is intentionally larger.

@@ -34,7 +34,7 @@ export function CoreValues() {
           <Ornament align="start" />
           <h2
             id="core-values-heading"
-            className="mt-6 font-display font-normal text-[length:clamp(2.5rem,5vw,4.5rem)] leading-[1.02] tracking-[-0.015em] text-[var(--black)]"
+            className="mt-6 font-display font-normal text-[length:var(--fs-h2)] leading-[1.02] tracking-[-0.015em] text-[var(--black)]"
             data-reveal="lines"
           >
             {coreValues.heading}
@@ -63,13 +63,13 @@ export function CoreValues() {
                   )}
                 </span>
 
-                <h3 className="mt-8 max-w-[14ch] font-sans text-[length:clamp(1.375rem,1.8vw,1.625rem)] font-normal uppercase leading-[1.25] tracking-[0.01em] text-[var(--black)]">
+                <h3 className="mt-8 max-w-[14ch] font-sans text-[length:var(--fs-h4)] font-normal uppercase leading-[1.25] tracking-[0.01em] text-[var(--black)]">
                   {value.name}
                 </h3>
 
-                <span className="mt-6 block h-px w-full bg-[var(--khaki)]" aria-hidden="true" />
+                <span className="mt-6 block h-px w-full bg-[var(--terracotta)]" aria-hidden="true" />
 
-                <p className="mt-6 max-w-[22rem] font-sans text-[1rem] leading-[1.8] text-[var(--charcoal)] [text-wrap:pretty]">
+                <p className="mt-6 max-w-[22rem] font-sans text-[length:var(--fs-body)] leading-[1.8] text-[var(--charcoal)] [text-wrap:pretty]">
                   {value.desc}
                 </p>
               </li>

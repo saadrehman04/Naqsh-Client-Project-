@@ -56,7 +56,7 @@ const DISC_TINTS = [
 ];
 
 const sectionHeading =
-  "font-display font-normal text-[length:clamp(2.25rem,4vw,3.5rem)] leading-[1.05] tracking-[-0.015em] text-[var(--black)] [text-wrap:balance]";
+  "font-display font-normal text-[length:var(--fs-h2)] leading-[1.05] tracking-[-0.015em] text-[var(--black)] [text-wrap:balance]";
 
 export default function ServicesPage() {
   const { header, premiumGifting, giftingConsultation, projectWorkflow } = servicesContent;
@@ -64,36 +64,13 @@ export default function ServicesPage() {
   return (
     <div className="bg-[var(--ivory)]">
       <PageHero
-        title={header.title}
-        subtitle={header.intro}
+        title={premiumGifting.heading}
+        subtitle={premiumGifting.body}
         label={header.label}
         image="/images/site/services-cover.webp"
         imageTreatment="blur"
         imagePosition="70% center"
       />
-
-      {/* Premium Gifting Solutions (ivory) */}
-      <section
-        id={premiumGifting.id}
-        className="section-y scroll-mt-24 bg-[var(--ivory)]"
-        aria-labelledby="premium-gifting-heading"
-      >
-        <div className="container-x grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
-          <div className="lg:col-span-5">
-            <Ornament align="start" />
-            <h2 id="premium-gifting-heading" className={`mt-5 ${sectionHeading}`} data-reveal="lines">
-              {premiumGifting.heading}
-            </h2>
-          </div>
-          <p
-            className="lg:col-span-7 lg:pt-12 font-sans text-[length:clamp(1.0625rem,0.4vw+0.98rem,1.25rem)] leading-[1.75] text-[var(--charcoal)] [text-wrap:pretty]"
-            data-reveal="up"
-            data-delay="0.08"
-          >
-            {premiumGifting.body}
-          </p>
-        </div>
-      </section>
 
       {/* Gifting Consultation (black band, terracotta accents) */}
       <section
@@ -122,11 +99,11 @@ export default function ServicesPage() {
                 <Ornament align="start" />
                 <h2
                   id="gifting-consultation-heading"
-                  className="mt-5 font-display font-normal text-[length:clamp(2.25rem,4vw,3.5rem)] leading-[1.05] tracking-[-0.015em] text-[var(--ivory)] [text-wrap:balance]"
+                  className="mt-5 font-display font-normal text-[length:var(--fs-h2)] leading-[1.05] tracking-[-0.015em] text-[var(--ivory)] [text-wrap:balance]"
                 >
                   {giftingConsultation.heading}
                 </h2>
-                <p className="mt-5 max-w-[38rem] font-sans text-[1.0625rem] leading-[1.75] text-[var(--ivory)]/80 [text-wrap:pretty]">
+                <p className="mt-5 max-w-[38rem] font-sans text-[length:var(--fs-body)] leading-[1.75] text-[var(--ivory)]/80 [text-wrap:pretty]">
                   {giftingConsultation.body}
                 </p>
               </div>
@@ -147,7 +124,7 @@ export default function ServicesPage() {
                           strokeWidth={1.5}
                           aria-hidden="true"
                         />
-                        <span className="font-display text-[1.375rem] leading-[1.2] text-[var(--ivory)]">
+                        <span className="font-display text-[length:var(--fs-h4)] leading-[1.2] text-[var(--ivory)]">
                           {term.label}
                         </span>
                       </li>
@@ -157,7 +134,7 @@ export default function ServicesPage() {
                 <div className="mt-8">
                   <Button
                     href={giftingConsultation.ctaHref}
-                    className="[--btn-bg:var(--terracotta-on-dark)]"
+                    className="[--btn-bg:var(--terracotta-on-dark)] [--btn-border:var(--terracotta-on-dark)] [--btn-fill:var(--terracotta)]"
                   >
                     {giftingConsultation.ctaText}
                   </Button>
@@ -181,7 +158,7 @@ export default function ServicesPage() {
               {projectWorkflow.heading}
             </h2>
             <p
-              className="mt-5 font-sans text-[1.0625rem] sm:text-[1.1875rem] leading-[1.7] text-[var(--charcoal)]"
+              className="mt-5 font-sans text-[length:var(--fs-body)] leading-[1.7] text-[var(--charcoal)]"
               data-reveal="up"
               data-delay="0.06"
             >
@@ -210,7 +187,7 @@ export default function ServicesPage() {
                       <Icon className="size-7" strokeWidth={1.4} />
                     </span>
                   </div>
-                  <h3 className="mt-6 font-display text-[1.5rem] leading-[1.15] text-[var(--black)]">
+                  <h3 className="mt-6 font-display text-[length:var(--fs-h4)] leading-[1.15] text-[var(--black)]">
                     {step.name}
                   </h3>
                   <p className="mt-3 font-sans text-[0.9375rem] leading-[1.65] text-[var(--charcoal)]">
@@ -222,9 +199,6 @@ export default function ServicesPage() {
 
           </ol>
 
-          <div className="mt-12 sm:mt-14" data-reveal="up">
-            <Button href={projectWorkflow.ctaHref}>{projectWorkflow.ctaText}</Button>
-          </div>
         </div>
       </section>
     </div>

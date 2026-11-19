@@ -31,7 +31,7 @@ export function AccordionItem({
       )}
     >
       <summary className="flex items-center justify-between gap-4 cursor-pointer select-none text-left">
-        <span className="font-display text-[1.3125rem] sm:text-[1.5rem] leading-[1.3] text-[var(--text-strong)] group-hover:text-[var(--chestnut)] transition-colors duration-200">
+        <span className="font-display text-[length:var(--fs-h4)] leading-[1.3] text-[var(--text-strong)] group-hover:text-[var(--chestnut)] transition-colors duration-200">
           {question}
         </span>
         <span
@@ -57,7 +57,7 @@ export function AccordionItem({
 
       <div className="faq-content-grid grid grid-rows-[0fr] group-open:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-[var(--ease-out)]">
         <div className="overflow-hidden">
-          <div className="pt-3 pb-2 pe-12 font-sans text-[1rem] sm:text-[1.0625rem] leading-[1.75] text-[var(--text)] max-w-prose">
+          <div className="pt-3 pb-2 pe-12 font-sans text-[length:var(--fs-body)] leading-[1.75] text-[var(--text)] max-w-prose">
             <p>{answer}</p>
             {confirmTag && (
               <div className="mt-2">

@@ -34,7 +34,7 @@ export function About() {
           <Ornament align="start" className="mb-6" />
           <h2
             id="about-heading"
-            className="t-h2 text-[length:clamp(2.5rem,5vw,4.5rem)] leading-[1.02] tracking-[-0.015em]"
+            className="t-h2"
             data-reveal="lines"
           >
             {about.heading}
@@ -43,7 +43,7 @@ export function About() {
             {about.paragraph}
           </p>
           <p
-            className="font-sans text-sm sm:text-base uppercase tracking-[0.12em] text-[var(--ivory)] mt-8 sm:mt-10 flex items-center gap-3 before:content-[''] before:size-[6px] before:shrink-0 before:rotate-45 before:bg-[var(--terracotta-on-dark)]"
+            className="font-sans text-sm sm:text-base font-bold uppercase tracking-[0.12em] text-[var(--sage)] mt-8 sm:mt-10 flex items-center gap-3 before:content-[''] before:size-[6px] before:shrink-0 before:rotate-45 before:bg-[var(--terracotta-on-dark)]"
             data-reveal="up"
             data-delay="0.14"
           >

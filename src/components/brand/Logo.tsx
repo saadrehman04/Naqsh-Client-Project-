@@ -114,3 +114,37 @@ export function TerracottaLogo({ kind, className, label = "NAQSH" }: TerracottaL
     />
   );
 }
+
+interface CopperLogoProps {
+  kind: "wordmark" | "emblem";
+  className?: string;
+  label?: string;
+  /** Eager-load (header logo is above the fold). */
+  priority?: boolean;
+}
+
+const COPPER = {
+  wordmark: { src: "/brand/copper-wordmark.webp", width: 640, height: 118 },
+  emblem: { src: "/brand/copper-emblem.webp", width: 326, height: 600 },
+} as const;
+
+/**
+ * Copper metallic logo (client's final files, assets/logo/final/PNG "*_copper-shiny-2d").
+ * Web copies are built by scripts/build-copper-logos.mjs: trimmed, black background made
+ * transparent, artwork unchanged. Designed for dark grounds (header, footer).
+ */
+export function CopperLogo({ kind, className, label = "NAQSH", priority = false }: CopperLogoProps) {
+  const logo = COPPER[kind];
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={logo.src}
+      width={logo.width}
+      height={logo.height}
+      alt={label}
+      loading={priority ? "eager" : "lazy"}
+      decoding="async"
+      className={cn("h-auto", className)}
+    />
+  );
+}

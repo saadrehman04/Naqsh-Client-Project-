@@ -47,9 +47,14 @@
   --font-display: "Marcellus", "Times New Roman", serif;   /* headlines, 400 only (client choice, option D) */
   --font-body: "Mulish", system-ui, sans-serif;                     /* body and UI, 300–800 variable */
   --fs-display: clamp(3.25rem, 8vw, 8rem);
-  --fs-h1: clamp(2.5rem, 5vw, 5rem);
-  --fs-h2: clamp(2rem, 3.6vw, 3.5rem);
-  --fs-h3: clamp(1.5rem, 2vw, 2rem);
+  /* One type scale site-wide (client request 2026-11-19: "inconsistent font size all over").
+     h1 = inner-page titles, h2 = section headings, h3 = sub-section / panel headings,
+     h4 = card and item titles, lead = emphasis lines, body = running text. */
+  --fs-h1: clamp(2.5rem, 5vw, 4.75rem);
+  --fs-h2: clamp(2.25rem, 4vw, 3.75rem);
+  --fs-h3: clamp(1.625rem, 2.2vw, 2.125rem);
+  --fs-h4: clamp(1.25rem, 1.5vw, 1.5rem);
+  --fs-lead: clamp(1.125rem, 0.55vw + 1rem, 1.375rem);
   --fs-body: clamp(1rem, 0.35vw + 0.95rem, 1.125rem);
   --fs-small: 0.875rem;
   --fs-label: 0.75rem;     /* uppercase, tracking 0.16em */

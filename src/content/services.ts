@@ -87,8 +87,6 @@ export const servicesContent = {
         desc: "Your gifts are packed and delivered as agreed.",
       },
     ] as { icon: WorkflowIcon; name: string; desc: string }[],
-    ctaText: "Request Consultation",
-    ctaHref: "/contact",
   },
   header: {
     label: "Our Services",

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { TerracottaLogo } from "@/components/brand/Logo";
+import { CopperLogo } from "@/components/brand/Logo";
 import { Mail, Phone } from "lucide-react";
 import type { ReactNode } from "react";
 import { siteConfig, type SocialLink } from "@/content/site";
@@ -108,7 +108,7 @@ function ContactRow({ href, icon, label, value, external }: ContactRowProps) {
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
-  const { footer, policies, socials, email } = siteConfig;
+  const { footer, discover, socials, email } = siteConfig;
   const visibleSocials = socials.filter((s) => s.url || isDev);
   const whatsappUrl = getWhatsAppUrl(
     "Hello NAQSH, I would like to consult on a corporate gifting requirement.",
@@ -117,39 +117,72 @@ export function Footer() {
   return (
     <footer className="site-footer bg-[var(--black)] text-[var(--ivory)]">
       <div className="max-w-[1280px] mx-auto px-5 sm:px-8 lg:px-12 pt-12 sm:pt-16 pb-8">
-        <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-[minmax(0,0.8fr)_minmax(0,1fr)_minmax(0,1fr)] gap-x-6 gap-y-10 md:gap-10">
+        {/* Emblem | Discover | Get in Touch | Follow Us. The emblem cell stretches to the row, so the
+            copper emblem runs from the first heading line to the last list line. */}
+        <div className="grid grid-cols-2 lg:grid-cols-[7rem_repeat(3,minmax(0,1fr))] gap-x-6 sm:gap-x-10 lg:gap-x-16 gap-y-10">
           {/* Brand */}
-          <div>
-            <Link href="/" aria-label="NAQSH home" className="inline-block">
-              <TerracottaLogo kind="emblem" className="inline-block h-36 sm:h-48 lg:h-60" />
-            </Link>
+          <Link href="/" aria-label="NAQSH home" className="relative block min-h-[9rem]">
+            <CopperLogo
+              kind="emblem"
+              label=""
+              className="absolute inset-y-0 start-0 h-full w-auto max-w-full object-contain object-left"
+            />
+          </Link>
+
+          {/* Discover */}
+          <nav aria-labelledby="footer-discover-heading">
+            <h2 id="footer-discover-heading" className={headingClass}>
+              {footer.discoverHeading}
+            </h2>
+            <ul className="flex flex-col gap-1 font-sans text-sm">
+              {discover.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="inline-flex items-center min-h-[40px] text-[var(--ivory)]/85 hover:text-[var(--ivory)] underline-offset-4 hover:underline transition-colors"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          {/* Get in Touch (full width on phones so the number and email stay on one line) */}
+          <div className="col-span-2 sm:col-span-1">
+            <h2 className={headingClass}>{footer.contactHeading}</h2>
+            <div className="flex flex-col gap-3 font-sans">
+              <ContactRow
+                href={`tel:+${WHATSAPP_NUMBER}`}
+                icon={<Phone className="w-4 h-4" aria-hidden="true" />}
+                label="Call"
+                value={DISPLAY_PHONE}
+              />
+              <ContactRow
+                href={whatsappUrl}
+                external
+                icon={<WhatsAppGlyph />}
+                label="WhatsApp"
+                value={DISPLAY_PHONE}
+              />
+              {(email || isDev) && (
+                <ContactRow
+                  href={email ? `mailto:${email}` : null}
+                  icon={<Mail className="w-4 h-4" aria-hidden="true" />}
+                  label="Email"
+                  value={email ?? <Confirm label="email address" />}
+                />
+              )}
+            </div>
           </div>
 
-          {/* Policies + social */}
-          <div className="md:justify-self-center xl:justify-self-start">
-            <nav aria-labelledby="footer-policies-heading">
-              <h2 id="footer-policies-heading" className={headingClass}>
-                {footer.policiesHeading}
+          {/* Follow Us (hidden until a profile URL exists, except as dev flags) */}
+          {visibleSocials.length > 0 && (
+            <div>
+              <h2 id="footer-follow-heading" className={headingClass}>
+                {footer.followHeading}
               </h2>
-              <ul className="flex flex-col gap-1 font-sans text-sm">
-                {policies.map((policy) => (
-                  <li key={policy.href}>
-                    <Link
-                      href={policy.href}
-                      className="inline-flex items-center min-h-[40px] text-[var(--ivory)]/85 hover:text-[var(--ivory)] underline-offset-4 hover:underline transition-colors"
-                    >
-                      {policy.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-
-            {visibleSocials.length > 0 && (
-              <ul
-                className="mt-6 flex flex-col gap-2 font-sans"
-                aria-label="Social media"
-              >
+              <ul className="flex flex-col gap-3 font-sans" aria-labelledby="footer-follow-heading">
                 {visibleSocials.map((social) => {
                   const Glyph = socialGlyph[social.platform];
                   const content = (
@@ -185,43 +218,18 @@ export function Footer() {
                   );
                 })}
               </ul>
-            )}
-          </div>
-
-          {/* Contact */}
-          <div className="col-span-2 md:col-span-1 md:justify-self-end xl:justify-self-center">
-            <h2 className={headingClass}>{footer.contactHeading}</h2>
-            <div className="flex flex-col gap-3 font-sans">
-              <ContactRow
-                href={`tel:+${WHATSAPP_NUMBER}`}
-                icon={<Phone className="w-4 h-4" aria-hidden="true" />}
-                label="Call"
-                value={DISPLAY_PHONE}
-              />
-              <ContactRow
-                href={whatsappUrl}
-                external
-                icon={<WhatsAppGlyph />}
-                label="WhatsApp"
-                value={DISPLAY_PHONE}
-              />
-              {(email || isDev) && (
-                <ContactRow
-                  href={email ? `mailto:${email}` : null}
-                  icon={<Mail className="w-4 h-4" aria-hidden="true" />}
-                  label="Email"
-                  value={email ?? <Confirm label="email address" />}
-                />
-              )}
             </div>
-          </div>
+          )}
         </div>
 
-        {/* Bottom line: four items with equal spacing between them */}
-        <ul data-footer-bottom className="mt-10 sm:mt-12 pt-6 border-t border-[var(--hairline-dark)] grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3 xl:flex xl:items-center xl:justify-between font-sans text-[11px] uppercase tracking-[0.12em] text-[var(--ivory)]/65">
-          {[`© ${currentYear} ${footer.copyright}`, footer.tagline, ...footer.craftedLine].map((item) => (
-            <li key={item}>{item}</li>
-          ))}
+        {/* Bottom line: copyright (start), Nationwide Delivery (centre), Lahore, Pakistan (end) */}
+        <ul
+          data-footer-bottom
+          className="mt-10 sm:mt-12 pt-6 border-t border-[var(--hairline-dark)] grid grid-cols-1 sm:grid-cols-3 items-center gap-y-3 gap-x-6 font-sans text-[11px] uppercase tracking-[0.12em] text-[var(--ivory)]/65"
+        >
+          <li>© {currentYear} {footer.copyright}</li>
+          <li className="sm:text-center">{footer.deliveryLine}</li>
+          <li className="sm:text-end">{footer.locationLine}</li>
         </ul>
       </div>
     </footer>

@@ -7,6 +7,10 @@ import { X, ArrowUpRight } from "lucide-react";
 import { collections } from "@/content/collections";
 import { products, type Product } from "@/content/products";
 
+// Company profile, "PRODUCT PORTFOLIO" (client copy, wording as sent 2026-11-19).
+const PORTFOLIO_INTRO =
+  "Our solutions are designed around corporate occasions rather than a fixed catalogue. We curate, source, customize, and deliver gifting experiences tailored to each client’s objectives, brand identity, audience, and budget. These include, but are not limited to the following:";
+
 const byTitle = (a: { title: string }, b: { title: string }) => a.title.localeCompare(b.title);
 const byName = (a: { name: string }, b: { name: string }) => a.name.localeCompare(b.name);
 
@@ -43,12 +47,16 @@ export function ProductCatalog() {
     >
       <div className="container-x">
         <div className="catalog-heading">
-          <p className="t-label text-[var(--pine)]" data-reveal="up">
-            Curated Product Catalogue
-          </p>
           <h2 id="all-products-heading" className="t-h2" data-reveal="lines">
             Explore Our Gift Editions.
           </h2>
+          <p
+            className="mt-5 max-w-[46rem] font-sans text-[length:var(--fs-body)] leading-[1.75] text-[var(--charcoal)] [text-wrap:pretty]"
+            data-reveal="up"
+            data-delay="0.06"
+          >
+            {PORTFOLIO_INTRO}
+          </p>
         </div>
 
         <div
@@ -100,9 +108,12 @@ export function ProductCatalog() {
                 <h3 className="product-tile-title">{item.name}</h3>
                 <Link
                   href={`/contact?product=${item.slug}#request-form`}
+                  target="_blank"
+                  rel="noopener"
                   className="product-tile-request"
                 >
                   Request Details
+                  <span className="sr-only"> (opens in a new tab)</span>
                   <ArrowUpRight className="size-3.5" aria-hidden="true" />
                 </Link>
               </div>

@@ -26,8 +26,9 @@ export default function ContactPage() {
 
       {/* Contact channels + consultation form */}
       <section className="section-y bg-[var(--ivory)]" aria-label="Contact channels and consultation form">
-        <div className="container-x grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-10 xl:gap-14 items-start">
+        <div className="container-x grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-10 xl:gap-14 items-start lg:items-stretch">
           {/* Get in touch panel (client design) */}
+          {/* Stretches to the form column so both end on the same line (client request 2026-11-19) */}
           <div className="lg:col-span-6" data-reveal="up">
             <ContactPanel />
           </div>
@@ -38,10 +39,10 @@ export default function ContactPage() {
               <span className="font-sans text-[0.75rem] font-semibold uppercase tracking-[0.16em] text-[var(--pine)]">
                 Corporate Gifting Brief
               </span>
-              <h2 className="mt-2 font-display font-normal text-[length:clamp(1.75rem,2.4vw,2.25rem)] leading-[1.1] text-[var(--black)]">
+              <h2 className="mt-2 font-display font-normal text-[length:var(--fs-h3)] leading-[1.1] text-[var(--black)]">
                 Request a Custom Proposal
               </h2>
-              <p className="mt-2 font-sans text-[0.9375rem] text-[var(--charcoal)]">
+              <p className="mt-2 font-sans text-[length:var(--fs-body)] text-[var(--charcoal)]">
                 Share your requirements below and our curation desk will respond promptly.
               </p>
             </div>

@@ -36,7 +36,7 @@ const FAQ_KEYWORDS: Record<string, string> = {
   "how-to-place-order": "order place book start begin process how to buy purchase get started",
   "minimum-order-quantity": "minimum order quantity moq min units pieces small order few least",
   "bulk-orders": "bulk large volume hundreds many wholesale big order company wide",
-  "custom-gifting-proposal": "proposal quote quotation custom plan recommendation",
+  "custom-gifting-proposal": "proposal quote quotation custom plan recommendation bespoke unique one of a kind concept special idea",
   "add-company-logo": "logo branding brand print engrave emboss deboss foil company name",
   "custom-gift-packaging": "packaging box boxes wrapping wrap custom packing presentation",
   "personalize-individual-gifts": "personalise personalize name individual each recipient engrave names card",
@@ -49,7 +49,7 @@ const FAQ_KEYWORDS: Record<string, string> = {
   "delivery-timeline": "how long time timeline lead time days weeks urgent rush when deadline advance",
   "payment-methods": "payment pay methods bank transfer invoice card cash",
   "corporate-payment-process": "payment process advance deposit invoice terms settlement",
-  "recurring-gifting-requirements": "recurring ongoing monthly regular birthdays anniversaries program subscription",
+  "recurring-gifting-requirements": "recurring ongoing monthly regular birthdays anniversaries program subscription seasonal season campaign festive",
   "seasonal-corporate-campaigns": "seasonal season ramadan ramzan eid new year independence day womens day mothers day fathers day festive",
   "assist-corporate-events": "events event conference seminar summit trophies medals giveaways",
 };
@@ -119,7 +119,7 @@ function companyEntries(): KnowledgeEntry[] {
       question: "What are Premium Gifting Solutions?",
       answer: premiumGifting.body,
       keywords: "premium gifting solutions luxury high end end to end",
-      link: { label: "View services", href: `/services#${premiumGifting.id}` },
+      link: { label: "View services", href: "/services" },
     },
     {
       id: "consultation",

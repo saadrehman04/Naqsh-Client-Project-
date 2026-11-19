@@ -144,7 +144,7 @@ export function PageHero({
           </h1>
           {displayIntro && (
             <p
-              className="text-sm sm:text-lg leading-relaxed text-[var(--ivory)]/90 max-w-xl font-light [text-shadow:0_1px_12px_rgba(0,0,0,0.55)]"
+              className="text-[length:var(--fs-body)] leading-relaxed text-[var(--ivory)]/90 max-w-xl font-light [text-shadow:0_1px_12px_rgba(0,0,0,0.55)]"
               data-reveal={fadeOnly ? undefined : "up"}
               data-delay={fadeOnly ? undefined : "0.1"}
             >

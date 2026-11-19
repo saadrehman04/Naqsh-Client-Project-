@@ -66,12 +66,6 @@ export const faqGroups: FAQGroup[] = [
         answer:
           "Yes. We can personalize individual items—such as engraving recipient names on awards, tumblers, or leather goods—and include individually addressed greeting cards for executive teams, VIP clients, or milestone awards.",
       },
-      {
-        id: "completely-bespoke-concepts",
-        question: "Can you create completely bespoke gifting concepts?",
-        answer:
-          "Yes. Rather than limiting you to a fixed retail catalogue, we design bespoke gifting concepts around your specific occasion, cultural moment, brand narrative, and recipient profile.",
-      },
     ],
   },
   {
@@ -135,12 +129,6 @@ export const faqGroups: FAQGroup[] = [
         answer:
           "We support standard corporate banking channels, including official bank transfers against formal corporate invoices. Specific payment and tax documentation details are shared upon proposal approval.",
       },
-      {
-        id: "corporate-payment-process",
-        question: "What is the payment process for corporate orders?",
-        answer:
-          "Once your gifting concept, quantities, and branding specifications are finalized, we issue a formal corporate invoice. Production begins upon order confirmation and agreed advance deposit, with final settlement completed according to the terms outlined in your agreement.",
-      },
     ],
   },
   {
@@ -153,18 +141,6 @@ export const faqGroups: FAQGroup[] = [
         question: "Can NAQSH manage recurring gifting requirements?",
         answer:
           "Yes. We partner with HR and corporate teams on ongoing programs—including monthly new-hire onboarding kits, employee birthdays, work anniversaries, newborn celebrations, and client onboarding packages.",
-      },
-      {
-        id: "seasonal-corporate-campaigns",
-        question: "Can you manage seasonal corporate gifting campaigns?",
-        answer:
-          "Yes. We manage end-to-end seasonal campaigns for Ramadan, Eid, New Year, Pakistan Independence Day, International Women's Day, Mother's Day, and Father's Day—handling concept design, bespoke packaging, and timely dispatch.",
-      },
-      {
-        id: "assist-corporate-events",
-        question: "Can you assist with corporate events?",
-        answer:
-          "Yes. We curate and produce seminar and conference delegate kits, leadership summit folios, sports tournament medals and trophies, recognition plaques, and event hospitality giveaways timed to your event schedule.",
       },
     ],
   },

@@ -5,10 +5,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 import { siteConfig } from "@/content/site";
-import { TerracottaLogo } from "@/components/brand/Logo";
+import { CopperLogo } from "@/components/brand/Logo";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
 import { MobileMenu } from "./MobileMenu";
 import { cn } from "@/lib/utils";
+
+const LIGHT_TOP_PATHS = ["/faqs"];
 
 export function Header() {
   const pathname = usePathname();
@@ -28,26 +30,30 @@ export function Header() {
     };
   }, []);
 
+  // Pages whose top is ivory (no dark hero) keep the solid header from the start.
+  const solid = isScrolled || LIGHT_TOP_PATHS.includes(pathname);
+
   return (
     <>
       <header
         className={cn(
           "fixed top-0 inset-x-0 z-50 transition-all duration-300 ease-[var(--ease-out)] text-[var(--ivory)]",
-          isScrolled
+          solid
             ? "bg-[var(--black)]/92 backdrop-blur-md border-b border-[var(--terracotta-on-dark)]/40 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.45)]"
             : "bg-transparent border-b border-white/[0.12]"
         )}
       >
         <div className="container-x header-shell flex items-center justify-between">
-          {/* Left: terracotta wordmark */}
+          {/* Left: copper wordmark */}
           <Link
             href="/"
             aria-label="NAQSH Homepage"
             className="header-brand-lockup flex flex-col items-start select-none group py-1"
           >
-            <TerracottaLogo
+            <CopperLogo
               kind="wordmark"
               label="NAQSH"
+              priority
               className="block w-[115px] sm:w-[134px] transition-transform duration-300 group-hover:scale-[1.02]"
             />
           </Link>

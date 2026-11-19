@@ -351,7 +351,7 @@ html.lenis body {
   font-weight: 500;
 }
 @utility t-lead {
-  font-size: clamp(1.125rem, 0.55vw + 1rem, 1.375rem);
+  font-size: var(--fs-lead);
   line-height: 1.6;
 }
 @utility t-small {
@@ -839,7 +839,7 @@ dialog::backdrop {
 .collection-gallery-meta small { display: block; font-size: .85rem; color: var(--charcoal); margin-top: .4rem; }
 .collection-gallery-bottom { display:flex; align-items:center; gap:1rem; color:var(--charcoal); font-size:.8rem; padding-top:1.4rem; }
 .collection-gallery-rule { height:1px; width:4rem; background:var(--copper); }
-.catalog-heading { max-width: 42rem; margin-bottom: 2rem; }
+.catalog-heading { max-width: 48rem; margin-bottom: 2rem; }
 .catalog-heading > p:last-child { margin-top:1rem; }
 .catalog-filters { display:flex; gap:.55rem; overflow-x:auto; padding: .3rem 0 1.2rem; margin-bottom:1.2rem; scrollbar-width:thin; }
 .catalog-filter { flex:0 0 auto; border:1px solid var(--hairline); color:var(--text); padding:.7rem 1rem; min-height:44px; font-size:.78rem; }
@@ -850,7 +850,7 @@ dialog::backdrop {
 .product-tile { display:block; color:var(--text-strong); text-align:left; min-width:0; }
 .product-tile-image { display:block; position:relative; width:100%; overflow:hidden; aspect-ratio:4/3; background:var(--ivory-deep); cursor:zoom-in; }
 .product-tile-meta { display:block; border-top:1px solid var(--hairline); padding-top:.8rem; margin-top:.7rem; }
-.product-tile-title { display:block; font:1.5rem/1.1 var(--font-display); color:var(--text-strong); }
+.product-tile-title { display:block; font:var(--fs-h4)/1.15 var(--font-display); color:var(--text-strong); }
 .product-tile-request { display:inline-flex; align-items:center; gap:.35rem; margin-top:.6rem; min-height:24px; font:600 .72rem/1 var(--font-body); letter-spacing:.14em; text-transform:uppercase; color:var(--chestnut); text-decoration:underline; text-decoration-color:rgb(127 48 33 / .35); text-underline-offset:.35em; transition:color .25s, text-decoration-color .25s; }
 .product-tile-request:hover { color:var(--terracotta); text-decoration-color:currentColor; }
 .product-tile-request svg { transition: transform .25s; }
@@ -957,7 +957,8 @@ dialog::backdrop {
 .why-visual-caption { position:absolute; inset:auto 0 0; padding:1.2rem; color:var(--ivory); font:1.6rem var(--font-display); background:linear-gradient(transparent,rgb(0 0 0 / .6)); }
 /* Scoped Dark Theme for Section 02 (About - Forest Pine Luxury) */
 .about-section.on-dark {
-  background: linear-gradient(180deg, #0A2118 0%, #0E291F 50%, #0A1E16 100%);
+  /* Black (client request 2026-11-19; was a dark green gradient). */
+  background: var(--black);
   color: var(--ivory);
   border-bottom: 1px solid rgb(178 76 59 / 0.2);
 }
