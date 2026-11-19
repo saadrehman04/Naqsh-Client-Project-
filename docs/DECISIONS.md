@@ -165,3 +165,8 @@ Status: **ASSUMED** = default I (Saad) have not confirmed with the client. Chang
   - **Why:** `next build` on 16.4.3 ended with a security-advisory notice and exit code 1. The advisories were GHSA-mfr8-8qww-v76h and GHSA-vc7v-qv4w-wrv8, both moderate, for 16.2.0–16.4.4: data leaks between root params in `use cache` functions. The site was not exposed (`cacheComponents: false`, no `use cache`, `unstable_cache` or root params), but the failing exit could block deploys.
   - **Result:** 16.4.6 has no advisories, and the build now exits 0 with all 22 pages prerendered. No code changes were needed. The type check is clean, and lint shows only the existing errors in the untouched 3D, ScrollEffects and CMS files. All 9 routes were smoke-tested at 1440 and 390.
   - **Audit note:** the remaining high-severity `npm audit` items are in `lighthouse` (a dev-only tool) and its dependencies. The site's own `zod` is 4.6.7, which is already patched; only lighthouse's nested zod 3.x is flagged.
+- **2026-11-19**: Review pass of the 24-point revision (all points re-verified in the browser at 1440/1024/390). Gaps found and fixed:
+  - The phone menu still showed the black wordmark. It now has a black top bar like the site header, with the copper wordmark and an ivory close button.
+  - The phone menu's 01–06 item numbers used a monospace font outside the type system; they are now Mulish.
+  - The unused old Services title ("Gifting Solutions for Every Business Occasion.") is removed from `services.ts`.
+  - Still open: Rushda's contact-panel text, and a high-resolution hero original.

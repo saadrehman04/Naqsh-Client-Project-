@@ -88,11 +88,9 @@ export const servicesContent = {
       },
     ] as { icon: WorkflowIcon; name: string; desc: string }[],
   },
+  // Hero label only: the hero title/text is Premium Gifting Solutions (client request 2026-11-19).
   header: {
     label: "Our Services",
-    title: "Gifting Solutions for Every Business Occasion.",
-    intro:
-      "Tailored employee, executive, event, and seasonal gifting—managed from concept to delivery.",
   },
   services: [
     {

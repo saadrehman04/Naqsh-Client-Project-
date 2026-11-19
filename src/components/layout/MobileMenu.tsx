@@ -3,7 +3,7 @@
 import React, { useEffect, useRef } from "react";
 import Link from "next/link";
 import { siteConfig } from "@/content/site";
-import { Emblem, Wordmark } from "@/components/brand/Logo";
+import { CopperLogo, Emblem } from "@/components/brand/Logo";
 import { Button } from "@/components/ui/Button";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
 
@@ -49,14 +49,14 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
       className="m-0 p-0 w-screen h-screen max-w-none max-h-none bg-[var(--ivory)] text-[var(--text-strong)] backdrop:bg-black/40"
     >
       <div className="flex flex-col min-h-screen p-6 sm:p-10 justify-between lattice">
-        {/* Header bar */}
-        <div className="flex items-center justify-between pb-6 border-b border-[var(--hairline)]">
-          <Wordmark variant="black" className="w-28" />
+        {/* Header bar: black like the site header, with the copper wordmark (client request 2026-11-19) */}
+        <div className="-mx-6 -mt-6 sm:-mx-10 sm:-mt-10 px-6 sm:px-10 h-[72px] flex items-center justify-between bg-[var(--black)] border-b border-[var(--terracotta-on-dark)]/40">
+          <CopperLogo kind="wordmark" label="NAQSH" priority className="block w-[115px]" />
           <button
             type="button"
             onClick={onClose}
             aria-label="Close menu"
-            className="flex items-center justify-center w-11 h-11 border border-[var(--charcoal)] text-[var(--charcoal)] hover:text-black hover:border-black transition-colors"
+            className="flex items-center justify-center w-11 h-11 rounded-full border border-[var(--ivory)]/60 text-[var(--ivory)] hover:border-[var(--ivory)] transition-colors"
           >
             <svg
               width="16"
@@ -87,7 +87,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                   className="group flex items-center justify-between font-serif text-3xl sm:text-4xl text-[var(--text-strong)] hover:text-[var(--chestnut)] transition-colors duration-200 py-2 min-h-[48px]"
                 >
                   <span>{item.label}</span>
-                  <span className="text-xs font-mono font-normal text-[var(--pine)] tracking-widest">
+                  <span className="text-xs font-sans font-semibold tabular-nums text-[var(--pine)] tracking-[0.16em]">
                     0{idx + 1}
                   </span>
                 </Link>
