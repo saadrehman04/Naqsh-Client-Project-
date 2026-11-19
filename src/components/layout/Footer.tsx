@@ -80,13 +80,10 @@ function ContactRow({ href, icon, label, value, external }: ContactRowProps) {
       >
         {icon}
       </span>
-      <span className="min-w-0">
-        <span className="block text-[11px] uppercase tracking-[0.14em] text-[var(--ivory)]/60">
-          {label}
-        </span>
-        <span className="block text-sm text-[var(--ivory)] break-words">
-          {value}
-        </span>
+      {/* Client request: icon + value only. The channel name stays for screen readers. */}
+      <span className="min-w-0 text-sm text-[var(--ivory)]/85 group-hover:text-[var(--ivory)] transition-colors whitespace-nowrap">
+        <span className="sr-only">{label}: </span>
+        {value}
       </span>
     </>
   );
@@ -117,9 +114,11 @@ export function Footer() {
   return (
     <footer className="site-footer bg-[var(--black)] text-[var(--ivory)]">
       <div className="max-w-[1280px] mx-auto px-5 sm:px-8 lg:px-12 pt-12 sm:pt-16 pb-8">
-        {/* Emblem | Discover | Get in Touch | Follow Us. The emblem cell stretches to the row, so the
-            copper emblem runs from the first heading line to the last list line. */}
-        <div className="grid grid-cols-2 lg:grid-cols-[7rem_repeat(3,minmax(0,1fr))] gap-x-6 sm:gap-x-10 lg:gap-x-16 gap-y-10">
+        {/* Emblem | Discover | Get in Touch | Follow Us. On desktop each column is as wide as its
+            content and the free space is shared out evenly, so the gaps between all four are equal.
+            The emblem cell stretches to the row, so the copper emblem runs from the first heading
+            line to the last list line. */}
+        <div className="grid grid-cols-2 lg:grid-cols-[6.5rem_auto_auto_auto] lg:justify-between gap-x-6 sm:gap-x-10 lg:gap-x-12 gap-y-10">
           {/* Brand */}
           <Link href="/" aria-label="NAQSH home" className="relative block min-h-[9rem]">
             <CopperLogo
@@ -222,14 +221,13 @@ export function Footer() {
           )}
         </div>
 
-        {/* Bottom line: copyright (start), Nationwide Delivery (centre), Lahore, Pakistan (end) */}
+        {/* Bottom line: copyright (start), Lahore, Pakistan (end) */}
         <ul
           data-footer-bottom
-          className="mt-10 sm:mt-12 pt-6 border-t border-[var(--hairline-dark)] grid grid-cols-1 sm:grid-cols-3 items-center gap-y-3 gap-x-6 font-sans text-[11px] uppercase tracking-[0.12em] text-[var(--ivory)]/65"
+          className="mt-10 sm:mt-12 pt-6 border-t border-[var(--hairline-dark)] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-y-3 gap-x-6 font-sans text-[11px] uppercase tracking-[0.12em] text-[var(--ivory)]/65"
         >
           <li>© {currentYear} {footer.copyright}</li>
-          <li className="sm:text-center">{footer.deliveryLine}</li>
-          <li className="sm:text-end">{footer.locationLine}</li>
+          <li>{footer.locationLine}</li>
         </ul>
       </div>
     </footer>

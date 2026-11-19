@@ -16,8 +16,7 @@ export interface FooterContent {
   contactHeading: string;
   followHeading: string;
   copyright: string;
-  /** Bottom line, centre and end (client request 2026-11-19). */
-  deliveryLine: string;
+  /** Bottom line, end (client request 2026-11-19; "Nationwide Delivery" removed 2026-11-19). */
   locationLine: string;
 }
 
@@ -89,7 +88,6 @@ export const siteConfig: SiteConfig = {
     contactHeading: "Get in Touch",
     followHeading: "Follow Us",
     copyright: "NAQSH. All rights reserved.",
-    deliveryLine: "Nationwide Delivery",
     locationLine: "Lahore, Pakistan",
   },
   // Rule: Hidden until real content exists. Never invent fake logos or testimonials.
