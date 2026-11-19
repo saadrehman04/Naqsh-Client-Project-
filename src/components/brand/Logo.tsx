@@ -125,11 +125,12 @@ interface CopperLogoProps {
 
 const COPPER = {
   wordmark: { src: "/brand/copper-wordmark.webp", width: 640, height: 118 },
-  emblem: { src: "/brand/copper-emblem.webp", width: 326, height: 600 },
+  emblem: { src: "/brand/copper-emblem-3d.webp", width: 327, height: 600 },
 } as const;
 
 /**
- * Copper metallic logo (client's final files, assets/logo/final/PNG "*_copper-shiny-2d").
+ * Copper metallic logo (client's final files, assets/logo/final/PNG: wordmark "copper-shiny-2d",
+ * footer emblem "copper-shiny-3d").
  * Web copies are built by scripts/build-copper-logos.mjs: trimmed, black background made
  * transparent, artwork unchanged. Designed for dark grounds (header, footer).
  */

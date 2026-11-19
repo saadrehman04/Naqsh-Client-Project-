@@ -124,7 +124,7 @@ Status: **ASSUMED** = default I (Saad) have not confirmed with the client. Chang
     - The emblem cell stretches to the row, so the emblem runs from the first heading line to the last list line.
     - Bottom line: © (start) · Lahore, Pakistan (end). "Nationwide Delivery" was removed from the footer on 2026-11-19 (client request; it stays on the Contact location card).
     - Follow-up 2026-11-19: on desktop the four columns size to their content and share the free space evenly (`grid-cols-[6.5rem_auto_auto_auto] justify-between`, emblem column = emblem width), so the gaps emblem → Discover → Get in Touch → Follow Us are equal (207 px at 1440, 122 px at 1024).
-    - Get in Touch rows show only the icon and the number / address; the words Call, WhatsApp and Email are screen-reader only. The client kept the logo1 copper 2D emblem.
+    - Get in Touch rows show only the icon and the number / address; the words Call, WhatsApp and Email are screen-reader only. Footer emblem switched to the client's **logo1 copper 3D** file (`public/brand/copper-emblem-3d.webp`, new name so caches refresh); the header wordmark stays copper 2D.
   - **Hero image**
     - The source is only 1600×1007 and was compressed three times (source, export q82, next/image q75).
     - Now it is exported once with a Lanczos3 2400w upscale, light sharpening and q90; the phone crop is 1209w q88. `<Image quality={90}>` with 90 added to `images.qualities`.

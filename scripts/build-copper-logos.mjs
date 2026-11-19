@@ -12,8 +12,8 @@ const OUT = "public/brand";
 const JOBS = [
   // Header wordmark: shown ~134px wide, exported at 4x for sharp retina rendering.
   { src: "naqsh-wordmark_copper-shiny-2d.png", out: "copper-wordmark.webp", width: 640 },
-  // Footer emblem: shown up to ~250px tall, exported at ~2.4x.
-  { src: "logo1_copper-shiny-2d.png", out: "copper-emblem.webp", height: 600 },
+  // Footer emblem: copper 3D finish (client choice 2026-11-19). Shown up to ~250px tall, exported at ~2.4x.
+  { src: "logo1_copper-shiny-3d.png", out: "copper-emblem-3d.webp", height: 600 },
 ];
 
 await mkdir(OUT, { recursive: true });
