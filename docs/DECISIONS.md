@@ -161,3 +161,7 @@ Status: **ASSUMED** = default I (Saad) have not confirmed with the client. Chang
   - **Type scale**
     - One set of tokens (`--fs-h1/h2/h3/h4/lead/body`, mirrored in `design/tokens.css`) applied to every section heading, sub-heading, card title and body paragraph across Home, Services, Approach, Portfolio, FAQs, Contact, policies and collection pages.
     - The home hero headline is intentionally larger.
+- **2026-11-19**: **Next.js 16.4.3 → 16.4.6** (and `eslint-config-next` to match), a patch release.
+  - **Why:** `next build` on 16.4.3 ended with a security-advisory notice and exit code 1. The advisories were GHSA-mfr8-8qww-v76h and GHSA-vc7v-qv4w-wrv8, both moderate, for 16.2.0–16.4.4: data leaks between root params in `use cache` functions. The site was not exposed (`cacheComponents: false`, no `use cache`, `unstable_cache` or root params), but the failing exit could block deploys.
+  - **Result:** 16.4.6 has no advisories, and the build now exits 0 with all 22 pages prerendered. No code changes were needed. The type check is clean, and lint shows only the existing errors in the untouched 3D, ScrollEffects and CMS files. All 9 routes were smoke-tested at 1440 and 390.
+  - **Audit note:** the remaining high-severity `npm audit` items are in `lighthouse` (a dev-only tool) and its dependencies. The site's own `zod` is 4.6.7, which is already patched; only lighthouse's nested zod 3.x is flagged.
