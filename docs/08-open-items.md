@@ -49,5 +49,7 @@ The site must not imply unconfirmed operational, commercial, or legal details. `
 - Logos: the header and footer show the approved logo shapes tinted terracotta by CSS. Ask the designer for official terracotta SVG exports so `assets/logo/svg` holds the real files.
 - Resend: inquiries are sent to contact@naqshonline.co, but the sender is still `onboarding@resend.dev`. To send from an @naqshonline.co address, verify the domain in Resend and set the `from` address in `src/app/api/inquiry/route.ts`.
 - **Hero photo original**: the home hero is only 1600×1007. Ask the client for the full-resolution file; it is currently upscaled and sharpened, which helps but cannot add detail.
-- **Rushda's text** for the Contact page "Let’s Create Meaningful Connections" panel (current text kept until it arrives).
+- ~~Rushda's text for the Contact panel~~: resolved 2026-11-19. "Website Content 2.pdf" keeps the same heading and intro, adds the "Contact Our Team" label and "Prefer to talk right away?".
+- **FAQ 9 "Can I request product samples?"**: the content PDF changed only the question (we → I) and gave no answer, so the existing answer is kept. Confirm it.
+- **FAQ 13**: the new last sentence ("We can also cater to urgent requests depending upon the project requirements") had no full stop in the PDF; one was added.
 - **Two dark sections back to back** (client requests): Home hero → black About Us, and Services hero → black Gifting Consultation. Confirm the client is happy with this.

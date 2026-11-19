@@ -88,7 +88,10 @@ export function ContactPanel() {
             </p>
           </div>
 
-          <ul className="mt-8 flex flex-col gap-3">
+          <h3 className="mt-8 px-2 sm:px-3 font-display font-normal text-[length:var(--fs-h4)] leading-tight text-[var(--black)]">
+            {c.channelsHeading}
+          </h3>
+          <ul className="mt-4 flex flex-col gap-3">
             <li>
               <ChannelCard
                 icon={<WhatsAppGlyph />}

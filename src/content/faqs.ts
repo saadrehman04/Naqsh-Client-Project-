@@ -11,6 +11,7 @@ export interface FAQGroup {
   items: FAQItem[];
 }
 
+// FAQ edits from the client's "Website Content 2.pdf" (2026-11-19), applied verbatim.
 export const faqGroups: FAQGroup[] = [
   {
     group: "Ordering",
@@ -27,13 +28,13 @@ export const faqGroups: FAQGroup[] = [
         id: "minimum-order-quantity",
         question: "What is the minimum order quantity?",
         answer:
-          "Minimum order quantities depend on the level of bespoke packaging and product customization required. We support both focused executive batches and large organization-wide rollouts—exact minimums for your chosen concept are confirmed during your initial consultation.",
+          "Minimum order quantities depend on the level of bespoke packaging and product customization required. We support both focused executive batches and large organization-wide rollouts - exact minimums for your chosen concept are confirmed during your initial consultation.",
       },
       {
         id: "bulk-orders",
         question: "Can I order in bulk?",
         answer:
-          "Yes. NAQSH specializes in structured bulk corporate orders for employee onboarding programs, annual conferences, seasonal Ramadan and Eid campaigns, and company-wide milestones, with rigorous quality control across every unit.",
+          "Yes. We specialize in structured bulk corporate orders for all your programs and campaigns with rigorous quality control across every unit.",
       },
       {
         id: "custom-gifting-proposal",
@@ -52,19 +53,19 @@ export const faqGroups: FAQGroup[] = [
         id: "add-company-logo",
         question: "Can you add our company logo?",
         answer:
-          "Yes. We integrate your brand identity with refinement using blind debossing, gold or copper foil stamping, laser engraving, embroidery, custom sleeves, and bespoke wax seals—ensuring your logo feels elevated rather than overly promotional.",
+          "Yes. We can integrate your brand identity with refinement ensuring your logo feels elevated.",
       },
       {
         id: "custom-gift-packaging",
-        question: "Can gift packaging be customized?",
+        question: "Can you customize gift packaging?",
         answer:
-          "Yes. Our packaging options include custom-built rigid keepsake boxes, precision-cut internal inserts, woven hampers, printed outer sleeves, coordinated satin ribbons, and custom tissue layering tailored to your brand palette.",
+          "Yes. We have different packaging options which can be discussed during the consultation as per your budget and requirements.",
       },
       {
         id: "personalize-individual-gifts",
-        question: "Can we personalize individual gifts?",
+        question: "Can you personalize individual gifts?",
         answer:
-          "Yes. We can personalize individual items—such as engraving recipient names on awards, tumblers, or leather goods—and include individually addressed greeting cards for executive teams, VIP clients, or milestone awards.",
+          "Yes. We can personalize individual items - such as but not limited to engraving recipient names on awards, tumblers, or leather goods - and include individually addressed greeting cards for your recipients.",
       },
     ],
   },
@@ -75,13 +76,13 @@ export const faqGroups: FAQGroup[] = [
     items: [
       {
         id: "gifts-by-budget",
-        question: "Can gifts be selected according to a specific budget?",
+        question: "Can I select gifts according to a specific budget?",
         answer:
-          "Yes. Whether you are planning a practical conference giveaway or a distinguished executive suite, we curate product combinations and packaging tiers specifically engineered around your target budget per gift.",
+          "Yes. We curate product combinations and packaging tiers specifically engineered around your target budget per gift.",
       },
       {
         id: "request-product-samples",
-        question: "Can we request product samples?",
+        question: "Can I request product samples?",
         answer:
           "We provide detailed visual proposals and product specifications for every brief, and physical sample or prototype arrangements can be discussed during consultation depending on your order scope and production timeline.",
       },
@@ -89,7 +90,7 @@ export const faqGroups: FAQGroup[] = [
         id: "prepare-employee-welcome-kits",
         question: "Can you prepare employee welcome kits?",
         answer:
-          "Yes—New Hire Welcome Kits are one of our signature specialties. We curate, brand, and assemble cohesive first-day boxes featuring items such as hardcover notebooks, insulated tumblers, pens, power banks, key rings, apparel, and welcome cards.",
+          "Yes. New Hire Welcome Kits are one of our signature specialties. We curate, brand, and assemble cohesive first-day boxes featuring items including but not limited to hardcover notebooks, insulated tumblers, pens, power banks, key rings, apparel, and welcome cards.",
       },
     ],
   },
@@ -102,7 +103,7 @@ export const faqGroups: FAQGroup[] = [
         id: "delivery-cities",
         question: "Which cities do you deliver to?",
         answer:
-          "From our studio in Lahore, we coordinate corporate gift deliveries across Lahore and nationwide throughout Pakistan—including Karachi, Islamabad, Rawalpindi, Faisalabad, Multan, Peshawar, and Sialkot. International shipping requirements can also be discussed during consultation.",
+          "From NAQSH studio in Lahore, we coordinate corporate gift deliveries throughout Pakistan. International shipping requirements can also be discussed during consultation.",
       },
       {
         id: "multiple-addresses-delivery",
@@ -114,7 +115,7 @@ export const faqGroups: FAQGroup[] = [
         id: "delivery-timeline",
         question: "How long does delivery take?",
         answer:
-          "Production and delivery timelines depend on order quantity, customization complexity, and destination cities. We generally recommend initiating your inquiry 3 to 4 weeks prior to your event—and earlier for peak seasons such as Ramadan, Eid, and New Year—while exact schedules are confirmed in your proposal.",
+          "Production and delivery timelines depend on order quantity, customization complexity, and destination cities. We generally recommend initiating your inquiry 3 to 4 weeks prior to your event - and earlier for peak seasons such as Ramadan, Eid, and New Year - while exact schedules are confirmed in your proposal. We can also cater to urgent requests depending upon the project requirements.",
       },
     ],
   },
@@ -138,9 +139,9 @@ export const faqGroups: FAQGroup[] = [
     items: [
       {
         id: "recurring-gifting-requirements",
-        question: "Can NAQSH manage recurring gifting requirements?",
+        question: "Can you manage recurring gifting requirements?",
         answer:
-          "Yes. We partner with HR and corporate teams on ongoing programs—including monthly new-hire onboarding kits, employee birthdays, work anniversaries, newborn celebrations, and client onboarding packages.",
+          "Yes. We partner with HR and corporate teams on ongoing programs - including but not limited to monthly new-hire onboarding kits, employee birthdays, work anniversaries, newborn celebrations, and client onboarding packages.",
       },
     ],
   },

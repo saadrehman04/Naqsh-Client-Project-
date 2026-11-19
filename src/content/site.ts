@@ -70,12 +70,12 @@ export const siteConfig: SiteConfig = {
     { label: "FAQs", href: "/faqs" },
     { label: "Contact", href: "/contact" },
   ],
-  // Footer "Discover" list (client request 2026-11-19). Our Philosophy → Our Approach page,
+  // Footer "Discover" list (client request 2026-11-19; order from "Website Content 2.pdf"). Our Philosophy → its own page,
   // Terms & Policies → the Data Privacy Policy page.
   discover: [
-    { label: "Our Philosophy", href: "/our-approach" },
-    { label: "Shipping & Delivery", href: "/shipping-delivery" },
+    { label: "Our Philosophy", href: "/our-philosophy" },
     { label: "Terms & Policies", href: "/privacy" },
+    { label: "Shipping & Delivery", href: "/shipping-delivery" },
   ],
   // PLACEHOLDER links (client request 2026-11-16): the platforms' home pages, not real profiles.
   // [CONFIRM: replace with NAQSH's actual Instagram and LinkedIn profile URLs]

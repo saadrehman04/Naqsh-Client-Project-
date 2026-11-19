@@ -172,3 +172,10 @@ Status: **ASSUMED** = default I (Saad) have not confirmed with the client. Chang
   - The phone menu's 01–06 item numbers used a monospace font outside the type system; they are now Mulish.
   - The unused old Services title ("Gifting Solutions for Every Business Occasion.") is removed from `services.ts`.
   - Still open: Rushda's contact-panel text, and a high-resolution hero original.
+
+## 2026-11-19 · "Website Content 2.pdf"
+- **FAQs**: the blue edits applied verbatim (questions 2, 3, 5, 6, 7, 8, 9, 10, 11, 13, 15, numbered as on the FAQ page). The client marked the dashes, so the em dashes in those answers are now spaced hyphens (" - "), as typed in the PDF.
+- **Our Philosophy**: new page `/our-philosophy` (content in `src/content/philosophy.ts`, layout in `PhilosophyContent`). Text-only black hero like the policy pages, then the five principles as numbered rows on ivory, then the closing note in italics. The footer "Our Philosophy" link now goes here instead of Our Approach. Added to the sitemap and to the chatbot (interest-free, halal, sourcing, Amanah questions).
+- **Contact panel**: label "Get in Touch" → "Contact Our Team"; new sub-heading "Prefer to talk right away?" above the channel cards; "Our Location" → "Location". Heading and intro unchanged, as the PDF says.
+- **Footer**: Discover order is now Our Philosophy · Terms & Policies · Shipping & Delivery. Get in Touch was already icon-only.
+

@@ -93,10 +93,18 @@ Subline [DRAFT]: Tell us about your occasion and we will craft the rest.
 Button: Request Consultation · secondary: WhatsApp us
 Contact line [CLIENT]: Contact Us at: +92-300-1462774
 
-## Contact page · Get in Touch panel [CLIENT design, Nov 2026]
-Label: GET IN TOUCH · Heading: Let’s Create Meaningful Connections
+## Contact page · Contact Our Team panel [CLIENT design, Nov 2026; "Website Content 2.pdf", 2026-11-19]
+Label: CONTACT OUR TEAM · Heading: Let’s Create Meaningful Connections (unchanged, "same text which is already there")
 Intro: Have a gifting need, a question, or want to explore ideas? We’d love to hear from you.
-Cards: WhatsApp · Call Us · Email Us: contact@naqshonline.co · Our Location: Lahore, Pakistan / Nationwide Delivery
+Sub-heading above the cards: Prefer to talk right away?
+Cards: WhatsApp · Call Us · Email Us: contact@naqshonline.co · Location: Lahore, Pakistan / Nationwide Delivery
+
+## Our Philosophy page [CLIENT, "Website Content 2.pdf", 2026-11-19]
+Verbatim in `src/content/philosophy.ts` (route `/our-philosophy`, linked from the footer Discover list).
+Title: Rooted in Ethics. Crafted with Integrity. · Intro, five principles (100% Interest-Free, Conscious & Ethical Sourcing, Promise Kept (Amanah), Dignified Storytelling, Halal Standards) and the closing note.
+
+## Footer [CLIENT, "Website Content 2.pdf", 2026-11-19]
+Discover: Our Philosophy · Terms & Policies · Shipping & Delivery. Get in Touch: Call, WhatsApp, Email (icon and value only, no labels). Follow Us: Instagram · LinkedIn.
 
 ## Contact page [DRAFT]
 Heading: Let's talk about your next gift.
@@ -107,7 +115,10 @@ Success: Thank you. Your request has been received. We will be in touch [CONFIRM
 Error: Something went wrong. Please try again or message us on WhatsApp.
 Direct channels: Phone / WhatsApp +92-300-1462774 · Email contact@naqshonline.co [CLIENT] · Location: Lahore, Pakistan · Hours [CONFIRM]
 
-## FAQs [DRAFT, every answer needs client confirmation]
+## FAQs
+Source of truth is `src/content/faqs.ts` (15 questions). Client edits from "Website Content 2.pdf" (2026-11-19) applied verbatim to questions 2, 3, 5, 6, 7, 8, 9, 10, 11, 13 and 15. The list below is the original draft, kept for history.
+
+### Original draft [DRAFT]
 **Process**
 - How does Naqsh work? — We start with a consultation about your occasion, audience, brand and budget. We then curate options, customize the details, and deliver to the doorstep.
 - Do you only offer ready-made gift sets? — No. Our solutions are designed around your occasion rather than a fixed catalogue.

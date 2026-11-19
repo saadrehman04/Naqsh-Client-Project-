@@ -11,6 +11,7 @@ import { collections } from "@/content/collections";
 import { products } from "@/content/products";
 import { siteConfig } from "@/content/site";
 import { privacyPolicy, shippingPolicy, type PolicyDocument } from "@/content/policies";
+import { philosophyContent } from "@/content/philosophy";
 
 export interface KnowledgeLink {
   label: string;
@@ -257,6 +258,37 @@ function policyEntries(policy: PolicyDocument): KnowledgeEntry[] {
   }));
 }
 
+/** Our Philosophy page: one entry for the whole page, one per principle. */
+function philosophyEntries(): KnowledgeEntry[] {
+  const p = philosophyContent;
+  const link: KnowledgeLink = { label: p.label, href: "/our-philosophy" };
+  return [
+    {
+      id: "philosophy",
+      question: "What is NAQSH's philosophy?",
+      answer: [p.intro, ...p.principles.map((x) => `${x.term}: ${x.text}`)].join("\n\n"),
+      keywords: "philosophy values ethics ethical principles shariah sharia compliant islamic integrity",
+      link,
+    },
+    ...p.principles.map((x) => ({
+      id: `philosophy:${x.term}`,
+      question: x.term,
+      answer: x.text,
+      keywords: `philosophy ${x.term} ${
+        {
+          "100% Interest-Free": "interest riba loan bank borrowing credit sood",
+          "Conscious & Ethical Sourcing": "sourcing supply chain suppliers genocide boycott labor environment",
+          "Promise Kept (Amanah)": "amanah promise honest fair pricing quality on time",
+          "Dignified Storytelling": "modest modesty branding content islamic guidelines",
+          "Halal Standards": "halal haram permissible prohibited",
+        }[x.term] ?? ""
+      }`,
+      link,
+      hideFromSuggestions: true,
+    })),
+  ];
+}
+
 export const knowledgeBase: KnowledgeEntry[] = [
   ...companyEntries(),
   ...faqEntries(),
@@ -264,6 +296,7 @@ export const knowledgeBase: KnowledgeEntry[] = [
   ...productEntries(),
   ...policyEntries(shippingPolicy),
   ...policyEntries(privacyPolicy),
+  ...philosophyEntries(),
 ];
 
 /** Starter chips shown when the chat opens. */

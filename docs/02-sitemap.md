@@ -15,6 +15,7 @@ Footer: logo + tagline, quick links, Policies (Privacy, Shipping & Delivery), ph
 | `/portfolio/[slug]` | One page per collection |
 | `/faqs` | FAQs |
 | `/contact` | Contact + inquiry form |
+| `/our-philosophy` | Our Philosophy (ethical and Shariah-compliant principles; footer Discover link) |
 | `/privacy` | Data Privacy |
 | `/shipping-delivery` | Shipping & Delivery |
 | `/404` | Not found (on brand, with link home) |
