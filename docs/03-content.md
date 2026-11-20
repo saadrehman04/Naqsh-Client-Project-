@@ -72,7 +72,7 @@ Icon labels per step [CLIENT, Nov 2026]:
 - Deliver: Quality Check · Order Coordination · Logistics · Doorstep Delivery
 
 ## Portfolio page hero [CLIENT, 2026-11-20]
-Label: Portfolio & Catalogue · Heading: Product Portfolio · Body: the company-profile intro ("Our solutions are designed around corporate occasions … not limited to the following.", colon changed to a period). Catalogue heading: Explore Our Gift Editions (no period), collection tabs right under it. Source: `src/content/portfolio.ts`.
+No label (removed 2026-11-20) · Heading: Product Portfolio · Body: the company-profile intro ("Our solutions are designed around corporate occasions … not limited to the following.", colon changed to a period). Catalogue heading: Explore Our Gift Editions (no period), collection tabs right under it. Source: `src/content/portfolio.ts`.
 
 ## Product Portfolio
 Intro [CLIENT]: Our solutions are designed around corporate occasions rather than a fixed catalogue. We curate, source, customize, and deliver gifting experiences tailored to each client's objectives, brand identity, audience, and budget. These include, but are not limited to:

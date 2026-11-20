@@ -198,4 +198,4 @@ Status: **ASSUMED** = default I (Saad) have not confirmed with the client. Chang
 - **Request Consultation did nothing**: `Button` dropped `onClick` when rendered as a link, so the menu never closed and stayed over the page it navigated to (on /contact nothing visible happened). `Button` now passes `onClick` to `Link` / `<a>`; the menu's Request Consultation and WhatsApp buttons close the menu.
 - **Oversized emblem**: `cn()` is plain `clsx` (no Tailwind merging), so default size classes (`w-auto` in `Emblem`, `h-auto` in `CopperLogo`) could beat the caller's size and render the logo at full file size. Defaults are now dropped (`Emblem`) or applied only when no height is given (`CopperLogo`). This also fixes the 404 page and image-placeholder emblems.
 - **Menu bottom row**: Lahore, Pakistan | copper 3D emblem (56 px) | phone (tap to call), on a black strip that mirrors the black top bar, because the copper art is made for dark grounds and looks washed out on ivory.
-
+- **2026-11-20 · Portfolio hero label removed**: "Portfolio & Catalogue" is gone; `PageHero`'s `label` is now optional and renders nothing when omitted.
