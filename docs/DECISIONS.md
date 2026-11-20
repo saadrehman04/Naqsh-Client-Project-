@@ -236,3 +236,7 @@ Status: **ASSUMED** = default I (Saad) have not confirmed with the client. Chang
 - New client photo (`assets/images/site/gifting-consultation-v2.webp`, 1024×1536; was 678×1080), kept at native size and served at quality 90. Same scene, so the alt text is unchanged.
 - The wide 16:10 tablet crop now focuses lower (`sm:object-[50%_74%]`) so the consultant's hand and the brochure stay in frame; phone and desktop keep 40% centre.
 
+## 2026-11-20 · Services hero: blurred photo restored
+- At the client's request, the Services hero is back to its earlier look: the 1500 px `services-cover.webp` with the "blur" treatment (6 px blur, 110% zoom, start fade). `PageHero` keeps both "blur" and "clear".
+- The 2K photo (`assets/images/site/services-cover-2k.jpg`) stays in assets as an unused original; its web export was removed.
+

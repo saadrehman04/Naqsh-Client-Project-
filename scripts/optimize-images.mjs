@@ -75,9 +75,9 @@ const SITE_IMAGES = [
   { src: "why-heritage-box.webp", out: "why-heritage-box" },
   // Bottom 204 px of the original is an empty black band. Shown full-bleed and unblurred
   // (client request 2026-11-20), so it gets the same HD export as the home hero.
-  // 2026-11-20: client's 2K Services photo (2400 x 1792 JPEG, no black band). Already 2400w, so it is
-  // only re-encoded at q90: no upscaling, sharpening or crop.
-  { src: "services-cover-2k.jpg", out: "services-cover-2k", hq: true, noSharpen: true },
+  // Bottom 204 px of the original is an empty black band. Shown blurred behind the copy (restored at
+  // the client's request 2026-11-20). The 2K photo (services-cover-2k.jpg) is kept but unused.
+  { src: "services-cover.webp", out: "services-cover", crop: [0, 0, 1500, 996] },
   { src: "portfolio-cover.png", out: "portfolio-cover" },
   // 2026-11-20: client's 2K contact photo (2752 x 1536 JPEG). Cropped from the top (same share as the
   // earlier version) to trim empty dark space above the stamp; scaled down to 2400w, no sharpening.
