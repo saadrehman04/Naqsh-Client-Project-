@@ -13,7 +13,7 @@ function WhatsAppGlyph() {
     <svg
       viewBox="0 0 24 24"
       aria-hidden="true"
-      className="w-4 h-4"
+      className="size-[18px]"
       fill="currentColor"
     >
       <path d="M12.04 2C6.52 2 2.03 6.48 2.02 12c0 1.76.46 3.47 1.34 4.98L2 22l5.16-1.35A10 10 0 1 0 12.04 2Zm0 18.18c-1.5 0-2.97-.4-4.25-1.17l-.3-.18-3.06.8.82-2.98-.2-.31A8.17 8.17 0 1 1 12.04 20.18Zm4.49-6.12c-.25-.13-1.48-.73-1.71-.81-.23-.08-.4-.13-.56.13-.17.25-.65.81-.8.98-.15.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.24-.75-.66-1.25-1.48-1.4-1.73-.15-.25-.02-.39.11-.52.11-.11.25-.29.38-.44.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.09s.9 2.42 1.02 2.59c.13.17 1.77 2.7 4.29 3.79.6.26 1.07.42 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.48-.61 1.69-1.2.21-.59.21-1.1.15-1.2-.06-.1-.23-.16-.48-.29Z" />
@@ -58,11 +58,15 @@ const socialGlyph: Record<SocialLink["platform"], () => ReactNode> = {
   LinkedIn: LinkedInGlyph,
 };
 
-const iconBox =
-  "w-10 h-10 shrink-0 rounded-full border border-[var(--hairline-dark)] flex items-center justify-center text-[var(--terracotta-on-dark)] transition-colors duration-200";
-
+/* Client footer design (2026-11-20): headings and icons in khaki (#C0A48E, 8.9:1 on black),
+   bare icons without circles, social links as khaki-gradient discs without labels. */
 const headingClass =
-  "text-xs font-sans font-semibold tracking-[0.16em] uppercase text-[var(--ivory)]/60 mb-5";
+  "text-xs font-sans font-semibold tracking-[0.18em] uppercase text-[var(--khaki)] mb-4";
+
+/** One row height for the Discover and Get in Touch lists, so their lines sit side by side. */
+const rowClass = "flex items-center min-h-[40px]";
+const listClass = "flex flex-col gap-1 font-sans text-sm";
+const linkText = "text-[var(--ivory)]/90 group-hover:text-[var(--ivory)] transition-colors";
 
 interface ContactRowProps {
   href: string | null;
@@ -75,31 +79,29 @@ interface ContactRowProps {
 function ContactRow({ href, icon, label, value, external }: ContactRowProps) {
   const inner = (
     <>
-      <span
-        className={`${iconBox} group-hover:border-[var(--terracotta-on-dark)] group-hover:text-[var(--ivory)]`}
-      >
-        {icon}
-      </span>
-      {/* Client request: icon + value only. The channel name stays for screen readers. */}
-      <span className="min-w-0 text-sm text-[var(--ivory)]/85 group-hover:text-[var(--ivory)] transition-colors whitespace-nowrap">
+      <span className="flex w-5 shrink-0 justify-center text-[var(--khaki)]">{icon}</span>
+      {/* Icon + value only. The channel name stays for screen readers. */}
+      <span className={`min-w-0 whitespace-nowrap ${linkText}`}>
         <span className="sr-only">{label}: </span>
         {value}
       </span>
     </>
   );
 
-  if (!href) {
-    return <div className="flex items-center gap-3.5">{inner}</div>;
-  }
-
   return (
-    <a
-      href={href}
-      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-      className="group flex items-center gap-3.5 min-h-[44px]"
-    >
-      {inner}
-    </a>
+    <li>
+      {href ? (
+        <a
+          href={href}
+          {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+          className={`group gap-3.5 ${rowClass}`}
+        >
+          {inner}
+        </a>
+      ) : (
+        <div className={`gap-3.5 ${rowClass}`}>{inner}</div>
+      )}
+    </li>
   );
 }
 
@@ -114,11 +116,10 @@ export function Footer() {
   return (
     <footer className="site-footer bg-[var(--black)] text-[var(--ivory)]">
       <div className="max-w-[1280px] mx-auto px-5 sm:px-8 lg:px-12 pt-12 sm:pt-16 pb-8">
-        {/* Emblem | Discover | Get in Touch | Follow Us. On desktop each column is as wide as its
-            content and the free space is shared out evenly, so the gaps between all four are equal.
-            The emblem cell stretches to the row, so the copper emblem runs from the first heading
-            line to the last list line. */}
-        <div className="grid grid-cols-2 lg:grid-cols-[6.5rem_auto_auto_auto] lg:justify-between gap-x-6 sm:gap-x-10 lg:gap-x-12 gap-y-10">
+        {/* Emblem | Discover | Get in Touch | Follow Us in four equal columns, so the headings
+            start at equal intervals (client request 2026-11-20). The emblem cell stretches to the
+            row, so the copper emblem runs from the first heading line to the last list line. */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-6 sm:gap-x-10 lg:gap-x-12 gap-y-10">
           {/* Brand */}
           <Link href="/" aria-label="NAQSH home" className="relative block min-h-[9rem]">
             <CopperLogo
@@ -133,12 +134,12 @@ export function Footer() {
             <h2 id="footer-discover-heading" className={headingClass}>
               {footer.discoverHeading}
             </h2>
-            <ul className="flex flex-col gap-1 font-sans text-sm">
+            <ul className={listClass}>
               {discover.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="inline-flex items-center min-h-[40px] text-[var(--ivory)]/85 hover:text-[var(--ivory)] underline-offset-4 hover:underline transition-colors"
+                    className={`group underline-offset-4 hover:underline ${rowClass} ${linkText}`}
                   >
                     {item.label}
                   </Link>
@@ -149,11 +150,13 @@ export function Footer() {
 
           {/* Get in Touch (full width on phones so the number and email stay on one line) */}
           <div className="col-span-2 sm:col-span-1">
-            <h2 className={headingClass}>{footer.contactHeading}</h2>
-            <div className="flex flex-col gap-3 font-sans">
+            <h2 id="footer-contact-heading" className={headingClass}>
+              {footer.contactHeading}
+            </h2>
+            <ul className={listClass} aria-labelledby="footer-contact-heading">
               <ContactRow
                 href={`tel:+${WHATSAPP_NUMBER}`}
-                icon={<Phone className="w-4 h-4" aria-hidden="true" />}
+                icon={<Phone className="size-[18px]" strokeWidth={1.6} aria-hidden="true" />}
                 label="Call"
                 value={DISPLAY_PHONE}
               />
@@ -167,51 +170,42 @@ export function Footer() {
               {(email || isDev) && (
                 <ContactRow
                   href={email ? `mailto:${email}` : null}
-                  icon={<Mail className="w-4 h-4" aria-hidden="true" />}
+                  icon={<Mail className="size-[18px]" strokeWidth={1.6} aria-hidden="true" />}
                   label="Email"
                   value={email ?? <Confirm label="email address" />}
                 />
               )}
-            </div>
+            </ul>
           </div>
 
-          {/* Follow Us (hidden until a profile URL exists, except as dev flags) */}
+          {/* Follow Us (hidden until a profile URL exists, except as dev flags): icon discs only */}
           {visibleSocials.length > 0 && (
             <div>
               <h2 id="footer-follow-heading" className={headingClass}>
                 {footer.followHeading}
               </h2>
-              <ul className="flex flex-col gap-3 font-sans" aria-labelledby="footer-follow-heading">
+              <ul className="flex flex-wrap items-center gap-3" aria-labelledby="footer-follow-heading">
                 {visibleSocials.map((social) => {
                   const Glyph = socialGlyph[social.platform];
-                  const content = (
-                    <>
-                      <span
-                        className={`${iconBox} group-hover:border-[var(--terracotta-on-dark)] group-hover:text-[var(--ivory)]`}
-                      >
-                        <Glyph />
-                      </span>
-                      <span className="text-sm text-[var(--ivory)]/85 group-hover:text-[var(--ivory)] transition-colors">
-                        {social.platform}
-                      </span>
-                    </>
-                  );
                   return (
-                    <li key={social.platform}>
+                    <li key={social.platform} className="flex items-center gap-2">
                       {social.url ? (
                         <a
                           href={social.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="group inline-flex items-center gap-3.5 min-h-[44px]"
+                          aria-label={`${social.platform} (opens in a new tab)`}
+                          className="social-disc"
                         >
-                          {content}
+                          <Glyph />
                         </a>
                       ) : (
-                        <span className="group inline-flex flex-wrap items-center gap-x-3.5 gap-y-1 min-h-[44px]">
-                          {content}
+                        <>
+                          <span className="social-disc" aria-label={social.platform} role="img">
+                            <Glyph />
+                          </span>
                           <Confirm label={`${social.platform} URL`} />
-                        </span>
+                        </>
                       )}
                     </li>
                   );

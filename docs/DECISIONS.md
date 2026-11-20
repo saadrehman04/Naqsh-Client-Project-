@@ -188,3 +188,9 @@ Status: **ASSUMED** = default I (Saad) have not confirmed with the client. Chang
 - **Contact**: hero title has no period. Panel heading is "Contact Our Team" with no label above it. The form card now stretches to the bottom of its column on desktop (`lg:[&>form]:flex-1`), so the panel and the form end on the same line at 1440 and 1024.
 - **Form placeholders**: First Last · ABC Enterprises · name@company.com.
 
+## 2026-11-20 · Footer redesign (client mock-up)
+- Headings and contact icons in `--khaki` (#C0A48E, the client's beige; 8.9:1 on black). Contact icons are bare (no circles).
+- Follow Us: two 44 px khaki-gradient discs (khaki mixed with black only, no new colour) with an ivory glyph, no text labels; accessible names stay on the links. The highlight sits in the corner so the glyph keeps 3:1+ against the disc.
+- Columns: emblem | Discover | Get in Touch | Follow Us in four equal columns, so the headings start at equal intervals (308 px apart at 1440, 244 px at 1024). This replaces the earlier "equal gaps between content" layout.
+- Discover and Get in Touch rows share one row height (40 px, 4 px gap), so their three lines sit on the same lines.
+
