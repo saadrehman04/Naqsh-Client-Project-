@@ -38,3 +38,4 @@ Format per entry: date · phase · what was done · what is next · blocked / ne
 - **2026-11-20 · Refined hero photos**: Home and Contact heroes switched to the client's refined images (HD exports). Checked at 1440 / 1024 / 768 / 390: correct files served, no page errors.
 - **2026-11-20 · Final emblem**: Footer and phone-menu emblem now the client's final copper 3D emblem, rendered from the PDF; all updated emblem files replaced in assets/logo/final. Checked at 1440 / 1024 / 768 / 390.
 - **2026-11-20 · 2K hero photos**: Home and Contact heroes switched to the client's 2752×1536 photos (downscaled, no upscaling). Checked at 1440 / 1024 / 768 / 390: correct files served, no page errors.
+- **2026-11-20 · Services hero refine**: Stronger HD refinement (ImageMagick) for the 1500 px Services photo; foreground (seal, ribbon, box) crisper. Checked at 1440 / 1024 / 768 / 390. A 2K original from the client is still needed for a fully sharp banner.

@@ -223,3 +223,8 @@ Status: **ASSUMED** = default I (Saad) have not confirmed with the client. Chang
 - They are larger than the 2400w export, so they are only scaled down (Lanczos3, q90) with no upscaling or sharpening. The home phone crop is 4:5 at native 1229w, centred on the wax seal. Contact keeps the same share of empty space cut from the top (360 px).
 - New file names (`hero-2k-*`, `contact-cover-2k`) so browsers and the image cache pick up the new photos.
 
+## 2026-11-20 · Services hero: stronger HD refinement
+- No CSS blur remains; the remaining softness is the source itself (1500 px wide, shot with a shallow focus, so the middle of the frame is out of focus by design). No larger copy exists on this machine.
+- `scripts/optimize-images.mjs` gains a `refine` step (`refineHd`, uses ImageMagick): light deblock, 16-bit linear-light EWA LanczosSharp upscale to 2400w, tuned unsharp mask, CLAHE local contrast blended at 30%. Output `site/services-cover-hd.webp` (q90); the previous `services-cover-hq.webp` was removed.
+- The real fix is a larger original (like the 2752×1536 home and contact photos); listed in the open items.
+
