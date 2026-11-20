@@ -1042,6 +1042,7 @@ dialog::backdrop {
   .section-y { padding-block: clamp(3rem, 7vw, 4.25rem); }
   .about-layout, .why-layout { grid-template-columns:1fr; gap: 2rem; }
   .about-copy .t-lead { font-size: 1rem; line-height: 1.62; margin: 0.9rem 0; }
+  .about-copy .about-tagline { font-size: 1rem; }
   .about-images { min-height: 310px; }
   .about-main-image { width: 82%; }
   .about-overlap-image { width: 42%; bottom: 4%; }

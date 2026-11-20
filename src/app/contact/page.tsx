@@ -16,7 +16,7 @@ export default function ContactPage() {
     <div className="bg-[var(--ivory)]">
       {/* Editorial Page Hero */}
       <PageHero
-        title="Let's Craft Your Next Gifting Experience."
+        title="Let's Craft Your Next Gifting Experience"
         subtitle="Share your requirements with us, and let's explore how NAQSH can bring your corporate gifting vision to life."
         label="Corporate Consultation"
         image="/images/site/contact-cover.webp"
@@ -34,7 +34,7 @@ export default function ContactPage() {
           </div>
 
           {/* Form */}
-          <div id="request-form" className="lg:col-span-6 scroll-mt-[calc(var(--header-h)+1.5rem)]" data-reveal="up" data-delay="0.08">
+          <div id="request-form" className="lg:col-span-6 lg:flex lg:flex-col lg:[&>form]:flex-1 scroll-mt-[calc(var(--header-h)+1.5rem)]" data-reveal="up" data-delay="0.08">
             <div className="mb-6">
               <span className="font-sans text-[0.75rem] font-semibold uppercase tracking-[0.16em] text-[var(--pine)]">
                 Corporate Gifting Brief

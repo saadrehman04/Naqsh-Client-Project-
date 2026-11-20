@@ -134,7 +134,7 @@ export default function ServicesPage() {
                 <div className="mt-8">
                   <Button
                     href={giftingConsultation.ctaHref}
-                    className="[--btn-bg:var(--terracotta-on-dark)] [--btn-border:var(--terracotta-on-dark)] [--btn-fill:var(--terracotta)]"
+                    className="[--btn-bg:var(--chestnut)] [--btn-border:var(--chestnut)] [--btn-fill:var(--terracotta-on-dark)]"
                   >
                     {giftingConsultation.ctaText}
                   </Button>

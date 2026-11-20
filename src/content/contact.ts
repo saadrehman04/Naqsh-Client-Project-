@@ -3,8 +3,9 @@
 // (2026-11-19). Contact values come from siteConfig / lib/whatsapp.
 export const contactContent = {
   getInTouch: {
-    label: "Contact Our Team",
-    heading: "Let’s Create Meaningful Connections",
+    // Client request 2026-11-20: "Let’s Create Meaningful Connections" removed; the heading is now
+    // "Contact Our Team" and there is no small label above it.
+    heading: "Contact Our Team",
     intro: "Have a gifting need, a question, or want to explore ideas? We’d love to hear from you.",
     image: "/images/site/contact-gift-box.webp",
     imageAlt:

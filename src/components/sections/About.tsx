@@ -43,7 +43,7 @@ export function About() {
             {about.paragraph}
           </p>
           <p
-            className="font-sans text-sm sm:text-base font-bold uppercase tracking-[0.12em] text-[var(--sage)] mt-8 sm:mt-10 flex items-center gap-3 before:content-[''] before:size-[6px] before:shrink-0 before:rotate-45 before:bg-[var(--terracotta-on-dark)]"
+            className="about-tagline font-sans text-[length:var(--fs-lead)] leading-[1.6] font-bold uppercase tracking-[0.06em] text-[var(--sage)] mt-8 sm:mt-10"
             data-reveal="up"
             data-delay="0.14"
           >

@@ -6,10 +6,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { X, ArrowUpRight } from "lucide-react";
 import { collections } from "@/content/collections";
 import { products, type Product } from "@/content/products";
-
-// Company profile, "PRODUCT PORTFOLIO" (client copy, wording as sent 2026-11-19).
-const PORTFOLIO_INTRO =
-  "Our solutions are designed around corporate occasions rather than a fixed catalogue. We curate, source, customize, and deliver gifting experiences tailored to each client’s objectives, brand identity, audience, and budget. These include, but are not limited to the following:";
+import { portfolioContent } from "@/content/portfolio";
 
 const byTitle = (a: { title: string }, b: { title: string }) => a.title.localeCompare(b.title);
 const byName = (a: { name: string }, b: { name: string }) => a.name.localeCompare(b.name);
@@ -48,15 +45,8 @@ export function ProductCatalog() {
       <div className="container-x">
         <div className="catalog-heading">
           <h2 id="all-products-heading" className="t-h2" data-reveal="lines">
-            Explore Our Gift Editions.
+            {portfolioContent.catalogueHeading}
           </h2>
-          <p
-            className="mt-5 max-w-[46rem] font-sans text-[length:var(--fs-body)] leading-[1.75] text-[var(--charcoal)] [text-wrap:pretty]"
-            data-reveal="up"
-            data-delay="0.06"
-          >
-            {PORTFOLIO_INTRO}
-          </p>
         </div>
 
         <div

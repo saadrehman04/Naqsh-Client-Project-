@@ -71,6 +71,9 @@ Icon labels per step [CLIENT, Nov 2026]:
 - Customize: Branding · Personalization · Packaging · Message
 - Deliver: Quality Check · Order Coordination · Logistics · Doorstep Delivery
 
+## Portfolio page hero [CLIENT, 2026-11-20]
+Label: Portfolio & Catalogue · Heading: Product Portfolio · Body: the company-profile intro ("Our solutions are designed around corporate occasions … not limited to the following.", colon changed to a period). Catalogue heading: Explore Our Gift Editions (no period), collection tabs right under it. Source: `src/content/portfolio.ts`.
+
 ## Product Portfolio
 Intro [CLIENT]: Our solutions are designed around corporate occasions rather than a fixed catalogue. We curate, source, customize, and deliver gifting experiences tailored to each client's objectives, brand identity, audience, and budget. These include, but are not limited to:
 Collections (names are CLIENT, one-liners are [DRAFT]):
@@ -94,7 +97,7 @@ Button: Request Consultation · secondary: WhatsApp us
 Contact line [CLIENT]: Contact Us at: +92-300-1462774
 
 ## Contact page · Contact Our Team panel [CLIENT design, Nov 2026; "Website Content 2.pdf", 2026-11-19]
-Label: CONTACT OUR TEAM · Heading: Let’s Create Meaningful Connections (unchanged, "same text which is already there")
+Heading: Contact Our Team (2026-11-20: "Let’s Create Meaningful Connections" and the small label removed)
 Intro: Have a gifting need, a question, or want to explore ideas? We’d love to hear from you.
 Sub-heading above the cards: Prefer to talk right away?
 Cards: WhatsApp · Call Us · Email Us: contact@naqshonline.co · Location: Lahore, Pakistan / Nationwide Delivery

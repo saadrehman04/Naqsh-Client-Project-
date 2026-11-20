@@ -72,7 +72,8 @@ export function WhySetsApart() {
                   >
                     {String(index + 1).padStart(2, "0")}
                   </span>
-                  <p className="font-sans text-[length:var(--fs-lead)] leading-[1.5] text-[var(--ivory)]/90 [text-wrap:pretty]">
+                  {/* Same size as the intro paragraph above (client request 2026-11-20) */}
+                  <p className="font-sans text-[length:var(--fs-body)] leading-[1.7] text-[var(--ivory)]/90 [text-wrap:pretty]">
                     {promise}
                   </p>
                 </div>

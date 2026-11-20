@@ -241,7 +241,7 @@ export function InquiryForm() {
                 required
                 value={formData.name}
                 onChange={handleChange}
-                placeholder="Tariq Ahmed"
+                placeholder="First Last"
                 className={`w-full px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-lg bg-[var(--ivory)] border text-[var(--black)] placeholder:text-[var(--charcoal)]/45 font-sans text-sm transition-colors focus:outline-none focus:ring-1 ${
                   errors.name
                     ? "border-[var(--chestnut)] focus:border-[var(--chestnut)] focus:ring-[var(--chestnut)]"
@@ -269,7 +269,7 @@ export function InquiryForm() {
                 required
                 value={formData.company}
                 onChange={handleChange}
-                placeholder="Apex Enterprises"
+                placeholder="ABC Enterprises"
                 className={`w-full px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-lg bg-[var(--ivory)] border text-[var(--black)] placeholder:text-[var(--charcoal)]/45 font-sans text-sm transition-colors focus:outline-none focus:ring-1 ${
                   errors.company
                     ? "border-[var(--chestnut)] focus:border-[var(--chestnut)] focus:ring-[var(--chestnut)]"
@@ -300,7 +300,7 @@ export function InquiryForm() {
                 required
                 value={formData.email}
                 onChange={handleChange}
-                placeholder="tariq@company.com"
+                placeholder="name@company.com"
                 className={`w-full px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-lg bg-[var(--ivory)] border text-[var(--black)] placeholder:text-[var(--charcoal)]/45 font-sans text-sm transition-colors focus:outline-none focus:ring-1 ${
                   errors.email
                     ? "border-[var(--chestnut)] focus:border-[var(--chestnut)] focus:ring-[var(--chestnut)]"

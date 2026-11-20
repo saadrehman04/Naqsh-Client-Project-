@@ -42,6 +42,11 @@ export default function FAQsPage() {
           on this page (see LIGHT_TOP_PATHS in Header.tsx). */}
       <header className="bg-[var(--ivory)] pt-[calc(var(--header-h)+3.5rem)] sm:pt-[calc(var(--header-h)+5rem)] pb-2">
         <div className="container-x">
+          {/* Small label with a line, as on the other pages (client request 2026-11-20) */}
+          <div className="flex items-center gap-3 mb-3 sm:mb-4 font-sans text-xs font-semibold uppercase tracking-[0.24em] text-[var(--pine)]">
+            <span className="w-8 h-px bg-[var(--terracotta)]" aria-hidden="true" />
+            <span>Frequently Asked Questions</span>
+          </div>
           <h1
             className="font-display font-normal text-[length:var(--fs-h1)] leading-[1.05] tracking-[-0.02em] text-[var(--black)] lg:whitespace-nowrap"
             data-reveal="lines"

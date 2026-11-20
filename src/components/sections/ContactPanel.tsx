@@ -25,9 +25,6 @@ interface ChannelCardProps {
   external?: boolean;
 }
 
-const labelClass =
-  "block font-sans text-[0.6875rem] font-semibold uppercase tracking-[0.22em] text-[var(--chestnut)]";
-
 function ChannelCard({ icon, disc, label, children, href, external }: ChannelCardProps) {
   const inner = (
     <>
@@ -78,8 +75,7 @@ export function ContactPanel() {
       <div className="flex-1 grid grid-cols-1 grid-rows-[auto_1fr] gap-6 @[34rem]:grid-cols-[1.05fr_1fr] @[34rem]:grid-rows-1 @[34rem]:gap-5">
         <div className="flex flex-col">
           <div className="px-2 pt-3 sm:px-3">
-            <span className={labelClass}>{c.label}</span>
-            <h2 className="mt-4 font-display font-normal text-[length:var(--fs-h3)] leading-[1.05] tracking-[-0.01em] text-[var(--black)] [text-wrap:balance]">
+            <h2 className="font-display font-normal text-[length:var(--fs-h3)] leading-[1.05] tracking-[-0.01em] text-[var(--black)] [text-wrap:balance]">
               {c.heading}
             </h2>
             <span className="mt-6 block h-0.5 w-12 bg-[var(--terracotta)]" aria-hidden="true" />

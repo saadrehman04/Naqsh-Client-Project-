@@ -179,3 +179,12 @@ Status: **ASSUMED** = default I (Saad) have not confirmed with the client. Chang
 - **Contact panel**: label "Get in Touch" → "Contact Our Team"; new sub-heading "Prefer to talk right away?" above the channel cards; "Our Location" → "Location". Heading and intro unchanged, as the PDF says.
 - **Footer**: Discover order is now Our Philosophy · Terms & Policies · Shipping & Delivery. Get in Touch was already icon-only.
 
+## 2026-11-20 · Client review (screenshots)
+- **About**: the slogan is the same size as the paragraph above (`--fs-lead`, 16px on phones like the paragraph), bold, sage, no diamond bullet.
+- **What Sets Us Apart**: the four promises use the intro paragraph's size (`--fs-body`).
+- **Services**: Book a Consultation is #7F3021 (the existing `--chestnut` token); hover fills with `--terracotta-on-dark`.
+- **Portfolio**: hero heading "Product Portfolio" with the company-profile intro as its body (colon → period); the old hero title and subtitle are gone. "Explore Our Gift Editions" has no period and the tabs sit directly under it. Copy moved to `src/content/portfolio.ts`.
+- **FAQs**: small "Frequently Asked Questions" label with a line above the title, like the other pages (pine text, terracotta line, as the page is ivory).
+- **Contact**: hero title has no period. Panel heading is "Contact Our Team" with no label above it. The form card now stretches to the bottom of its column on desktop (`lg:[&>form]:flex-1`), so the panel and the form end on the same line at 1440 and 1024.
+- **Form placeholders**: First Last · ABC Enterprises · name@company.com.
+
