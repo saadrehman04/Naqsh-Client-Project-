@@ -254,3 +254,8 @@ Status: **ASSUMED** = default I (Saad) have not confirmed with the client. Chang
 - Search Console verification: set `GOOGLE_SITE_VERIFICATION` in Vercel (or DNS TXT record) to verify ownership.
 - Known limit: the tab title stays "NAQSH" on every page by client decision. Google may rewrite titles in results from page headings; descriptive titles would still help rankings if the client agrees later.
 
+## 2026-11-20 · Google Search Console set up
+- Property `https://naqshonline.co/` (URL prefix) verified by HTML tag on the NAQSH Google account (contact@naqshonline.co). Two verification tags are on the site (`verification.google` in `src/lib/seo.ts`): the NAQSH account's and the one from the account first used in Chrome. Do not remove them, or that account loses verification.
+- Sitemap `sitemap.xml` submitted: "Sitemap submitted successfully".
+- URL inspection: the home page was already on Google; re-indexing requested. Services: indexing requested. Portfolio: Google answered "Something went wrong, try again later" (normal for a brand-new property); it and all other pages are in the submitted sitemap.
+

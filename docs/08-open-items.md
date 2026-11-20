@@ -53,3 +53,5 @@ The site must not imply unconfirmed operational, commercial, or legal details. `
 - **FAQ 9 "Can I request product samples?"**: the content PDF changed only the question (we → I) and gave no answer, so the existing answer is kept. Confirm it.
 - **FAQ 13**: the new last sentence ("We can also cater to urgent requests depending upon the project requirements") had no full stop in the PDF; one was added.
 - **Two dark sections back to back** (client requests): Home hero → black About Us, and Services hero → black Gifting Consultation. Confirm the client is happy with this.
+- **Search Console (2026-11-20)**: set up on contact@naqshonline.co. Still to do: add the developer's own Gmail as a user (Settings → Users and permissions), request indexing for Portfolio, Contact and FAQs in a day or two, then Bing Webmaster Tools (import from Search Console) and Google Business Profile.
+
