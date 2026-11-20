@@ -91,7 +91,9 @@ export default function ServicesPage() {
                 alt={giftingConsultation.imageAlt}
                 fill
                 sizes="(max-width: 1024px) 100vw, 40vw"
-                className="object-cover object-[40%_center]"
+                quality={90}
+                // Wide tablet crop sits lower so the consultant's hand and the brochure stay in frame.
+                className="object-cover object-[40%_center] sm:object-[50%_74%] lg:object-[40%_center]"
               />
             </div>
 

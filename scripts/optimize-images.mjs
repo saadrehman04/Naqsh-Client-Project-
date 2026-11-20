@@ -82,7 +82,8 @@ const SITE_IMAGES = [
   // 2026-11-20: client's 2K contact photo (2752 x 1536 JPEG). Cropped from the top (same share as the
   // earlier version) to trim empty dark space above the stamp; scaled down to 2400w, no sharpening.
   { src: "contact-cover-2k.jpg", out: "contact-cover-2k", crop: [0, 360, 2752, 1176], hq: true, noSharpen: true },
-  { src: "gifting-consultation.webp", out: "gifting-consultation" },
+  // 2026-11-20: client's new consultation photo (1024 x 1536, was 678 x 1080). Kept at native size, q90.
+  { src: "gifting-consultation-v2.webp", out: "gifting-consultation-v2", quality: 90 },
   { src: "contact-gift-box.webp", out: "contact-gift-box" },
 ];
 
@@ -104,7 +105,7 @@ async function site() {
           out,
           90,
         )
-      : await writeWebp(pipeline.resize({ width: 1600, withoutEnlargement: true }), out, 80);
+      : await writeWebp(pipeline.resize({ width: 1600, withoutEnlargement: true }), out, item.quality ?? 80);
     console.log(`site/${item.out}.webp  <- ${item.src}  ${kb(size)}`);
   }
 }

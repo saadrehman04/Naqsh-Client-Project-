@@ -33,7 +33,7 @@ export const servicesContent = {
     heading: "Gifting Consultation",
     body:
       "Not sure what to gift? We offer one-on-one consultations to plan your corporate gifting from start to finish. We discuss your goals and budget, curate personalized gift ideas that match your brand, and handle all the sourcing, branding, and delivery for you.",
-    image: "/images/site/gifting-consultation.webp",
+    image: "/images/site/gifting-consultation-v2.webp", // client's new photo, 2026-11-20
     imageAlt:
       "A consultant points to colour swatches in a NAQSH gifting brochure beside wrapped chestnut and black gift boxes and a teal vase of pampas grass",
     keyTerms: [

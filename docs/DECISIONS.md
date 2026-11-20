@@ -232,3 +232,7 @@ Status: **ASSUMED** = default I (Saad) have not confirmed with the client. Chang
 - New original `assets/images/site/services-cover-2k.jpg` (2400×1792, no black band), replacing the 1500 px photo and its ImageMagick refinement (the `refine` step was removed from `scripts/optimize-images.mjs`, no longer used).
 - Exported as is at q90 (`site/services-cover-2k.webp`): no crop, upscaling or sharpening. Same "clear" treatment (no blur) and start fade.
 
+## 2026-11-20 · Gifting Consultation photo
+- New client photo (`assets/images/site/gifting-consultation-v2.webp`, 1024×1536; was 678×1080), kept at native size and served at quality 90. Same scene, so the alt text is unchanged.
+- The wide 16:10 tablet crop now focuses lower (`sm:object-[50%_74%]`) so the consultant's hand and the brochure stay in frame; phone and desktop keep 40% centre.
+

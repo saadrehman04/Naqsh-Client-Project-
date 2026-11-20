@@ -29,7 +29,7 @@ Originals in `assets/images/site/`, optimized by `npm run images` into `public/i
 | Services banner | `services-cover-2k.jpg` (client 2K, 2400×1792, 2026-11-20) | no crop, no upscaling or sharpening, q90, no blur, start fade | `site/services-cover-2k.webp` |
 | Portfolio banner | `portfolio-cover.png` | stretched backdrop, no dimming | `site/portfolio-cover.webp` |
 | Contact banner | `contact-cover-2k.jpg` (client 2K, 2752×1536, 2026-11-20) | 360 px cut from the top; scaled down to 2400w, q90; start fade | `site/contact-cover-2k.webp` |
-| Services · Gifting Consultation | `gifting-consultation.webp` | cover, focus 40% | `site/gifting-consultation.webp` |
+| Services · Gifting Consultation | `gifting-consultation-v2.webp` (client, 1024×1536, 2026-11-20) | cover; focus 40% centre (phone, desktop), 50% 74% on the wide tablet crop to keep the hand and brochure; q90 | `site/gifting-consultation-v2.webp` |
 | Contact · Get in Touch panel | `contact-gift-box.webp` | cover, focus 18–22% / 60% (keeps the printed tagline) | `site/contact-gift-box.webp` |
 
 The rows below are the earlier product-photo assignments; hero, About, What Sets Us Apart and the three banners above replace them.
