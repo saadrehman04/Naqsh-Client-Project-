@@ -4,7 +4,9 @@
  * next/image then serves AVIF/WebP at the rendered size. Run: `npm run images`.
  * Originals are only read, never modified.
  */
-import { mkdir, readdir, stat } from "node:fs/promises";
+import { mkdir, mkdtemp, readdir, readFile, rm, stat } from "node:fs/promises";
+import { execFileSync } from "node:child_process";
+import { tmpdir } from "node:os";
 import path from "node:path";
 import sharp from "sharp";
 
@@ -21,6 +23,26 @@ const SOURCE_OVERRIDES = {
 };
 
 const kb = (bytes) => `${Math.round(bytes / 1024)} KB`;
+
+/**
+ * "HD" for small originals, without changing the look (needs ImageMagick's `convert`): in 16-bit
+ * linear light, a touch of blur against compression blocking, a 2x EWA LanczosSharp upscale and a
+ * light unsharp mask. No colour, contrast or crop change. Returns a sharp pipeline.
+ */
+async function hdUpscale(file) {
+  const dir = await mkdtemp(path.join(tmpdir(), "naqsh-img-"));
+  try {
+    const out = path.join(dir, "hd.png");
+    execFileSync("convert", [
+      file, "-depth", "16", "-blur", "0x0.35", "-colorspace", "RGB",
+      "-filter", "LanczosSharp", "-distort", "Resize", "200%", "-colorspace", "sRGB",
+      "-unsharp", "0x1.0+0.8+0.01", "-depth", "8", out,
+    ]);
+    return sharp(await readFile(out));
+  } finally {
+    await rm(dir, { recursive: true, force: true });
+  }
+}
 
 async function writeWebp(pipeline, file, quality) {
   await pipeline.webp({ quality, effort: 6, smartSubsample: true }).toFile(file);
@@ -72,7 +94,9 @@ async function hero() {
 /** Client-supplied section photos (assets/images/site). Optional crop: [left, top, width, height]. */
 const SITE_IMAGES = [
   { src: "about-wax-seal.webp", out: "about-wax-seal" },
-  { src: "why-heritage-box.webp", out: "why-heritage-box" },
+  // 2026-11-20: shown large on phones and desktop but only 848 x 1264, so it gets the 2x HD upscale
+  // (same look, clearer). New name busts caches.
+  { src: "why-heritage-box.webp", out: "why-heritage-box-hd", hd: true },
   // Bottom 204 px of the original is an empty black band. Shown full-bleed and unblurred
   // (client request 2026-11-20), so it gets the same HD export as the home hero.
   // Bottom 204 px of the original is an empty black band. Shown blurred behind the copy (restored at
@@ -85,6 +109,9 @@ const SITE_IMAGES = [
   // 2026-11-20: client's new consultation photo (1024 x 1536, was 678 x 1080). Kept at native size, q90.
   { src: "gifting-consultation-v2.webp", out: "gifting-consultation-v2", quality: 90 },
   { src: "contact-gift-box.webp", out: "contact-gift-box" },
+  // Phone layout copy without the printed "Crafting Lasting Impressions" tagline at the bottom
+  // (client request 2026-11-20: the narrow crop showed only "CRAFTING"). Keeps the top 87%.
+  { src: "contact-gift-box.webp", out: "contact-gift-box-notext", crop: [0, 0, 1062, 1392] },
 ];
 
 async function site() {
@@ -96,6 +123,11 @@ async function site() {
       pipeline = pipeline.extract({ left, top, width, height });
     }
     const out = path.join(outDir, "site", `${item.out}.webp`);
+    if (item.hd) {
+      const size = await writeWebp(await hdUpscale(path.join(root, "assets/images/site", item.src)), out, 90);
+      console.log(`site/${item.out}.webp  <- ${item.src}  HD 2x  ${kb(size)}`);
+      continue;
+    }
     // hq: full-bleed banners. One Lanczos3 upscale to 2400w with light sharpening, saved at q90.
     const size = item.hq
       ? await writeWebp(

@@ -129,12 +129,21 @@ export function ContactPanel() {
         {/* Photo: beside the cards when the panel is wide, below them when narrow */}
         {/* Narrow panel beside the form (laptops): the photo fills whatever height is left, so the panel ends where the form ends */}
         <div className="relative min-h-[24rem] lg:min-h-[8rem] @[34rem]:min-h-0 overflow-hidden rounded-[20px] bg-[var(--ivory-deep)]">
+          {/* Narrow layout (phones, laptop side column): copy without the printed tagline, which the
+              crop cut to just "CRAFTING". Wide layout keeps the full photo with the tagline. */}
+          <Image
+            src={c.imageNarrow}
+            alt={c.imageAlt}
+            fill
+            sizes="(max-width: 1024px) 90vw, 22vw"
+            className="object-cover object-[22%_60%] @[34rem]:hidden"
+          />
           <Image
             src={c.image}
             alt={c.imageAlt}
             fill
-            sizes="(max-width: 1024px) 90vw, 22vw"
-            className="object-cover object-[22%_60%] @[34rem]:object-[18%_60%]"
+            sizes="22vw"
+            className="hidden @[34rem]:block object-cover object-[18%_60%]"
           />
         </div>
       </div>

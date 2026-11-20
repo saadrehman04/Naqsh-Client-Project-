@@ -25,12 +25,12 @@ Originals in `assets/images/site/`, optimized by `npm run images` into `public/i
 | Home hero, desktop | `hero-gift-box-2k.jpg` (client 2K, 2752×1536, 2026-11-20) | scaled down to 2400w, q90, no sharpening | `hero/hero-2k-desktop.webp` |
 | Home hero, phones/tablets | `hero-gift-box-2k.jpg` | 4:5 crop centred on the wax seal, native 1229w, q88 | `hero/hero-2k-mobile.webp` |
 | Home · About | `about-wax-seal.webp` | 4:5 | `site/about-wax-seal.webp` |
-| Home · What Sets Us Apart | `why-heritage-box.webp` | 4:5 arch frame | `site/why-heritage-box.webp` |
+| Home · What Sets Us Apart | `why-heritage-box.webp` (848×1264) | 4:5 arch frame; 2x HD upscale (ImageMagick, no colour/crop change), q90 | `site/why-heritage-box-hd.webp` |
 | Services banner | `services-cover.webp` (1500×1200) | bottom 204 px black band cut; blurred (6 px, 110%) + start fade, restored 2026-11-20 at the client's request. `services-cover-2k.jpg` is kept in assets but unused | `site/services-cover.webp` |
 | Portfolio banner | `portfolio-cover.png` | stretched backdrop, no dimming | `site/portfolio-cover.webp` |
 | Contact banner | `contact-cover-2k.jpg` (client 2K, 2752×1536, 2026-11-20) | 360 px cut from the top; scaled down to 2400w, q90; start fade | `site/contact-cover-2k.webp` |
 | Services · Gifting Consultation | `gifting-consultation-v2.webp` (client, 1024×1536, 2026-11-20) | cover; focus 40% centre (phone, desktop), 50% 74% on the wide tablet crop to keep the hand and brochure; q90 | `site/gifting-consultation-v2.webp` |
-| Contact · Get in Touch panel | `contact-gift-box.webp` | cover, focus 18–22% / 60% (keeps the printed tagline) | `site/contact-gift-box.webp` |
+| Contact · Get in Touch panel | `contact-gift-box.webp` | wide layout: full photo with the printed tagline, focus 18% 60%; narrow layout (phones, laptop side column): copy cropped to the top 87% so the tagline is gone, focus 22% 60% | `site/contact-gift-box.webp`, `site/contact-gift-box-notext.webp` |
 
 The rows below are the earlier product-photo assignments; hero, About, What Sets Us Apart and the three banners above replace them.
 

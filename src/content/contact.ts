@@ -8,6 +8,8 @@ export const contactContent = {
     heading: "Contact Our Team",
     intro: "Have a gifting need, a question, or want to explore ideas? We’d love to hear from you.",
     image: "/images/site/contact-gift-box.webp",
+    // Narrow (phone) layout: same photo without the printed tagline at the bottom (2026-11-20).
+    imageNarrow: "/images/site/contact-gift-box-notext.webp",
     imageAlt:
       "Terracotta NAQSH gift box tied with a woven ribbon and an ivory tag sealed with the NAQSH emblem in wax, beside an olive branch in a stone vase",
     channelsHeading: "Prefer to talk right away?",

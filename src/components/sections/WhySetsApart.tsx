@@ -95,6 +95,7 @@ export function WhySetsApart() {
               alt={whyUs.imageAlt}
               fill
               sizes="(max-width: 1024px) 26rem, 36vw"
+              quality={90}
               className="object-cover object-[50%_55%]"
             />
           </div>

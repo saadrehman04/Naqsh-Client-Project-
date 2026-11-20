@@ -264,3 +264,12 @@ Status: **ASSUMED** = default I (Saad) have not confirmed with the client. Chang
 - To resubmit after changes: POST the URL list to https://api.indexnow.org/indexnow with this key and keyLocation https://naqshonline.co/e06c62c9a69ebbdb3e606eefc45b618d.txt.
 - Bing Webmaster Tools itself (with "Import from Google Search Console") can still be set up later from a normal browser for Bing's reports.
 
+## 2026-11-20 · Two photo fixes
+- **What Sets Us Apart photo**: the original is only 848×1264, so it is exported 2x with the `hd` step in `scripts/optimize-images.mjs` (ImageMagick: light deblock, 16-bit linear-light LanczosSharp, light unsharp; no colour, contrast or crop change) as `why-heritage-box-hd.webp`, served at quality 90.
+- **Contact panel photo on phones**: the photo has "Crafting Lasting Impressions" printed at the bottom, and the narrow crop showed only "CRAFTING". The narrow layout now uses `contact-gift-box-notext.webp` (top 87% of the same photo); the wide layout keeps the full photo with the tagline. Only the displayed copy is downloaded.
+
+## 2026-11-20 · SEO follow-up
+- Indexing requested in Search Console for Home, Services, Portfolio, Contact and FAQs (Portfolio succeeded on the second try).
+- Bing: all 15 sitemap URLs submitted through IndexNow (HTTP 202). Bing Webmaster Tools did not load in the built-in browser.
+- Google Business Profile not created: it needs a real street address for verification (can be hidden), working hours and owner verification. Waiting on the client.
+

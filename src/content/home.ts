@@ -121,7 +121,7 @@ export const homeContent = {
     subheading: "Thoughtful by Principle. Professional by Design.",
     intro:
       "We move beyond traditional corporate gifting to create meaningful brand moments that leave lasting impressions. Naqsh provides gifting that reflects your values, expectations, and brand standards - delivered through four core promises.",
-    image: "/images/site/why-heritage-box.webp",
+    image: "/images/site/why-heritage-box-hd.webp", // 2x HD export of the client photo (2026-11-20)
     imageAlt:
       "Carved wooden NAQSH gift box with a geometric lattice lid, holding a notebook, copper pen and a sage silk scarf",
     promises: [

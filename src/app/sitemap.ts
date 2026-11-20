@@ -14,7 +14,7 @@ const STATIC_ROUTES: { path: string; priority: number; images?: string[] }[] = [
   { path: "/our-approach", priority: 0.7 },
   { path: "/our-philosophy", priority: 0.6 },
   { path: "/faqs", priority: 0.8 },
-  { path: "/contact", priority: 0.8, images: ["/images/site/contact-cover-2k.webp", "/images/site/contact-gift-box.webp"] },
+  { path: "/contact", priority: 0.8, images: ["/images/site/contact-cover-2k.webp", "/images/site/contact-gift-box.webp", "/images/site/contact-gift-box-notext.webp"] },
   { path: "/privacy", priority: 0.3 },
   { path: "/shipping-delivery", priority: 0.4 },
 ];
