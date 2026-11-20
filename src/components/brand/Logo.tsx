@@ -47,7 +47,9 @@ export function Emblem({
       width={48}
       height={90}
       priority={priority}
-      className={cn("h-auto w-auto object-contain", className)}
+      // No default w-auto: cn() does not merge Tailwind classes, so a default width would fight
+      // the caller's width class (the phone menu emblem rendered full size because of this).
+      className={cn("h-auto object-contain", className)}
     />
   );
 }
@@ -136,6 +138,9 @@ const COPPER = {
  */
 export function CopperLogo({ kind, className, label = "NAQSH", priority = false }: CopperLogoProps) {
   const logo = COPPER[kind];
+  // cn() does not merge Tailwind classes, so only add the default h-auto when the caller sets no
+  // height of its own (otherwise h-auto can win and the logo renders at its full file size).
+  const hasHeight = /(^|\s)([\w-]+:)?h-/.test(className ?? "");
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img
@@ -145,7 +150,7 @@ export function CopperLogo({ kind, className, label = "NAQSH", priority = false 
       alt={label}
       loading={priority ? "eager" : "lazy"}
       decoding="async"
-      className={cn("h-auto", className)}
+      className={cn(!hasHeight && "h-auto", className)}
     />
   );
 }

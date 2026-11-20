@@ -3,9 +3,9 @@
 import React, { useEffect, useRef } from "react";
 import Link from "next/link";
 import { siteConfig } from "@/content/site";
-import { CopperLogo, Emblem } from "@/components/brand/Logo";
+import { CopperLogo } from "@/components/brand/Logo";
 import { Button } from "@/components/ui/Button";
-import { getWhatsAppUrl } from "@/lib/whatsapp";
+import { getWhatsAppUrl, WHATSAPP_NUMBER } from "@/lib/whatsapp";
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -109,6 +109,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
             </Button>
             <Button
               href={getWhatsAppUrl()}
+              onClick={onClose}
               external
               variant="secondary"
               className="w-full justify-center"
@@ -118,10 +119,18 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
             </Button>
           </div>
 
-          <div className="flex items-center justify-between pt-4 text-xs text-[var(--charcoal)]">
-            <span>{siteConfig.location}</span>
-            <Emblem variant="black" className="w-5" />
-            <span>{siteConfig.phone}</span>
+          {/* Location | copper 3D emblem | phone, on one line (client request 2026-11-20), on a black
+              strip that mirrors the black top bar: the copper art is made for dark grounds. The
+              emblem has a fixed height so it can never grow over the text beside it. */}
+          <div className="-mx-6 -mb-6 sm:-mx-10 sm:-mb-10 !mt-8 px-6 sm:px-10 py-5 grid grid-cols-[1fr_auto_1fr] items-center gap-4 bg-[var(--black)] font-sans text-xs text-[var(--ivory)]/85">
+            <span className="whitespace-nowrap">{siteConfig.location}</span>
+            <CopperLogo kind="emblem" label="" className="block h-14 w-auto" />
+            <a
+              href={`tel:+${WHATSAPP_NUMBER}`}
+              className="justify-self-end whitespace-nowrap underline-offset-4 hover:underline hover:text-[var(--ivory)]"
+            >
+              {siteConfig.phone}
+            </a>
           </div>
         </div>
       </div>

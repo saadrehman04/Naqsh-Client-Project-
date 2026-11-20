@@ -44,6 +44,7 @@ export function Button({
   showArrow = true,
   href,
   external,
+  onClick,
   ...props
 }: ButtonProps) {
   const variantClass = {
@@ -57,6 +58,8 @@ export function Button({
   const plainClass = !showArrow ? "btn-plain" : "";
 
   const combinedClass = cn(variantClass, sizeClass, plainClass, className);
+  // Link buttons keep their click handler too (e.g. the phone menu closes itself on tap).
+  const linkClick = onClick as unknown as React.MouseEventHandler<HTMLAnchorElement> | undefined;
 
   if (href) {
     if (external || href.startsWith("http") || href.startsWith("https://wa.me")) {
@@ -66,6 +69,7 @@ export function Button({
           target="_blank"
           rel="noopener noreferrer"
           className={combinedClass}
+          onClick={linkClick}
         >
           <span>{children}</span>
           {showArrow && <ArrowCircle />}
@@ -74,7 +78,7 @@ export function Button({
     }
 
     return (
-      <Link href={href} className={combinedClass}>
+      <Link href={href} className={combinedClass} onClick={linkClick}>
         <span>{children}</span>
         {showArrow && <ArrowCircle />}
       </Link>
@@ -82,7 +86,7 @@ export function Button({
   }
 
   return (
-    <button className={combinedClass} {...props}>
+    <button className={combinedClass} onClick={onClick} {...props}>
       <span>{children}</span>
       {showArrow && <ArrowCircle />}
     </button>
