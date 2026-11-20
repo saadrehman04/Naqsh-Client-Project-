@@ -214,3 +214,7 @@ Status: **ASSUMED** = default I (Saad) have not confirmed with the client. Chang
 - Same HD pipeline as before (Lanczos3 to 2400w, q90) but with a lighter sharpen, since the sources are already sharpened. Home phone crop is now right-aligned on the box. Contact keeps a 230 px top crop and is served at quality 90.
 - New file names (`hero-refined-*`, `contact-cover-refined`) so browsers and the image cache pick up the new photos. Old `hero-hq-*` and `contact-cover.webp` exports removed.
 
+## 2026-11-20 · Final emblem (client's updated logo files)
+- The project held the emblem files from `Final_Logos.zip`; the client's `~/Downloads/Final_Logos` folder has newer versions of all 12 emblem files (logo1 and logo2, PDF and PNG, saved 2026-11-19 15:50). The wordmark files were unchanged. The 12 files in `assets/logo/final` were replaced with the new versions (the old ones remain only in git history).
+- The footer emblem (also used in the phone menu) is now built from the vector `logo1_copper-shiny-3d.pdf`: `scripts/build-copper-logos.mjs` renders it with pdftocairo, drops the 2 px half-pixel page edge, trims the black and turns it into transparency as before. Output `public/brand/copper-emblem-final.webp` (327×600); the previous `copper-emblem-3d.webp` was removed.
+
