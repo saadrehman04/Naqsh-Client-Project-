@@ -218,3 +218,8 @@ Status: **ASSUMED** = default I (Saad) have not confirmed with the client. Chang
 - The project held the emblem files from `Final_Logos.zip`; the client's `~/Downloads/Final_Logos` folder has newer versions of all 12 emblem files (logo1 and logo2, PDF and PNG, saved 2026-11-19 15:50). The wordmark files were unchanged. The 12 files in `assets/logo/final` were replaced with the new versions (the old ones remain only in git history).
 - The footer emblem (also used in the phone menu) is now built from the vector `logo1_copper-shiny-3d.pdf`: `scripts/build-copper-logos.mjs` renders it with pdftocairo, drops the 2 px half-pixel page edge, trims the black and turns it into transparency as before. Output `public/brand/copper-emblem-final.webp` (327×600); the previous `copper-emblem-3d.webp` was removed.
 
+## 2026-11-20 · Client's 2K hero photos (home and contact)
+- New originals from the client at 2752×1536 (`assets/images/site/hero-gift-box-2k.jpg`, `contact-cover-2k.jpg`), replacing the refined 1581/1672 px versions from earlier today (removed).
+- They are larger than the 2400w export, so they are only scaled down (Lanczos3, q90) with no upscaling or sharpening. The home phone crop is 4:5 at native 1229w, centred on the wax seal. Contact keeps the same share of empty space cut from the top (360 px).
+- New file names (`hero-2k-*`, `contact-cover-2k`) so browsers and the image cache pick up the new photos.
+

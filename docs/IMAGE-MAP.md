@@ -22,13 +22,13 @@ Originals in `assets/images/site/`, optimized by `npm run images` into `public/i
 
 | Slot | Source | Crop / treatment | Output |
 |---|---|---|---|
-| Home hero, desktop | `hero-gift-box-refined.png` (client refined, 1581×995, 2026-11-20) | upscaled once to 2400w, light sharpen, q90 | `hero/hero-refined-desktop.webp` |
-| Home hero, phones/tablets | `hero-gift-box-refined.png` | 4:5 crop, right-aligned on the box, 1.5× upscale, q88 | `hero/hero-refined-mobile.webp` |
+| Home hero, desktop | `hero-gift-box-2k.jpg` (client 2K, 2752×1536, 2026-11-20) | scaled down to 2400w, q90, no sharpening | `hero/hero-2k-desktop.webp` |
+| Home hero, phones/tablets | `hero-gift-box-2k.jpg` | 4:5 crop centred on the wax seal, native 1229w, q88 | `hero/hero-2k-mobile.webp` |
 | Home · About | `about-wax-seal.webp` | 4:5 | `site/about-wax-seal.webp` |
 | Home · What Sets Us Apart | `why-heritage-box.webp` | 4:5 arch frame | `site/why-heritage-box.webp` |
 | Services banner | `services-cover.webp` | bottom 204 px black band cut; sharp (no blur), HD export 2400w q90, start fade | `site/services-cover-hq.webp` |
 | Portfolio banner | `portfolio-cover.png` | stretched backdrop, no dimming | `site/portfolio-cover.webp` |
-| Contact banner | `contact-cover-refined.png` (client refined, 1672×941, 2026-11-20) | 230 px cut from the top; HD 2400w, light sharpen, q90; start fade | `site/contact-cover-refined.webp` |
+| Contact banner | `contact-cover-2k.jpg` (client 2K, 2752×1536, 2026-11-20) | 360 px cut from the top; scaled down to 2400w, q90; start fade | `site/contact-cover-2k.webp` |
 | Services · Gifting Consultation | `gifting-consultation.webp` | cover, focus 40% | `site/gifting-consultation.webp` |
 | Contact · Get in Touch panel | `contact-gift-box.webp` | cover, focus 18–22% / 60% (keeps the printed tagline) | `site/contact-gift-box.webp` |
 
