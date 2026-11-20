@@ -58,10 +58,10 @@ const socialGlyph: Record<SocialLink["platform"], () => ReactNode> = {
   LinkedIn: LinkedInGlyph,
 };
 
-/* Client footer design (2026-11-20): headings and icons in khaki (#C0A48E, 8.9:1 on black),
-   bare icons without circles, social links as khaki-gradient discs without labels. */
+/* Client footer design (2026-11-20): headings and icons in the logo's copper (--copper-logo,
+   4.7:1 on black), bare icons without circles, social links as copper-gradient discs without labels. */
 const headingClass =
-  "text-xs font-sans font-semibold tracking-[0.18em] uppercase text-[var(--khaki)] mb-4";
+  "text-xs font-sans font-semibold tracking-[0.18em] uppercase text-[var(--copper-logo)] mb-4";
 
 /** One row height for the Discover and Get in Touch lists, so their lines sit side by side. */
 const rowClass = "flex items-center min-h-[40px]";
@@ -79,7 +79,7 @@ interface ContactRowProps {
 function ContactRow({ href, icon, label, value, external }: ContactRowProps) {
   const inner = (
     <>
-      <span className="flex w-5 shrink-0 justify-center text-[var(--khaki)]">{icon}</span>
+      <span className="flex w-5 shrink-0 justify-center text-[var(--copper-logo)]">{icon}</span>
       {/* Icon + value only. The channel name stays for screen readers. */}
       <span className={`min-w-0 whitespace-nowrap ${linkText}`}>
         <span className="sr-only">{label}: </span>

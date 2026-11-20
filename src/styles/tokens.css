@@ -23,6 +23,12 @@
   --copper: var(--terracotta-on-dark);
   --copper-light: var(--terracotta-on-dark);
   --copper-dark: #7F3021;
+  /* Logo copper, sampled from the client's final copper logo files (assets/logo/final, 2026-11-20).
+     Used where the client asks for "the copper of the logo" (footer headings, icons, social discs).
+     #C07752 is 4.7:1 on black (AA for small text). Never on ivory as text (2.7:1). */
+  --copper-logo: #C07752;
+  --copper-logo-light: #EEAD83;
+  --copper-logo-dark: #9A5836;
   --hairline: rgb(192 164 142 / 0.45);       /* khaki hairline on ivory */
   --hairline-dark: rgb(247 241 231 / 0.18);  /* ivory hairline on dark */
   --terracotta-deep: #7F3021; /* chestnut alias for ivory-on-dark actions */

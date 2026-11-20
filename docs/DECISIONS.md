@@ -204,3 +204,8 @@ Status: **ASSUMED** = default I (Saad) have not confirmed with the client. Chang
 - The source is only 1500×1200 (1500×996 after the black band is cut), so it now gets the home hero's export: one Lanczos3 upscale to 2400w, light sharpening, q90 (`services-cover-hq.webp`, new name to bust caches), served with `imageQuality={90}`.
 - `images.deviceSizes` gains 2400 so retina desktops get the full export instead of 1920; phones still get 1280 or less. A higher-resolution original from the client would still be the real fix.
 
+## 2026-11-20 · Footer in the logo's copper
+- Footer headings, contact icons and the social discs now use the copper of the client's logo instead of khaki (client request).
+- **Rule conflict, flagged**: CLAUDE.md allows only existing tokens, and the palette's `--copper` is an alias for terracotta. The logo copper was therefore added as three tokens sampled from the client's final logo files (`assets/logo/final`): `--copper-logo` #C07752 (midtone, 4.7:1 on black, AA for the small headings), `--copper-logo-light` #EEAD83 and `--copper-logo-dark` #9A5836 (disc gradient). Added to both `src/styles/tokens.css` and `design/tokens.css`. Not for text on ivory (2.7:1).
+- Link text stays ivory for readability. The disc highlight is kept small in the corner so the ivory glyph measures 3.4:1 or more against the disc.
+
