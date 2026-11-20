@@ -15,11 +15,13 @@ interface PageHeroProps {
   /**
    * How the background image is treated:
    * - "dim" (default): lightly dimmed photo behind a start-to-end fade.
-   * - "blur": blurred photo, black fade solid at the start where the copy sits, clear at the end.
+   * - "clear": the photo at full sharpness (no blur, no zoom), black fade at the start for the copy.
    * - "fade": full-strength photo (already dark), black fade at the start for the copy.
    * - "plain": an abstract backdrop stretched to the banner, no dimming or extra glow.
    */
-  imageTreatment?: "dim" | "blur" | "fade" | "plain";
+  imageTreatment?: "dim" | "clear" | "fade" | "plain";
+  /** next/image quality for the background (must be listed in next.config images.qualities). */
+  imageQuality?: number;
   /** object-position for the background image. */
   imagePosition?: string;
 }
@@ -29,8 +31,8 @@ const TREATMENT = {
     img: "opacity-80 scale-110",
     fade: "linear-gradient(90deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.66) 32%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0.08) 100%)",
   },
-  blur: {
-    img: "scale-110 blur-[6px]",
+  clear: {
+    img: "",
     fade: "linear-gradient(90deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.62) 30%, rgba(0,0,0,0.26) 55%, transparent 80%)",
   },
   fade: {
@@ -56,6 +58,7 @@ export function PageHero({
   imageAlt = "",
   imageTreatment = "dim",
   imagePosition = "75% center",
+  imageQuality,
 }: PageHeroProps) {
   const displayIntro = intro || subtitle;
   const treatment = TREATMENT[imageTreatment];
@@ -79,6 +82,7 @@ export function PageHero({
             fill
             priority
             sizes="100vw"
+            quality={imageQuality}
             className={cn("object-cover", treatment.img)}
             style={{ objectPosition: imagePosition }}
           />

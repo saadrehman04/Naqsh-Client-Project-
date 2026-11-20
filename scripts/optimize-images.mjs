@@ -78,8 +78,9 @@ async function hero() {
 const SITE_IMAGES = [
   { src: "about-wax-seal.webp", out: "about-wax-seal" },
   { src: "why-heritage-box.webp", out: "why-heritage-box" },
-  // Bottom 204 px of the original is an empty black band.
-  { src: "services-cover.webp", out: "services-cover", crop: [0, 0, 1500, 996] },
+  // Bottom 204 px of the original is an empty black band. Shown full-bleed and unblurred
+  // (client request 2026-11-20), so it gets the same HD export as the home hero.
+  { src: "services-cover.webp", out: "services-cover-hq", crop: [0, 0, 1500, 996], hq: true },
   { src: "portfolio-cover.png", out: "portfolio-cover" },
   // Client asked to crop from the top: trims empty dark space above the envelope.
   { src: "contact-cover.webp", out: "contact-cover", crop: [0, 220, 1600, 680] },
@@ -96,7 +97,14 @@ async function site() {
       pipeline = pipeline.extract({ left, top, width, height });
     }
     const out = path.join(outDir, "site", `${item.out}.webp`);
-    const size = await writeWebp(pipeline.resize({ width: 1600, withoutEnlargement: true }), out, 80);
+    // hq: full-bleed banners. One Lanczos3 upscale to 2400w with light sharpening, saved at q90.
+    const size = item.hq
+      ? await writeWebp(
+          pipeline.resize({ width: 2400, kernel: "lanczos3" }).sharpen({ sigma: 0.9, m1: 0.6, m2: 1.4 }),
+          out,
+          90,
+        )
+      : await writeWebp(pipeline.resize({ width: 1600, withoutEnlargement: true }), out, 80);
     console.log(`site/${item.out}.webp  <- ${item.src}  ${kb(size)}`);
   }
 }

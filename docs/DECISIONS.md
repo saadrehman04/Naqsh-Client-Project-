@@ -199,3 +199,8 @@ Status: **ASSUMED** = default I (Saad) have not confirmed with the client. Chang
 - **Oversized emblem**: `cn()` is plain `clsx` (no Tailwind merging), so default size classes (`w-auto` in `Emblem`, `h-auto` in `CopperLogo`) could beat the caller's size and render the logo at full file size. Defaults are now dropped (`Emblem`) or applied only when no height is given (`CopperLogo`). This also fixes the 404 page and image-placeholder emblems.
 - **Menu bottom row**: Lahore, Pakistan | copper 3D emblem (56 px) | phone (tap to call), on a black strip that mirrors the black top bar, because the copper art is made for dark grounds and looks washed out on ivory.
 
+## 2026-11-20 · Services hero in HD, no blur
+- The 6 px CSS blur and 110% zoom are gone: `PageHero`'s "blur" treatment is replaced by "clear" (full-sharpness photo, same start fade for the copy).
+- The source is only 1500×1200 (1500×996 after the black band is cut), so it now gets the home hero's export: one Lanczos3 upscale to 2400w, light sharpening, q90 (`services-cover-hq.webp`, new name to bust caches), served with `imageQuality={90}`.
+- `images.deviceSizes` gains 2400 so retina desktops get the full export instead of 1920; phones still get 1280 or less. A higher-resolution original from the client would still be the real fix.
+
