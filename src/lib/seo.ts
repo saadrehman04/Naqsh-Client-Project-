@@ -55,10 +55,16 @@ export function constructMetadata({
       "Eid corporate hampers",
     ],
     metadataBase: new URL(siteUrl),
-    // Google Search Console ownership check (invisible meta tag), property https://naqshonline.co/
-    // on the NAQSH Google account (2026-11-20). GOOGLE_SITE_VERIFICATION overrides it if set.
+    // Google Search Console ownership checks (invisible meta tags), property https://naqshonline.co/.
+    // One code per Google account that verified the site (2026-11-20): the NAQSH account
+    // (contact@naqshonline.co) and the account used first in Chrome. Keep both: removing a code
+    // un-verifies that account. GOOGLE_SITE_VERIFICATION adds another if set.
     verification: {
-      google: process.env.GOOGLE_SITE_VERIFICATION || "DDlLOBVDSno2GPZ99A6pGgCyxgxFzZRBAllrSCdmx54",
+      google: [
+        "8Ku23PhTtLuElSebA1m7t0t0Hd9NGgwXGOOXPdCnUyg",
+        "DDlLOBVDSno2GPZ99A6pGgCyxgxFzZRBAllrSCdmx54",
+        ...(process.env.GOOGLE_SITE_VERIFICATION ? [process.env.GOOGLE_SITE_VERIFICATION] : []),
+      ],
     },
     alternates: {
       canonical: url,
