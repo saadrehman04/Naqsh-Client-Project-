@@ -55,11 +55,11 @@ export function constructMetadata({
       "Eid corporate hampers",
     ],
     metadataBase: new URL(siteUrl),
-    // Google Search Console ownership check (invisible meta tag). Set GOOGLE_SITE_VERIFICATION in
-    // Vercel to the code Search Console gives, or paste it here.
-    ...(process.env.GOOGLE_SITE_VERIFICATION
-      ? { verification: { google: process.env.GOOGLE_SITE_VERIFICATION } }
-      : {}),
+    // Google Search Console ownership check (invisible meta tag), property https://naqshonline.co/
+    // on the NAQSH Google account (2026-11-20). GOOGLE_SITE_VERIFICATION overrides it if set.
+    verification: {
+      google: process.env.GOOGLE_SITE_VERIFICATION || "DDlLOBVDSno2GPZ99A6pGgCyxgxFzZRBAllrSCdmx54",
+    },
     alternates: {
       canonical: url,
     },
