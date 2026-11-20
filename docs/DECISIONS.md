@@ -259,3 +259,8 @@ Status: **ASSUMED** = default I (Saad) have not confirmed with the client. Chang
 - Sitemap `sitemap.xml` submitted: "Sitemap submitted successfully".
 - URL inspection: the home page was already on Google; re-indexing requested. Services: indexing requested. Portfolio: Google answered "Something went wrong, try again later" (normal for a brand-new property); it and all other pages are in the submitted sitemap.
 
+## 2026-11-20 · Bing / IndexNow
+- Bing Webmaster Tools would not load in the built-in browser, so pages are submitted to Bing (and Yandex, Seznam, Naver) through IndexNow instead. Key file `public/e06c62c9a69ebbdb3e606eefc45b618d.txt` (invisible to visitors; keep it, or IndexNow submissions stop being accepted).
+- To resubmit after changes: POST the URL list to https://api.indexnow.org/indexnow with this key and keyLocation https://naqshonline.co/e06c62c9a69ebbdb3e606eefc45b618d.txt.
+- Bing Webmaster Tools itself (with "Import from Google Search Console") can still be set up later from a normal browser for Bing's reports.
+
