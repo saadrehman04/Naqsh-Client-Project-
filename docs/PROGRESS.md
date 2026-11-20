@@ -35,3 +35,4 @@ Format per entry: date · phase · what was done · what is next · blocked / ne
 - **2026-11-20 · Phone menu**: Request Consultation now closes the menu and opens Contact (tested by tapping at 390 / 375 / 768 from /services and /contact). Bottom row rebuilt with the copper 3D emblem on a black strip. Fixed the logo size clash behind the oversized emblem.
 - **2026-11-20 · Services hero HD**: Blur removed, HD 2400w q90 export, 2400 image size added for retina. Checked at 1440 / 1024 / 768 / 390: no overflow, no page errors.
 - **2026-11-20 · Footer copper**: Headings, icons and social discs in the logo copper (new `--copper-logo` tokens sampled from the logo files). Layout unchanged; checked at 1440 / 1024 / 768 / 390.
+- **2026-11-20 · Refined hero photos**: Home and Contact heroes switched to the client's refined images (HD exports). Checked at 1440 / 1024 / 768 / 390: correct files served, no page errors.

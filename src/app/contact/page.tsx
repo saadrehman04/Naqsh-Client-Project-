@@ -19,8 +19,9 @@ export default function ContactPage() {
         title="Let's Craft Your Next Gifting Experience"
         subtitle="Share your requirements with us, and let's explore how NAQSH can bring your corporate gifting vision to life."
         label="Corporate Consultation"
-        image="/images/site/contact-cover.webp"
+        image="/images/site/contact-cover-refined.webp"
         imageTreatment="fade"
+        imageQuality={90}
         imagePosition="85% 60%"
       />
 

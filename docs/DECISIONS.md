@@ -209,3 +209,8 @@ Status: **ASSUMED** = default I (Saad) have not confirmed with the client. Chang
 - **Rule conflict, flagged**: CLAUDE.md allows only existing tokens, and the palette's `--copper` is an alias for terracotta. The logo copper was therefore added as three tokens sampled from the client's final logo files (`assets/logo/final`): `--copper-logo` #C07752 (midtone, 4.7:1 on black, AA for the small headings), `--copper-logo-light` #EEAD83 and `--copper-logo-dark` #9A5836 (disc gradient). Added to both `src/styles/tokens.css` and `design/tokens.css`. Not for text on ivory (2.7:1).
 - Link text stays ivory for readability. The disc highlight is kept small in the corner so the ivory glyph measures 3.4:1 or more against the disc.
 
+## 2026-11-20 · Client's refined hero photos
+- Home hero and Contact hero now use the client's refined photos (`assets/images/site/hero-gift-box-refined.png` 1581×995 and `contact-cover-refined.png` 1672×941; lossless PNGs from the client, older originals kept).
+- Same HD pipeline as before (Lanczos3 to 2400w, q90) but with a lighter sharpen, since the sources are already sharpened. Home phone crop is now right-aligned on the box. Contact keeps a 230 px top crop and is served at quality 90.
+- New file names (`hero-refined-*`, `contact-cover-refined`) so browsers and the image cache pick up the new photos. Old `hero-hq-*` and `contact-cover.webp` exports removed.
+

@@ -5,8 +5,9 @@ export const homeContent = {
     headline: "Crafting Lasting Impressions.",
     headlineLines: ["Crafting", "Lasting Impressions."],
     supportingHeadline: "Premium gifting solutions for meaningful connections.",
-    image: "/images/hero/hero-hq-desktop.webp",
-    imageMobile: "/images/hero/hero-hq-mobile.webp",
+    // Client's refined hero (2026-11-20), HD export via scripts/optimize-images.mjs.
+    image: "/images/hero/hero-refined-desktop.webp",
+    imageMobile: "/images/hero/hero-refined-mobile.webp",
     imageAlt:
       "Black NAQSH gift box tied with a copper satin bow and sealed with the NAQSH emblem in copper wax",
     cta: "Request Consultation",

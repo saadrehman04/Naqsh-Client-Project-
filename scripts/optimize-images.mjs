@@ -50,28 +50,31 @@ async function hero() {
   // by the parallax), so it is upscaled once here with Lanczos3 plus light sharpening and saved at
   // high quality; the page then serves it at quality 90 so it is not recompressed heavily again.
   // A higher-resolution original from the client would still be the real fix.
-  const src = path.join(root, "assets/images/site/hero-gift-box.webp");
-  const SHARPEN = { sigma: 0.9, m1: 0.6, m2: 1.4 };
+  // 2026-11-20: client's refined hero (1581 x 995 PNG) replaces hero-gift-box.webp.
+  const src = path.join(root, "assets/images/site/hero-gift-box-refined.png");
+  // The refined source is already crisp: only a light pass to offset the upscale (no halos).
+  const SHARPEN = { sigma: 0.6, m1: 0.35, m2: 0.8 };
   const desktop = await writeWebp(
     sharp(src).resize({ width: 2400, kernel: "lanczos3" }).sharpen(SHARPEN),
-    path.join(outDir, "hero/hero-hq-desktop.webp"),
+    path.join(outDir, "hero/hero-refined-desktop.webp"),
     90,
   );
-  console.log(`hero/hero-hq-desktop.webp  2400w  ${kb(desktop)}`);
+  console.log(`hero/hero-refined-desktop.webp  2400w  ${kb(desktop)}`);
 
   // 4:5 portrait crop centered on the box for phones and tablets (served directly, not re-encoded).
   const { width, height } = await sharp(src).metadata();
   const w = Math.round((height * 4) / 5);
-  const left = Math.min(width - w, 760);
+  // Right-aligned: the box runs to the right edge of the refined photo.
+  const left = width - w;
   const mobile = await writeWebp(
     sharp(src)
       .extract({ left, top: 0, width: w, height })
       .resize({ width: Math.round(w * 1.5), kernel: "lanczos3" })
       .sharpen(SHARPEN),
-    path.join(outDir, "hero/hero-hq-mobile.webp"),
+    path.join(outDir, "hero/hero-refined-mobile.webp"),
     88,
   );
-  console.log(`hero/hero-hq-mobile.webp  ${Math.round(w * 1.5)}w  ${kb(mobile)}`);
+  console.log(`hero/hero-refined-mobile.webp  ${Math.round(w * 1.5)}w  ${kb(mobile)}`);
 }
 
 /** Client-supplied section photos (assets/images/site). Optional crop: [left, top, width, height]. */
@@ -82,8 +85,9 @@ const SITE_IMAGES = [
   // (client request 2026-11-20), so it gets the same HD export as the home hero.
   { src: "services-cover.webp", out: "services-cover-hq", crop: [0, 0, 1500, 996], hq: true },
   { src: "portfolio-cover.png", out: "portfolio-cover" },
-  // Client asked to crop from the top: trims empty dark space above the envelope.
-  { src: "contact-cover.webp", out: "contact-cover", crop: [0, 220, 1600, 680] },
+  // 2026-11-20: client's refined contact photo (1672 x 941 PNG). Cropped from the top, as the client
+  // asked for the earlier version, to trim empty dark space above the stamp and envelope.
+  { src: "contact-cover-refined.png", out: "contact-cover-refined", crop: [0, 230, 1672, 711], hq: true, light: true },
   { src: "gifting-consultation.webp", out: "gifting-consultation" },
   { src: "contact-gift-box.webp", out: "contact-gift-box" },
 ];
@@ -100,7 +104,10 @@ async function site() {
     // hq: full-bleed banners. One Lanczos3 upscale to 2400w with light sharpening, saved at q90.
     const size = item.hq
       ? await writeWebp(
-          pipeline.resize({ width: 2400, kernel: "lanczos3" }).sharpen({ sigma: 0.9, m1: 0.6, m2: 1.4 }),
+          pipeline
+            .resize({ width: 2400, kernel: "lanczos3" })
+            // "light" for sources that are already refined/sharpened by the client.
+            .sharpen(item.light ? { sigma: 0.6, m1: 0.35, m2: 0.8 } : { sigma: 0.9, m1: 0.6, m2: 1.4 }),
           out,
           90,
         )
