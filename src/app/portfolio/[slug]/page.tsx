@@ -7,7 +7,8 @@ import { PageHero } from "@/components/ui/PageHero";
 import { CTABand } from "@/components/sections/CTABand";
 import { collections, getCollectionBySlug } from "@/content/collections";
 import { products } from "@/content/products";
-import { buildMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { buildMetadata, generateBreadcrumbSchema, generateItemListSchema } from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -35,6 +36,19 @@ export default async function CollectionDetailPage({ params }: Props) {
   const items = products.filter((product) => product.collection === slug);
 
   return (
+    <>
+      <JsonLd data={[
+        generateBreadcrumbSchema([
+          { name: "Portfolio", path: "/portfolio" },
+          { name: collection.title, path: `/portfolio/${collection.slug}` },
+        ]),
+        generateItemListSchema({
+          name: `${collection.title} by NAQSH`,
+          description: collection.tagline,
+          path: `/portfolio/${collection.slug}`,
+          items: items.map((p) => ({ name: p.name, image: p.image, description: p.description })),
+        }),
+      ]} />
     <div className="min-h-screen bg-[var(--ivory-deep)]">
       <PageHero
         title={collection.title}
@@ -141,5 +155,6 @@ export default async function CollectionDetailPage({ params }: Props) {
 
       <CTABand />
     </div>
+    </>
   );
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ApproachHero } from "@/components/sections/ApproachHero";
-import { buildMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { buildMetadata, generateBreadcrumbSchema } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
   title: "Our Approach · Four-Step Corporate Gifting Process",
@@ -10,5 +11,10 @@ export const metadata: Metadata = buildMetadata({
 });
 
 export default function OurApproachPage() {
-  return <ApproachHero />;
+  return (
+    <>
+      <JsonLd data={generateBreadcrumbSchema([{ name: "Our Approach", path: "/our-approach" }])} />
+      <ApproachHero />
+    </>
+  );
 }

@@ -22,7 +22,8 @@ import {
   type ConsultationIcon,
   type WorkflowIcon,
 } from "@/content/services";
-import { buildMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { buildMetadata, generateBreadcrumbSchema, generateServicesSchema } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
   title: "Corporate Gifting Services · Premium Gifting Solutions & Gifting Consultation",
@@ -62,6 +63,14 @@ export default function ServicesPage() {
   const { header, premiumGifting, giftingConsultation, projectWorkflow } = servicesContent;
 
   return (
+    <>
+      <JsonLd data={[
+        generateBreadcrumbSchema([{ name: "Services", path: "/services" }]),
+        generateServicesSchema([
+          { name: premiumGifting.heading, description: premiumGifting.body, path: "/services" },
+          { name: giftingConsultation.heading, description: giftingConsultation.body, path: "/services#gifting-consultation" },
+        ]),
+      ]} />
     <div className="bg-[var(--ivory)]">
       <PageHero
         title={premiumGifting.heading}
@@ -204,5 +213,6 @@ export default function ServicesPage() {
         </div>
       </section>
     </div>
+    </>
   );
 }

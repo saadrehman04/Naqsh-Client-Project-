@@ -36,6 +36,23 @@ p { font-family: "Mulish", sans-serif; font-weight: 600; font-size: 20px; letter
 <p>${TAGLINE}</p>
 </body></html>`;
 
+// Logo for Google (structured data `logo`): the client's black wordmark on white, 1200 x 600 PNG,
+// unaltered, with even padding. Not shown anywhere on the site. Output public/brand/naqsh-logo-search.png
+{
+  const mark = await sharp(path.join(root, "assets/logo/final/PNG/naqsh-wordmark_black-on-white.png"))
+    .flatten({ background: "#ffffff" })
+    .trim({ background: "#ffffff", threshold: 10 })
+    .resize({ width: 960, height: 420, fit: "inside" })
+    .png()
+    .toBuffer();
+  const m = await sharp(mark).metadata();
+  const info = await sharp({ create: { width: 1200, height: 600, channels: 3, background: "#ffffff" } })
+    .composite([{ input: mark, left: Math.round((1200 - m.width) / 2), top: Math.round((600 - m.height) / 2) }])
+    .png({ compressionLevel: 9 })
+    .toFile(path.join(root, "public/brand/naqsh-logo-search.png"));
+  console.log(`brand/naqsh-logo-search.png  ${info.width}x${info.height}  ${(info.size / 1024).toFixed(0)} KB`);
+}
+
 const browser = await chromium.launch({ executablePath: process.env.CHROME_PATH || "/usr/bin/google-chrome" });
 try {
   const page = await browser.newPage({ viewport: { width: 1200, height: 630 } });

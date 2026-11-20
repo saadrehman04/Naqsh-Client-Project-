@@ -4,7 +4,7 @@ import { AccordionItem } from "@/components/ui/Accordion";
 import { Button } from "@/components/ui/Button";
 import { Ornament } from "@/components/ui/Ornament";
 import { faqGroups } from "@/content/faqs";
-import { buildMetadata, generateFaqSchema } from "@/lib/seo";
+import { buildMetadata, generateBreadcrumbSchema, generateFaqSchema } from "@/lib/seo";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
 
 export const metadata: Metadata = buildMetadata({
@@ -36,6 +36,12 @@ export default function FAQsPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(generateBreadcrumbSchema([{ name: "FAQs", path: "/faqs" }])),
+        }}
       />
 
       {/* Plain ivory title (client request 2026-11-19: no cover image). The header stays solid black

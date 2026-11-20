@@ -2,7 +2,8 @@ import { Metadata } from "next";
 import { PageHero } from "@/components/ui/PageHero";
 import { PhilosophyContent } from "@/components/sections/PhilosophyContent";
 import { philosophyContent } from "@/content/philosophy";
-import { buildMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { buildMetadata, generateBreadcrumbSchema } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
   title: philosophyContent.label,
@@ -13,6 +14,8 @@ export const metadata: Metadata = buildMetadata({
 
 export default function OurPhilosophyPage() {
   return (
+    <>
+      <JsonLd data={generateBreadcrumbSchema([{ name: "Our Philosophy", path: "/our-philosophy" }])} />
     <div className="bg-[var(--ivory)] min-h-screen">
       {/* Text-only hero, like the policy pages */}
       <PageHero
@@ -24,5 +27,6 @@ export default function OurPhilosophyPage() {
 
       <PhilosophyContent />
     </div>
+    </>
   );
 }

@@ -55,6 +55,11 @@ export function constructMetadata({
       "Eid corporate hampers",
     ],
     metadataBase: new URL(siteUrl),
+    // Google Search Console ownership check (invisible meta tag). Set GOOGLE_SITE_VERIFICATION in
+    // Vercel to the code Search Console gives, or paste it here.
+    ...(process.env.GOOGLE_SITE_VERIFICATION
+      ? { verification: { google: process.env.GOOGLE_SITE_VERIFICATION } }
+      : {}),
     alternates: {
       canonical: url,
     },
@@ -94,30 +99,133 @@ export function constructMetadata({
   };
 }
 
+const ORG_ID = `${siteUrl}/#organization`;
+const WEBSITE_ID = `${siteUrl}/#website`;
+const abs = (path: string) => (path.startsWith("http") ? path : `${siteUrl}${path}`);
+
+/**
+ * Site-wide structured data (invisible; read by Google): the business, as both an Organization
+ * and a LocalBusiness based in Lahore serving all of Pakistan, plus the WebSite it owns.
+ * Only facts already published on the site. No street address, opening hours or social profiles
+ * are given (unknown, or still placeholders).
+ */
 export function generateOrganizationSchema() {
   return {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "NAQSH",
-    legalName: "NAQSH Corporate Gifting",
-    url: siteUrl,
-    logo: `${siteUrl}/brand/wordmark-black.svg`,
-    slogan: siteConfig.tagline,
-    description: SITE_DESCRIPTION,
-    telephone: siteConfig.phone,
-    ...(siteConfig.email ? { email: siteConfig.email } : {}),
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Lahore",
-      addressCountry: "PK",
-    },
-    contactPoint: {
-      "@type": "ContactPoint",
-      telephone: siteConfig.phone,
-      ...(siteConfig.email ? { email: siteConfig.email } : {}),
-      contactType: "customer service",
-      areaServed: "PK",
-      availableLanguage: ["English", "Urdu"],
+    "@graph": [
+      {
+        "@type": ["Organization", "LocalBusiness"],
+        "@id": ORG_ID,
+        name: "NAQSH",
+        legalName: "NAQSH Corporate Gifting",
+        url: siteUrl,
+        logo: {
+          "@type": "ImageObject",
+          url: `${siteUrl}/brand/naqsh-logo-search.png`,
+          width: 1200,
+          height: 600,
+        },
+        image: `${siteUrl}/og/naqsh-share.png`,
+        slogan: siteConfig.tagline,
+        description: SITE_DESCRIPTION,
+        telephone: siteConfig.phone,
+        ...(siteConfig.email ? { email: siteConfig.email } : {}),
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Lahore",
+          addressRegion: "Punjab",
+          addressCountry: "PK",
+        },
+        areaServed: { "@type": "Country", name: "Pakistan" },
+        knowsAbout: [
+          "Corporate gifting",
+          "Employee welcome kits",
+          "Client gift packages",
+          "Ramadan and Eid corporate gifts",
+          "Branded corporate merchandise",
+          "Gifting consultation",
+        ],
+        contactPoint: {
+          "@type": "ContactPoint",
+          telephone: siteConfig.phone,
+          ...(siteConfig.email ? { email: siteConfig.email } : {}),
+          contactType: "customer service",
+          areaServed: "PK",
+          availableLanguage: ["English", "Urdu"],
+        },
+      },
+      {
+        "@type": "WebSite",
+        "@id": WEBSITE_ID,
+        url: siteUrl,
+        name: "NAQSH",
+        alternateName: "NAQSH Corporate Gifting",
+        description: SITE_DESCRIPTION,
+        publisher: { "@id": ORG_ID },
+        inLanguage: "en-PK",
+      },
+    ],
+  };
+}
+
+/** Breadcrumb trail for an inner page: Home > ... > page. */
+export function generateBreadcrumbSchema(trail: { name: string; path: string }[]) {
+  const items = [{ name: "Home", path: "/" }, ...trail];
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: item.name,
+      item: abs(item.path === "/" ? "" : item.path) || siteUrl,
+    })),
+  };
+}
+
+/** The services NAQSH offers (Services page), provided by the business above. */
+export function generateServicesSchema(services: { name: string; description: string; path: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@graph": services.map((svc) => ({
+      "@type": "Service",
+      name: svc.name,
+      description: svc.description,
+      serviceType: "Corporate gifting",
+      url: abs(svc.path),
+      provider: { "@id": ORG_ID },
+      areaServed: { "@type": "Country", name: "Pakistan" },
+    })),
+  };
+}
+
+/** A list of linked items with images (collections on Portfolio, products on a collection page). */
+export function generateItemListSchema(opts: {
+  name: string;
+  description: string;
+  path: string;
+  /** url only when the item has its own page (collections); products live on their collection page. */
+  items: { name: string; url?: string; image: string; description?: string }[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: opts.name,
+    description: opts.description,
+    url: abs(opts.path),
+    isPartOf: { "@id": WEBSITE_ID },
+    about: { "@id": ORG_ID },
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: opts.items.length,
+      itemListElement: opts.items.map((item, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: item.name,
+        ...(item.url ? { url: abs(item.url) } : {}),
+        image: abs(item.image),
+        ...(item.description ? { description: item.description } : {}),
+      })),
     },
   };
 }

@@ -2,7 +2,8 @@ import { Metadata } from "next";
 import { PageHero } from "@/components/ui/PageHero";
 import { InquiryForm } from "@/components/form/InquiryForm";
 import { ContactPanel } from "@/components/sections/ContactPanel";
-import { buildMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { buildMetadata, generateBreadcrumbSchema } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
   title: "Contact · Request a Corporate Gifting Consultation",
@@ -13,6 +14,8 @@ export const metadata: Metadata = buildMetadata({
 
 export default function ContactPage() {
   return (
+    <>
+      <JsonLd data={generateBreadcrumbSchema([{ name: "Contact", path: "/contact" }])} />
     <div className="bg-[var(--ivory)]">
       {/* Editorial Page Hero */}
       <PageHero
@@ -52,5 +55,6 @@ export default function ContactPage() {
         </div>
       </section>
     </div>
+    </>
   );
 }

@@ -246,3 +246,11 @@ Status: **ASSUMED** = default I (Saad) have not confirmed with the client. Chang
 - Domain fix: production has no `NEXT_PUBLIC_SITE_URL`, so canonical URLs and the preview image pointed at the Vercel address (and the sitemap/robots at naqsh.pk). The fallback is now https://naqshonline.co in `seo.ts`, `sitemap.ts` and `robots.ts`.
 - WhatsApp caches previews per link: chats that already showed the old card keep it; new shares pick up the new card once WhatsApp refreshes its cache.- **Default description** (home page, link previews and the Organization schema) is now the client's line, verbatim: "Discover premium corporate gifting with Naqsh. Partner with us for custom-curated corporate gifts designed to reflect your brand and leave a lasting impression." (`SITE_DESCRIPTION` in `src/lib/seo.ts`). Other pages keep their own descriptions.
 
+## 2026-11-20 · Behind-the-scenes SEO (no visible change)
+- Client rule: nothing visible on the website may change, including the browser-tab title ("NAQSH"). All work below is invisible markup read by search engines; verified by comparing the visible text, tab title and element positions of 11 pages against the live site (identical).
+- Structured data (JSON-LD): site-wide Organization + LocalBusiness (Lahore, serving Pakistan, logo, phone, email, slogan, description; no street address, hours or social profiles, as those are unknown or placeholders) and WebSite; BreadcrumbList on every inner page; Service entries on Services; CollectionPage + ItemList of collections (Portfolio) and products (each collection). Helpers in `src/lib/seo.ts`, rendered by `src/components/seo/JsonLd.tsx`.
+- Google logo image: `public/brand/naqsh-logo-search.png` (client black wordmark on white, 1200×600), built by `scripts/build-og-image.mjs`.
+- Sitemap now lists the photos on each page (image sitemap) with per-page priorities.
+- Search Console verification: set `GOOGLE_SITE_VERIFICATION` in Vercel (or DNS TXT record) to verify ownership.
+- Known limit: the tab title stays "NAQSH" on every page by client decision. Google may rewrite titles in results from page headings; descriptive titles would still help rankings if the client agrees later.
+
