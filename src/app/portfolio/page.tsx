@@ -17,6 +17,7 @@ export default function PortfolioPage() {
       <PageHero
         title={portfolioContent.hero.title}
         subtitle={portfolioContent.hero.intro}
+        label={portfolioContent.hero.label}
         image="/images/site/portfolio-cover.webp"
         imageTreatment="plain"
         imagePosition="center"

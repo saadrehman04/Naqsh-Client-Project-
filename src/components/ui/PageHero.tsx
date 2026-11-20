@@ -3,8 +3,7 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface PageHeroProps {
-  /** Small label with a line above the title. Omit to show no label (Portfolio, client request 2026-11-20). */
-  label?: string;
+  label: string;
   title: string;
   intro?: string;
   subtitle?: string;
@@ -130,15 +129,13 @@ export function PageHero({
 
       <div className="container-x relative z-10" data-reveal={fadeOnly ? "fade" : undefined}>
         <div className="max-w-4xl">
-          {label && (
-            <div
-              className="flex items-center gap-3 mb-3 sm:mb-4 text-xs font-sans tracking-[0.24em] uppercase text-[var(--ivory)]/90 font-semibold select-none [text-shadow:0_1px_10px_rgba(0,0,0,0.55)]"
-              data-reveal={fadeOnly ? undefined : "up"}
-            >
-              <span className="w-8 h-px bg-[var(--terracotta-on-dark)]" aria-hidden="true" />
-              <span>{label}</span>
-            </div>
-          )}
+          <div
+            className="flex items-center gap-3 mb-3 sm:mb-4 text-xs font-sans tracking-[0.24em] uppercase text-[var(--ivory)]/90 font-semibold select-none [text-shadow:0_1px_10px_rgba(0,0,0,0.55)]"
+            data-reveal={fadeOnly ? undefined : "up"}
+          >
+            <span className="w-8 h-px bg-[var(--terracotta-on-dark)]" aria-hidden="true" />
+            <span>{label}</span>
+          </div>
           <h1
             className="t-h1 mb-3.5 sm:mb-5 text-[var(--ivory)] drop-shadow-[0_2px_18px_rgba(0,0,0,0.45)]"
             data-reveal={fadeOnly ? undefined : "lines"}
