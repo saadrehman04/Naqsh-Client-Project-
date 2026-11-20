@@ -48,7 +48,7 @@ The site must not imply unconfirmed operational, commercial, or legal details. `
 - Chatbot: working hours are unknown, so those questions go to WhatsApp. Once confirmed, add them to `siteConfig` and the contact entry in `src/lib/chatbot/knowledge.ts`.
 - Logos: the header and footer show the approved logo shapes tinted terracotta by CSS. Ask the designer for official terracotta SVG exports so `assets/logo/svg` holds the real files.
 - Resend: inquiries are sent to contact@naqshonline.co, but the sender is still `onboarding@resend.dev`. To send from an @naqshonline.co address, verify the domain in Resend and set the `from` address in `src/app/api/inquiry/route.ts`.
-- ~~Hero photo original~~: resolved 2026-11-20. The client supplied 2752×1536 home and contact hero photos; no upscaling is needed any more. (The Services banner is still a 1500 px original: refined and upscaled, but its out-of-focus middle cannot be sharpened. **Ask the client for a 2K version**, like the home and contact photos.)
+- ~~Hero photo original~~: resolved 2026-11-20. The client supplied 2752×1536 home and contact hero photos; no upscaling is needed any more. The Services banner was replaced the same day with a 2400×1792 photo, so all three heroes are now full resolution.
 - ~~Rushda's text for the Contact panel~~: resolved 2026-11-19. "Website Content 2.pdf" keeps the same heading and intro, adds the "Contact Our Team" label and "Prefer to talk right away?".
 - **FAQ 9 "Can I request product samples?"**: the content PDF changed only the question (we → I) and gave no answer, so the existing answer is kept. Confirm it.
 - **FAQ 13**: the new last sentence ("We can also cater to urgent requests depending upon the project requirements") had no full stop in the PDF; one was added.

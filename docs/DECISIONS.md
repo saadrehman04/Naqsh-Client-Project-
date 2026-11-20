@@ -228,3 +228,7 @@ Status: **ASSUMED** = default I (Saad) have not confirmed with the client. Chang
 - `scripts/optimize-images.mjs` gains a `refine` step (`refineHd`, uses ImageMagick): light deblock, 16-bit linear-light EWA LanczosSharp upscale to 2400w, tuned unsharp mask, CLAHE local contrast blended at 30%. Output `site/services-cover-hd.webp` (q90); the previous `services-cover-hq.webp` was removed.
 - The real fix is a larger original (like the 2752×1536 home and contact photos); listed in the open items.
 
+## 2026-11-20 · Services hero: client's 2K photo
+- New original `assets/images/site/services-cover-2k.jpg` (2400×1792, no black band), replacing the 1500 px photo and its ImageMagick refinement (the `refine` step was removed from `scripts/optimize-images.mjs`, no longer used).
+- Exported as is at q90 (`site/services-cover-2k.webp`): no crop, upscaling or sharpening. Same "clear" treatment (no blur) and start fade.
+

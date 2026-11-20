@@ -26,7 +26,7 @@ Originals in `assets/images/site/`, optimized by `npm run images` into `public/i
 | Home hero, phones/tablets | `hero-gift-box-2k.jpg` | 4:5 crop centred on the wax seal, native 1229w, q88 | `hero/hero-2k-mobile.webp` |
 | Home · About | `about-wax-seal.webp` | 4:5 | `site/about-wax-seal.webp` |
 | Home · What Sets Us Apart | `why-heritage-box.webp` | 4:5 arch frame | `site/why-heritage-box.webp` |
-| Services banner | `services-cover.webp` (1500×1200) | bottom 204 px black band cut; ImageMagick HD refinement (linear-light LanczosSharp to 2400w, unsharp, light local contrast), q90, no blur, start fade | `site/services-cover-hd.webp` |
+| Services banner | `services-cover-2k.jpg` (client 2K, 2400×1792, 2026-11-20) | no crop, no upscaling or sharpening, q90, no blur, start fade | `site/services-cover-2k.webp` |
 | Portfolio banner | `portfolio-cover.png` | stretched backdrop, no dimming | `site/portfolio-cover.webp` |
 | Contact banner | `contact-cover-2k.jpg` (client 2K, 2752×1536, 2026-11-20) | 360 px cut from the top; scaled down to 2400w, q90; start fade | `site/contact-cover-2k.webp` |
 | Services · Gifting Consultation | `gifting-consultation.webp` | cover, focus 40% | `site/gifting-consultation.webp` |

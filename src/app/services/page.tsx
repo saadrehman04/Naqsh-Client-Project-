@@ -67,7 +67,7 @@ export default function ServicesPage() {
         title={premiumGifting.heading}
         subtitle={premiumGifting.body}
         label={header.label}
-        image="/images/site/services-cover-hd.webp"
+        image="/images/site/services-cover-2k.webp"
         imageTreatment="clear"
         imageQuality={90}
         imagePosition="70% center"
