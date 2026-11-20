@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         title: `${collection.title} · Corporate Gifting Collection`,
         description: `${collection.tagline} Explore customizable ${collection.title.toLowerCase()} by NAQSH.`,
         path: `/portfolio/${slug}`,
-        image: collection.image,
+        // Link previews use the brand card on every page (client request 2026-11-20).
       })
     : {};
 }

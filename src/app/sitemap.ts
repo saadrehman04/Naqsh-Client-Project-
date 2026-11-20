@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { collections } from "@/content/collections";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://naqsh.pk";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://naqshonline.co";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [

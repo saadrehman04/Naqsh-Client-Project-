@@ -50,7 +50,7 @@ The rows below are the earlier product-photo assignments; hero, About, What Sets
 | Collection · Brand Souvenirs | `branded-merchandise.png` | 4:5, focus 55% 50% | via products |
 | Collection · Appreciation Gifts | `excellence-award.png` | 4:5, focus 50% 50% | via products |
 | Collection · Custom & Occasion Specific | `new-year-celebration-box.png` | 4:5, focus 45% 55% | via products |
-| Open Graph image | none (generated: ivory card + wordmark + emblem + tagline) | — | `src/app/opengraph-image.tsx` |
+| Open Graph image (link previews) | `assets/logo/final/PNG/naqsh-wordmark_copper-shiny-3d.png` | black, copper 3D wordmark, ivory tagline; built by `scripts/build-og-image.mjs`, used on every page | `public/og/naqsh-share.png` |
 
 "via products" = `public/images/products/<product-slug>.webp` (max 1600 px wide, WebP q78), also used in each
 collection's product gallery.

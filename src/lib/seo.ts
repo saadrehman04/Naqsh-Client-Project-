@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { siteConfig } from "@/content/site";
 
 const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://naqsh-client-project.vercel.app";
+  // Live domain (the client shares https://naqshonline.co). Production has no NEXT_PUBLIC_SITE_URL,
+  // so previews and canonical URLs were pointing at the Vercel address before (fixed 2026-11-20).
+  process.env.NEXT_PUBLIC_SITE_URL || "https://naqshonline.co";
 
 export interface PageMetaOptions {
   title?: string;
@@ -19,11 +21,13 @@ export function constructMetadata({
   description = "Discover premium corporate gifting with NAQSH. Explore personalized gifts, employee welcome kits, executive hampers, festive collections, and bespoke corporate gifting solutions.",
   path = "",
   noIndex = false,
-  image = "/opengraph-image",
+  // Link-preview card: black, copper 3D wordmark, tagline (client request 2026-11-20).
+  // Built by scripts/build-og-image.mjs.
+  image = "/og/naqsh-share.png",
 }: PageMetaOptions = {}): Metadata {
   const fullTitle = title
     ? `${title} | NAQSH`
-    : "NAQSH | Premium Corporate Gifting & Bespoke Gift Solutions";
+    : "NAQSH | Premium Corporate Gifting";
   const url = `${siteUrl}${path}`;
 
   return {

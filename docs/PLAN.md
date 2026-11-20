@@ -15,7 +15,7 @@
 
 ## Folder structure
 ```
-src/app/                 routes, layout, not-found, sitemap.ts, robots.ts, opengraph-image, icon, api/inquiry
+src/app/                 routes, layout, not-found, sitemap.ts, robots.ts, icon (share image: public/og/naqsh-share.png), api/inquiry
 src/components/brand/    Logo (wordmark/emblem via next/image from /public/brand), WaxSeal
 src/components/layout/   Header, MobileMenu, Footer, SkipLink
 src/components/ui/       Button, ArrowCircle, SectionLabel, Placeholder, ImageFrame, Accordion, Confirm, RichText, Breadcrumb, Prose

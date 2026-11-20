@@ -240,3 +240,9 @@ Status: **ASSUMED** = default I (Saad) have not confirmed with the client. Chang
 - At the client's request, the Services hero is back to its earlier look: the 1500 px `services-cover.webp` with the "blur" treatment (6 px blur, 110% zoom, start fade). `PageHero` keeps both "blur" and "clear".
 - The 2K photo (`assets/images/site/services-cover-2k.jpg`) stays in assets as an unused original; its web export was removed.
 
+## 2026-11-20 · Link-preview card (WhatsApp etc.)
+- Client request (Maria): previews show a black card with the copper 3D NAQSH wordmark and "Crafting Lasting Impressions" in ivory under it. Static PNG `public/og/naqsh-share.png` (1200×630), built by `scripts/build-og-image.mjs` from the client's final wordmark file (unaltered); logo and tagline stay inside the centre 630 px for square crops. Replaces the generated ivory card (`src/app/opengraph-image.tsx`, removed). Collection pages now use the same card instead of a product photo.
+- Default preview title shortened to "NAQSH | Premium Corporate Gifting" ("& Bespoke Gift Solutions" removed at the client's request).
+- Domain fix: production has no `NEXT_PUBLIC_SITE_URL`, so canonical URLs and the preview image pointed at the Vercel address (and the sitemap/robots at naqsh.pk). The fallback is now https://naqshonline.co in `seo.ts`, `sitemap.ts` and `robots.ts`.
+- WhatsApp caches previews per link: chats that already showed the old card keep it; new shares pick up the new card once WhatsApp refreshes its cache.
+
