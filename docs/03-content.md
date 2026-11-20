@@ -152,3 +152,7 @@ Heading: This page has not been wrapped yet. Text: The page you are looking for 
 - Home description: Naqsh curates, customizes and delivers premium corporate gifts for businesses. Welcome kits, client packages, Ramadan & Eid baskets and more.
 - Other pages: "[Page] | Naqsh". Open Graph image: ivory card with wordmark + emblem + tagline.
 - JSON-LD: Organization (name, logo, phone, sameAs only when handles exist).
+
+## Site description (link previews, search results) [CLIENT, 2026-11-20]
+Discover premium corporate gifting with Naqsh. Partner with us for custom-curated corporate gifts designed to reflect your brand and leave a lasting impression.
+

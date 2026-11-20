@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/content/site";
 
+/** Client copy (2026-11-20), verbatim. Default page description and the organization description. */
+export const SITE_DESCRIPTION =
+  "Discover premium corporate gifting with Naqsh. Partner with us for custom-curated corporate gifts designed to reflect your brand and leave a lasting impression.";
+
 const siteUrl =
   // Live domain (the client shares https://naqshonline.co). Production has no NEXT_PUBLIC_SITE_URL,
   // so previews and canonical URLs were pointing at the Vercel address before (fixed 2026-11-20).
@@ -18,7 +22,8 @@ export const buildMetadata = constructMetadata;
 
 export function constructMetadata({
   title,
-  description = "Discover premium corporate gifting with NAQSH. Explore personalized gifts, employee welcome kits, executive hampers, festive collections, and bespoke corporate gifting solutions.",
+  // Client copy (2026-11-20), verbatim: shown under the title in link previews and search results.
+  description = SITE_DESCRIPTION,
   path = "",
   noIndex = false,
   // Link-preview card: black, copper 3D wordmark, tagline (client request 2026-11-20).
@@ -98,8 +103,7 @@ export function generateOrganizationSchema() {
     url: siteUrl,
     logo: `${siteUrl}/brand/wordmark-black.svg`,
     slogan: siteConfig.tagline,
-    description:
-      "Discover premium corporate gifting with NAQSH. Personalized gifts, employee welcome kits, executive hampers, festive collections, and bespoke corporate gifting solutions in Lahore, Pakistan.",
+    description: SITE_DESCRIPTION,
     telephone: siteConfig.phone,
     ...(siteConfig.email ? { email: siteConfig.email } : {}),
     address: {
