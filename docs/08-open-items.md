@@ -54,5 +54,5 @@ The site must not imply unconfirmed operational, commercial, or legal details. `
 - **FAQ 13**: the new last sentence ("We can also cater to urgent requests depending upon the project requirements") had no full stop in the PDF; one was added.
 - **Two dark sections back to back** (client requests): Home hero → black About Us, and Services hero → black Gifting Consultation. Confirm the client is happy with this.
 - **Search Console (2026-11-20)**: set up on contact@naqshonline.co. Still to do: add the developer's own Gmail as a user (Settings → Users and permissions), request indexing for Portfolio, Contact and FAQs in a day or two, then Bing Webmaster Tools (import from Search Console) and Google Business Profile.
-- **Google Business Profile (2026-11-21)**: created, not yet verified. Client to record the verification video at the business address (Google Maps app or business.google.com, signed in as contact@naqshonline.co → Verify → Record video) and add real photos (exterior, products, packaging, workspace). Confirm the 24/7 hours are accurate.
+- ~~Google Business Profile~~ (2026-11-21): not possible, NAQSH is online-only (Google requires in-person customer contact). The unverified profile on contact@naqshonline.co is hidden; delete it or leave it unverified.
 

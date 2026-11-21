@@ -290,3 +290,7 @@ Status: **ASSUMED** = default I (Saad) have not confirmed with the client. Chang
 ## 2026-11-21 · www.naqshonline.co fixed
 - DNS (Hostinger) already pointed `www` to Vercel, but the domain was not on the Vercel project, so www had no HTTPS certificate and browsers showed an error. Added www.naqshonline.co to the `naqsh-website` project (Vercel CLI), and a permanent host redirect in `next.config.ts` sends every www URL to the same path on naqshonline.co.
 
+## 2026-11-21 · NAQSH is online-only: no Business Profile, OnlineBusiness schema
+- The client confirmed NAQSH has no physical premises (online only, courier delivery). Google Business Profile requires in-person contact with customers, so NAQSH is not eligible; the unverified profile created earlier stays hidden and must not be verified with an address that is not the place of business.
+- Structured data changed from `Organization + LocalBusiness` to `OnlineBusiness` (Organization subtype), which suits a brand knowledge panel without a physical location. Lahore stays as the base city; areaServed Pakistan.
+

@@ -110,17 +110,18 @@ const WEBSITE_ID = `${siteUrl}/#website`;
 const abs = (path: string) => (path.startsWith("http") ? path : `${siteUrl}${path}`);
 
 /**
- * Site-wide structured data (invisible; read by Google): the business, as both an Organization
- * and a LocalBusiness based in Lahore serving all of Pakistan, plus the WebSite it owns.
+ * Site-wide structured data (invisible; read by Google): the business as an OnlineBusiness
+ * (a subtype of Organization) based in Lahore and serving all of Pakistan, plus the WebSite it owns.
+ * NAQSH has no customer-facing premises (online only, 2026-11-21), so it is not a LocalBusiness.
  * Only facts already published on the site. No street address, opening hours or social profiles
- * are given (unknown, or still placeholders).
+ * are given (none, or still placeholders).
  */
 export function generateOrganizationSchema() {
   return {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": ["Organization", "LocalBusiness"],
+        "@type": "OnlineBusiness",
         "@id": ORG_ID,
         name: "NAQSH",
         legalName: "NAQSH Corporate Gifting",
