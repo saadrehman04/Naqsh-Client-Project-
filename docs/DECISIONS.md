@@ -287,3 +287,6 @@ Status: **ASSUMED** = default I (Saad) have not confirmed with the client. Chang
 - Local production Lighthouse (mobile): home 84 (LCP 2.8 s, TBT 478 ms), New Hire Welcome Kits 89 (TBT 407 ms, was 3.3 s), Contact 85. Remaining delay is the GSAP/Lenis motion system, kept as designed.
 - Rich Results Test (Google): Breadcrumbs, Local business and Organisation valid; only optional `priceRange` flagged (no prices by design). Search Console: sitemap read successfully, 15 pages discovered.
 
+## 2026-11-21 · www.naqshonline.co fixed
+- DNS (Hostinger) already pointed `www` to Vercel, but the domain was not on the Vercel project, so www had no HTTPS certificate and browsers showed an error. Added www.naqshonline.co to the `naqsh-website` project (Vercel CLI), and a permanent host redirect in `next.config.ts` sends every www URL to the same path on naqshonline.co.
+

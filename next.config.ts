@@ -31,8 +31,18 @@ const nextConfig: NextConfig = {
     },
   },
   async redirects() {
-    // Annual Event Giveaways was retired (its products moved to other collections).
-    return [{ source: "/portfolio/annual-event-giveaways", destination: "/portfolio", permanent: true }];
+    return [
+      // www.naqshonline.co -> naqshonline.co (one canonical host for Google; www added in Vercel
+      // 2026-11-21). Permanent (308), keeps the path.
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.naqshonline.co" }],
+        destination: "https://naqshonline.co/:path*",
+        permanent: true,
+      },
+      // Annual Event Giveaways was retired (its products moved to other collections).
+      { source: "/portfolio/annual-event-giveaways", destination: "/portfolio", permanent: true },
+    ];
   },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
