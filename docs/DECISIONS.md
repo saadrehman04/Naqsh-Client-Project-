@@ -273,3 +273,10 @@ Status: **ASSUMED** = default I (Saad) have not confirmed with the client. Chang
 - Bing: all 15 sitemap URLs submitted through IndexNow (HTTP 202). Bing Webmaster Tools did not load in the built-in browser.
 - Google Business Profile not created: it needs a real street address for verification (can be hidden), working hours and owner verification. Waiting on the client.
 
+## 2026-11-21 · Google Business Profile created (awaiting verification)
+- Created on the NAQSH Google account (contact@naqshonline.co), as a new listing (not any similar-named business). Name NAQSH, category Corporate gift supplier, no customer-facing location (service-area business), service area Pakistan, phone +92 300 1462774, website https://naqshonline.co/, marketing emails off.
+- A private verification address was entered in Google (hidden from the public; deliberately not recorded in this repo).
+- Hours: open 24 hours, 7 days (as instructed). Description: the client's About paragraph plus the approved site description, verbatim (456 characters).
+- Skipped: shop-front and business photos (need real photos from the client; the built-in browser cannot upload files), the US$400 Google Ads credit (paid advertising, client's decision) and the Google Workspace trial (email is on Zoho).
+- Verification: Google offered only a business video, recorded by the client at the business address. The profile stays hidden until Google approves it.
+
