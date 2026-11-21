@@ -280,3 +280,10 @@ Status: **ASSUMED** = default I (Saad) have not confirmed with the client. Chang
 - Skipped: shop-front and business photos (need real photos from the client; the built-in browser cannot upload files), the US$400 Google Ads credit (paid advertising, client's decision) and the Google Workspace trial (email is on Zoho).
 - Verification: Google offered only a business video, recorded by the client at the business address. The profile stays hidden until Google approves it.
 
+## 2026-11-21 · Mobile speed (Core Web Vitals) without visible change
+- Lighthouse mobile on the live site: SEO 100 and Accessibility 100 on every page, Performance 63–79 (home LCP 4.1 s; collection pages TBT up to 3.3 s).
+- **Home hero art direction**: phones were preloading the desktop photo (via `priority`) and then downloading the full 1229w phone file (232 KB). `Hero.tsx` now uses `getImageProps` with one `<source>` per breakpoint, each a responsive srcset; phones get e.g. 768w AVIF (~38 KB). Same crop, same quality setting.
+- **3D scenes** (CTA wax seal, Our Approach gift box) no longer load the 3D library during page load: `useSceneViewportLifecycle` mounts them after the visitor's first interaction (then idle), or at once if already on screen. The still fallback shows until then, as before.
+- Local production Lighthouse (mobile): home 84 (LCP 2.8 s, TBT 478 ms), New Hire Welcome Kits 89 (TBT 407 ms, was 3.3 s), Contact 85. Remaining delay is the GSAP/Lenis motion system, kept as designed.
+- Rich Results Test (Google): Breadcrumbs, Local business and Organisation valid; only optional `priceRange` flagged (no prices by design). Search Console: sitemap read successfully, 15 pages discovered.
+

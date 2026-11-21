@@ -44,3 +44,4 @@ Format per entry: date · phase · what was done · what is next · blocked / ne
 - **2026-11-20 · Services hero restored**: Back to the original blurred photo at the client's request. Checked at 1440 / 1024 / 768 / 390.
 - **2026-11-20 · Link preview**: New black share card (copper 3D wordmark, ivory tagline) on every page, shorter preview title, URLs now on naqshonline.co. Checked og tags on 5 pages, robots.txt and sitemap.
 - **2026-11-20 · Invisible SEO**: Structured data (business, website, breadcrumbs, services, collections), Google logo, image sitemap, Search Console verification slot. Visible text, tab titles and layout unchanged on 11 pages (compared with the live site). Build passes.
+- **2026-11-21 · Mobile speed**: Phone hero art direction (232 KB to ~38 KB) and deferred 3D loading. Local Lighthouse mobile 84–89 (live was 63–79). Hero visuals identical to live (pixel diff under 1/255); 3D scenes still render after scrolling. Build passes.

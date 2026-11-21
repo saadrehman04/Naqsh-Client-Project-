@@ -77,6 +77,29 @@ export function useCan3D(minWidth = 320): boolean {
 }
 
 /**
+ * Resolves once the visitor first interacts (scroll, wheel, touch, click, key or mouse move),
+ * then waits for an idle moment. 3D scenes are never above the fold, so loading the 3D library
+ * (~280 KB) during page load only slowed the first seconds (Lighthouse TBT up to 3.3 s on phones).
+ * Visitors who scroll still get the scene well before it is in view.
+ */
+let interactionPromise: Promise<void> | null = null;
+function afterFirstInteraction(): Promise<void> {
+  if (interactionPromise) return interactionPromise;
+  interactionPromise = new Promise((resolve) => {
+    const events = ["scroll", "wheel", "touchstart", "pointerdown", "keydown", "mousemove"] as const;
+    const done = () => {
+      events.forEach((e) => window.removeEventListener(e, done));
+      const idle = (window as Window & { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number })
+        .requestIdleCallback;
+      if (idle) idle(() => resolve(), { timeout: 1200 });
+      else window.setTimeout(resolve, 200);
+    };
+    events.forEach((e) => window.addEventListener(e, done, { passive: true, once: true }));
+  });
+  return interactionPromise;
+}
+
+/**
  * Mounts a 3D scene early (within ~2200px of the viewport) so shaders and geometries
  * warm up well before the user reaches the section, and pauses rendering (`isVisible = false`)
  * when off-screen so GPU load is zero when not visible.
@@ -96,13 +119,29 @@ export function useSceneViewportLifecycle(
       return;
     }
 
+    // Mount only after the first interaction (see afterFirstInteraction), unless the scene is
+    // already on screen. Until then the scene's still fallback image is shown, as before.
+    let interacted = false;
+    let nearby = false;
+    let cancelled = false;
+    const maybeMount = () => {
+      if (!cancelled && nearby && interacted) setShouldMount(true);
+    };
+    afterFirstInteraction().then(() => {
+      interacted = true;
+      maybeMount();
+    });
+
     const checkBounds = () => {
       const rect = el.getBoundingClientRect();
       const vh = window.innerHeight || 900;
       const withinPreload = rect.top <= vh + 3800 && rect.bottom >= -3800;
       const onScreen = rect.top <= vh + 180 && rect.bottom >= -180;
-      if (withinPreload) {
+      if (onScreen) {
         setShouldMount(true);
+      } else if (withinPreload) {
+        nearby = true;
+        maybeMount();
       }
       setIsVisible(onScreen);
     };
@@ -112,7 +151,8 @@ export function useSceneViewportLifecycle(
     const mountObserver = new IntersectionObserver(
       ([entry]) => {
         if (entry?.isIntersecting) {
-          setShouldMount(true);
+          nearby = true;
+          maybeMount();
         }
       },
       { rootMargin: "3800px 0px 3800px 0px", threshold: 0 }
@@ -129,6 +169,7 @@ export function useSceneViewportLifecycle(
     visibleObserver.observe(el);
 
     return () => {
+      cancelled = true;
       mountObserver.disconnect();
       visibleObserver.disconnect();
     };

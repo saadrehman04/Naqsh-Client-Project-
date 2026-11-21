@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { getImageProps } from "next/image";
 import { ChevronDown } from "lucide-react";
 import { homeContent } from "@/content/home";
 
@@ -11,6 +11,17 @@ export function Hero() {
   const { hero } = homeContent;
   const [lineOne, lineTwo] = hero.headlineLines;
 
+  // Art direction (Next.js getImageProps): phones/tablets get the 4:5 phone crop and desktops the
+  // wide photo, each as a responsive srcset. The browser downloads only the one it shows; before,
+  // phones preloaded the desktop photo and then the full 1229w phone file.
+  const common = { alt: hero.imageAlt, fill: true, sizes: "100vw", quality: 90, priority: true } as const;
+  const {
+    props: { srcSet: desktopSrcSet },
+  } = getImageProps({ ...common, src: hero.image });
+  const {
+    props: { srcSet: mobileSrcSet, ...imgProps },
+  } = getImageProps({ ...common, src: hero.imageMobile });
+
   return (
     <section
       className="hero-section relative w-full min-h-[100svh] lg:min-h-[max(100svh,740px)] flex flex-col justify-between overflow-hidden bg-[var(--black)] text-[var(--ivory)]"
@@ -21,14 +32,11 @@ export function Hero() {
         <div className="absolute inset-x-0 bottom-0 top-[33%] sm:top-[40%] lg:top-0">
         <div className="hero-photo-parallax absolute inset-[-8%_0]">
           <picture>
-            <source media="(max-width: 1023px)" srcSet={hero.imageMobile} />
-            <Image
-              src={hero.image}
-              alt={hero.imageAlt}
-              fill
-              priority
-              quality={90}
-              sizes="100vw"
+            <source media="(min-width: 1024px)" srcSet={desktopSrcSet} sizes="100vw" />
+            <source media="(max-width: 1023px)" srcSet={mobileSrcSet} sizes="100vw" />
+            {/* eslint-disable-next-line jsx-a11y/alt-text -- alt comes from getImageProps */}
+            <img
+              {...imgProps}
               className="hero-photo object-cover object-[50%_35%] sm:object-[50%_80%] lg:object-[85%_center] xl:object-[70%_center]"
             />
           </picture>
