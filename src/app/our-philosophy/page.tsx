@@ -7,6 +7,7 @@ import { buildMetadata, generateBreadcrumbSchema } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
   title: philosophyContent.label,
+  pageTitle: "Our Philosophy, NAQSH",
   description:
     "NAQSH operates on ethical and Shariah-compliant principles: interest-free, ethically sourced, Amanah, dignified storytelling and halal standards.",
   path: "/our-philosophy",

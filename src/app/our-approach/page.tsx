@@ -5,6 +5,7 @@ import { buildMetadata, generateBreadcrumbSchema } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
   title: "Our Approach · Four-Step Corporate Gifting Process",
+  pageTitle: "Our Corporate Gifting Process, NAQSH",
   description:
     "Discover NAQSH's four-step corporate gifting process—Understand, Curate, Customize, and Deliver—designed to take your project from concept to doorstep.",
   path: "/our-approach",

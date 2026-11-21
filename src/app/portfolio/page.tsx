@@ -8,6 +8,7 @@ import { buildMetadata, generateBreadcrumbSchema, generateItemListSchema } from 
 
 export const metadata: Metadata = buildMetadata({
   title: "Portfolio & Gift Collections · Luxury Corporate Gifting",
+  pageTitle: "Corporate Gift Collections, NAQSH",
   description:
     "Explore NAQSH's six corporate gifting collections and 21 customizable gift editions.",
   path: "/portfolio",

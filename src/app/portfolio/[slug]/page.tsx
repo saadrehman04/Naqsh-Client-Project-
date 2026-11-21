@@ -12,6 +12,16 @@ import { buildMetadata, generateBreadcrumbSchema, generateItemListSchema } from 
 
 type Props = { params: Promise<{ slug: string }> };
 
+/** Google / browser-tab titles per collection, worded for what people search (2026-11-21). */
+const COLLECTION_PAGE_TITLES: Record<string, string> = {
+  "new-hire-welcome-kits": "Employee Welcome Kits",
+  "client-packages": "Client Gift Packages",
+  "ramadan-eid-baskets": "Ramadan and Eid Corporate Gift Baskets",
+  "appreciation-gifts": "Employee Appreciation Gifts",
+  "brand-souvenirs": "Branded Corporate Souvenirs",
+  "custom-occasion-gifts": "Custom Corporate Gifts",
+};
+
 export function generateStaticParams() {
   return collections.map(({ slug }) => ({ slug }));
 }
@@ -22,6 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return collection
     ? buildMetadata({
         title: `${collection.title} · Corporate Gifting Collection`,
+        pageTitle: `${COLLECTION_PAGE_TITLES[collection.slug] ?? collection.title}, NAQSH`,
         description: `${collection.tagline} Explore customizable ${collection.title.toLowerCase()} by NAQSH.`,
         path: `/portfolio/${slug}`,
         // Link previews use the brand card on every page (client request 2026-11-20).

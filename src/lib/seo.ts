@@ -12,6 +12,8 @@ const siteUrl =
 
 export interface PageMetaOptions {
   title?: string;
+  /** Browser-tab / Google result title (2026-11-21). Link previews keep `title` (og:title). */
+  pageTitle?: string;
   description?: string;
   path?: string;
   noIndex?: boolean;
@@ -22,6 +24,7 @@ export const buildMetadata = constructMetadata;
 
 export function constructMetadata({
   title,
+  pageTitle = "NAQSH, Premium Corporate Gifting in Pakistan",
   // Client copy (2026-11-20), verbatim: shown under the title in link previews and search results.
   description = SITE_DESCRIPTION,
   path = "",
@@ -36,9 +39,9 @@ export function constructMetadata({
   const url = `${siteUrl}${path}`;
 
   return {
-    // Browser tab shows only the brand (client request, Nov 2026). The descriptive page title
-    // is kept for link previews (Open Graph / Twitter) below.
-    title: { absolute: "NAQSH" },
+    // Descriptive page title for Google and the browser tab (approved 2026-11-21; was just
+    // "NAQSH"). Link previews (Open Graph / Twitter) keep their own titles below.
+    title: { absolute: pageTitle },
     description,
     keywords: [
       "corporate gifting",

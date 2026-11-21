@@ -27,6 +27,7 @@ import { buildMetadata, generateBreadcrumbSchema, generateServicesSchema } from 
 
 export const metadata: Metadata = buildMetadata({
   title: "Corporate Gifting Services · Premium Gifting Solutions & Gifting Consultation",
+  pageTitle: "Corporate Gifting Services and Consultation, NAQSH",
   description:
     "Premium corporate gifting solutions and one-on-one gifting consultations from NAQSH, from custom curation to seamless delivery.",
   path: "/services",

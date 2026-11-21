@@ -7,6 +7,7 @@ import { buildMetadata, generateBreadcrumbSchema } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
   title: "Contact · Request a Corporate Gifting Consultation",
+  pageTitle: "Contact NAQSH, Request a Gifting Consultation",
   description:
     "Share your corporate gifting requirements with NAQSH. Request a tailored proposal for employee welcome kits, executive gifts, seasonal hampers, and bespoke corporate packages in Lahore and across Pakistan.",
   path: "/contact",

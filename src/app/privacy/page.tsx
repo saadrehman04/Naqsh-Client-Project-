@@ -7,6 +7,7 @@ import { buildMetadata, generateBreadcrumbSchema } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
   title: privacyPolicy.title,
+  pageTitle: "Data Privacy Policy, NAQSH",
   description: "How NAQSH collects, uses and safeguards information from corporate clients and gift recipients.",
   path: "/privacy",
 });

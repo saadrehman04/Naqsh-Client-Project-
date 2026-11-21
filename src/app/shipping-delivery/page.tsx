@@ -7,6 +7,7 @@ import { buildMetadata, generateBreadcrumbSchema } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
   title: shippingPolicy.title,
+  pageTitle: "Shipping and Delivery Policy, NAQSH",
   description: "NAQSH shipping and delivery terms: timelines, delivery methods, rates, tracking, failed deliveries and damaged items.",
   path: "/shipping-delivery",
 });

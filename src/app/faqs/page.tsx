@@ -9,6 +9,7 @@ import { getWhatsAppUrl } from "@/lib/whatsapp";
 
 export const metadata: Metadata = buildMetadata({
   title: "FAQs · Corporate Gifting Ordering, Customization & Delivery",
+  pageTitle: "Corporate Gifting FAQs, NAQSH",
   description:
     "Clear answers to common questions about NAQSH corporate gifting: ordering, minimum quantities, custom logo branding, packaging, nationwide delivery and payment.",
   path: "/faqs",

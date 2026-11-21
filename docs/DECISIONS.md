@@ -294,3 +294,7 @@ Status: **ASSUMED** = default I (Saad) have not confirmed with the client. Chang
 - The client confirmed NAQSH has no physical premises (online only, courier delivery). Google Business Profile requires in-person contact with customers, so NAQSH is not eligible; the unverified profile created earlier stays hidden and must not be verified with an address that is not the place of business.
 - Structured data changed from `Organization + LocalBusiness` to `OnlineBusiness` (Organization subtype), which suits a brand knowledge panel without a physical location. Lahore stays as the base city; areaServed Pakistan.
 
+## 2026-11-21 · Descriptive page titles (approved)
+- Every page's `<title>` (browser tab and Google result headline) was "NAQSH". Now descriptive, set with `pageTitle` in `buildMetadata` (`src/lib/seo.ts`); collection titles in `COLLECTION_PAGE_TITLES` (`src/app/portfolio/[slug]/page.tsx`). Home: "NAQSH, Premium Corporate Gifting in Pakistan".
+- Link previews (og:title, og:image, description) unchanged. Visible text of all 15 pages verified identical to the live site before pushing.
+
